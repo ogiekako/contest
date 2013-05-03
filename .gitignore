@@ -1,0 +1,13 @@
+.idea
+.tctask
+CHelperReport.txt
+CheckerClass.template
+TaskClass.template
+TestCaseClass.template
+TopCoderTaskClass.template
+TopCoderTestCaseClass.template
+*.iml
+archive/*
+chelper.properties
+out/*
+tips/*

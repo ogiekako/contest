@@ -1,0 +1,51 @@
+algorithm from paper
+"A Polynomial-time Algorithm for the Change-Making Problem."
+
+入力: C={c_i} , c_0 > c_1 ...  > c_{n-1}=1
+
+定義:
+G(w) : greedyにとったやつ C.G(w) = w
+M(w) : 最小解のなかで,辞書順最大のもの
+U が greedy ⇔ U = G(U.C)
+U が minimal ⇔ U = M(U.C)
+
+既知とする定理:
+G(w)は辞書順最大 (あたりまえ)
+Uがgreedyなら,Uからいくつか減らしたやつもgreedy (これは論文に証明がある)
+Uがminimalなら,Uからいくつか減らしたやつもminimal
+
+
+最小の反例をw とする.
+M(w) = {m_i} とし,minimum nonzero をi>0 , maximum nonzero j とする.
+つまり,すべてのk<i に対して,m_k=0,すべてのk>j に対して,m_k=0.
+主定理: 
+M(w) は,G(c_{i-1}-1) と 1..j-1 で一致,jで1大きい,j+1..k で0.
+証明:
+G(w) とM(w)はかぶって非ゼロを持たない(そうでなければ,そこを1減らし,さらに小さい反例を作れる)から,
+M(w) < G(w) より,
+g_k > 0 なるkが k<i である.特に,i>0.
+よって,c_{i-1} <= w
+また,M(w) のj番目を1減らしたものもminimal.
+wが最小の反例であることより,これはgreedyでもある.
+これはc_iより大きいコインを使っていないので,
+c_{i-1} > w-c_j
+以上より, w-c_j < c_{i-1} <= w ...(1)
+
+V = {v_i} = G(c_{i-1}-1) とする.
+c_{i-1}-1 >= c_i より,v_i > 0.
+greedyより,v_i をひとつ減らして,G(c_{i-1}-1-c_i) を得る.
+ところで,m_i をひとつ減らして,G(w-c_i) を得る.
+(1) より, c_{i-1}-1-c_i < w-c_i
+よって,Gは順序を保存するから,G(c_{i-1}-1-c_i) < G(w-c_i).
+i番目にそれぞれ1を足しても順序を替えないので,
+V < M(w) ...(2)
+
+ところで,m_jを1減らしてG(w-c_j)を得る.
+(1)より,w-c_j <= c_{i-1} - 1
+より,G(w-c_j) <= V.
+(2)と合わせて, G(w-c_j) <= V < M(w).
+G(w-c_j) とM(w) はj番目が1違うのみである.
+よって,k<jで v_k = m_k
+また,k>j でm_k=0 なので,条件を満たすために,
+m_j = v_j + 1
+である. ■
