@@ -9,6 +9,7 @@ public class FlowEdge extends SimpleEdge {
 
     public FlowEdge(int from, int to, long capacity) {
         super(from, to);
+        if (capacity < 0) throw new IllegalArgumentException(from + " " + to + " " + capacity);
         this.residue = capacity;
     }
 
@@ -43,7 +44,7 @@ public class FlowEdge extends SimpleEdge {
     @Override
     public Edge transposed() {
         if (transposed == null) {
-            transposed = new FlowEdge(to, from, residue + flow) {
+            transposed = new FlowEdge(to, from, residue + flow, cost) {
                 @Override
                 public Edge transposed() {
                     return FlowEdge.this;
@@ -60,7 +61,7 @@ public class FlowEdge extends SimpleEdge {
     }
     @Override
     public String toString() {
-        return String.format("%d->%d(%d/%d)", from(), to(), flow(), flow() + residue());
+        return String.format("%d->%d(%d/%d,%d)", from(), to(), flow(), flow() + residue(), cost());
     }
 
     private class ReverseEdge implements Edge {
@@ -101,7 +102,7 @@ public class FlowEdge extends SimpleEdge {
         }
         @Override
         public String toString() {
-            return String.format("%d->%d(%d/%d)", from(), to(), flow(), flow() + residue());
+            return String.format("%d->%d(%d/%d,%d)", from(), to(), flow(), flow() + residue(), cost());
         }
     }
 }

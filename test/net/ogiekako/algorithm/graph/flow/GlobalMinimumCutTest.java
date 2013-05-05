@@ -1,10 +1,12 @@
 package net.ogiekako.algorithm.graph.flow;
 import junit.framework.Assert;
-import net.ogiekako.algorithm.graph.*;
+import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.Edge;
+import net.ogiekako.algorithm.graph.FlowEdge;
+import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Random;
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +19,7 @@ public class GlobalMinimumCutTest {
     @Test
     public void testSolve() throws Exception {
         GraphTester.test(new GraphTester.Generator<Long>() {
-            public Long result(Graph graph) {
+            public Long result(Graph graph, Random rnd) {
                 return new GlobalMinimumCut((BidirectionalGraph) graph).compute();
             }
             public void assertCorrect(Graph graph, Long result) {

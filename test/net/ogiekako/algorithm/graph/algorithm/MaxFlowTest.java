@@ -16,7 +16,7 @@ public class MaxFlowTest {
         GraphTester.test(new GraphTester.Generator<Long>() {
             int source;
             int sink;
-            public Long result(Graph graph) {
+            public Long result(Graph graph, Random rnd) {
                 source = 0;
                 sink = graph.size() - 1;
                 return MaxFlow.maxFlow(graph, source, sink);

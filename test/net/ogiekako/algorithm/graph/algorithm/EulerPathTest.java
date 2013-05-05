@@ -14,7 +14,7 @@ public class EulerPathTest {
     @Test
     public void testDirected() {
         GraphTester.test(new GraphTester.Generator<List<Edge>>() {
-            public List<Edge> result(Graph graph) {
+            public List<Edge> result(Graph graph, Random rnd) {
                 return new EulerPath().directedEulerPath(graph);
             }
 
@@ -73,7 +73,7 @@ public class EulerPathTest {
     @Test
     public void testUndirected() {
         GraphTester.test(new GraphTester.Generator<List<Edge>>() {
-            public List<Edge> result(Graph graph) {
+            public List<Edge> result(Graph graph, Random rnd) {
                 return new EulerPath().undirectedEulerPath((BidirectionalGraph) graph);
             }
 

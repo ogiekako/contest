@@ -14,7 +14,7 @@ public class ShortestPathTest {
     public void test() {
         GraphTester.test(new GraphTester.Generator<long[]>() {
             int counter = 0;
-            public long[] result(Graph graph) {
+            public long[] result(Graph graph, Random rnd) {
                 counter++;
                 System.out.println(counter + " " + graph.size() + "  " + GraphUtils.edgeCount(graph));
                 return new ShortestPath(graph).compute(0);
