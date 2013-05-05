@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class GraphTester<V> {
     public static interface Generator<V> {
-        V result(Graph graph);
+        V result(Graph graph, Random rnd);
 
         void assertCorrect(Graph graph, V result);
 
@@ -49,7 +49,7 @@ public class GraphTester<V> {
             Graph graph = graphGenerator.generate();
             if (!gen.valid(graph)) continue;
             long start = System.currentTimeMillis();
-            V res = gen.result(graph);
+            V res = gen.result(graph, rnd);
             long time = System.currentTimeMillis() - start;
             maxTime = Math.max(time, maxTime);
             gen.assertCorrect(graph, res);
@@ -127,7 +127,7 @@ public class GraphTester<V> {
 
     private void generate() {
         for (int n = 1; n <= 10; n++) {
-            for (int m = 0; m <= 20; m++) {
+            for (int m = 0; m <= 20; m = m == 0 ? 1 : m * 2) {
                 random(n, m);
             }
         }

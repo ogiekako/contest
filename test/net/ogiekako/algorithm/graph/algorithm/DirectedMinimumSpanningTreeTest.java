@@ -23,7 +23,7 @@ public class DirectedMinimumSpanningTreeTest {
     @Test
     public void test() {
         GraphTester.test(new GraphTester.Generator<Long>() {
-            public Long result(Graph graph) {
+            public Long result(Graph graph, Random rnd) {
                 Graph nGraph = new Graph(graph.size());
                 for (int i = 0; i < graph.size(); i++)
                     for (Edge e : graph.edges(i))

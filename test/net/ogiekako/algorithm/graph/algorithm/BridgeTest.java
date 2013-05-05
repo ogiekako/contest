@@ -26,7 +26,7 @@ public class BridgeTest {
             }
         }
         GraphTester.test(new GraphTester.Generator<Result>() {
-            public Result result(Graph graph) {
+            public Result result(Graph graph, Random rnd) {
                 Bridge bridge = new Bridge((BidirectionalGraph) graph);
                 int numComp = bridge.compute();
                 return new Result(numComp, bridge.cut, bridge.bridges, bridge.comp);

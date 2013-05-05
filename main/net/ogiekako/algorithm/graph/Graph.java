@@ -22,9 +22,10 @@ public class Graph {
 
     public static Graph of(List<Integer>[] graph) {
         Graph res = new Graph(graph.length);
-        for(int i=0;i<res.size();i++)for(int j:graph[i]){
-            res.add(i,j);
-        }
+        for (int i = 0; i < res.size(); i++)
+            for (int j : graph[i]) {
+                res.add(i, j);
+            }
         return res;
     }
 
@@ -32,8 +33,11 @@ public class Graph {
         add(new WeightedEdge(from, to, cost));
     }
 
-    public void addFlow(int from, int to, long capacity){
+    public void addFlow(int from, int to, long capacity) {
         add(new FlowEdge(from, to, capacity));
+    }
+    public void addFlow(int from, int to, long capacity, long cost) {
+        add(new FlowEdge(from, to, capacity, cost));
     }
 
     private static class EdgeList extends ArrayList<Edge> {

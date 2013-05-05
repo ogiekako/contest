@@ -46,4 +46,8 @@ public class Pair<F, S> implements Comparable<Pair<F, S>> {
     public static <F, S> Pair<F, S> of(F first, S second) {
         return new Pair<F, S>(first, second);
     }
+    @Override
+    public String toString() {
+        return first + " " + second;
+    }
 }

@@ -17,7 +17,7 @@ public class SCCTest {
     @Test
     public void testScc() throws Exception {
         GraphTester.test(new GraphTester.Generator<int[]>() {
-            public int[] result(Graph graph) {
+            public int[] result(Graph graph, Random rnd) {
                 return SCC.scc(graph);
             }
 
