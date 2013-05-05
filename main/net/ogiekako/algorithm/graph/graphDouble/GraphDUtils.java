@@ -1,12 +1,5 @@
 package net.ogiekako.algorithm.graph.graphDouble;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 4:59
- * To change this template use File | Settings | File Templates.
- */
 public class GraphDUtils {
     public static boolean[][] toBoolArray(GraphD graph) {
         int n = graph.size();

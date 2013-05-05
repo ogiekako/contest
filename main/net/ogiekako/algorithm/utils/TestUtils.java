@@ -1,16 +1,8 @@
 package net.ogiekako.algorithm.utils;
 
-import net.ogiekako.algorithm.annotations.verified;
 
 import java.util.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/03/11
- * Time: 16:07
- * To change this template use File | Settings | File Templates.
- */
 public class TestUtils {
     private static Random random;
 
@@ -60,16 +52,16 @@ public class TestUtils {
     }
 
     public static String generateRandomLowerCaseString(int len) {
-        return generateRandomString(StringUtils.lowercaseLetters,len);
+        return generateRandomString(StringUtils.lowercaseLetters, len);
     }
 
     public static String generateRandomString(String usedLetters, int len) {
-        return generateRandomString(usedLetters,len,new Random());
+        return generateRandomString(usedLetters, len, new Random());
     }
 
     public static String generateRandomString(String usedLetters, int len, Random rnd) {
         char[] cs = new char[len];
-        for (int i = 0; i < len; i++){
+        for (int i = 0; i < len; i++) {
             cs[i] = usedLetters.charAt(rnd.nextInt(usedLetters.length()));
         }
         return new String(cs);
@@ -77,22 +69,22 @@ public class TestUtils {
 
     public static int[][] generateRandomIntArray(int height, int width, int upTo) {
         Random rnd = new Random();
-        return generateRandomIntArray(height,width,upTo,rnd);
+        return generateRandomIntArray(height, width, upTo, rnd);
     }
 
     public static int[][] generateRandomIntArray(int height, int width, int upTo, Random rnd) {
         int[][] res = new int[height][];
-        for (int i = 0; i < height; i++)res[i] = generateRandomIntArray(width,upTo,rnd);
+        for (int i = 0; i < height; i++) res[i] = generateRandomIntArray(width, upTo, rnd);
         return res;
     }
 
     public static int[] generateRandomIntArray(int length, int upTo) {
-        return generateRandomIntArray(length,upTo,new Random());
+        return generateRandomIntArray(length, upTo, new Random());
     }
 
     public static int[] generateRandomIntArray(int length, int upTo, Random rnd) {
         int[] res = new int[length];
-        for (int i = 0; i < length; i++)res[i] = rnd.nextInt(upTo);
+        for (int i = 0; i < length; i++) res[i] = rnd.nextInt(upTo);
         return res;
     }
 
@@ -107,8 +99,8 @@ public class TestUtils {
 
     public static long[] generateRandomLongArray(int length, long upTp, Random random) {
         long[] res = new long[length];
-        for (int i = 0; i < length; i++){
-            res[i] = randomLong(upTp,random);
+        for (int i = 0; i < length; i++) {
+            res[i] = randomLong(upTp, random);
         }
         return res;
     }
@@ -120,18 +112,18 @@ public class TestUtils {
 
     public static int[] getRandomEmptyEdge(boolean[][] graph, int limitTry, Random rnd) {
         int n = graph.length;
-        while(limitTry-->0){
-            int a = rnd.nextInt(n),b = rnd.nextInt(n);
-            if(a!=b && !graph[a][b])return new int[]{a,b};
+        while (limitTry-- > 0) {
+            int a = rnd.nextInt(n), b = rnd.nextInt(n);
+            if (a != b && !graph[a][b]) return new int[]{a, b};
         }
         return null;
     }
 
     public static int[] getRandomExistingEdge(boolean[][] graph, int limitTry, Random rnd) {
         int n = graph.length;
-        while(limitTry-->0){
-            int a = rnd.nextInt(n),b = rnd.nextInt(n);
-            if(a!=b && graph[a][b])return new int[]{a,b};
+        while (limitTry-- > 0) {
+            int a = rnd.nextInt(n), b = rnd.nextInt(n);
+            if (a != b && graph[a][b]) return new int[]{a, b};
         }
         return null;
     }
@@ -140,12 +132,11 @@ public class TestUtils {
         return generateRandomDistinctIntArray(n, k, random);
     }
 
-    @verified("")
-    public static int[] generateRandomDistinctIntArray(int n, int k,Random rnd) {
+    public static int[] generateRandomDistinctIntArray(int n, int k, Random rnd) {
         List<Integer> list = new ArrayList<Integer>(n);
-        for (int i = 0; i < n; i++)list.add(i);
+        for (int i = 0; i < n; i++) list.add(i);
         int[] res = new int[k];
-        for (int i = 0; i < k; i++){
+        for (int i = 0; i < k; i++) {
             int p = rnd.nextInt(list.size());
             res[i] = list.remove(p);
         }

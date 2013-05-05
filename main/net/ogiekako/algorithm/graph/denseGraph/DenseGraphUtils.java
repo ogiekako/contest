@@ -1,6 +1,5 @@
 package net.ogiekako.algorithm.graph.denseGraph;
 
-import net.ogiekako.algorithm.annotations.verified;
 import net.ogiekako.algorithm.dataStructure.UnionFind;
 import net.ogiekako.algorithm.exceptions.UnsatisfiableException;
 import net.ogiekako.algorithm.utils.ArrayUtils;
@@ -136,9 +135,8 @@ public class DenseGraphUtils {
      * calculate a minimum cost vertex cover which uses no more than k vertices.
      *
      * @throws net.ogiekako.algorithm.exceptions.UnsatisfiableException
-     *
+     *          Problems: SRM571 B
      */
-    @verified("SRM571 B")
     public static int vertexCoverUpTo(boolean[][] graph, int[] cost, int k) throws UnsatisfiableException {
         int n = graph.length;
         boolean[] used = new boolean[n];

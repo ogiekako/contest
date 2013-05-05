@@ -65,10 +65,10 @@ public class SCCTest {
             int count = 0;
             for (int[] is : scc) count += is.length;
             Assert.assertEquals(n, count);
-            for (int i = 0; i < scc.length; i++) {
-                for (int j = 0; j < scc[i].length; j++) {
-                    for (int k = 0; k < scc[i].length; k++) {
-                        Assert.assertTrue(nei[scc[i][j]][scc[i][k]]);
+            for (int[] comp : scc) {
+                for (int v : comp) {
+                    for (int u : comp) {
+                        Assert.assertTrue(nei[v][u]);
                     }
                 }
             }

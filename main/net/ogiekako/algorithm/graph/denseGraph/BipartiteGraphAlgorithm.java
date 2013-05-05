@@ -1,14 +1,6 @@
 package net.ogiekako.algorithm.graph.denseGraph;
 
 import java.util.Arrays;
-
-/**
- * Created with IntelliJ IDEA.
- * User: ogiekako
- * Date: 13/04/27
- * Time: 3:33
- * To change this template use File | Settings | File Templates.
- */
 public class BipartiteGraphAlgorithm {
     int leftNode, rightNode;
     boolean[][] graph;

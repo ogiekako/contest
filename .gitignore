@@ -12,3 +12,5 @@ chelper.properties
 out/*
 tips/*
 main/Main.java
+main/src/*
+./*.java
