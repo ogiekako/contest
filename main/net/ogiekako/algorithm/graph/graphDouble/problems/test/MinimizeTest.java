@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.graph.graphDouble.problems.test;
 
 import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 import net.ogiekako.algorithm.graph.graphDouble.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
+import net.ogiekako.algorithm.graph.graphDouble.GraphDUtils;
 import net.ogiekako.algorithm.graph.graphDouble.SimpleEdge;
 import net.ogiekako.algorithm.graph.graphDouble.problems.Minimize;
 import net.ogiekako.algorithm.graph.graphDouble.tests.GraphGenerator;
@@ -26,8 +26,8 @@ public class MinimizeTest {
             if(!GraphAlgorithm.reachable(graph, 0, 1) || !GraphAlgorithm.reachable(graph, 1, 0)){
                 o--;continue;
             }
-            boolean[][] nei = GraphUtils.toBoolArray(graph);
-            int res = Minimize.minVertexToTrip010(GraphUtils.toBoolArray(graph));
+            boolean[][] nei = GraphDUtils.toBoolArray(graph);
+            int res = Minimize.minVertexToTrip010(GraphDUtils.toBoolArray(graph));
             int exp = solveStupidTrip010(nei);
             Assert.assertEquals(exp,res);
         }

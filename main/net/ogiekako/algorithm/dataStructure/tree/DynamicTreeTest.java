@@ -62,7 +62,7 @@ public class DynamicTreeTest {
                     if(nodes[nodeId[i]].root() == nodes[nodeId2[i]].root())throw new AssertionError();
                 }
             } else {
-                boolean exp = GraphAlgorithm.reachable(forest, nodeId[i], nodeId2[i]);
+                boolean exp = GraphUtils.reachable(forest, nodeId[i], nodeId2[i]);
                 boolean res = nodes[nodeId[i]].root() == nodes[nodeId2[i]].root();
                 if (exp != res) return i;
             }

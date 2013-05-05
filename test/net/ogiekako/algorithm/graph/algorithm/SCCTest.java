@@ -2,8 +2,8 @@ package net.ogiekako.algorithm.graph.algorithm;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.SimpleEdge;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
 import net.ogiekako.algorithm.graph.test.GraphGenerator;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import org.junit.Assert;

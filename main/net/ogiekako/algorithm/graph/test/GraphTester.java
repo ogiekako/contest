@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.graph.test;
 
+import junit.framework.Assert;
 import net.ogiekako.algorithm.graph.BidirectionalGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
@@ -26,7 +27,7 @@ public class GraphTester<V> {
 
     private final GraphTester.Generator<V> gen;
     private Random rnd = new Random(12012830L);
-    private Collection<Graph> testGraphs = new ArrayList<Graph>();
+    private Collection<GraphGenerator> testGraphs = new ArrayList<GraphGenerator>();
 
     private GraphTester(GraphTester.Generator<V> gen) {
         this.gen = gen;
@@ -39,13 +40,13 @@ public class GraphTester<V> {
 
     private void test() {
         generate();
-        // check validity
         int numTest = 0;
         int maxNode = 0;
         int maxEdge = 0;
 
         long maxTime = 0;
-        for (Graph graph : testGraphs) {
+        for (GraphGenerator graphGenerator : testGraphs) {
+            Graph graph = graphGenerator.generate();
             if (!gen.valid(graph)) continue;
             long start = System.currentTimeMillis();
             V res = gen.result(graph);
@@ -55,14 +56,73 @@ public class GraphTester<V> {
             numTest++;
             maxNode = Math.max(maxNode, graph.size());
             int numEdge = 0;
-            for(int i=0;i<graph.size();i++)numEdge += graph.edges(i).size();
+            for (int i = 0; i < graph.size(); i++) numEdge += graph.edges(i).size();
             maxEdge = Math.max(maxEdge, numEdge);
         }
 
+        Assert.assertTrue(numTest > 10);
+
         System.out.printf("max time = %.2fs\n", maxTime / 1000.0);
         System.out.printf("#test = %d\n", numTest);
-        System.out.printf("max #node = %d\n",maxNode);
-        System.out.printf("max #edge = %d\n",maxEdge);
+        System.out.printf("max #node = %d\n", maxNode);
+        System.out.printf("max #edge = %d\n", maxEdge);
+    }
+
+    interface GraphGenerator {
+        Graph generate();
+    }
+
+    class RandomGraphGenerator implements GraphGenerator {
+        private final int n, m;
+        boolean directed;
+        RandomGraphGenerator(int n, int m, boolean directed) {
+            this.n = n; this.m = m;
+            this.directed = directed;
+        }
+
+        public Graph generate() {
+            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            for (int i = 0; i < m; i++) {
+                int from = rnd.nextInt(n);
+                int to = rnd.nextInt(n);
+                graph.add(gen.edge(from, to, rnd));
+            }
+            return graph;
+        }
+    }
+
+    class PathGenerator implements GraphGenerator {
+        private int[] order;
+        boolean directed;
+        PathGenerator(int[] order, boolean directed) {
+            this.order = order;
+            this.directed = directed;
+        }
+        public Graph generate() {
+            int n = order.length;
+            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            for (int i = 0; i < order.length - 1; i++) {
+                graph.add(gen.edge(order[i], order[i + 1], rnd));
+            }
+            return graph;
+        }
+    }
+
+    class StarGenerator implements GraphGenerator {
+        private int[] order;
+        private final boolean directed;
+        StarGenerator(int[] order, boolean directed) {
+            this.order = order;
+            this.directed = directed;
+        }
+        public Graph generate() {
+            int n = order.length;
+            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            for (int i = 1; i < order.length; i++) {
+                graph.add(gen.edge(order[0], order[i], rnd));
+            }
+            return graph;
+        }
     }
 
     private void generate() {
@@ -93,52 +153,23 @@ public class GraphTester<V> {
     }
 
     private void star(int[] order) {
-        star(order, new Graph(order.length));
-        star(order, new BidirectionalGraph(order.length));
+        testGraphs.add(new StarGenerator(order, true));
+        testGraphs.add(new StarGenerator(order, false));
     }
 
-    private void star(int[] order, Graph graph) {
-        for (int i = 1; i < order.length; i++){
-            graph.add(gen.edge(order[0], order[i], rnd));
-        }
-        testGraphs.add(graph);
-    }
-
-    private void path(int numNode) {
-        path(ArrayUtils.createOrder(numNode));
-
-        int[] order = ArrayUtils.createOrder(numNode);
-        ArrayUtils.reverse(order);
-        path(order);
-
-        order = ArrayUtils.createOrder(numNode);
-        ArrayUtils.shuffle(order);
-        path(order);
+    private void path(int node) {
+        path(ArrayUtils.createOrder(node));
+        path(ArrayUtils.reversed(ArrayUtils.createOrder(node)));
+        path(ArrayUtils.shuffled(ArrayUtils.createOrder(node)));
     }
 
     private void path(int[] order) {
-        path(order, new Graph(order.length));
-        path(order, new BidirectionalGraph(order.length));
-    }
-
-    private void path(int[] order, Graph graph) {
-        for (int i = 0; i < order.length - 1; i++) {
-            graph.add(order[i], order[i + 1]);
-        }
-        testGraphs.add(graph);
+        testGraphs.add(new PathGenerator(order, true));
+        testGraphs.add(new PathGenerator(order, false));
     }
 
     private void random(int numNode, int numEdge) {
-        random(numNode, numEdge, new Graph(numNode));
-        random(numNode, numEdge, new BidirectionalGraph(numNode));
-    }
-
-    private void random(int numNode, int numEdge, Graph graph) {
-        for (int i = 0; i < numEdge; i++) {
-            int from = rnd.nextInt(numNode);
-            int to = rnd.nextInt(numNode);
-            graph.add(gen.edge(from, to, rnd));
-        }
-        testGraphs.add(graph);
+        testGraphs.add(new RandomGraphGenerator(numNode, numEdge, true));
+        testGraphs.add(new RandomGraphGenerator(numNode, numEdge, false));
     }
 }

@@ -177,6 +177,13 @@ public class ArrayUtils {
         return res;
     }
 
+    public static String[] removeIndex(String[] words, int index) {
+        String[] res = new String[words.length - 1];
+        System.arraycopy(words, 0, res, 0, index);
+        System.arraycopy(words, index + 1, res, index, res.length - index);
+        return res;
+    }
+
     public static int[] removeAll(int[] is, int target) {
         int m = 0;
         for (int i : is) if (i != target) m++;
@@ -184,6 +191,13 @@ public class ArrayUtils {
         m = 0;
         for (int i : is) if (i != target) res[m++] = i;
         return res;
+    }
+
+    public static <T> T[] removeAll(T[] array, T target, T[] emptyArray) {
+        List<T> res = new ArrayList<T>();
+        for (T value : array)
+            if (value == null ? target != null : !value.equals(target)) res.add(value);
+        return res.toArray(emptyArray);
     }
 
     public static void fill(int[][][][][][] array, int value) {
@@ -539,13 +553,6 @@ public class ArrayUtils {
         for (int i = 0, j = 0; i < ls.length; i++) {
             if ((mask >> i & 1) == 1) res[j++] = ls[i];
         }
-        return res;
-    }
-
-    public static String[] remove(String[] words, int index) {
-        String[] res = new String[words.length - 1];
-        System.arraycopy(words, 0, res, 0, index);
-        System.arraycopy(words, index + 1, res, index, res.length - index);
         return res;
     }
 

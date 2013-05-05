@@ -4,7 +4,7 @@ package on2012_6_10.pointywizardhats;
 
 // Paste me into the FileEdit configuration dialog
 
-import net.ogiekako.algorithm.graph.BipartiteGraphAlgorithm;
+import net.ogiekako.algorithm.graph.denseGraph.BipartiteGraphAlgorithm;
 
 public class PointyWizardHats {
    public int getNumHats(int[] topHeight, int[] topRadius, int[] bottomHeight, int[] bottomRadius) {

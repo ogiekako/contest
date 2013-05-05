@@ -1,4 +1,4 @@
-package net.ogiekako.algorithm.graph;
+package net.ogiekako.algorithm.graph.denseGraph;
 
 import java.util.Arrays;
 

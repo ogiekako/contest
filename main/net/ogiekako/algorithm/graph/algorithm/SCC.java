@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.graph.algorithm;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
+import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Pair;
 

@@ -4,7 +4,7 @@ package on2012_6_7.orthogonalanagram;
 
 // Paste me into the FileEdit configuration dialog
 
-import net.ogiekako.algorithm.graph.BipartiteGraphAlgorithm;
+import net.ogiekako.algorithm.graph.denseGraph.BipartiteGraphAlgorithm;
 
 public class OrthogonalAnagram {
     public String solve(String S) {

@@ -1,7 +1,7 @@
 package on2013_04.on2013_04_27_Single_Round_Match_577.BoardPainting;
 
 
-import net.ogiekako.algorithm.graph.BipartiteGraphAlgorithm;
+import net.ogiekako.algorithm.graph.denseGraph.BipartiteGraphAlgorithm;
 
 import java.util.*;
 // 1000

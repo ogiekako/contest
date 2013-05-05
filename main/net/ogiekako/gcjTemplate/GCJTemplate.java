@@ -16,7 +16,7 @@ public abstract class GCJTemplate {
     protected abstract void prepare();
     protected abstract void solve(MyScanner in, MyPrintWriter out);
 
-    final String _FOLDER = "/home/ogiekako/workspace/ProgrammingContest/src/GCJ/Japan/_2011/Final/";
+    final String _FOLDER = "";
     final String _CLASS_NAME = this.getClass().getSimpleName();
     final String _PROBLEM_ID = _CLASS_NAME.substring(_CLASS_NAME.length() - 1);
     final String _PROBLEM = _FOLDER + _PROBLEM_ID;

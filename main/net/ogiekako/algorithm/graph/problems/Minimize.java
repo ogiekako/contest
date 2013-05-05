@@ -1,8 +1,7 @@
 package net.ogiekako.algorithm.graph.problems;
 
 import net.ogiekako.algorithm.graph.*;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
-import net.ogiekako.algorithm.utils.ArrayUtils;
+import net.ogiekako.algorithm.graph.algorithm.ShortestPath;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,25 +20,24 @@ public class Minimize {
     public static int minVertexToTrip010(boolean[][] nei) {
         int n = nei.length;
         Graph graph = new Graph(n);
-        for (int i = 0; i < n; i++)for (int j = 0; j < n; j++)if (nei[i][j]) graph.add(new SimpleEdge(i, j));
+        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (nei[i][j]) graph.add(new SimpleEdge(i, j));
         Graph rev = GraphUtils.transposed(graph);
-        long[][] dp = new long[n][n];// from, to
-        ArrayUtils.fill(dp, Long.MAX_VALUE / 2);
-        long[][] dist = GraphAlgorithm.minDistanceDijkstra(graph);
+        long[][] dist = ShortestPath.allPairsShortestPath(graph);
         Graph graph2 = new Graph(n * n);
-        for (int t = 0; t < n; t++) for (int r = 0; r < n; r++) {
-            for (Edge e : graph.edges(t)) {
-                long weight = e.to() == r ? 0 : 1;
-                graph2.add(new WeightedEdge(t*n+r, e.to()*n+r, weight));
+        for (int t = 0; t < n; t++)
+            for (int r = 0; r < n; r++) {
+                for (Edge e : graph.edges(t)) {
+                    long weight = e.to() == r ? 0 : 1;
+                    graph2.add(new WeightedEdge(t * n + r, e.to() * n + r, weight));
+                }
+                for (Edge e : rev.edges(r)) {
+                    long weight = e.to() == t ? 0 : 1;
+                    graph2.add(new WeightedEdge(t * n + r, t * n + e.to(), weight));
+                }
+                if (r != t && dist[t][r] < Long.MAX_VALUE) {
+                    graph2.add(new WeightedEdge(t * n + r, r * n + t, dist[t][r] - 1));
+                }
             }
-            for (Edge e : rev.edges(r)) {
-                long weight = e.to() == t ? 0 : 1;
-                graph2.add(new WeightedEdge(t*n+r, t*n+e.to(), weight));
-            }
-            if (r != t) {
-                graph2.add(new WeightedEdge(t*n+r, r*n+t, dist[t][r] - 1));
-            }
-        }
-        return (int) GraphAlgorithm.dijkstra(graph2, 0)[n + 1] + 1;
+        return (int) ShortestPath.singleSourceShortestPath(graph2, 0)[n + 1] + 1;
     }
 }

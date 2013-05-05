@@ -105,7 +105,7 @@ public class SegTreeTest {
         Random rnd = new Random(1209812940L);
         int size = 50000;
         int iteration = 50000;
-        double limit = 1000;
+        double limit = 1500;
         for (int o = 0; o < 3; o++) {
             long start = System.currentTimeMillis();
             SegTree<V, D> tree = gen.genTree(size);

@@ -4,7 +4,7 @@ package on2012_4_11.poj3281_maxflow_dining;
 
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.GraphAlgorithm;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.io.MyScanner;
 
 import java.io.PrintWriter;
@@ -30,7 +30,7 @@ public class POJ3281_MaxFlow_Dining {
                 graph.add(new FlowEdge(1+F+N+i,1+F+N+N+d,1));
             }
         }
-        long res = GraphAlgorithm.maxFlow(graph,0,1+F+N+N+D);
+        long res = MaxFlow.maxFlow(graph, 0, 1 + F + N + N + D);
         out.println(res);
     }
 }

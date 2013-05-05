@@ -1,9 +1,6 @@
 package net.ogiekako.algorithm.graph.test;
 
-import net.ogiekako.algorithm.graph.Edge;
-import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.SimpleEdge;
+import net.ogiekako.algorithm.graph.*;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -17,7 +14,7 @@ import java.util.Random;
  */
 public abstract class GraphGenerator {
     public static final GraphGenerator ACYCLIC = new GraphGenerator() {@Override public boolean isValid(Graph graph) {
-            return GraphAlgorithm.isAcyclic(graph);
+            return GraphUtils.isAcyclic(graph);
     }};
     public static final GraphGenerator SIMPLE = new GraphGenerator() {@Override public boolean isValid(Graph graph) {
         HashSet<Edge> dejavu = new HashSet<Edge>();

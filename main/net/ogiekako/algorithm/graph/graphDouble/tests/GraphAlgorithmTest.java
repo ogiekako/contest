@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.graph.graphDouble.tests;
 
 import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 import net.ogiekako.algorithm.graph.graphDouble.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
+import net.ogiekako.algorithm.graph.graphDouble.GraphDUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +30,7 @@ public class GraphAlgorithmTest {
             int n = 50;
             int m = 100;
             GraphD graph = GraphGenerator.ANY.generate(n, m);
-            boolean[][] nei = GraphUtils.toBoolArray(graph);
+            boolean[][] nei = GraphDUtils.toBoolArray(graph);
             for (int i = 0; i < n; i++)nei[i][i] = true;
             for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++)nei[i][j] |= nei[i][k] && nei[k][j];
             int[][] scc = GraphAlgorithm.scc(graph).second;
@@ -66,7 +66,7 @@ public class GraphAlgorithmTest {
         int n = 50, m = 100;
         GraphD graph = GraphGenerator.ACYCLIC.generate(n, m);
         Assert.assertTrue(GraphAlgorithm.isAcyclic(graph));
-        boolean[][] nei = GraphUtils.toBoolArray(graph);
+        boolean[][] nei = GraphDUtils.toBoolArray(graph);
         for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++){
             nei[i][j] |= nei[i][k] && nei[k][j];
         }

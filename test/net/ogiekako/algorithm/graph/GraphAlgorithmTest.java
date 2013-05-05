@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.graph;
 
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.graph.flow.Dinic;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
 import net.ogiekako.algorithm.graph.test.GraphGenerator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,26 +27,16 @@ public class GraphAlgorithmTest {
             }
             int limit = rnd.nextInt(Integer.MAX_VALUE);
             long exp = din.maxFlow(0, 1, limit);
-            long res = GraphAlgorithm.maxFlow(graph, 0, 1, limit);
+            long res = MaxFlow.maxFlow(graph, 0, 1, limit);
             Assert.assertEquals(exp, res);
         }
-    }
-
-    @Test
-    public void testMinDistanceDijkstra() throws Exception {
-
-    }
-
-    @Test
-    public void testDijkstra() throws Exception {
-
     }
 
     @Test
     public void testIsAcyclicDigraph() {
         int n = 50, m = 100;
         Graph graph = GraphGenerator.ACYCLIC.generate(n, m);
-        Assert.assertTrue(GraphAlgorithm.isAcyclic(graph));
+        Assert.assertTrue(GraphUtils.isAcyclic(graph));
         boolean[][] nei = GraphUtils.toBoolArray(graph);
         for (int k = 0; k < n; k++)
             for (int i = 0; i < n; i++)
@@ -78,7 +68,7 @@ public class GraphAlgorithmTest {
                     }
             int s = rnd.nextInt(n);
             int t = s; while (t == s) t = rnd.nextInt(n);
-            long res = GraphAlgorithm.maxFlow(graph, s, t);
+            long res = MaxFlow.maxFlow(graph, s, t);
             long exp = solve(cap, s, t);
             Assert.assertEquals(exp, res);
         }

@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 2:57
- * To change this template use File | Settings | File Templates.
- */
 public class Graph {
     private int vertexCount;
     private EdgeList[] edges;

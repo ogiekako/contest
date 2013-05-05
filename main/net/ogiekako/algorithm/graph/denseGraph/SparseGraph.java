@@ -9,32 +9,6 @@ import java.util.Queue;
 
 public class SparseGraph {
 
-    public static Vertex[][] connectedComponents(Vertex[] undirectedGraph) {
-        Vertex[] vs = undirectedGraph;
-        for (Vertex v : vs) v.used = false;
-        List<Vertex[]> lists = new ArrayList<Vertex[]>();
-        for (Vertex v : vs)
-            if (!v.used) {
-                List<Vertex> list = new ArrayList<Vertex>();
-                Queue<Vertex> que = new LinkedList<Vertex>();
-                que.offer(v);
-                v.used = true;
-                while (!que.isEmpty()) {
-                    Vertex cur = que.poll();
-                    list.add(cur);
-                    for (Edge_ edge : cur) {
-                        Vertex nxt = edge.to;
-                        if (!nxt.used) {
-                            que.offer(nxt);
-                            nxt.used = true;
-                        }
-                    }
-                }
-                lists.add(list.toArray(ArrayUtils.createArray(0, vs[0])));
-            }
-        return lists.toArray(ArrayUtils.createArray(0, vs));
-    }
-
     /**
      * 木において,頂点間の距離が,distanceであるペアの数.
      * O(n log n).

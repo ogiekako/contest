@@ -40,25 +40,6 @@ public class MathUtils {
 
     public static PrimeDecomposition[] factorize(long from, long to) {
         if (to - from > Integer.MAX_VALUE) throw new IllegalArgumentException("to - from must <= Integer.MAX_VALUE");
-//        int SQ = (int) MathUtils.sqrt(to) + 1;
-//        int[] primes = generatePrimes(SQ);
-//        int n = (int) (to - from);
-//        PrimeDecomposition[] res = new PrimeDecomposition[n];
-//        for (int i = 0; i < n; i++) res[i] = new PrimeDecomposition(1);
-//        long[] values = new long[n];
-//        for (int i = 0; i < n; i++) values[i] = from + i;
-//        for (int prime : primes) for (long v = from / prime * prime; v < to; v += prime) if (v >= from) {
-//            int i = (int) (v - from);
-//            int power = 0;
-//            while (values[i] % prime == 0) {
-//                values[i] /= prime;
-//                power++;
-//            }
-//            res[i].add(new PrimePower(prime, power));
-//        }
-//        for (int i = 0; i < n; i++) if (values[i] > 1) res[i].add(new PrimePower(values[i], 1));
-//        return res;
-
         int n = (int) (to - from);
         int sq = (int) (MathUtils.sqrt(to) + 1);
         BitSet isNotPrimes = new BitSet(sq);

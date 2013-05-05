@@ -7,13 +7,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/09
- * Time: 22:36
- * To change this template use File | Settings | File Templates.
- */
 public class MinimumSteinerTree {
     public class AOJ1040 {
         private int[] dx={1,0,-1,0};

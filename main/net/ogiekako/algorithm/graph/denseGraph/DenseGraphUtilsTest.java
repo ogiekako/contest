@@ -1,4 +1,4 @@
-package net.ogiekako.algorithm.graph;
+package net.ogiekako.algorithm.graph.denseGraph;
 
 import net.ogiekako.algorithm.dataStructure.UnionFind;
 import net.ogiekako.algorithm.utils.TestUtils;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class UGraphUtilsTest {
+public class DenseGraphUtilsTest {
     @Test
     public void testIsConnected() {
         int n = 100;
@@ -28,7 +28,7 @@ public class UGraphUtilsTest {
             }else{
                 int[] e = TestUtils.generateRandomDistinctIntArray(n,2);
                 int x=e[0], y=e[1];
-                boolean res = UGraphUtils.isConnected(graph, x, y);
+                boolean res = DenseGraphUtils.isConnected(graph, x, y);
                 boolean exp = isConnectedUnionFind(graph, x, y);
                 if(res!=exp)throw null;
             }

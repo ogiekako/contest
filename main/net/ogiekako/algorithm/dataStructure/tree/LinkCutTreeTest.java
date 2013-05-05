@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.dataStructure.tree;
 
 import junit.framework.Assert;
-import net.ogiekako.algorithm.graph.*;
+import net.ogiekako.algorithm.graph.denseGraph.DenseGraphUtils;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import org.junit.Test;
 
@@ -165,7 +165,7 @@ public class LinkCutTreeTest {
             void link(int from, int parent) {
                 if (!isRoot[from])
                     throw null;
-                if (UGraphUtils.isConnected(graph, from, parent))
+                if (DenseGraphUtils.isConnected(graph, from, parent))
                     throw null;
                 isRoot[from] = false;
                 graph[from][parent] = graph[parent][from] = true;
@@ -250,7 +250,7 @@ public class LinkCutTreeTest {
 
             public int lca(int a, int b) {
                 int r = getRoot(-1,a);
-                return UGraphUtils.lowerCommonAncestor(graph,r,a,b);
+                return DenseGraphUtils.lowerCommonAncestor(graph, r, a, b);
             }
 
             public int secondRoot(int a) {
@@ -278,7 +278,7 @@ public class LinkCutTreeTest {
                 int a = -1, b = -1;
                 for (int j = 0; j < 100; j++) {
                     int x = rnd.nextInt(n), y = rnd.nextInt(n);
-                    if (x != y && !graph[x][y] && !UGraphUtils.isConnected(graph, x, y)) {
+                    if (x != y && !graph[x][y] && !DenseGraphUtils.isConnected(graph, x, y)) {
                         a = x; b = y; break;
                     }
                 }

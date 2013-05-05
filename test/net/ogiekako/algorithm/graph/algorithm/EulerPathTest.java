@@ -1,11 +1,7 @@
 package net.ogiekako.algorithm.graph.algorithm;
 
 import junit.framework.Assert;
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
-import net.ogiekako.algorithm.graph.Edge;
-import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.SimpleEdge;
-import net.ogiekako.algorithm.graph.graphDouble.GraphUtils;
+import net.ogiekako.algorithm.graph.*;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import org.junit.Test;
 

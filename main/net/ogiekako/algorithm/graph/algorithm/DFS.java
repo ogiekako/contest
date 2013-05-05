@@ -5,13 +5,15 @@ import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.SimpleEdge;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Stack;
 
 /**
  * abstract helper class to make recursive function non-recursive.
  * <p/>
- * run(vertex) does the same thing as the following whereas it is non-recursive:
+ * run(vertex) does the same thing as the following code whereas it is non-recursive:
  * <pre><code>
  *     void run(Edge e){
  *         if(!enter(e))return;
@@ -23,21 +25,21 @@ import java.util.Stack;
  *     }
  * </code></pre>
  *
- * @param <V>
+ * @param <V> Result type of the dfs algorithm.
  */
 public abstract class DFS<V> {
     protected final int n;
     protected final Graph graph;
     protected final boolean[] visited;
-    private final Iterator<Edge>[] is;
+    private final ListIterator<Edge>[] is;
 
     public DFS(Graph graph) {
         this.graph = graph;
         n = graph.size();
         visited = new boolean[n];
         //noinspection unchecked
-        is = new Iterator[n];
-        for (int i = 0; i < n; i++) is[i] = graph.edges(i).iterator();
+        is = new ListIterator[n];
+        for (int i = 0; i < n; i++) is[i] = graph.edges(i).listIterator();
     }
 
     public V run() {
@@ -45,6 +47,7 @@ public abstract class DFS<V> {
     }
 
     public V run(int[] order) {
+        Arrays.fill(visited, false);
         for (int vertex : order)
             if (!visited[vertex]) {
                 enterRoot(vertex);
@@ -61,12 +64,15 @@ public abstract class DFS<V> {
         while (!path.isEmpty()) {
             visited[parent.to()] = true;
             boolean found = false;
-            while (is[parent.to()].hasNext()) {
-                Edge e = is[parent.to()].next();
+            for (;is[parent.to()].hasNext();
+                 is[parent.to()].next()
+                    ) {
+                Edge e = is[parent.to()].next(); is[parent.to()].previous();
                 if (e.transposed() != parent) {
                     if (enter(e)) {
                         found = true;
                         path.push(parent);
+                        is[parent.to()].next();
                         parent = e;
                         break;
                     }

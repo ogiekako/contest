@@ -6,7 +6,7 @@ package on2012_8_24.oldbridges;
 
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.GraphAlgorithm;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 
 public class OldBridges {
     public String isPossible(String[] bridges, int a1, int a2, int an, int b1, int b2, int bn) {
@@ -26,7 +26,7 @@ public class OldBridges {
         graph.add(new FlowEdge(s, b1, 2*bn));
         graph.add(new FlowEdge(a2, t, 2*an));
         graph.add(new FlowEdge(b2, t, 2*bn));
-        return GraphAlgorithm.maxFlow(graph, s, t) >= 2 * (an + bn);
+        return MaxFlow.maxFlow(graph, s, t) >= 2 * (an + bn);
     }
 }
 

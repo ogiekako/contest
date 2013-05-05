@@ -43,8 +43,7 @@ public class BridgeTest {
                             for (Edge e : graph.edges(k)) {
                                 flowGraph.add(new FlowEdge(e.from(), e.to(), 1));
                             }
-                        con2[i][j] =
-                                GraphAlgorithm.maxFlow(flowGraph, i, j) >= 2;
+                        con2[i][j] = MaxFlow.maxFlow(flowGraph, i, j) >= 2;
                     }
 
                 int[] expComp = new int[n];
