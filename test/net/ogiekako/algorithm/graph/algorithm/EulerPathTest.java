@@ -51,7 +51,7 @@ public class EulerPathTest {
                     Assert.assertNotNull(result);
                     Assert.assertEquals(GraphUtils.edgeCount(graph), result.size());
                 }
-                if(result == null)return;
+                if (result == null) return;
                 HashSet<Edge> set = new HashSet<Edge>();
                 for (Edge e : result) set.add(e);
                 Assert.assertEquals(result.size(), set.size());
