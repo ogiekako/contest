@@ -75,16 +75,4 @@ public class GraphAlgorithmTest {
         }
         return false;
     }
-    //O(V^2 E)
-    public static class Dinic {
-        public Graph graph;
-
-        /**
-         * @param n - num node
-         */
-        public Dinic(int n) {
-            graph = new Graph(n);
-        }
-
-    }
 }

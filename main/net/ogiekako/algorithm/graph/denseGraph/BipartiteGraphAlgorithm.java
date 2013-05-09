@@ -34,8 +34,7 @@ public class BipartiteGraphAlgorithm {
      * O(L^2 R).
      * matchには、右側の節点に対応する、左側の節点の番号が格納される。
      *
-     * @param
-     * @return
+     * @return the size of maximum matching of the give graph.
      */
     public int maximumMatching() {
         int[] matched = new int[rightNode];

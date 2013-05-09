@@ -48,8 +48,8 @@ public class DenseGraphUtils {
     /**
      * kruskal
      *
-     * @param undirectedGraph
-     * @return
+     * @param undirectedGraph graph
+     * @return the cost of a minimum spanning tree
      */
     public static long minimumSpanningTree(long[][] undirectedGraph) {
         int n = undirectedGraph.length;
@@ -70,8 +70,7 @@ public class DenseGraphUtils {
     /**
      * O(n^2).
      *
-     * @param undirectedGraph
-     * @return
+     * @return true if the given graph is edge connected.
      */
     public static boolean isEdgeConnectedGraph(boolean[][] undirectedGraph) {
         int n = undirectedGraph.length;
