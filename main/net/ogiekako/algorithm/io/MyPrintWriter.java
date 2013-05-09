@@ -19,7 +19,7 @@ public class MyPrintWriter {
     }
 
     public void println(Object... os) {
-        if(os.length == 0){
+        if (os.length == 0) {
             out.println();
             return;
         }
@@ -39,7 +39,7 @@ public class MyPrintWriter {
     }
 
     public void printFormat(String format, Object... args) {
-        out.printf(format,args);
+        out.printf(format, args);
     }
 
 }

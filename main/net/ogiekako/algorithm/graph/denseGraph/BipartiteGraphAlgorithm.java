@@ -1,5 +1,8 @@
 package net.ogiekako.algorithm.graph.denseGraph;
 
+import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
+
 import java.util.Arrays;
 public class BipartiteGraphAlgorithm {
     int leftNode, rightNode;
@@ -103,5 +106,16 @@ public class BipartiteGraphAlgorithm {
      */
     public int minimumVertexCover() {
         return maximumMatching();
+    }
+    public static long maximumCostMatching(long[][] costs) {
+        if (costs.length == 0) return 0;
+        int n = costs.length, m = costs[0].length;
+        Graph graph = new Graph(n + m + 2);
+        int source = n + m, sink = source + 1;
+        for (int i = 0; i < n; i++) graph.addFlow(source, i, 1, 0);
+        for (int j = 0; j < m; j++) graph.addFlow(n + j, sink, 1, 0);
+        graph.addFlow(sink, source, Math.max(n, m), 0);
+        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.addFlow(i, n + j, 1, -costs[i][j]);
+        return -MinimumCostFlow.minimumCostCirculation(graph);
     }
 }

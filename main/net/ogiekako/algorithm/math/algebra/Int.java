@@ -4,10 +4,10 @@ import net.ogiekako.algorithm.utils.IntegerUtils;
 
 public class Int implements Ring<Int>, Comparable<Int> {
     public final long value;
-    public Int(long value){
+    public Int(long value) {
         this.value = value;
     }
-    public static Int of(long value){
+    public static Int of(long value) {
         return new Int(value);
     }
 

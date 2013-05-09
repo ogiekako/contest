@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class IterationTest {
     int num14 = 14;
-    int get14(){
+    int get14() {
         return num14;
     }
     @Test
@@ -25,24 +25,24 @@ public class IterationTest {
 //        System.err.println("iteration = " + C[n][k]);
         start = System.currentTimeMillis();
         int iteration = 0;
-        for(int comb=(1<<k)-1;comb<1<<n;){
+        for (int comb = (1 << k) - 1; comb < 1 << n; ) {
             iteration++;
             int x = comb & -comb;
             int y = comb + x;
-            comb = y | (~y&comb)/x>>1;
+            comb = y | (~y & comb) / x >> 1;
         }
-        if(iteration!=C[n][k])throw null;
+        if (iteration != C[n][k]) throw null;
         time = System.currentTimeMillis() - start;// times were almost same.
         System.err.println("time = " + time);
 //        System.err.println("iteration = " + C[n][k]);
         start = System.currentTimeMillis();
-        for (int i = 0; i < C[n][k]; i++){
+        for (int i = 0; i < C[n][k]; i++) {
 
         }
         time = System.currentTimeMillis() - start;
         System.err.println("time = " + time);
         start = System.currentTimeMillis();
-        Iteration.iterateBitCombination(n,k,new Iteration.IntFunc() {
+        Iteration.iterateBitCombination(n, k, new Iteration.IntFunc() {
             @Override
             public void doIt(int comb) {
                 // do nothing

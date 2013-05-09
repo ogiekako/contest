@@ -3,32 +3,11 @@ package net.ogiekako.algorithm.utils;
 import java.math.BigInteger;
 
 public class IntegerUtils {
-    public static final long[] tens = {
-            1,
-            10,
-            100,
-            1000,
-            10000,
-            100000,
-            1000000,
-            10000000,
-            100000000,
-            1000000000,
-            10000000000L,
-            100000000000L,
-            1000000000000L,
-            10000000000000L,
-            100000000000000L,
-            1000000000000000L,
-            10000000000000000L,
-            100000000000000000L,
-            1000000000000000000L,
-    };
 
     public static int reverse(int i, int lower) {
-        if(lower < 0  || 32 < lower)throw new IllegalArgumentException("" + lower);
-        if(lower == 0)return i;
-        if(lower == 32)return Integer.reverse(i);
+        if (lower < 0 || 32 < lower) throw new IllegalArgumentException("" + lower);
+        if (lower == 0) return i;
+        if (lower == 32) return Integer.reverse(i);
         int msk = Integer.reverse(i) >>> (32 - lower);
         return ((i >>> lower) << lower) | msk;
     }
@@ -69,8 +48,8 @@ public class IntegerUtils {
 
     public static BigInteger pow(BigInteger base, BigInteger exponent) {
         BigInteger result = BigInteger.ONE;
-        while(exponent.compareTo(BigInteger.ZERO) > 0){
-            if(exponent.testBit(0)){
+        while (exponent.compareTo(BigInteger.ZERO) > 0) {
+            if (exponent.testBit(0)) {
                 result = result.multiply(base);
             }
             base = base.multiply(base);
@@ -80,7 +59,7 @@ public class IntegerUtils {
     }
 
     public static int floorHalf(int i) {
-        if(i<0)return (i-1)>>1;
-        return i>>1;
+        if (i < 0) return (i - 1) >> 1;
+        return i >> 1;
     }
 }

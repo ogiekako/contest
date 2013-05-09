@@ -1,7 +1,6 @@
 package on2013_04.on2013_04_23_Croc_Champ_2013___Round_2.D___Ksusha_and_Square;
 
 
-
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.ArrayUtils;
@@ -28,7 +27,7 @@ public class TaskD {
         n = ps.length;
         for (int i = 0; i < n; i++) {
             long det = ps[next(i)].sub(ps[i]).det(ps[next(next(i))].sub(ps[i]));
-            if (det < 0){
+            if (det < 0) {
                 ArrayUtils.reverse(ps);
                 break;
             }

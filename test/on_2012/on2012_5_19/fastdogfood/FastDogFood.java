@@ -1,6 +1,7 @@
 package on_2012.on2012_5_19.fastdogfood;
 
 
+import net.ogiekako.algorithm.EPS;
 import net.ogiekako.algorithm.geometry.Line_methods;
 import net.ogiekako.algorithm.geometry.P;
 import net.ogiekako.algorithm.io.MyScanner;
@@ -70,8 +71,8 @@ public class FastDogFood {
             double dot2 = q.dot(r2);
             double det1 = r1.det(q);
             double det2 = q.det(r2);
-            if (dot1 < -P.EPS && dot2 < -P.EPS) return false;
-            if (Math.abs(det1) > P.EPS && Math.abs(det2) > P.EPS && Math.signum(det1) != Math.signum(det2))
+            if (dot1 < -EPS.get() && dot2 < -EPS.get()) return false;
+            if (Math.abs(det1) > EPS.get() && Math.abs(det2) > EPS.get() && Math.signum(det1) != Math.signum(det2))
                 return false;
             r1 = q;
             r2 = Food.sub(orbit[i]);

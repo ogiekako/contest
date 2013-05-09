@@ -13,22 +13,22 @@ public class Builtin {
 
     ////////// max //////////
     public static int max(int a, int b) { return Math.max(a, b); }
-    public static int max(int... a){return ArrayUtils.max(a);}
+    public static int max(int... a) {return ArrayUtils.max(a);}
     public static long max(long a, long b) { return Math.max(a, b); }
     public static double max(double a, double b) { return Math.max(a, b); }
     public static <T extends Comparable<T>> T max(T a, T b) {return a.compareTo(b) >= 0 ? a : b;}
 
     ////////// sort //////////
-    public static void sort(int[] a){ArrayUtils.sort(a);}
+    public static void sort(int[] a) {ArrayUtils.sort(a);}
 
     ////////// reverse //////////
-    public static void reverse(int[] a){ArrayUtils.reverse(a);}
+    public static void reverse(int[] a) {ArrayUtils.reverse(a);}
 
     ////////// cast //////////
-    public static int[] toInt(long[] a){return Cast.toInt(a);}
-    public static int[] toInt(String[] a){return Cast.toInt(a);}
-    public static int[][] toInt(long[][] a){return Cast.toInt(a);}
+    public static int[] toInt(long[] a) {return Cast.toInt(a);}
+    public static int[] toInt(String[] a) {return Cast.toInt(a);}
+    public static int[][] toInt(long[][] a) {return Cast.toInt(a);}
 
     ////////// concat //////////
-    public static String concat(String[] a){return StringUtils.concat(a);}
+    public static String concat(String[] a) {return StringUtils.concat(a);}
 }

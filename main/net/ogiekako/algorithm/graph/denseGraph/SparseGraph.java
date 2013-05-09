@@ -1,12 +1,5 @@
 package net.ogiekako.algorithm.graph.denseGraph;
 
-import net.ogiekako.algorithm.utils.ArrayUtils;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class SparseGraph {
 
     /**
@@ -15,6 +8,7 @@ public class SparseGraph {
      * 重心分解を用いて,各部分木に対して,再帰的に,その根を通る長さdistanceのパスの数を求めている.
      * 毎回木のサイズが1/2になるため,
      * http://www.codeforces.com/contest/161/problem/D
+     *
      * @param tree
      * @param distance
      * @return
@@ -32,10 +26,11 @@ public class SparseGraph {
         root.used = false;
 
         setDistance(root, null, 0, 1, vertexCounts);
-        for (Edge_ e : root) if (!e.to.used) {
+        for (Edge_ e : root)
+            if (!e.to.used) {
                 setDistance(e.to, root, 1, -1, vertexCounts);
                 res += calcPairsThroughRoot(e.to, root, 1, distance, vertexCounts);
-        }
+            }
         vertexCounts[0] = 0;
         return res;
     }
@@ -43,14 +38,17 @@ public class SparseGraph {
     private static long calcPairsThroughRoot(Vertex subtreeVertex, Vertex parent, int depth, int desiredDistance, int[] vertexCount) {
         if (depth >= vertexCount.length) return 0;
         long res = vertexCount[desiredDistance - depth];
-        for (Edge_ e : subtreeVertex) if (!e.to.used && e.to != parent) res += calcPairsThroughRoot(e.to, subtreeVertex, depth + 1, desiredDistance, vertexCount);
+        for (Edge_ e : subtreeVertex)
+            if (!e.to.used && e.to != parent)
+                res += calcPairsThroughRoot(e.to, subtreeVertex, depth + 1, desiredDistance, vertexCount);
         return res;
     }
 
     private static void setDistance(Vertex current, Vertex parent, int distanceFromRoot, int add, int[] vertexCounts) {
         if (distanceFromRoot >= vertexCounts.length) return;
         vertexCounts[distanceFromRoot] += add;
-        for (Edge_ e : current) if (!e.to.used && e.to != parent) setDistance(e.to, current, distanceFromRoot + 1, add, vertexCounts);
+        for (Edge_ e : current)
+            if (!e.to.used && e.to != parent) setDistance(e.to, current, distanceFromRoot + 1, add, vertexCounts);
     }
 
     /**
@@ -58,6 +56,7 @@ public class SparseGraph {
      * 根からのサイズを計算し,再び根から,n/2より大きいサイズが子にない点で切ればいい.
      * あったら,その部分木について計算.
      * O(tree size).
+     *
      * @param treeRoot
      * @return
      */
@@ -66,14 +65,16 @@ public class SparseGraph {
         return centroid0(treeRoot, null, treeRoot.size);
     }
 
-    
+
     private static Vertex centroid0(Vertex current, Vertex parent, int totalSize) {
-        for (Edge_ e : current) if (!e.to.used && e.to != parent && e.to.size > totalSize / 2) return centroid0(e.to, current, totalSize);
+        for (Edge_ e : current)
+            if (!e.to.used && e.to != parent && e.to.size > totalSize / 2) return centroid0(e.to, current, totalSize);
         return current;
     }
 
     /**
      * O(tree size)
+     *
      * @param treeRoot
      * @param parent
      * @return
@@ -85,19 +86,19 @@ public class SparseGraph {
     }
 
     private static int topologicalSortN;
-    public static Vertex[] topologicalSort(Vertex[] vs){
+    public static Vertex[] topologicalSort(Vertex[] vs) {
         topologicalSortN = vs.length;
         int[] states = new int[topologicalSortN];
         Vertex[] us = new Vertex[topologicalSortN];
-        for(Vertex v:vs){
-            if(states[v.id]==0 && !topologicalSortDfs(v,us,states))return null;
+        for (Vertex v : vs) {
+            if (states[v.id] == 0 && !topologicalSortDfs(v, us, states)) return null;
         }
         return us;
     }
-    private static boolean topologicalSortDfs(Vertex v, Vertex[] us,int[] states) {
+    private static boolean topologicalSortDfs(Vertex v, Vertex[] us, int[] states) {
         states[v.id] = 1;
-        for(Edge_ u:v){
-            if(states[u.to.id]==1 || states[u.to.id]==0 && !topologicalSortDfs(u.to,us,states))return false;
+        for (Edge_ u : v) {
+            if (states[u.to.id] == 1 || states[u.to.id] == 0 && !topologicalSortDfs(u.to, us, states)) return false;
         }
         us[--topologicalSortN] = v;
         states[v.id] = 2;

@@ -120,17 +120,17 @@ public class LinearSystem {
 
     /**
      * O( mx )
-     * @param bitVector - bit vector. It should be already normalized.
-     * @param rank - #vector used for calculation
-     * @param newRow - the row which is judged independence
-     * @return - true iff newRow is independent
      *
+     * @param bitVector - bit vector. It should be already normalized.
+     * @param rank      - #vector used for calculation
+     * @param newRow    - the row which is judged independence
+     * @return - true iff newRow is independent
      */
-    public static boolean isIndependentFromHighest(long[] bitVector, int rank, long newRow){
+    public static boolean isIndependentFromHighest(long[] bitVector, int rank, long newRow) {
         int mx = 64;
-        for(int i=mx-1,j=0;j<rank && i>=0;j++){
-            while(bitVector[j]<<63-i>=0)i--;
-            if(newRow<<63-i<0)newRow ^= bitVector[j];
+        for (int i = mx - 1, j = 0; j < rank && i >= 0; j++) {
+            while (bitVector[j] << 63 - i >= 0) i--;
+            if (newRow << 63 - i < 0) newRow ^= bitVector[j];
         }
         return newRow != 0;
     }
@@ -165,29 +165,30 @@ public class LinearSystem {
                 continue;
             }
             // elimination
-            for (int i = 0; i < n; i++)if(i!=rank) {
-                if (a[i][j]) {
-                    for (int k = j; k <= m; k++) {
-                        a[i][k] ^= a[rank][k];
+            for (int i = 0; i < n; i++)
+                if (i != rank) {
+                    if (a[i][j]) {
+                        for (int k = j; k <= m; k++) {
+                            a[i][k] ^= a[rank][k];
+                        }
                     }
                 }
-            }
             id[rank++] = j;
         }
-        for(int i=rank;i<n;i++){
+        for (int i = rank; i < n; i++) {
             // no answer
-            if(a[i][m])return null;
+            if (a[i][m]) return null;
         }
 
         boolean[][] X = new boolean[n - rank + 1][m];
         for (int j = 0, k = 0; j < m; j++) {
-            if(a[k][j]){
+            if (a[k][j]) {
                 X[0][j] = a[k++][m];
-            }else{
+            } else {
                 // identity
-                X[j-k+1][j] = true;
-                for(int i=0;i<k;i++){
-                    X[j-k+1][id[i]] = a[i][j];
+                X[j - k + 1][j] = true;
+                for (int i = 0; i < k; i++) {
+                    X[j - k + 1][id[i]] = a[i][j];
                 }
             }
         }
@@ -196,8 +197,8 @@ public class LinearSystem {
 
     /**
      * @param bitVector - bit vector representing rows of boolean matrix
-     * @param n - #vector used for gauss elimination
-     * @param order - the order of bits used for gauss elimination
+     * @param n         - #vector used for gauss elimination
+     * @param order     - the order of bits used for gauss elimination
      * @return vector is modified. result vector[i] = \sum_j res[i][j] * (given vector[j])
      */
     public static long[] gauss(long[] bitVector, int n, int[] order) {
@@ -225,10 +226,10 @@ public class LinearSystem {
         return res;
     }
 
-    public static long[] gaussFromHighest(long[] bitVector, int n){
+    public static long[] gaussFromHighest(long[] bitVector, int n) {
         return gauss(bitVector, n, ArrayUtils.createReversedOrder(n));
     }
-    public static long[] gaussFromLowest(long[] bitVector, int n){
+    public static long[] gaussFromLowest(long[] bitVector, int n) {
         return gauss(bitVector, n, ArrayUtils.createOrder(n));
     }
 }

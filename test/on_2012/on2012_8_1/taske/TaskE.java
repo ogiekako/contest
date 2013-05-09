@@ -1,7 +1,7 @@
 package on_2012.on2012_8_1.taske;
 
 
-import net.ogiekako.algorithm.dataStructure.BIT;
+import net.ogiekako.algorithm.dataStructure.IntSumBinaryIndexedTree;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
@@ -21,8 +21,8 @@ public class TaskE {
 
     public long solve(int n, long k, int[] as) {
         ArrayUtils.compress(as);
-        BIT left = new BIT(n + 10);
-        BIT right = new BIT(n + 10);
+        IntSumBinaryIndexedTree left = new IntSumBinaryIndexedTree(n + 10);
+        IntSumBinaryIndexedTree right = new IntSumBinaryIndexedTree(n + 10);
         long allInv = 0;
         for (int i = 0; i < n; i++) {
             long inv = right.sum(as[i] + 1, n + 5);

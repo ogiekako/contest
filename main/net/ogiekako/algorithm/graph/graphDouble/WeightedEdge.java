@@ -2,14 +2,7 @@ package net.ogiekako.algorithm.graph.graphDouble;
 
 import net.ogiekako.algorithm.utils.IntegerUtils;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 5:22
- * To change this template use File | Settings | File Templates.
- */
-public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge>{
+public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge> {
     long weight;
     EdgeD transposed;
 

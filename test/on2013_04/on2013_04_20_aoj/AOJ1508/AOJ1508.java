@@ -1,10 +1,7 @@
 package on2013_04.on2013_04_20_aoj.AOJ1508;
 
 
-
-
-
-import net.ogiekako.algorithm.dataStructure.tree.SplayTreeList;
+import net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree.SplayTreeList;
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
 

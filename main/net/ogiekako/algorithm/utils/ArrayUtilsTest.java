@@ -7,19 +7,12 @@ import java.util.Random;
 
 import static net.ogiekako.algorithm.utils.ArrayUtils.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/22
- * Time: 0:55
- * To change this template use File | Settings | File Templates.
- */
 public class ArrayUtilsTest {
     @Test
     public void testCreateArray() throws Exception {
         E e = new E();
         e.id = 1;
-        E[] es = ArrayUtils.createArray(100, e);
+        ArrayUtils.createArray(100, e);
     }
 
     class E {
@@ -58,13 +51,14 @@ public class ArrayUtilsTest {
         }
     }
     @Test
-    public void testAppend(){
+    public void testAppend() {
         int n = 5;
         Integer[] Is = new Integer[n];
-        for (int i = 0; i < n; i++)Is[i] = i;
+        for (int i = 0; i < n; i++) Is[i] = i;
         Integer[] res = append(Is, n);
-        for (int i = 0; i < n+1; i++)if(res[i] != i)
-            throw null;
+        for (int i = 0; i < n + 1; i++)
+            if (res[i] != i)
+                throw null;
     }
 
 }

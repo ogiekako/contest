@@ -38,7 +38,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
 
     public Poly<V> mul(V d) {
         Object[] nA = new Object[a.length];
-        for (int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             nA[i] = ((V) a[i]).mul(d);
         }
         return new Poly(nA);
@@ -47,7 +47,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
     public void shift() {
         if (isZero()) return;
         V instance = get(0);
-        for (int i = 0; i < degree; i++) set(i,get(i+1));
+        for (int i = 0; i < degree; i++) set(i, get(i + 1));
         set(degree, instance.zero());
         degree--;
     }
@@ -56,7 +56,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
         return (V) a[i];
     }
 
-    public void set(int i,V value){
+    public void set(int i, V value) {
         a[i] = value;
     }
 
@@ -106,13 +106,13 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
     }
 
     public Poly<V> mul(Poly<V> other) {
-        if(isZero() && other.isZero())return zero();
+        if (isZero() && other.isZero()) return zero();
         Object[] res = new Object[degree + other.degree + 1];
         V instance = degree() >= 0 ? get(0) : other.get(0);
-        for(int i=0;i<res.length;i++)res[i] = instance.zero();
+        for (int i = 0; i < res.length; i++) res[i] = instance.zero();
         for (int i = 0; i <= degree; i++)
             for (int j = 0; j <= other.degree; j++) {
-                V a = (V)res[i+j];
+                V a = (V) res[i + j];
 //                debug("a",a);
                 V b = get(i).mul(other.get(j));
 //                debug("b",b);
@@ -121,7 +121,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
             }
         return new Poly<V>(res);
     }
-    static void debug(Object...os){
+    static void debug(Object... os) {
         System.err.println(Arrays.deepToString(os));
     }
 

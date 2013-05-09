@@ -1,7 +1,7 @@
 package on_2012.on2012_6_5.littleelephantandbubblesort;
 
 
-import net.ogiekako.algorithm.dataStructure.BIT_double;
+import net.ogiekako.algorithm.dataStructure.DoubleSumBinaryIndexedTree;
 import net.ogiekako.algorithm.io.MyScanner;
 
 import java.io.PrintWriter;
@@ -24,7 +24,7 @@ public class LittleElephantAndBubbleSort {
         for (int b : B) set.add(b);
         for (int b : B) set.add(b + d);
         int[] sorted = tois(set.toArray(new Integer[0]));
-        BIT_double bit = new BIT_double(sorted.length);
+        DoubleSumBinaryIndexedTree bit = new DoubleSumBinaryIndexedTree(sorted.length);
         double res = 0;
         for (int i = N - 1; i >= 0; i--) {
             res += bit.sum(0, Arrays.binarySearch(sorted, B[i])) * (1 - P[i]);

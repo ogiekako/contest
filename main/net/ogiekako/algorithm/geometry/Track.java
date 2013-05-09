@@ -14,15 +14,15 @@ Problems:
 public class Track {
     public final P[] orbit;
     public final double speed;
-    public Track(P[] orbit, double speed){
+    public Track(P[] orbit, double speed) {
         this.orbit = orbit.clone();
         this.speed = speed;
     }
 
     public double totalLength() {
         double res = 0;
-        for(int i=0;i<orbit.length-1;i++){
-            res += orbit[i].dist(orbit[i+1]);
+        for (int i = 0; i < orbit.length - 1; i++) {
+            res += orbit[i].dist(orbit[i + 1]);
         }
         return res;
     }
@@ -30,19 +30,19 @@ public class Track {
     /*
      終点に達している場合は,終点座標を返す.
      */
-    public P where(double when){
-        if(when<0)throw new IllegalArgumentException();
+    public P where(double when) {
+        if (when < 0) throw new IllegalArgumentException();
         double time = 0;
-        for(int i=0;i< orbit.length-1;i++){
-            double took = orbit[i].dist(orbit[i+1]) / speed;
+        for (int i = 0; i < orbit.length - 1; i++) {
+            double took = orbit[i].dist(orbit[i + 1]) / speed;
             double nextTime = time + took;
-            if(when < nextTime){
-                double p = (when-time) / took;
-                return orbit[i].mul(1-p).add(orbit[i+1].mul(p));
+            if (when < nextTime) {
+                double p = (when - time) / took;
+                return orbit[i].mul(1 - p).add(orbit[i + 1].mul(p));
             }
             time = nextTime;
         }
-        return orbit[orbit.length-1];
+        return orbit[orbit.length - 1];
     }
 
     /*
@@ -51,12 +51,12 @@ public class Track {
 
     通る判定は, crsSPで.
      */
-    public double when(P where){
+    public double when(P where) {
         double length = 0;
-        for (int i = 0; i < orbit.length-1; i++){
-            if(Line_methods.crsSP(orbit[i],orbit[i+1],where))
-                return (length + orbit[i].dist(where))/speed;
-            length += orbit[i].dist(orbit[i+1]);
+        for (int i = 0; i < orbit.length - 1; i++) {
+            if (Line_methods.crsSP(orbit[i], orbit[i + 1], where))
+                return (length + orbit[i].dist(where)) / speed;
+            length += orbit[i].dist(orbit[i + 1]);
         }
         return -1;
     }
@@ -66,8 +66,8 @@ public class Track {
      * ただし, 人の速さは this より速いとする.
      * 最後まで追いつけないときは -1 を返す.
      */
-    public double getReachableTime(final P manPosition, final double manSpeed, final double manStartTime){
-        if(speed > manSpeed)throw new IllegalArgumentException();
+    public double getReachableTime(final P manPosition, final double manSpeed, final double manStartTime) {
+        if (speed > manSpeed) throw new IllegalArgumentException();
         double totalLength = totalLength();
         double endTime = totalLength / speed;
 
@@ -79,14 +79,14 @@ public class Track {
             }
         });
 
-        return res==endTime ? -1 : res;
+        return res == endTime ? -1 : res;
     }
 
     public P getOrbit(int at) {
         return orbit[at];
     }
 
-    public double arrivalTime(){
-        return totalLength()/speed;
+    public double arrivalTime() {
+        return totalLength() / speed;
     }
 }

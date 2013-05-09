@@ -1,25 +1,18 @@
 package net.ogiekako.algorithm.geometry.lattice;
 
-/**
-* Created by IntelliJ IDEA.
-* User: ogiekako
-* Date: 12/04/29
-* Time: 4:50
-* To change this template use File | Settings | File Templates.
-*/
 public class Point {
     public final int x, y;
 
     public Point(int x, int y) {
         this.x = x; this.y = y;
     }
-    
-    public Point plus(Point o){
-        return make(x+o.x, y+o.y);
+
+    public Point plus(Point o) {
+        return make(x + o.x, y + o.y);
     }
 
-    public Point minus(Point o){
-        return make(x-o.x, y-o.y);
+    public Point minus(Point o) {
+        return make(x - o.x, y - o.y);
     }
 
     @Override
@@ -42,7 +35,7 @@ public class Point {
         return result;
     }
 
-    public static Point make(int x,int y){
+    public static Point make(int x, int y) {
         return new Point(x, y);
 
     }

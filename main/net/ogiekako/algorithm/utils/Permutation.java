@@ -101,13 +101,14 @@ public class Permutation {
 
     public static int sign(int[] permutation) {
         int res = 1;
-        for(int j=0;j<permutation.length;j++)for(int i=0;i<j;i++)if(permutation[i] > permutation[j])res *= -1;
+        for (int j = 0; j < permutation.length; j++)
+            for (int i = 0; i < j; i++) if (permutation[i] > permutation[j]) res *= -1;
         return res;
     }
 
     public static int[] reversed(int[] permutation) {
         int[] res = new int[permutation.length];
-        for (int i = 0; i < res.length; i++)res[permutation[i]] = i;
+        for (int i = 0; i < res.length; i++) res[permutation[i]] = i;
         return res;
     }
 }

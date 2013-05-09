@@ -1,7 +1,6 @@
 package on2013_05.on2013_05_03_TopCoder_SRM__577.EllysRoomAssignmentsDiv1;
 
 
-
 import net.ogiekako.algorithm.Builtin;
 import net.ogiekako.algorithm.math.MathUtils;
 public class EllysRoomAssignmentsDiv1 extends Builtin {

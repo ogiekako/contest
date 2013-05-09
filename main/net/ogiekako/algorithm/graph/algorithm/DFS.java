@@ -6,7 +6,6 @@ import net.ogiekako.algorithm.graph.SimpleEdge;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Stack;
 
@@ -64,7 +63,7 @@ public abstract class DFS<V> {
         while (!path.isEmpty()) {
             visited[parent.to()] = true;
             boolean found = false;
-            for (;is[parent.to()].hasNext();
+            for (; is[parent.to()].hasNext();
                  is[parent.to()].next()
                     ) {
                 Edge e = is[parent.to()].next(); is[parent.to()].previous();

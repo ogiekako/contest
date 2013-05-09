@@ -3,18 +3,11 @@ package net.ogiekako.algorithm.graph.graphDouble;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
-* Created by IntelliJ IDEA.
-* User: ogiekako
-* Date: 12/05/01
-* Time: 2:57
-* To change this template use File | Settings | File Templates.
-*/
 public class GraphD {
     private int vertexCount;
     private EdgeList[] edges;
 
-    public boolean isDigraph(){
+    public boolean isDigraph() {
         return true;
     }
 
@@ -23,7 +16,7 @@ public class GraphD {
     }
 
     private static class EdgeList extends ArrayList<EdgeD> {
-        EdgeList(){super(0);}
+        EdgeList() {super(0);}
     }
 
     public GraphD(int vertexCount) {

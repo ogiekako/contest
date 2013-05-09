@@ -43,10 +43,10 @@ public class RhoSequence {
     public long calcSumOfMinOfAllSubrange(long length) {
         if (head + period > length || head == 0 && period + period > length) {
             long res = 0;
-            Pair<Integer,Integer>[] ps = ArrayUtils.createArray((int) length, new Pair<Integer, Integer>(0, 0));
-            for(int i=0;i<length;i++){
-                int value = i<head ? S[i] : S[head + (i-head)%period];
-                ps[i] = new Pair<Integer, Integer>(value,i);
+            Pair<Integer, Integer>[] ps = ArrayUtils.createArray((int) length, new Pair<Integer, Integer>(0, 0));
+            for (int i = 0; i < length; i++) {
+                int value = i < head ? S[i] : S[head + (i - head) % period];
+                ps[i] = new Pair<Integer, Integer>(value, i);
             }
             Arrays.sort(ps);
             TreeSet<Integer> set = new TreeSet<Integer>();
@@ -72,14 +72,14 @@ public class RhoSequence {
             for (Pair<Integer, Integer> p : ps) {
                 int id = p.second;
                 int value = p.first;
-                if(set.isEmpty()){
-                    res += (k-1) * value * ((long)period * (period-1) / 2 + period);
-                }else{
+                if (set.isEmpty()) {
+                    res += (k - 1) * value * ((long) period * (period - 1) / 2 + period);
+                } else {
                     Integer l = set.lower(id);
-                    int lower = l!=null ? l : set.last() - period;
+                    int lower = l != null ? l : set.last() - period;
                     Integer h = set.higher(id);
-                    int higher = h!=null ? h : set.first() + period;
-                    res += (k-1) * value * (id-lower) * (higher-id);
+                    int higher = h != null ? h : set.first() + period;
+                    res += (k - 1) * value * (id - lower) * (higher - id);
                 }
                 set.add(id);
             }
@@ -90,7 +90,7 @@ public class RhoSequence {
             TreeSet<Long> set = new TreeSet<Long>();
             set.add(-1L);
             set.add(length);
-            Pair<Integer,Integer>[] ps = ArrayUtils.makeValueIndexPairs(S);
+            Pair<Integer, Integer>[] ps = ArrayUtils.makeValueIndexPairs(S);
             Arrays.sort(ps);
             for (Pair<Integer, Integer> p : ps) {
                 long id = p.second;
@@ -125,8 +125,8 @@ public class RhoSequence {
     }
 
     public int get(int i) {
-        if(i<head)return S[i];
-        return S[head + (i-head) % period];
+        if (i < head) return S[i];
+        return S[head + (i - head) % period];
     }
 
 

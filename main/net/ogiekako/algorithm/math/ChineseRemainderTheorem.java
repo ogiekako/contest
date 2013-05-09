@@ -12,13 +12,13 @@ public class ChineseRemainderTheorem {
     public static BigInteger crt(long[] remainders, long[] moduli, int length) {
         BigInteger m = BigInteger.valueOf(moduli[0]);
         BigInteger d = BigInteger.valueOf(remainders[0]);
-        for(int i=1;i<length;i++){
+        for (int i = 1; i < length; i++) {
             BigInteger modulus = BigInteger.valueOf(moduli[i]);
             BigInteger remainder = BigInteger.valueOf(remainders[i]);
             BigInteger[] xy = ExEuclid.exGcd(m, modulus);
             BigInteger mm = m.multiply(modulus);
-            d = m.multiply(remainder).multiply(xy[0]) . add(d.multiply(modulus).multiply(xy[1])) . mod(mm);
-            if(d.signum() < 0)throw new AssertionError();
+            d = m.multiply(remainder).multiply(xy[0]).add(d.multiply(modulus).multiply(xy[1])).mod(mm);
+            if (d.signum() < 0) throw new AssertionError();
             m = mm;
         }
         return d;

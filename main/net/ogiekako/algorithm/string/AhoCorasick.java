@@ -10,10 +10,9 @@ import java.util.*;
 
 /**
  * http://www.prefield.com/algorithm/string/aho_corasick.html
- *
+ * <p/>
  * problems:
  * CodeChef JULY12 FAVNUM
- * 
  */
 public class AhoCorasick {
     private final int[] ctoi;

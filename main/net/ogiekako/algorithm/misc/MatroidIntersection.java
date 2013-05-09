@@ -32,15 +32,16 @@ public class MatroidIntersection {
         int[] bef = new int[n];
         boolean[] T = new boolean[n];
         Arrays.fill(bef, -1);
-        for (int i = 0; i < n; i++) if (!X[i]) {
-            X[i] = true;
-            if (F1.isIndependentSet(X)) {
-                bef[i] = -2;
-                que.offer(i);
+        for (int i = 0; i < n; i++)
+            if (!X[i]) {
+                X[i] = true;
+                if (F1.isIndependentSet(X)) {
+                    bef[i] = -2;
+                    que.offer(i);
+                }
+                if (F2.isIndependentSet(X)) T[i] = true;
+                X[i] = false;
             }
-            if (F2.isIndependentSet(X)) T[i] = true;
-            X[i] = false;
-        }
         int last = -1;
         while (!que.isEmpty()) {
             int i = que.poll();

@@ -2,13 +2,6 @@ package net.ogiekako.algorithm.string;
 
 import net.ogiekako.algorithm.dataStructure.intCollection.IntStack;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/03/11
- * Time: 19:08
- * To change this template use File | Settings | File Templates.
- */
 public class Parser {
     /**
      * Testing Circuits
@@ -23,7 +16,7 @@ public class Parser {
      * <number> ::= "1" | "2" |... | "999999" | "1000000"
      */
     public static class TestingCircuits {
-        
+
         static final int M = 1000000007;
 
         public static int solve(char[] cs) {
@@ -111,10 +104,9 @@ public class Parser {
                 }
             }
             if (cs[p] != '=') throw new RuntimeException();
-            int res = dataStack.pop();
-            return res;
+            return dataStack.pop();
         }
-        
+
         int p;
         char[] cs;
 

@@ -70,12 +70,12 @@ public class GraphVis {
         out.flush();
     }
 
-    public static void output(Graph graph){
+    public static void output(Graph graph) {
         output(graph, "graph");
     }
 
     public static void output(Graph graph, String fileName) {
-        String filePath = System.getProperty("user.home") + "/Desktop/" + fileName+".dot";
+        String filePath = System.getProperty("user.home") + "/Desktop/" + fileName + ".dot";
         File file = new File(filePath);
         try {
             PrintWriter pw = new PrintWriter(file);
@@ -129,9 +129,11 @@ public class GraphVis {
     public static void output(boolean[][] graph) {
         int n = graph.length;
         Graph g = new Graph(n);
-        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++)if(graph[i][j]){
-            g.add(new SimpleEdge(i,j));
-        }
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (graph[i][j]) {
+                    g.add(new SimpleEdge(i, j));
+                }
         output(g);
     }
 

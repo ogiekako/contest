@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
+import net.ogiekako.algorithm.EPS;
 import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.PowerOperation;
 import net.ogiekako.algorithm.utils.ArrayUtils;
@@ -54,10 +55,10 @@ public class Matrix {
 
     /**
      * Compute A^p % mod.
-     *
+     * <p/>
      * If you want to compute A^p x % mod for some vector x, use
      * powered(A,p,x,mod). The method is faster than this method.
-     *
+     * <p/>
      * Order: O(n^3 log_p)
      */
     public static long[][] powered(long[][] A, long power, final int mod) {
@@ -74,7 +75,7 @@ public class Matrix {
         return Cast.toInt(powered(Cast.toLong(A), p, MOD));
     }
 
-    private static long[][] add(long[][] A, long[][] B, int MOD) {
+    public static long[][] add(long[][] A, long[][] B, int MOD) {
         int n = A.length, m = A[0].length;
         long[][] C = new long[n][m];
         for (int i = 0; i < n; i++)
@@ -100,14 +101,12 @@ public class Matrix {
     }
 
     /**
-     * 破壊的
-     *
-     * @param mat
-     * @return
+     * Compute the determinant of the given matrix.
+     * The given array will be modified.
      */
 
     public static double determinantDestructive(double[][] mat) {
-        double EPS = 1e-9;
+        double eps = EPS.get();
         int n = mat.length;
         double res = 1;
         for (int i = 0; i < n; i++) {
@@ -118,7 +117,7 @@ public class Matrix {
                 }
             }
             // rank < n
-            if (Math.abs(mat[pivot][i]) < EPS) return 0;
+            if (Math.abs(mat[pivot][i]) < eps) return 0;
             if (i != pivot) {
                 res *= -1;
                 ArrayUtils.swap(mat, i, pivot);
@@ -146,10 +145,7 @@ public class Matrix {
      * POJ 3318
      * n=512 -> 6688MS
      * strassenのアルゴリズム.
-     *
-     * @param A
-     * @param B
-     * @return
+     * Compute A * B using strassen's algorithm
      */
     public static int[][] strassen(int[][] A, int[][] B) {
         int n = A.length;
@@ -222,10 +218,6 @@ public class Matrix {
     /**
      * res = A * v.
      * 1 + 1 = 0.
-     *
-     * @param A
-     * @param v
-     * @return
      */
     public static boolean[] mul(boolean[][] A, boolean[] v) {
         boolean[] res = new boolean[A.length];
@@ -280,7 +272,6 @@ public class Matrix {
      * @param x   - initial values
      * @param MOD - modulo
      * @return \sum_{i=0}^{p-1} A^i x % MOD.
-     * @verified
      */
     public static long[] sumPowered(long[][] A, long p, long[] x, int MOD) {
         int n = A.length;
@@ -302,7 +293,6 @@ public class Matrix {
      * @param x   - initial values
      * @param MOD - modulo
      * @return \sum_{i=0}^{p-1} A^i x % MOD.
-     * @verified
      */
 
     public static int[] sumPowered(int[][] A, long p, int[] x, int MOD) {
@@ -396,7 +386,7 @@ public class Matrix {
                 }
             if (pivot[i] == -1) {
                 long[] r = new long[i + 1];
-                for (int j = 0; j < i + 1; j++) r[j] = C[i][j];
+                System.arraycopy(C[i], 0, r, 0, i + 1);
                 return r;
             }
             x = f.map(x);
@@ -447,59 +437,6 @@ public class Matrix {
 
     private static void xorEq(boolean[] modified, boolean[] a) {
         for (int i = 0; i < a.length; i++) modified[i] ^= a[i];
-    }
-
-    /////////////////////////////
-    ///// ↓ no longer used /////
-    /////////////////////////////
-        // A^p  O(n^2 log_p)
-    private static long[][] poweredStrassen(long[][] _A, long p, int MOD) {
-        int n = 1;
-        while (n < _A.length) n <<= 1;
-        long[][] A = new long[n][n];
-        for (int i = 0; i < _A.length; i++) for (int j = 0; j < _A[0].length; j++) A[i][j] = _A[i][j];
-        long[][] res = identity(n);
-        for (; p > 0; p >>= 1) {
-            if ((p & 1) == 1) res = strassen(res, A, MOD);
-            A = strassen(A, A, MOD);
-        }
-        long[][] R = new long[_A.length][_A.length];
-        for (int i = 0; i < _A.length; i++) for (int j = 0; j < _A[0].length; j++) R[i][j] = res[i][j];
-        return R;
-    }
-
-    private static long[][] strassen(long[][] A, long[][] B, int MOD) {
-        int n = A.length;
-        if (n <= 64) return mul(A, B, MOD);
-        int n2 = n >> 1;
-        long[][] A11 = ArrayUtils.part(A, 0, 0, n2, n2);
-        long[][] A12 = ArrayUtils.part(A, 0, n2, n2, n);
-        long[][] A21 = ArrayUtils.part(A, n2, 0, n, n2);
-        long[][] A22 = ArrayUtils.part(A, n2, n2, n, n);
-        long[][] B11 = ArrayUtils.part(B, 0, 0, n2, n2);
-        long[][] B12 = ArrayUtils.part(B, 0, n2, n2, n);
-        long[][] B21 = ArrayUtils.part(B, n2, 0, n, n2);
-        long[][] B22 = ArrayUtils.part(B, n2, n2, n, n);
-
-        long[][] P1 = strassen(add(A11, A22, MOD), add(B11, B22, MOD), MOD);
-        long[][] P2 = strassen(add(A21, A22, MOD), B11, MOD);
-        long[][] P3 = strassen(A11, sub(B12, B22, MOD), MOD);
-        long[][] P4 = strassen(A22, sub(B21, B11, MOD), MOD);
-        long[][] P5 = strassen(add(A11, A12, MOD), B22, MOD);
-        long[][] P6 = strassen(sub(A21, A11, MOD), add(B11, B12, MOD), MOD);
-        long[][] P7 = strassen(sub(A12, A22, MOD), add(B21, B22, MOD), MOD);
-
-        long[][] C11 = add(sub(add(P1, P4, MOD), P5, MOD), P7, MOD);
-        long[][] C12 = add(P3, P5, MOD);
-        long[][] C21 = add(P2, P4, MOD);
-        long[][] C22 = add(sub(add(P1, P3, MOD), P2, MOD), P6, MOD);
-
-        long[][] C = new long[n][n];
-        ArrayUtils.arraycopy(C11, C, 0, 0);
-        ArrayUtils.arraycopy(C12, C, 0, n2);
-        ArrayUtils.arraycopy(C21, C, n2, 0);
-        ArrayUtils.arraycopy(C22, C, n2, n2);
-        return C;
     }
 
 }

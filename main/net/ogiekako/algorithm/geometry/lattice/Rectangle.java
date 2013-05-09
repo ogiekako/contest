@@ -1,12 +1,5 @@
 package net.ogiekako.algorithm.geometry.lattice;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/29
- * Time: 4:51
- * To change this template use File | Settings | File Templates.
- */
 public class Rectangle {
     // [small.x, large.x] * [small.y, large.y]
     public final Point small;
@@ -47,7 +40,7 @@ public class Rectangle {
     }
 
     public long size() {
-        return (long)(large.x - small.x + 1) * (large.y - small.y + 1);
+        return (long) (large.x - small.x + 1) * (large.y - small.y + 1);
     }
 
     public boolean contains(Rectangle other) {

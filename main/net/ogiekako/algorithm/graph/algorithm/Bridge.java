@@ -18,7 +18,7 @@ public class Bridge {
     }
 
     /**
-     * <p>
+     * <p/>
      * Compute bridges, articulation points and biconnected components
      * of the given graph.
      * Vertex u and v are in a same biconnected component iff the max-flow from u to v
@@ -28,10 +28,10 @@ public class Bridge {
      * <li> comp[v] equals to comp[u] iff u and v are biconnected </li>
      * <li> numComp = the number of biconnected components. max(comp) + 1 == numComp.</li>
      * <li> cut[v] is the increase of connected components when v is removed from the graph.
-     *   if cut[v] > 0, v is an articulation point.</li>
+     * if cut[v] > 0, v is an articulation point.</li>
      * <li> bridges are a set of bridge edges. Bridge is an edge whose removal increases the number of connected components.</li>
      * </ul>
-     *
+     * <p/>
      * Complexity: O(E).
      * Reference: http://en.wikipedia.org/wiki/Biconnected_component
      *
@@ -58,10 +58,10 @@ public class Bridge {
 
             @Override
             protected boolean enter(Edge e) {
-                if(!visited[e.to()]){
+                if (!visited[e.to()]) {
                     lows[e.to()] = depth[e.to()] = e.from() < 0 ? 0 : depth[e.from()] + 1;
                     return true;
-                }else{
+                } else {
                     int v = e.from(), u = e.to();
                     lows[v] = Math.min(lows[v], depth[u]);
                     return false;
@@ -92,8 +92,8 @@ public class Bridge {
 
             @Override
             protected boolean enter(Edge e) {
-                if(bridges.contains(e))return false;
-                if(visited[e.to()])return false;
+                if (bridges.contains(e)) return false;
+                if (visited[e.to()]) return false;
                 comp[e.to()] = numComp;
                 return true;
             }

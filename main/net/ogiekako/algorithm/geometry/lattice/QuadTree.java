@@ -2,19 +2,12 @@ package net.ogiekako.algorithm.geometry.lattice;
 
 import net.ogiekako.algorithm.utils.IntegerUtils;
 
-/**
-* Created by IntelliJ IDEA.
-* User: ogiekako
-* Date: 12/05/05
-* Time: 3:51
-* To change this template use File | Settings | File Templates.
-*/
 public class QuadTree {
     Point small, large;
     QuadTree[][] children;
     int pointCount = 0;
 
-    public int getPointCount(){
+    public int getPointCount() {
         return pointCount;
     }
 
@@ -25,14 +18,14 @@ public class QuadTree {
 
     public void add(Point p) {
         pointCount++;
-        if (small.equals(large))return;
+        if (small.equals(large)) return;
 
         int midX = IntegerUtils.floorHalf(small.x + large.x);
         int midY = IntegerUtils.floorHalf(small.y + large.y);
 
         int ix = p.x <= midX ? 0 : 1;
         int iy = p.y <= midY ? 0 : 1;
-        if(children==null)children=new QuadTree[2][2];
+        if (children == null) children = new QuadTree[2][2];
         if (children[ix][iy] == null) {
             int nSmallX = ix == 0 ? small.x : midX + 1;
             int nLargeX = ix == 0 ? midX : large.x;
@@ -44,7 +37,7 @@ public class QuadTree {
     }
 
     public int search(Rectangle region) {
-        if (children==null || region.contains(getRectangle())) return pointCount;
+        if (children == null || region.contains(getRectangle())) return pointCount;
         int res = 0;
         for (int i = 0; i < 2; i++)
             for (int j = 0; j < 2; j++)

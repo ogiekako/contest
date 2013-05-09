@@ -7,7 +7,7 @@ public abstract class BinaryIndexedTree<T> {
 
     public BinaryIndexedTree(int n) {
         //noinspection unchecked
-        bit = (T[])new Object[n+1];
+        bit = (T[]) new Object[n + 1];
         Arrays.fill(bit, identityElement());
     }
 
@@ -32,8 +32,8 @@ public abstract class BinaryIndexedTree<T> {
         return res;
     }
 
-    public static class INT extends BinaryIndexedTree<Integer>{
-        INT(int n){
+    public static class INT extends BinaryIndexedTree<Integer> {
+        INT(int n) {
             super(n);
         }
         @Override
@@ -43,11 +43,12 @@ public abstract class BinaryIndexedTree<T> {
 
         @Override
         protected Integer addImpl(Integer a, Integer b) {
-            return a+b;
+            return a + b;
         }
     }
-    public static class LONG extends BinaryIndexedTree<Long>{
-        LONG(int n){
+
+    public static class LONG extends BinaryIndexedTree<Long> {
+        LONG(int n) {
             super(n);
         }
 
@@ -58,7 +59,7 @@ public abstract class BinaryIndexedTree<T> {
 
         @Override
         protected Long addImpl(Long a, Long b) {
-            return a+b;
+            return a + b;
         }
     }
 }

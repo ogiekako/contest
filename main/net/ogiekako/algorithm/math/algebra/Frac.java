@@ -50,7 +50,7 @@ public class Frac<V extends Ring<V>> implements Field<Frac<V>> {
     }
 
     public Frac<V> zero() {
-        return new Frac(num.zero(),num.zero());
+        return new Frac(num.zero(), num.zero());
     }
 
     @Override

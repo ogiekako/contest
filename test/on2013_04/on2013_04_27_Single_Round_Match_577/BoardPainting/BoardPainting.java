@@ -3,7 +3,7 @@ package on2013_04.on2013_04_27_Single_Round_Match_577.BoardPainting;
 
 import net.ogiekako.algorithm.graph.denseGraph.BipartiteGraphAlgorithm;
 
-import java.util.*;
+import java.util.Arrays;
 // 1000
 public class BoardPainting {
     int[] dx = {0, 1, 0, -1};

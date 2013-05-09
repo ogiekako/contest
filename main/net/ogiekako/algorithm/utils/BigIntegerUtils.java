@@ -18,7 +18,8 @@ public class BigIntegerUtils {
     public static final BigInteger EIGHT = BigInteger.valueOf(8);
     public static final BigInteger NINE = BigInteger.valueOf(9);
     public static final BigInteger TEN = BigInteger.valueOf(10);
-    public static interface Function{
+
+    public static interface Function {
         int calculate(int primeMod);
     }
     // 大きい素数で割り切れる場合，うまくいかない．
@@ -27,13 +28,13 @@ public class BigIntegerUtils {
 
         List<Long> values = new ArrayList<Long>();
         List<Long> mods = new ArrayList<Long>();
-        for(int mod = Integer.MAX_VALUE / 2;;mod--){
-            if(BigInteger.valueOf(mod).isProbablePrime(30)){
+        for (int mod = Integer.MAX_VALUE / 2; ; mod--) {
+            if (BigInteger.valueOf(mod).isProbablePrime(30)) {
                 int value = f.calculate(mod);
                 values.add((long) value);
                 mods.add((long) mod);
-                BigInteger current = ChineseRemainderTheorem.crt(CollectionUtils.toLongArray(values), CollectionUtils.toLongArray(mods));
-                if(current.equals(result))break;
+                BigInteger current = ChineseRemainderTheorem.crt(Cast.toLong(values), Cast.toLong(mods));
+                if (current.equals(result)) break;
                 result = current;
             }
         }

@@ -79,7 +79,7 @@ public class SCC {
             // Thus there is a path from v to u.
             @Override
             protected boolean enter(Edge e) {
-                if(visited[e.to()])return false;
+                if (visited[e.to()]) return false;
                 result[e.to()] = group;
                 return true;
             }
@@ -107,7 +107,7 @@ public class SCC {
             }
 
             @Override
-            protected boolean enter(Edge e){
+            protected boolean enter(Edge e) {
                 return !visited[e.to()];
             }
         };

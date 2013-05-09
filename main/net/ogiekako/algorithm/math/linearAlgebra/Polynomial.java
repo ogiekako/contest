@@ -5,18 +5,19 @@ import net.ogiekako.algorithm.math.algebra.Ring;
 
 public class Polynomial implements Ring<Polynomial> {
     long[] a_;
-    Polynomial(long[] a){
+    Polynomial(long[] a) {
         a_ = a.clone();
     }
-    public static Polynomial of(int n){
+    public static Polynomial of(int n) {
         return new Polynomial(new long[n]);
     }
-    public static Polynomial of(long[] a){
+    public static Polynomial of(long[] a) {
         return new Polynomial(a);
     }
 
     /**
      * P % Q.
+     *
      * @verified
      */
     public static long[] mul(long[] P, long[] Q, int MOD) {
@@ -33,7 +34,7 @@ public class Polynomial implements Ring<Polynomial> {
         return res;
     }
 
-     // x^k % P(x).
+    // x^k % P(x).
     // O(n^2 log k)
     public static long[] mod(long k, long[] P, int MOD) {
         long[] res = new long[P.length - 1];
@@ -67,7 +68,7 @@ public class Polynomial implements Ring<Polynomial> {
                 }
             }
         long[] res = new long[n - 1];
-        for (int i = 0; i < n - 1 && i<P.length; i++) res[i] = P[i] % MOD;
+        for (int i = 0; i < n - 1 && i < P.length; i++) res[i] = P[i] % MOD;
         return res;
     }
 

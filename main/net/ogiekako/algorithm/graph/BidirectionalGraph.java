@@ -7,12 +7,12 @@ package net.ogiekako.algorithm.graph;
  * Time: 9:37
  * To change this template use File | Settings | File Templates.
  */
-public class BidirectionalGraph extends Graph{
+public class BidirectionalGraph extends Graph {
     public BidirectionalGraph(int vertexCount) {
         super(vertexCount);
     }
 
-    public boolean isDigraph(){
+    public boolean isDigraph() {
         return false;
     }
 

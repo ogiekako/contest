@@ -1,18 +1,15 @@
 package net.ogiekako.algorithm.dataStructure.segmentTree;
 
+
 /**
- * references:
- * http://www.slideshare.net/iwiwi/ss-3578491 p41
+ * references: http://www.slideshare.net/iwiwi/ss-3578491 p41
  *
- * @param <V,D>
+ * @param <V> The type of the convoluted value.
+ * @param <D> The type of values in the array.
  */
 public abstract class SegTree<V, D> extends SegTreeSemigroup<V> {
     /**
      * The operation is required to be associative AND commutative.
-     *
-     * @param left
-     * @param right
-     * @return
      */
     @Override
     protected abstract V operate(V left, V right);
@@ -35,6 +32,7 @@ public abstract class SegTree<V, D> extends SegTreeSemigroup<V> {
      */
     public SegTree(int N) {
         super(N);
+        //noinspection unchecked
         uniform = (D[]) new Object[answer.length];
         addLater = new boolean[answer.length];
         setLater = new boolean[answer.length];
@@ -92,10 +90,6 @@ public abstract class SegTree<V, D> extends SegTreeSemigroup<V> {
 
     /**
      * O(log n)
-     *
-     * @param from
-     * @param to
-     * @param value
      */
     public void add(int from, int to, D value) {
         add(0, from, to, value);
@@ -166,7 +160,7 @@ public abstract class SegTree<V, D> extends SegTreeSemigroup<V> {
 
         @Override
         protected Long operate(Long value, int length, Integer delta) {
-            return value + (long)length * delta;
+            return value + (long) length * delta;
         }
 
         @Override
@@ -180,7 +174,7 @@ public abstract class SegTree<V, D> extends SegTreeSemigroup<V> {
         }
     }
 
-    public static class Coin extends SegTree<Integer, Boolean>{
+    public static class Coin extends SegTree<Integer, Boolean> {
         /**
          * @param N - the length of the array
          */

@@ -1,7 +1,6 @@
 package net.ogiekako.algorithm.graph;
 
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
-import net.ogiekako.algorithm.graph.flow.Dinic;
 import net.ogiekako.algorithm.graph.test.GraphGenerator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,27 +9,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class GraphAlgorithmTest {
-    @Test
-    public void testDinic() {
-        Random rnd = new Random(1248912048L);
-        for (int o = 0; o < 100; o++) {
-            int n = 500;
-            int m = 10000;
-            Graph graph = new Graph(n);
-            Dinic din = new Dinic(n, m);
-            for (int i = 0; i < m; i++) {
-                int s = rnd.nextInt(n);
-                int t = rnd.nextInt(n);
-                int f = rnd.nextInt(Integer.MAX_VALUE / n * 5);
-                graph.add(new FlowEdge(s, t, f));
-                din.make(s, t, f);
-            }
-            int limit = rnd.nextInt(Integer.MAX_VALUE);
-            long exp = din.maxFlow(0, 1, limit);
-            long res = MaxFlow.maxFlow(graph, 0, 1, limit);
-            Assert.assertEquals(exp, res);
-        }
-    }
 
     @Test
     public void testIsAcyclicDigraph() {
@@ -96,5 +74,17 @@ public class GraphAlgorithmTest {
             }
         }
         return false;
+    }
+    //O(V^2 E)
+    public static class Dinic {
+        public Graph graph;
+
+        /**
+         * @param n - num node
+         */
+        public Dinic(int n) {
+            graph = new Graph(n);
+        }
+
     }
 }

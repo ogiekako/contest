@@ -12,7 +12,7 @@ public class Transform {
     O(n log n).
      */
     public static int[] hadamardTransform(int[] x, int MOD) {
-        if(Integer.bitCount(x.length)!=1)throw new IllegalArgumentException("x.length must be a power of 2.");
+        if (Integer.bitCount(x.length) != 1) throw new IllegalArgumentException("x.length must be a power of 2.");
         int[] z = new int[x.length];
         hadamardTransform(x, z, 0, x.length, MOD);
         return z;

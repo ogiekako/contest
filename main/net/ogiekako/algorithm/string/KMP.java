@@ -3,11 +3,10 @@ package net.ogiekako.algorithm.string;
 public class KMP {
     /**
      * generate the failure link T, which is used by the KMP algorithm, for the given string s. <br></br>
-     *
+     * <p/>
      * <h3>definition:<h3>
      * T[0] = -1 <br></br>
      * T[i] = max{ u : s[0,u) = s[i-u,i) } (0 < i <= |s|).
-     *
      */
     public static int[] generateFailureLink(CharSequence s) {
         int[] T = new int[s.length() + 1];

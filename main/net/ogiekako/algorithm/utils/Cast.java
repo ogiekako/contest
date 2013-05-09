@@ -39,7 +39,7 @@ public class Cast {
         return toDouble(collection.toArray(new Double[collection.size()]));
     }
 
-    public static double[] toDouble(Double[] Is){
+    public static double[] toDouble(Double[] Is) {
         double[] is = new double[Is.length];
         for (int i = 0; i < is.length; i++) is[i] = Is[i];
         return is;

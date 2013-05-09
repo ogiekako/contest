@@ -15,10 +15,10 @@ public class Mint implements Field<Mint> {
     }
 
     public static Mint of(long value) {
-        if(value >= modPrime)value = value % modPrime;
-        if(value < 0){
+        if (value >= modPrime) value = value % modPrime;
+        if (value < 0) {
             value = value % modPrime;
-            if(value < 0)value += modPrime;
+            if (value < 0) value += modPrime;
         }
         return new Mint(value);
     }

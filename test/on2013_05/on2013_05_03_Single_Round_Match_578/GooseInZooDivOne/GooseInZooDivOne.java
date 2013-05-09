@@ -1,10 +1,12 @@
 package on2013_05.on2013_05_03_Single_Round_Match_578.GooseInZooDivOne;
 
 
-
 import net.ogiekako.algorithm.dataStructure.UnionFind;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 public class GooseInZooDivOne {
     static void debug(Object... os) {
         System.err.println(Arrays.deepToString(os));
@@ -54,13 +56,13 @@ public class GooseInZooDivOne {
         String[] ss = new String[50];
         Random rnd = new Random(124018924L);
         int d = 3;
-        for(int i=0;i<ss.length;i++){
+        for (int i = 0; i < ss.length; i++) {
             ss[i] = "";
-            for(int j=0;j<50;j++){
+            for (int j = 0; j < 50; j++) {
                 ss[i] += rnd.nextInt(10) == 0 ? 'v' : '.';
             }
         }
-        int res = new GooseInZooDivOne().count(ss,d);
+        int res = new GooseInZooDivOne().count(ss, d);
         debug(ss);
 
         System.out.println(res);

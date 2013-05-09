@@ -22,7 +22,7 @@ public class TestUtilsTest {
         }
 
     }
-    static void debug(Object...os){
+    static void debug(Object... os) {
         System.err.println(Arrays.deepToString(os));
     }
 }

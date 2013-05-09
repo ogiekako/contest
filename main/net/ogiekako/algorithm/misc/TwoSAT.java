@@ -5,13 +5,6 @@ import net.ogiekako.algorithm.graph.SimpleEdge;
 import net.ogiekako.algorithm.graph.algorithm.SCC;
 import net.ogiekako.algorithm.utils.Pair;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/05
- * Time: 19:36
- * To change this template use File | Settings | File Templates.
- */
 public class TwoSAT {
     /*
    clause[i][0] or clause[i][1] という条件をすべて満たすことできるか?
@@ -47,27 +40,27 @@ public class TwoSAT {
     
      */
     // 
-    public static boolean[] twoSAT(int variableCount, int[][] clauses){
-        Graph graph = new Graph(variableCount*2);
-        for(int[] clause:clauses){
+    public static boolean[] twoSAT(int variableCount, int[][] clauses) {
+        Graph graph = new Graph(variableCount * 2);
+        for (int[] clause : clauses) {
             int x = clause[0], y = clause[1];
             // not x -> y
-            graph.add(new SimpleEdge(x^1, y));
+            graph.add(new SimpleEdge(x ^ 1, y));
             // not y -> x
-            graph.add(new SimpleEdge(y^1, x));
+            graph.add(new SimpleEdge(y ^ 1, x));
         }
-        Pair<int[],int[][]> tmpPair = SCC.sccWithComponents(graph);
+        Pair<int[], int[][]> tmpPair = SCC.sccWithComponents(graph);
         int[][] scc = tmpPair.second;
         boolean[] determined = new boolean[variableCount];
         boolean[] assignment = new boolean[variableCount];
-        for(int[] vs:scc){
-            if(determined[vs[0]>>1])continue;
+        for (int[] vs : scc) {
+            if (determined[vs[0] >> 1]) continue;
             // assign false
-            for(int v:vs){
+            for (int v : vs) {
                 // v and not v is in the same component
-                if(determined[v>>1])return null;
-                determined[v>>1] = true;
-                assignment[v>>1] = (v & 1) == 1;
+                if (determined[v >> 1]) return null;
+                determined[v >> 1] = true;
+                assignment[v >> 1] = (v & 1) == 1;
             }
         }
         return assignment;

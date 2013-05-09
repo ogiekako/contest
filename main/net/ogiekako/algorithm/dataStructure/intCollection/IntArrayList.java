@@ -32,7 +32,7 @@ public class IntArrayList {
         return size;
     }
 
-    public IntIterator iterator(){
+    public IntIterator iterator() {
         return new IntIterator() {
             int i = 0;
             public boolean hasNext() {

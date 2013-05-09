@@ -2,12 +2,12 @@ package net.ogiekako.algorithm.math.algebra;
 
 import net.ogiekako.algorithm.EPS;
 
-public class Irr implements Field<Irr> ,Comparable<Irr>{
+public class Irr implements Field<Irr>, Comparable<Irr> {
     public final double value;
-    public Irr(double value){
+    public Irr(double value) {
         this.value = value;
     }
-    public static Irr of(double value){
+    public static Irr of(double value) {
         return new Irr(value);
     }
     public Irr mulInv() {

@@ -1,21 +1,19 @@
 package net.ogiekako.algorithm.geometry;
 
 
+import net.ogiekako.algorithm.EPS;
 public class P implements Comparable<P> {
-    public static double EPS = 1e-9;
-    public static void setEPS(double EPS){P.EPS = EPS;}
-    public static double getEPS(){return P.EPS;}
 
     static int sgn(double d) {
-        return d < -EPS ? -1 : d > EPS ? 1 : 0;
+        return d < -EPS.get() ? -1 : d > EPS.get() ? 1 : 0;
     }
 
     static boolean le(double a, double b) {
-        return a + EPS < b;
+        return a + EPS.get() < b;
     }
 
     static boolean eq(double a, double b) {
-        return Math.abs(a - b) < EPS;
+        return Math.abs(a - b) < EPS.get();
     }
 
     public final double x, y;
@@ -71,20 +69,17 @@ public class P implements Comparable<P> {
 
     public double arg() {
         double res = Math.atan2(y, x);
-        if (res < -EPS) res += 2 * Math.PI;
+        if (res < -EPS.get()) res += 2 * Math.PI;
         if (res < 0) res = 0;
         return res;
     }
 
     /**
      * this を原点周りに res 回したら p と重なる.
-     *
-     * @param p
-     * @return
      */
     public double arg(P p) {// [0,2*PI)
         double res = Math.atan2(det(p), dot(p));
-        if (res < -EPS) res += 2 * Math.PI;
+        if (res < -EPS.get()) res += 2 * Math.PI;
         if (res < 0) res = 0;
         return res;
     }
@@ -106,7 +101,7 @@ public class P implements Comparable<P> {
     }
 
     public static P make(double x, double y) {
-        return new P(x,y);
+        return new P(x, y);
     }
     /*
     relative or absolute error is less than EPS.
@@ -115,6 +110,6 @@ public class P implements Comparable<P> {
         double absDiff = dist(p);
         double myLen = norm();
         double pLen = p.norm();
-        return absDiff < EPS || absDiff < myLen*EPS || absDiff < pLen*EPS;
+        return absDiff < EPS.get() || absDiff < myLen * EPS.get() || absDiff < pLen * EPS.get();
     }
 }

@@ -1,12 +1,5 @@
 package net.ogiekako.algorithm.dataStructure.persistent;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/02
- * Time: 14:38
- * To change this template use File | Settings | File Templates.
- */
 public class PersistentLinkedList<E> {
     private PersistentLinkedList(Entry<E> head) {
         this.head = head;

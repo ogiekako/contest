@@ -1,15 +1,10 @@
 package on2013_04.on2013_04_27_gcj13R1A.TaskA;
 
 
-
-import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.io.MyPrintWriter;
+import net.ogiekako.algorithm.io.MyScanner;
 
 import java.math.BigInteger;
-import java.util.*;
-import static java.util.Arrays.*;
-import static java.util.Collections.*;
-import static java.lang.Math.*;
 
 public class TaskA {
     private MyScanner in;
@@ -18,7 +13,7 @@ public class TaskA {
 
     public void solve(int testNumber, MyScanner in, MyPrintWriter out) {
         this.in = in; this.out = out;
-        if(testNumber == 1)prepare();
+        if (testNumber == 1) prepare();
         out.printFormat("Case #%d: ", testNumber);
         System.err.println("case " + testNumber);
         solve();
@@ -28,15 +23,15 @@ public class TaskA {
 
     }
 
-    private void solve(){
+    private void solve() {
         BigInteger r = in.nextBigInteger(), t = in.nextBigInteger();
         BigInteger left = BigInteger.ONE, right = BigInteger.valueOf(Long.MAX_VALUE);
-        do{
+        do {
             BigInteger d = left.add(right).divide(TWO);
             BigInteger need = d.multiply(TWO.multiply(r).add(TWO.multiply(d)).subtract(BigInteger.ONE));
-            if(need.compareTo(t) <= 0)left = d;
+            if (need.compareTo(t) <= 0) left = d;
             else right = d;
-        }while(right.subtract(left).compareTo(BigInteger.ONE) > 0);
+        } while (right.subtract(left).compareTo(BigInteger.ONE) > 0);
         out.println(left);
     }
 

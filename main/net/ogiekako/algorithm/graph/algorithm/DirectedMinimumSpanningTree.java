@@ -9,13 +9,14 @@ public class DirectedMinimumSpanningTree {
     /**
      * compute the weight of the directed minimum spanning tree whose root is 'root'.
      */
-    long compute(Graph graph, int root){
-        for(long res = 0;;){
+    long compute(Graph graph, int root) {
+        for (long res = 0; ; ) {
             int n = graph.size();
             long[] minInEdge = new long[n];
             Arrays.fill(minInEdge, Long.MAX_VALUE);
             for (int v = 0; v < n; v++)
-                for (Edge e : graph.edges(v)) if (e.to() != v) minInEdge[e.to()] = Math.min(minInEdge[e.to()], e.cost());
+                for (Edge e : graph.edges(v))
+                    if (e.to() != v) minInEdge[e.to()] = Math.min(minInEdge[e.to()], e.cost());
 
             for (int i = 0; i < n; i++)
                 if (i != root) {
@@ -39,7 +40,8 @@ public class DirectedMinimumSpanningTree {
             if (numComp == graph.size()) return res;
             Graph nGraph = new Graph(numComp);
             for (int v = 0; v < n; v++)
-                for (Edge e : graph.edges(v)) if (comp[v] != comp[e.to()]) nGraph.addWeighted(comp[v], comp[e.to()], e.cost());
+                for (Edge e : graph.edges(v))
+                    if (comp[v] != comp[e.to()]) nGraph.addWeighted(comp[v], comp[e.to()], e.cost());
 
             graph = nGraph;
             root = comp[root];

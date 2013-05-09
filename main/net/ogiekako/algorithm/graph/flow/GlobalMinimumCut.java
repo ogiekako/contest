@@ -1,15 +1,8 @@
 package net.ogiekako.algorithm.graph.flow;
 import net.ogiekako.algorithm.graph.BidirectionalGraph;
 import net.ogiekako.algorithm.graph.Edge;
-import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.utils.ArrayUtils;
-/**
- * Created with IntelliJ IDEA.
- * User: ogiekako
- * Date: 13/04/28
- * Time: 9:17
- * To change this template use File | Settings | File Templates.
- */
+
 public class GlobalMinimumCut {
     BidirectionalGraph graph;
     public GlobalMinimumCut(BidirectionalGraph graph) {
@@ -23,7 +16,7 @@ public class GlobalMinimumCut {
      * <p/>
      * Ref: http://www.prefield.com/algorithm/graph/minimum_cut.html
      *
-     * @return
+     * @return The size of the global minimum cut.
      */
     public long compute() {
         int n = graph.size();

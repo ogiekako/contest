@@ -16,10 +16,10 @@ public class IntegerUtilsTest {
             int lower = rnd.nextInt(33);
             int r = IntegerUtils.reverse(k, lower);
             String expStr = Integer.toBinaryString(k);
-            while(expStr.length() < 32) expStr = "0" + expStr;
+            while (expStr.length() < 32) expStr = "0" + expStr;
             expStr = expStr.substring(0, 32 - lower) + StringUtils.reverse(expStr.substring(32 - lower));
-            int exp = (int)(long)Long.valueOf(expStr, 2);
-            Assert.assertEquals(Integer.toBinaryString(exp) + " " + Integer.toBinaryString(r),exp, r);
+            int exp = (int) (long) Long.valueOf(expStr, 2);
+            Assert.assertEquals(Integer.toBinaryString(exp) + " " + Integer.toBinaryString(r), exp, r);
         }
     }
 }

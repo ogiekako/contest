@@ -1,15 +1,8 @@
 package on2013_04.on2013_04_27_gcj13R1A.TaskB;
 
 
-
-import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.io.MyPrintWriter;
-
-import java.util.*;
-
-import static java.util.Arrays.*;
-import static java.util.Collections.*;
-import static java.lang.Math.*;
+import net.ogiekako.algorithm.io.MyScanner;
 
 public class TaskB {
     private MyScanner in;
@@ -52,7 +45,7 @@ public class TaskB {
                 have = 0;
             } else {
                 long to = Math.max(0, E - (long) (next[i] - i) * R);
-                if (have < to){
+                if (have < to) {
 //                    throw new AssertionError();
                     to = have;
                 }

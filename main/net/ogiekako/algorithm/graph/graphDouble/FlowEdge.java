@@ -2,7 +2,6 @@ package net.ogiekako.algorithm.graph.graphDouble;
 
 /**
  * @author Egor Kulikov (kulikov@devexperts.com)
- *
  */
 public class FlowEdge extends SimpleEdge {
     // capacity = residue + flow.
@@ -43,7 +42,7 @@ public class FlowEdge extends SimpleEdge {
         }
         residue -= flow;
         this.flow += flow;
-        if(residue == 0)this.flow = capacity;
+        if (residue == 0) this.flow = capacity;
     }
 
     @Override

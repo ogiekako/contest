@@ -1,11 +1,11 @@
 package net.ogiekako.algorithm.utils.tests;
 
-import static org.junit.Assert.*;
+import net.ogiekako.algorithm.utils.Palindrome;
+import org.junit.Test;
 
 import java.util.Random;
 
-import net.ogiekako.algorithm.utils.Palindrome;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class PalindromeTest {
 

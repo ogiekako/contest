@@ -1,7 +1,6 @@
 package on2013_04.on2013_04_21_2013_TopCoder_Open_Algorithm.ScotlandYard;
 
 
-
 import net.ogiekako.algorithm.graph.algorithm.SCC;
 
 import java.util.ArrayList;

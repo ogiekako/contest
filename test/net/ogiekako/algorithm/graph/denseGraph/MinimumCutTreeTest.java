@@ -2,7 +2,6 @@ package net.ogiekako.algorithm.graph.denseGraph;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCutTree;
-import net.ogiekako.algorithm.graph.flow.Dinic;
 import org.junit.Test;
 
 import java.util.Random;
@@ -30,13 +29,13 @@ public class MinimumCutTreeTest {
             long[][] flow = new long[n][n];
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++) {
-                    Dinic din = new Dinic(n, m * 2);
+                    Graph graph = new Graph(n);
+//                    GraphAlgorithmTest.Dinic din = new GraphAlgorithmTest.Dinic(n);
                     for (int k = 0; k < m; k++) {
-                        din.make(a[k], b[k], (int) cap[a[k]][b[k]]);
-                        din.make(b[k], a[k], (int) cap[b[k]][a[k]]);
+                        graph.addFlow(a[k], b[k], (int) cap[a[k]][b[k]]);
+                        graph.addFlow(b[k], a[k], (int) cap[b[k]][a[k]]);
                     }
-                    flow[i][j] = din.maxFlow(i, j);
-                    if (flow[i][j] == Integer.MAX_VALUE) flow[i][j] = Long.MAX_VALUE;
+                    flow[i][j] = MaxFlow.maxFlow(graph, i, j);
                 }
             long start = System.currentTimeMillis();
             Graph graph = MinimumCutTree.minCutTree(cap);
@@ -50,7 +49,7 @@ public class MinimumCutTreeTest {
                     MaxFlow.maxFlow(graph, j, i, result[i][j]);
                 }
             for (int i = 0; i < n; i++) {
-                assertArrayEquals(flow[i], result[i]);
+                assertArrayEquals("" + i, flow[i], result[i]);
             }
         }
         System.out.println("maxTime: " + maxTime);

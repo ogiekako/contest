@@ -8,7 +8,7 @@ public class PrimeDecomposition extends ArrayList<PrimePower> {
     public PrimeDecomposition(int size) {
         super(size);
     }
-    public PrimeDecomposition(){
+    public PrimeDecomposition() {
     }
 
     public static PrimeDecomposition factorize(int number, int[] factorTable) {
@@ -122,7 +122,7 @@ public class PrimeDecomposition extends ArrayList<PrimePower> {
 
     public int numberOfPrimeDivisorsWithMultiplicity() {
         int res = 0;
-        for(PrimePower pp : this)res += pp.power;
+        for (PrimePower pp : this) res += pp.power;
         return res;
     }
 }

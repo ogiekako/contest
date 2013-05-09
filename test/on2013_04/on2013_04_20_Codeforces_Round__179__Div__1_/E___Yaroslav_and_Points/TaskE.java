@@ -1,14 +1,6 @@
 package on2013_04.on2013_04_20_Codeforces_Round__179__Div__1_.E___Yaroslav_and_Points;
 
 
-
-
-
-
-
-
-
-
 import net.ogiekako.algorithm.dataStructure.segmentTree.SegTreeSemigroup;
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
@@ -36,7 +28,7 @@ public class TaskE {
                 l[i]--;
                 tmp[l[i]] += r[i];
                 xSet.add(tmp[l[i]]);
-            }else{
+            } else {
                 r[i]++;
                 xSet.add(l[i]);
                 xSet.add(r[i]);
@@ -48,11 +40,11 @@ public class TaskE {
 
             @Override
             protected Entry operate(Entry left, Entry right) {
-                if(left == null)return right;
-                if(right == null)return left;
+                if (left == null) return right;
+                if (right == null) return left;
                 int nNum = left.num + right.num;
                 long nSum = left.sum + right.sum;
-                long nProd = left.prod + right.prod +  (right.sum * left.num - left.sum * right.num);
+                long nProd = left.prod + right.prod + (right.sum * left.num - left.sum * right.num);
                 return new Entry(nNum, nSum, nProd);
             }
 
@@ -61,14 +53,14 @@ public class TaskE {
                 return null;
             }
         };
-        for (int i = 0; i < n; i++) list.set(Arrays.binarySearch(sortX,x[i]), make(x[i]));
+        for (int i = 0; i < n; i++) list.set(Arrays.binarySearch(sortX, x[i]), make(x[i]));
         for (int i = 0; i < m; i++) {
             if (t[i] == 1) {
-                list.set(Arrays.binarySearch(sortX,x[l[i]]), null);
+                list.set(Arrays.binarySearch(sortX, x[l[i]]), null);
                 x[l[i]] += r[i];
-                list.set(Arrays.binarySearch(sortX,x[l[i]]), make(x[l[i]]));
+                list.set(Arrays.binarySearch(sortX, x[l[i]]), make(x[l[i]]));
             } else {
-                Entry res = list.convolution(Arrays.binarySearch(sortX,l[i]), Arrays.binarySearch(sortX,r[i]));
+                Entry res = list.convolution(Arrays.binarySearch(sortX, l[i]), Arrays.binarySearch(sortX, r[i]));
                 out.println(res.prod);
             }
         }

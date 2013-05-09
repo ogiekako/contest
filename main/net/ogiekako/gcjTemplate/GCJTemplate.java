@@ -30,7 +30,7 @@ public abstract class GCJTemplate {
         if (mode() == MODE.SAMPLE) {
             out.printFormat("Case #%d: ", testNumber);
             solve(in, out);
-        } else{
+        } else {
             try {
                 MyScanner fileIn = new MyScanner(new FileInputStream(inFile()));
                 MyPrintWriter fileOut = new MyPrintWriter(new FileOutputStream(outFile()));
@@ -41,7 +41,7 @@ public abstract class GCJTemplate {
         }
     }
 
-    private String outFile(){
+    private String outFile() {
         return fileName() + ".out";
     }
 
@@ -49,14 +49,14 @@ public abstract class GCJTemplate {
         return fileName() + ".in";
     }
 
-    private String fileName(){
-        if(isSmall())return _smallName();
+    private String fileName() {
+        if (isSmall()) return _smallName();
         else return _largeName();
     }
 
     private String _smallName() {
         int i = 0;
-        while(new File(_smallName(i) + ".in").exists())i++;
+        while (new File(_smallName(i) + ".in").exists()) i++;
         i--;
         return _smallName(i);
     }

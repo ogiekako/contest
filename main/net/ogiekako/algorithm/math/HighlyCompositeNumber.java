@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.math;
 
-import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.dataStructure.intCollection.IntArray;
+import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.interfaces.Function;
 
 import java.util.HashSet;
@@ -13,8 +13,9 @@ public class HighlyCompositeNumber {
      * function.found が true になるまで
      * 列挙する.
      * exponents[i] >= exponents[i+1].
-     *
+     * <p/>
      * Euler110
+     *
      * @param primeUpTo
      * @param function
      */

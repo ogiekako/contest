@@ -30,8 +30,8 @@ public interface Edge {
     Edge transposed();
 
     /**
-     * @return The reverse edge in case this edge is a flow edge.
-     *         It may throw UnsupportedOperationException if this edge is not a flow edge.
+     * @return The reverse edge if this edge is a flow edge.
+     *         It returns null otherwise.
      */
     Edge reversed();
 }

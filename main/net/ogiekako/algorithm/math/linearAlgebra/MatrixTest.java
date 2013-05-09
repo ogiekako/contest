@@ -174,10 +174,11 @@ public class MatrixTest {
         return res;
     }
 
-    @Test @Ignore("powered is currently the same as naivePowered.")
+    @Test
+    @Ignore("powered is currently the same as naivePowered.")
     public void testMatrixPower() {
         int n = 80;
-        int MOD = (int) (1e9+9);
+        int MOD = (int) (1e9 + 9);
         int iterationCount = 100;
         Random rnd = new Random(120812048L);
         double totalTime = 0, totalNaiveTime = 0;
@@ -190,9 +191,9 @@ public class MatrixTest {
                     A[i][j] = rnd.nextInt(MOD);
                 }
             }
-            long power = TestUtils.randomLong((long) 1e18,rnd);
+            long power = TestUtils.randomLong((long) 1e18, rnd);
             long start = System.currentTimeMillis();
-            long[][] res = Matrix.powered(A,power,MOD);
+            long[][] res = Matrix.powered(A, power, MOD);
             long time = System.currentTimeMillis() - start;
             totalTime += time;
             worstTime = Math.max(worstTime, time);
@@ -201,7 +202,7 @@ public class MatrixTest {
             time = System.currentTimeMillis() - start;
             totalNaiveTime += time;
             worstNaiveTime = Math.max(worstNaiveTime, time);
-            if(!ArrayUtils.equals(exp,res))throw new AssertionError();
+            if (!ArrayUtils.equals(exp, res)) throw new AssertionError();
         }
         double averageTime = totalTime / iterationCount;
         double averageNativeTime = totalNaiveTime / iterationCount;

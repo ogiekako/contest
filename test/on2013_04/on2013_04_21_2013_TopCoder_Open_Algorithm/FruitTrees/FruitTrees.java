@@ -1,7 +1,6 @@
 package on2013_04.on2013_04_21_2013_TopCoder_Open_Algorithm.FruitTrees;
 
 
-
 import net.ogiekako.algorithm.math.MathUtils;
 
 import java.util.Random;
@@ -12,20 +11,21 @@ public class FruitTrees {
         int[] ac = calc(apple, grape);
         int[] bc = calc(kiwi, grape);
         int res = 0;
-        for(int x=0;x<=2000;x++)for(int y=x;y<=2000;y++){
-            res = Math.max(res, Math.min(ab[x], Math.min(ac[y], bc[y - x])));
-        }
+        for (int x = 0; x <= 2000; x++)
+            for (int y = x; y <= 2000; y++) {
+                res = Math.max(res, Math.min(ab[x], Math.min(ac[y], bc[y - x])));
+            }
         return res;
     }
 
     private int[] calc(int a, int b) {
         int[] res = new int[2001];
-        for(int x=0;x<=2000;x++){
+        for (int x = 0; x <= 2000; x++) {
             int cur = x;
             res[x] = Integer.MAX_VALUE;
-            for(int i=0;i<=2000;i++){
+            for (int i = 0; i <= 2000; i++) {
                 int d = cur / a;
-                res[x] = Math.min(res[x], Math.min(cur - d * a, (d+1) * a - cur));
+                res[x] = Math.min(res[x], Math.min(cur - d * a, (d + 1) * a - cur));
                 cur += b;
             }
         }
@@ -34,18 +34,18 @@ public class FruitTrees {
 
     public static void main(String[] args) {
         Random rnd = new Random(120410248L);
-        for(;;){
+        for (; ; ) {
             System.err.print(".");
-            int a=rnd.nextInt(2000) + 1, b =rnd.nextInt(2000) + 1, c=rnd.nextInt(2000) + 1;
-            if(rnd.nextBoolean()){
-                a = rnd.nextInt(10)+1;
-                b = rnd.nextInt(10)+1;
-                c = rnd.nextInt(10)+1;
+            int a = rnd.nextInt(2000) + 1, b = rnd.nextInt(2000) + 1, c = rnd.nextInt(2000) + 1;
+            if (rnd.nextBoolean()) {
+                a = rnd.nextInt(10) + 1;
+                b = rnd.nextInt(10) + 1;
+                c = rnd.nextInt(10) + 1;
             }
-            int exp = new FruitTrees().maxDist(a,b,c);
-            int res = new FruitTrees().solve(a,b,c);
-            if(res != exp){
-                System.err.println(a+" "+b+" "+c);
+            int exp = new FruitTrees().maxDist(a, b, c);
+            int res = new FruitTrees().solve(a, b, c);
+            if (res != exp) {
+                System.err.println(a + " " + b + " " + c);
                 throw new AssertionError();
             }
         }
@@ -74,31 +74,31 @@ public class FruitTrees {
 //        return Math.min(Math.min(ak,ag),kg)/2;
 
         int res = 0;
-        for (int i = 0; i < b; i++){
-            for (int j = 0; j < c; j++){
+        for (int i = 0; i < b; i++) {
+            for (int j = 0; j < c; j++) {
                 int dist = Integer.MAX_VALUE;
-                int t=-1;
-                t=dist(a,0,b,i);
-                dist = Math.min(dist,t);
-                t=dist(a,0,c,j);
-                dist = Math.min(dist,t);
-                t=dist(b,i,c,j);
-                dist = Math.min(dist,t);
-                res=res>dist?res : dist;
+                int t = -1;
+                t = dist(a, 0, b, i);
+                dist = Math.min(dist, t);
+                t = dist(a, 0, c, j);
+                dist = Math.min(dist, t);
+                t = dist(b, i, c, j);
+                dist = Math.min(dist, t);
+                res = res > dist ? res : dist;
             }
         }
         return res;
     }
 
     private int dist(int x, int n, int y, int m) {
-        int a=gcd(x,y);
-        int b=n-m;b=b<0?m-n : b;
-        b%=a;
-        int c=b-a;c=c<0?a-b : c;
-        return b<c?b : c;
+        int a = gcd(x, y);
+        int b = n - m; b = b < 0 ? m - n : b;
+        b %= a;
+        int c = b - a; c = c < 0 ? a - b : c;
+        return b < c ? b : c;
     }
 
-    int gcd(int x,int y){
-        return MathUtils.gcd(x,y);
+    int gcd(int x, int y) {
+        return MathUtils.gcd(x, y);
     }
 }

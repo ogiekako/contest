@@ -1,7 +1,6 @@
 package on2013_04.on2013_04_22_Codeforces_Round__114__Div__1_.E___Wizards_and_Bets;
 
 
-
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.io.MyPrintWriter;

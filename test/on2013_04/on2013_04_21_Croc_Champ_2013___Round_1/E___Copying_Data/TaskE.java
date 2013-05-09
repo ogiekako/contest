@@ -1,7 +1,6 @@
 package on2013_04.on2013_04_21_Croc_Champ_2013___Round_1.E___Copying_Data;
 
 
-
 import net.ogiekako.algorithm.dataStructure.segmentTree.SegTree;
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
@@ -25,7 +24,7 @@ public class TaskE {
             } else {
                 int j = in.nextInt() - 1;
                 int p = (int) (long) tree.convolution(j, j + 1);
-                if (p == 0)out.println(b[j]);
+                if (p == 0) out.println(b[j]);
                 else {
                     p--;
                     out.println(a[x[p] + (j - y[p])]);
