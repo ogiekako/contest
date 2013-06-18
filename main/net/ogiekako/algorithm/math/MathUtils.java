@@ -269,11 +269,11 @@ public class MathUtils {
         }
     }
 
-    // sum{from,to).
-    public static long sum(long from, long to) {
-        if (to < from) throw new IllegalArgumentException();
-        long a = to - from;
-        long b = from + to - 1;
+    // sum{s,t).
+    public static long sum(long s, long t) {
+        if (t < s) throw new IllegalArgumentException();
+        long a = t - s;
+        long b = s + t - 1;
         if ((a & 1) == 0) a /= 2;
         else b /= 2;
         return a * b;

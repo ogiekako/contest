@@ -12,7 +12,7 @@ public class Transformation {
      * old.GCJ 2010 roundD
      * http://en.wikipedia.org/wiki/Inversive_geometry
      */
-    public P inverse(P p) {
+    public Point inverse(Point p) {
         double d = p.norm();
         if (d < EPS) throw new RuntimeException();
         return p.mul(1.0 / d / d);

@@ -9,45 +9,45 @@ public class Line_methods {
     private Line_methods() {
     }
 
-    public static P isLL(P p1, P p2, P r1, P r2) {
-        P a = p2.sub(p1), b = r1.sub(p1), c = r2.sub(r1);
+    public static Point isLL(Point p1, Point p2, Point r1, Point r2) {
+        Point a = p2.sub(p1), b = r1.sub(p1), c = r2.sub(r1);
         double d = c.det(a);
         double e = c.det(b);
-        if (Math.abs(d) < EPS.get()) {
-            if (Math.abs(e) < EPS.get()) return null;// same line.
+        if (Math.abs(d) < EPS.value()) {
+            if (Math.abs(e) < EPS.value()) return null;// same line.
             return null;// parallel
         }
         return p1.add(a.mul(e / d));
     }
 
-    public static boolean crsSP(P p1, P p2, P q) {// aoj1299
-        return p1.dist(q) + p2.dist(q) - p1.dist(p2) < EPS.get(); // triangle inequality
+    public static boolean crsSP(Point p1, Point p2, Point q) {// aoj1299
+        return p1.dist(q) + p2.dist(q) - p1.dist(p2) < EPS.value(); // triangle inequality
     }
 
-    public static boolean crsSP_exEdge(P p1, P p2, P q) {
+    public static boolean crsSP_exEdge(Point p1, Point p2, Point q) {
         if (p1.eq(q) || p2.eq(q)) return false;
         return crsSP(p1, p2, q);
     }
 
-    public static boolean crsSS(P p1, P p2, P q1, P q2) {
-        if (Math.max(p1.x, p2.x) + EPS.get() < Math.min(q1.x, q2.x)) return false;
-        if (Math.max(q1.x, q2.x) + EPS.get() < Math.min(p1.x, p2.x)) return false;
-        if (Math.max(p1.y, p2.y) + EPS.get() < Math.min(q1.y, q2.y)) return false;
-        if (Math.max(q1.y, q2.y) + EPS.get() < Math.min(p1.y, p2.y)) return false;
+    public static boolean crsSS(Point p1, Point p2, Point q1, Point q2) {
+        if (Math.max(p1.x, p2.x) + EPS.value() < Math.min(q1.x, q2.x)) return false;
+        if (Math.max(q1.x, q2.x) + EPS.value() < Math.min(p1.x, p2.x)) return false;
+        if (Math.max(p1.y, p2.y) + EPS.value() < Math.min(q1.y, q2.y)) return false;
+        if (Math.max(q1.y, q2.y) + EPS.value() < Math.min(p1.y, p2.y)) return false;
         return sgn(p2.sub(p1).det(q1.sub(p1))) * sgn(p2.sub(p1).det(q2.sub(p1))) <= 0 &&
                 sgn(q2.sub(q1).det(p1.sub(q1))) * sgn(q2.sub(q1).det(p2.sub(q1))) <= 0;
     }
 
     private static int sgn(double d) {
-        return d < -EPS.get() ? -1 : d > EPS.get() ? 1 : 0;
+        return d < -EPS.value() ? -1 : d > EPS.value() ? 1 : 0;
     }
 
-    int ccw(P a, P b, P c) {
+    int ccw(Point a, Point b, Point c) {
         b = b.sub(a);
         c = c.sub(a);
-        if (b.det(c) > EPS.get()) return 1;
-        if (b.det(c) < -EPS.get()) return -1;
-        if (b.dot(c) < -EPS.get()) return 2;
+        if (b.det(c) > EPS.value()) return 1;
+        if (b.det(c) < -EPS.value()) return -1;
+        if (b.dot(c) < -EPS.value()) return 2;
         if (b.norm() < c.norm()) return -2;
         return 0;
     }
@@ -60,18 +60,18 @@ public class Line_methods {
      * @param r2
      * @return
      */
-    boolean crossSS2(P p1, P p2, P r1, P r2) {
+    boolean crossSS2(Point p1, Point p2, Point r1, Point r2) {
         return ccw(p1, p2, r1) * ccw(p1, p2, r2) <= 0
                 && ccw(r1, r2, p1) * ccw(r1, r2, p2) <= 0;
     }
 
-    P foot(P p1, P p2, P r) {// aoj0081
+    Point foot(Point p1, Point p2, Point r) {// aoj0081
         double d = p1.dist(p2);
         return r.add(p2.sub(p1).rot90().mul(r.sub(p1).det(p2.sub(p1)) / d / d));
     }
 
-    P reflect(P p1, P p2, P q) {// aoj1299
-        P p = foot(p1, p2, q);
+    Point reflect(Point p1, Point p2, Point q) {// aoj1299
+        Point p = foot(p1, p2, q);
         return q.add(p.sub(q).mul(2));
     }
 
@@ -83,7 +83,7 @@ public class Line_methods {
      * @param x
      * @return
      */
-    double isLY(P p1, P p2, int x) {// AOJ1265
+    double isLY(Point p1, Point p2, int x) {// AOJ1265
         double y = p1.y + (x - p1.x) * (p2.y - p1.y) / (p2.x - p1.x);
         return y;
     }
@@ -96,7 +96,7 @@ public class Line_methods {
      * @param q2
      * @return
      */
-    double disSS(P p1, P p2, P q1, P q2) {// AOJ1265
+    double disSS(Point p1, Point p2, Point q1, Point q2) {// AOJ1265
         if (crsSS(p1, p2, q1, q2)) return 0;
         double res = Double.POSITIVE_INFINITY;
         res = Math.min(res, disSP(p1, p2, q1));
@@ -114,7 +114,7 @@ public class Line_methods {
      * @param q
      * @return
      */
-    double disSP(P p1, P p2, P q) {// AOJ1265
+    public static double disSP(Point p1, Point p2, Point q) {// AOJ1265
         if (p2.sub(p1).dot(q.sub(p1)) < 0) return q.sub(p1).norm();
         if (p1.sub(p2).dot(q.sub(p2)) < 0) return q.sub(p2).norm();
         return disLP(p1, p2, q);
@@ -127,7 +127,7 @@ public class Line_methods {
      * @param q
      * @return
      */
-    double disLP(P p1, P p2, P q) {// AOJ1265
+    public static double disLP(Point p1, Point p2, Point q) {// AOJ1265
         return Math.abs(p2.sub(p1).det(q.sub(p1))) / p2.sub(p1).norm();
     }
 
@@ -139,7 +139,7 @@ public class Line_methods {
      * <p/>
      * verified: old.GCJ 2010 round2 D
      */
-    public int[] getEnvelopeIds(P[][] ls) {
+    public int[] getEnvelopeIds(Point[][] ls) {
         int n = ls.length;
         final double[] args = new double[n];
         for (int i = 0; i < n; i++) {
@@ -171,12 +171,12 @@ public class Line_methods {
         for (int i = 1; i < n; i++) {
             int i2 = Id[(from + i) % n];
             int j = list.get(list.size() - 1);
-            P is = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
-            P dir = ls[i2][1].sub(ls[i2][0]);
+            Point is = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
+            Point dir = ls[i2][1].sub(ls[i2][0]);
             for (; ; ) {
                 if (list.size() == 1) break;
                 j = list.get(list.size() - 2);
-                P is2 = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
+                Point is2 = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
                 if (is2.sub(is).dot(dir) > 0) {
                     list.remove(list.size() - 1);
                     is = is2;

@@ -12,9 +12,9 @@ Problems:
     SRM 1000 死兆星のやつ
  */
 public class Track {
-    public final P[] orbit;
+    public final Point[] orbit;
     public final double speed;
-    public Track(P[] orbit, double speed) {
+    public Track(Point[] orbit, double speed) {
         this.orbit = orbit.clone();
         this.speed = speed;
     }
@@ -30,7 +30,7 @@ public class Track {
     /*
      終点に達している場合は,終点座標を返す.
      */
-    public P where(double when) {
+    public Point where(double when) {
         if (when < 0) throw new IllegalArgumentException();
         double time = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
@@ -51,7 +51,7 @@ public class Track {
 
     通る判定は, crsSPで.
      */
-    public double when(P where) {
+    public double when(Point where) {
         double length = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
             if (Line_methods.crsSP(orbit[i], orbit[i + 1], where))
@@ -66,14 +66,14 @@ public class Track {
      * ただし, 人の速さは this より速いとする.
      * 最後まで追いつけないときは -1 を返す.
      */
-    public double getReachableTime(final P manPosition, final double manSpeed, final double manStartTime) {
+    public double getReachableTime(final Point manPosition, final double manSpeed, final double manStartTime) {
         if (speed > manSpeed) throw new IllegalArgumentException();
         double totalLength = totalLength();
         double endTime = totalLength / speed;
 
         double res = Algorithm.binarySearch(0, endTime, new Algorithm.BinSearchFilter() {
             public boolean isUpperBound(double value) {
-                P p = where(value);
+                Point p = where(value);
                 double reachTime = manStartTime + p.dist(manPosition) / manSpeed;
                 return reachTime < value;
             }
@@ -82,7 +82,7 @@ public class Track {
         return res == endTime ? -1 : res;
     }
 
-    public P getOrbit(int at) {
+    public Point getOrbit(int at) {
         return orbit[at];
     }
 

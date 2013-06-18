@@ -33,7 +33,7 @@ public abstract class BinaryIndexedTree<T> {
     }
 
     public static class INT extends BinaryIndexedTree<Integer> {
-        INT(int n) {
+        public INT(int n) {
             super(n);
         }
         @Override
@@ -48,7 +48,7 @@ public abstract class BinaryIndexedTree<T> {
     }
 
     public static class LONG extends BinaryIndexedTree<Long> {
-        LONG(int n) {
+        public LONG(int n) {
             super(n);
         }
 

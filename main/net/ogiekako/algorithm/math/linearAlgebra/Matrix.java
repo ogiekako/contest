@@ -106,7 +106,7 @@ public class Matrix {
      */
 
     public static double determinantDestructive(double[][] mat) {
-        double eps = EPS.get();
+        double eps = EPS.value();
         int n = mat.length;
         double res = 1;
         for (int i = 0; i < n; i++) {

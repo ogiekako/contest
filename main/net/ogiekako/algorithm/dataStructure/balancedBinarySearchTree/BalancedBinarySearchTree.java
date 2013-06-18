@@ -1,8 +1,13 @@
 package net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree;
-public interface BalancedBinarySearchTree<T extends Comparable<T>> {
+public interface BalancedBinarySearchTree<T> {
     BalancedBinarySearchTree<T> split(int k);
     void merge(BalancedBinarySearchTree<T> other);
-    int indexOf(T target);
+    int indexOf(Node<T> target);
     int size();
-    T get(int index);
+    Node<T> get(int index);
+
+    public static interface Node<T> {
+        BalancedBinarySearchTree<T> getTree();
+        T value();
+    }
 }

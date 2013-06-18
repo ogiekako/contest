@@ -1,12 +1,5 @@
 package net.ogiekako.algorithm.utils;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/03/11
- * Time: 16:23
- * To change this template use File | Settings | File Templates.
- */
 public class Pair<F, S> implements Comparable<Pair<F, S>> {
     public final F first;
     public final S second;
@@ -23,8 +16,7 @@ public class Pair<F, S> implements Comparable<Pair<F, S>> {
 
         Pair pair = (Pair) o;
 
-        if (!first.equals(pair.first)) return false;
-        return second.equals(pair.second);
+        return first.equals(pair.first) && second.equals(pair.second);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.math.rationalNumber;
 
+import net.ogiekako.algorithm.EPS;
 public class RationalNumber implements Comparable<RationalNumber> {
     public final long num, den;
 
@@ -54,7 +55,7 @@ public class RationalNumber implements Comparable<RationalNumber> {
     public static final RationalNumber ZERO = new RationalNumber(0, 1);
     public static final RationalNumber ONE = new RationalNumber(1, 1);
 
-    public static RationalNumber valueOf(long num) {
+    public static RationalNumber of(long num) {
         return new RationalNumber(num, 1);
     }
 
@@ -75,5 +76,18 @@ public class RationalNumber implements Comparable<RationalNumber> {
         int result = (int) (num ^ (num >>> 32));
         result = 31 * result + (int) (den ^ (den >>> 32));
         return result;
+    }
+
+    public static RationalNumber of(double value) {
+        for (long den = 1; ; den++) {
+            double dNum = value * den;
+            long num = Math.round(dNum);
+            if (Math.abs(num - dNum) < EPS.value()) {
+                return RationalNumber.of(num, den);
+            }
+        }
+    }
+    private static RationalNumber of(long num, long den) {
+        return new RationalNumber(num, den);
     }
 }

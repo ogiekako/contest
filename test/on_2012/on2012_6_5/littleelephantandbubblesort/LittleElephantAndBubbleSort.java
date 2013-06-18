@@ -1,7 +1,7 @@
 package on_2012.on2012_6_5.littleelephantandbubblesort;
 
 
-import net.ogiekako.algorithm.dataStructure.DoubleSumBinaryIndexedTree;
+import net.ogiekako.algorithm.dataStructure.tree.DoubleSumBinaryIndexedTree;
 import net.ogiekako.algorithm.io.MyScanner;
 
 import java.io.PrintWriter;

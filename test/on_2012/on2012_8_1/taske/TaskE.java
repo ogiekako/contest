@@ -1,7 +1,7 @@
 package on_2012.on2012_8_1.taske;
 
 
-import net.ogiekako.algorithm.dataStructure.IntSumBinaryIndexedTree;
+import net.ogiekako.algorithm.dataStructure.tree.IntSumBinaryIndexedTree;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 

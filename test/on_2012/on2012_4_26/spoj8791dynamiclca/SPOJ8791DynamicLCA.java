@@ -1,7 +1,7 @@
 package on_2012.on2012_4_26.spoj8791dynamiclca;
 
 
-import net.ogiekako.algorithm.dataStructure.dynamic.LinkCutTree;
+import net.ogiekako.algorithm.dataStructure.dynamic.LinkCutTreeNode;
 import net.ogiekako.algorithm.io.MyScanner;
 
 import java.io.PrintWriter;
@@ -27,7 +27,7 @@ public class SPOJ8791DynamicLCA {
             }
         }
     }
-    class Node extends LinkCutTree {
+    class Node extends LinkCutTreeNode {
 
         private int id;
 

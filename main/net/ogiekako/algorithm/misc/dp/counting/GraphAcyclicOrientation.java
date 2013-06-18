@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.misc.dp.counting;
 
-import net.ogiekako.algorithm.iteration.Iteration;
+import net.ogiekako.algorithm.misc.iteration.Iteration;
 
 public class GraphAcyclicOrientation {
     public static long solve(boolean[][] graph) {

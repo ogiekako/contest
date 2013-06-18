@@ -593,6 +593,26 @@ public class ArrayUtils {
         }
     }
 
+    public static void sortBy(int[] a, int[] b) {
+        @SuppressWarnings("unchecked") Pair<Integer, Integer>[] ps = new Pair[a.length];
+        for (int i = 0; i < a.length; i++) ps[i] = Pair.of(a[i], b[i]);
+        sort(ps);
+        for (int i = 0; i < a.length; i++) {
+            a[i] = ps[i].first;
+            b[i] = ps[i].second;
+        }
+    }
+
+    public static void sortBy(int[] a, long[] b) {
+        @SuppressWarnings("unchecked") Pair<Integer, Long>[] ps = new Pair[a.length];
+        for (int i = 0; i < a.length; i++) ps[i] = Pair.of(a[i], b[i]);
+        sort(ps);
+        for (int i = 0; i < a.length; i++) {
+            a[i] = ps[i].first;
+            b[i] = ps[i].second;
+        }
+    }
+
     public static void sortBy(long[] a, double[] b) {
         @SuppressWarnings("unchecked") Pair<Long, Double>[] ps = new Pair[a.length];
         for (int i = 0; i < a.length; i++) ps[i] = Pair.of(a[i], b[i]);

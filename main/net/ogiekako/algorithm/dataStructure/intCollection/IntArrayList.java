@@ -42,6 +42,9 @@ public class IntArrayList {
             public int next() {
                 return get(i++);
             }
+            public int peek() {
+                return get(i);
+            }
         };
     }
 }

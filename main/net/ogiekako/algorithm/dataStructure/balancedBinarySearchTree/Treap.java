@@ -1,6 +1,7 @@
 package net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree;
 import net.ogiekako.algorithm.utils.Pair;
 
+import java.util.Arrays;
 import java.util.Random;
 /**
  * Elements a and b are retained even if a.compareTo(b) == 0.
@@ -14,12 +15,16 @@ import java.util.Random;
  * @param <T> Type of the elements
  */
 
-public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<T> {
+public class Treap<T> implements BalancedBinarySearchTree<T> {
     private final static Random random = new Random(124018024801204L);
+    private static boolean log = !true;
     Node root;
     public Treap() { }
     public Treap(T element) {
         this.root = new Node(element);
+    }
+    public static <T> Treap<T> of(T element) {
+        return new Treap<T>(element);
     }
     private Treap(Node root) {
         this.root = root;
@@ -28,36 +33,20 @@ public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<
         if (k < 0 || k > size(root)) throw new IndexOutOfBoundsException(k + " " + size(root));
         Pair<Node, Node> pair = split(root, k);
         this.root = pair.first;
+        if (root != null) root.parent = null;
+        if (pair.second != null) pair.second.parent = null;
         return new Treap<T>(pair.second);
-    }
-
-    public int indexOf(T target) {
-        return indexOf(root, target);
-    }
-
-    private int indexOf(Node root, T target) {
-        if (root == null) return -1;
-        else if (root.element.compareTo(target) < 0) {
-            int p = indexOf(root.right, target);
-            if (p < 0) p = p - size(root.left) - 1;
-            else p = p + size(root.left) + 1;
-            return p;
-        } else if (target.compareTo(root.element) < 0) {
-            return indexOf(root.left, target);
-        } else {
-            return size(root.left);
-        }
     }
 
     private Pair<Node, Node> split(Node root, int k) {// [0,k), [k,n)
         if (root == null) return Pair.of(null, null);
         if (k <= size(root.left)) {// split left
             Pair<Node, Node> pair = split(root.left, k);
-            root.left = pair.second;
+            setLeft(root, pair.second);
             return Pair.of(pair.first, root.update());
         } else {
             Pair<Node, Node> pair = split(root.right, k - size(root.left) - 1);
-            root.right = pair.first;
+            setRight(root, pair.first);
             return Pair.of(root.update(), pair.second);
         }
     }
@@ -71,6 +60,7 @@ public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<
     public void merge(BalancedBinarySearchTree<T> right) {
         Treap<T> o = (Treap<T>) right;
         root = merge(root, o.root);
+        root.parent = null;
     }
 
     /**
@@ -82,15 +72,40 @@ public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<
      * @return The root of the merged tree
      */
     private Node merge(Node left, Node right) {
-        if (left == null) return right;
-        if (right == null) return left;
-        if (left.priority > right.priority) {// left.root becomes a new root.
-            left.right = merge(left.right, right);
+        debug("merge", left, right);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        if (left.priority > right.priority) {// left.root becomes a new root
+            debug("left", left, right);
+            setRight(left, merge(left.right, right));
+            debug("left2", left);
             return left.update();
         } else {
-            right.left = merge(left, right.left);
+            debug("right", left, right);
+            setLeft(right, merge(left, right.left));
+            debug("right2", right);
             return right.update();
         }
+    }
+    static void debug(Object... os) {
+        if (log)
+            System.out.println(Arrays.deepToString(os));
+    }
+    private void setRight(Node root, Node right) {
+//        if (root.right != null) root.right.parent = null;
+        root.right = right;
+        if (right != null)
+            right.parent = root;
+    }
+    private void setLeft(Node root, Node left) {
+//        if (root.left != null) root.left.parent = null;
+        root.left = left;
+        if (left != null)
+            left.parent = root;
     }
 
     public int size() {
@@ -100,19 +115,40 @@ public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<
         return node == null ? 0 : node.size;
     }
 
-    public T get(int k) {
+    public int indexOf(BalancedBinarySearchTree.Node<T> target) {
+        return indexOf(cast(target));
+    }
+
+    public int indexOf(Node target) {
+        if (target.parent == null) return size(target.left);
+        if (target.parent.left == target) {
+            return indexOf(target.parent) - 1 - size(target.right);
+        } else {
+            return indexOf(target.parent) + size(target.left) + 1;
+        }
+    }
+
+    private Node cast(BalancedBinarySearchTree.Node<T> target) {
+        return (Node) target;
+    }
+
+    public Node get(int k) {
         if (k < 0 || k >= size()) throw new IndexOutOfBoundsException(k + " " + size());
         Treap<T> mid = split(k);
         Treap<T> right = mid.split(1);
-        T res = mid.root.element;
+        Node res = mid.root;
         merge(mid);
         merge(right);
         return res;
     }
-    class Node {
+    public T indexOf(T value) {
+        throw new UnsupportedOperationException();
+    }
+    class Node implements BalancedBinarySearchTree.Node<T> {
         final double priority;
         final T element;
         Node left, right;
+        Node parent;
         int size = 1;
         Node(T element, double priority) {
             this.element = element;
@@ -132,13 +168,44 @@ public class Treap<T extends Comparable<T>> implements BalancedBinarySearchTree<
         }
         @Override
         public String toString() {
-            if (left != null && left.element.compareTo(element) > 0) throw new AssertionError();
-            if (right != null && element.compareTo(right.element) > 0) throw new AssertionError();
+            show();
+            if (parent != null && parent.left != this && parent.right != this) {
+                parent.show();
+                throw new AssertionError();
+            }
+            if (left != null && left.parent != this) {
+                debug(elem(left));
+                debug(elem(left.parent));
+                throw new AssertionError();
+            }
+            if (right != null && right.parent != this) throw new AssertionError();
             return "(" + toString(left) + element + "," + size + toString(right) + ")";
+        }
+        void show() {
+            debug(elem(this), elem(left), elem(right), elem(parent));
+        }
+
+        private String elem(Node node) {
+            return node == null ? "" : ("" + node.element + "-" + node.size);
         }
         private String toString(Node node) {
             if (node == null) return "";
             return node.toString();
+        }
+        public T value() {
+            return element;
+        }
+        public int size() {
+            return size;
+        }
+        private int size(Node node) {
+            return node == null ? 0 : node.size;
+        }
+        public BalancedBinarySearchTree<T> getTree() {
+            if (parent == null) {
+                return new Treap<T>(this);
+            }
+            return parent.getTree();
         }
     }
     @Override

@@ -3,7 +3,7 @@ package on_2012.on2012_5_19.fastdogfood;
 
 import net.ogiekako.algorithm.EPS;
 import net.ogiekako.algorithm.geometry.Line_methods;
-import net.ogiekako.algorithm.geometry.P;
+import net.ogiekako.algorithm.geometry.Point;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.Permutation;
 
@@ -27,11 +27,11 @@ public class FastDogFood {
     private double solve(int Dx, int Dy, int Fx, int Fy, int[] x, int[] y) {
         double length = Math.hypot(Dx, Dy);
         int n = x.length;
-        P origin = new P(0, 0);
-        P Dog = new P(Dx, Dy);
-        P Food = new P(Fx, Fy);
-        P[] kui = new P[n];
-        for (int i = 0; i < n; i++) kui[i] = new P(x[i], y[i]);
+        Point origin = new Point(0, 0);
+        Point Dog = new Point(Dx, Dy);
+        Point Food = new Point(Fx, Fy);
+        Point[] kui = new Point[n];
+        for (int i = 0; i < n; i++) kui[i] = new Point(x[i], y[i]);
         double res = Double.POSITIVE_INFINITY;
         for (int msk = 0; msk < 1 << n; msk++) {
             int m = Integer.bitCount(msk);
@@ -39,12 +39,12 @@ public class FastDogFood {
             m = 0;
             for (int i = 0; i < n; i++) if ((msk >> i & 1) == 1) is[m++] = i;
             do {
-                P[] orbit = new P[m + 2];
+                Point[] orbit = new Point[m + 2];
                 orbit[0] = Dog;
                 for (int i = 0; i < m; i++) orbit[i + 1] = kui[is[i]];
                 orbit[m + 1] = Food;
                 if (!goodOrbit(orbit)) continue;
-                ArrayList<P> tangled = new ArrayList<P>();
+                ArrayList<Point> tangled = new ArrayList<Point>();
                 tangled.add(origin);
                 proceed(Dog, 1, orbit, tangled, kui);
                 tangled.add(Food);
@@ -60,19 +60,19 @@ public class FastDogFood {
         return res == Double.POSITIVE_INFINITY ? -1 : res;
     }
 
-    private boolean goodOrbit(P[] orbit) {
-        P p = orbit[0];
-        P r1 = new P(0, 0).sub(p);
-        P Food = orbit[orbit.length - 1];
-        P r2 = Food.sub(p);
+    private boolean goodOrbit(Point[] orbit) {
+        Point p = orbit[0];
+        Point r1 = new Point(0, 0).sub(p);
+        Point Food = orbit[orbit.length - 1];
+        Point r2 = Food.sub(p);
         for (int i = 1; i < orbit.length; i++) {
-            P q = orbit[i].sub(p);
+            Point q = orbit[i].sub(p);
             double dot1 = q.dot(r1);
             double dot2 = q.dot(r2);
             double det1 = r1.det(q);
             double det2 = q.det(r2);
-            if (dot1 < -EPS.get() && dot2 < -EPS.get()) return false;
-            if (Math.abs(det1) > EPS.get() && Math.abs(det2) > EPS.get() && Math.signum(det1) != Math.signum(det2))
+            if (dot1 < -EPS.value() && dot2 < -EPS.value()) return false;
+            if (Math.abs(det1) > EPS.value() && Math.abs(det2) > EPS.value() && Math.signum(det1) != Math.signum(det2))
                 return false;
             r1 = q;
             r2 = Food.sub(orbit[i]);
@@ -81,14 +81,14 @@ public class FastDogFood {
         return true;
     }
 
-    private void proceed(P Dog, int p, P[] orbit, ArrayList<P> tangled, P[] kui) {
+    private void proceed(Point Dog, int p, Point[] orbit, ArrayList<Point> tangled, Point[] kui) {
         if (p >= orbit.length) return;
-        P next = orbit[p];
-        P center = tangled.get(tangled.size() - 1);
-        P nCenter = center;
+        Point next = orbit[p];
+        Point center = tangled.get(tangled.size() - 1);
+        Point nCenter = center;
         for (int i = 0; i < kui.length; i++)
             if (!kui[i].eq(center) && !kui[i].eq(Dog)) {
-                P is = Line_methods.isLL(Dog, next, center, kui[i]);
+                Point is = Line_methods.isLL(Dog, next, center, kui[i]);
                 if (is != null && Line_methods.crsSP_exEdge(center, is, kui[i]) &&
                         (Line_methods.crsSP_exEdge(Dog, next, is) || is.eq(next) && Line_methods.crsSP_exEdge(nCenter, is, kui[i]))) {
                     next = is;

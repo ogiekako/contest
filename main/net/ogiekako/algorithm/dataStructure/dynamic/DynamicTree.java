@@ -1,8 +1,7 @@
 package net.ogiekako.algorithm.dataStructure.dynamic;
-
 public interface DynamicTree {
-    void link(DynamicTree parent);
-    void cut();
-    DynamicTree root();
-    void evert();
+    void cut(int u, int v);
+    void link(int u, int v);
+    int root(int vertex);
+    void evert(int vertex);
 }

@@ -5,7 +5,7 @@ import net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree.SplayTree;
 
 import java.util.List;
 
-public class EulerTourTreeNode implements DynamicTree {
+public class EulerTourTreeNode implements DynamicTreeNode {
     SplayTree<EulerTourTreeNode> begin;
     SplayTree<EulerTourTreeNode> end;
 
@@ -58,7 +58,7 @@ public class EulerTourTreeNode implements DynamicTree {
         parent.check();
     }
 
-    public void link(DynamicTree _parent) {
+    public void link(DynamicTreeNode _parent) {
         EulerTourTreeNode parent = (EulerTourTreeNode) _parent;
         SplayTree<EulerTourTreeNode> last = new SplayTree<EulerTourTreeNode>(parent);
         SplayTree<EulerTourTreeNode> right = parent.end.cutRightPath();
@@ -78,7 +78,7 @@ public class EulerTourTreeNode implements DynamicTree {
     }
 
     public void evert() {
-
+        throw new UnsupportedOperationException();
     }
 
     public EulerTourTreeNode root() {
