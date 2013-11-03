@@ -72,7 +72,7 @@ public class Treap<T> implements BalancedBinarySearchTree<T> {
      * @return The root of the merged tree
      */
     private Node merge(Node left, Node right) {
-        debug("merge", left, right);
+        debug("mergeAsList", left, right);
         if (left == null) {
             return right;
         }

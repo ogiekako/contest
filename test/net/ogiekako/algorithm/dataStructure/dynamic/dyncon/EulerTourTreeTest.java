@@ -13,7 +13,7 @@ public class EulerTourTreeTest {
             }
         });
         long time = System.currentTimeMillis() - start;
-        if (time > 2000) throw new AssertionError(time);
+        if (time > 5000) throw new AssertionError(time);
 
     }
 }

@@ -18,7 +18,7 @@ public class MyPrintWriter {
         println("dbg : " + Arrays.deepToString(os));
     }
 
-    public void println(int a){
+    public void println(int a) {
         out.println(a);
     }
 

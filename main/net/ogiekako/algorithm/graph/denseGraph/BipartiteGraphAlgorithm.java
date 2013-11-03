@@ -121,7 +121,7 @@ public class BipartiteGraphAlgorithm {
 
     // SRM 491(C)
     public static double minimumCostMatching(double[][] graph, int k) {
-        if(graph.length == 0)return 0;
+        if (graph.length == 0) return 0;
         int n = graph.length, m = graph[0].length;
         GraphD graphD = new GraphD(n + m + 2);
         int source = n + m, sink = source + 1;

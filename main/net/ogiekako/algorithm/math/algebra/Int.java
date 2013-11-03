@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.math.algebra;
 
 import net.ogiekako.algorithm.utils.IntegerUtils;
 
-public class Int extends Ring<Int>implements Comparable<Int> {
+public class Int extends Ring<Int> implements Comparable<Int> {
     public final long value;
     public Int(long value) {
         this.value = value;
