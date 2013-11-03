@@ -100,24 +100,20 @@ public class MyScanner {
     }
 
     public long nextLong() {
-        try {
-            int c = read();
-            if (c == -1) return c;
-            while (c != '-' && (c < '0' || '9' < c)) {
-                c = read();
-                if (c == -1) return c;
-            }
-            if (c == '-') return -nextLong();
-            long res = 0;
-            do {
-                res *= 10;
-                res += c - '0';
-                c = read();
-            } while ('0' <= c && c <= '9');
-            return res;
-        } catch (Exception e) {
-            return -1;
+        int c = read();
+        if (c == -1) throw new NoSuchElementException();
+        while (c != '-' && (c < '0' || '9' < c)) {
+            c = read();
+            if (c == -1) throw new NoSuchElementException();
         }
+        if (c == '-') return -nextLong();
+        long res = 0;
+        do {
+            res *= 10;
+            res += c - '0';
+            c = read();
+        } while ('0' <= c && c <= '9');
+        return res;
     }
 
     public double nextDouble() {
@@ -156,7 +152,6 @@ public class MyScanner {
         for (int i = 0; i < n; i++) res[i] = next();
         return res;
     }
-
 
     public void readArrays(int[]... arrays) {
         for (int i = 0; i < arrays[0].length; i++) for (int j = 0; j < arrays.length; j++) arrays[j][i] = nextInt();

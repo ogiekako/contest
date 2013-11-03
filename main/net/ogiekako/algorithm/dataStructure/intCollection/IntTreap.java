@@ -79,7 +79,7 @@ public class IntTreap implements I {
 
     /**
      * Merge tree a and b.
-     * Node that the largest element of 'left' should be smaller than or equal to the smallest element of 'right'.
+     * Node that the largest element of `left' should be smaller than or equal to the smallest element of `right'.
      *
      * @param left  - left
      * @param right - right
@@ -126,7 +126,7 @@ public class IntTreap implements I {
             this(element, random.nextDouble());
         }
         /**
-         * Call whenever its left or right node is changed.
+         * You must call this method whenever its left or right node is changed.
          *
          * @return update this instance
          */

@@ -105,7 +105,6 @@ public class MinimumSteinerTree {
         class Edge {
             Vertex to;
             int weight;
-
             public Edge(Vertex to, int dist) {
                 this.to = to;
                 this.weight = dist;

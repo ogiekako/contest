@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.math;
 
+// Lucas theorem.
 public class CombinationSystem {
     public long[] facts;
     public long[] ifacts;

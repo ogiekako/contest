@@ -3,7 +3,7 @@ package net.ogiekako.algorithm.math.linearAlgebra;
 import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.algebra.Ring;
 
-public class Polynomial implements Ring<Polynomial> {
+public class Polynomial extends Ring<Polynomial> {
     long[] a_;
     Polynomial(long[] a) {
         a_ = a.clone();

@@ -1,8 +1,10 @@
-package net.ogiekako.algorithm.math.rationalNumber;
+package net.ogiekako.algorithm.math.number;
+
+import net.ogiekako.algorithm.math.algebra.Field;
 
 import java.math.BigInteger;
 
-public class BigRatio implements Comparable<BigRatio> {
+public class BigRatio extends Field<BigRatio> implements Comparable<BigRatio> {
     // num/den, den>0
     public final BigInteger num;
     public final BigInteger den;
@@ -25,6 +27,18 @@ public class BigRatio implements Comparable<BigRatio> {
     public BigRatio add(BigRatio r) {
         return new BigRatio(num.multiply(r.den).add(den.multiply(r.num)), den.multiply(r.den));
     }
+    @Override
+    public BigRatio addInv() {
+        return ZERO.sub(this);
+    }
+    @Override
+    public boolean isZero() {
+        return equals(ZERO);
+    }
+    @Override
+    public BigRatio zero() {
+        return ZERO;
+    }
 
     public BigRatio sub(BigRatio r) {
         return new BigRatio(num.multiply(r.den).subtract(den.multiply(r.num)), den.multiply(r.den));
@@ -34,6 +48,10 @@ public class BigRatio implements Comparable<BigRatio> {
         return new BigRatio(num.multiply(r.num), den.multiply(r.den));
     }
 
+    @Override
+    public BigRatio mulInv() {
+        return ONE.div(this);
+    }
     public BigRatio div(BigRatio r) {
         if (r.num.equals(BigInteger.ZERO)) throw new IllegalArgumentException();
         return new BigRatio(num.multiply(r.den), den.multiply(r.num));

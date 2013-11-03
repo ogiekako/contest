@@ -2,6 +2,7 @@ package net.ogiekako.algorithm.graph.denseGraph;
 
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
+import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 
 import java.util.Arrays;
 public class BipartiteGraphAlgorithm {
@@ -116,5 +117,17 @@ public class BipartiteGraphAlgorithm {
         graph.addFlow(sink, source, Math.max(n, m), 0);
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.addFlow(i, n + j, 1, -costs[i][j]);
         return -MinimumCostFlow.minimumCostCirculation(graph);
+    }
+
+    // SRM 491(C)
+    public static double minimumCostMatching(double[][] graph, int k) {
+        if(graph.length == 0)return 0;
+        int n = graph.length, m = graph[0].length;
+        GraphD graphD = new GraphD(n + m + 2);
+        int source = n + m, sink = source + 1;
+        for (int i = 0; i < n; i++) {
+//            graphD.add(new FlowEdge());
+        }
+        return 0;
     }
 }

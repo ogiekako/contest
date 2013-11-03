@@ -56,7 +56,7 @@ public class Matrix {
     /**
      * Compute A^p % mod.
      * <p/>
-     * If you want to compute A^p x % mod for some vector x, use
+     * If you want to len A^p x % mod for some vector x, use
      * powered(A,p,x,mod). The method is faster than this method.
      * <p/>
      * Order: O(n^3 log_p)
@@ -332,7 +332,7 @@ public class Matrix {
         long[] R = characteristicPolynomial(f, x, modPrime);
         // O(n^2 log k)
         long[] P = Polynomial.mod(k, R, modPrime);
-        // compute P(f) x.
+        // len P(f) x.
         int n = x.length;
         long[] res = new long[n];
         long sub = Long.MAX_VALUE / modPrime * modPrime;

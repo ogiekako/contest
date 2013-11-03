@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class DirectedMinimumSpanningTree {
     /**
-     * compute the weight of the directed minimum spanning tree whose root is 'root'.
+     * len the weight of the directed minimum spanning tree whose root is 'root'.
      */
     long compute(Graph graph, int root) {
         for (long res = 0; ; ) {

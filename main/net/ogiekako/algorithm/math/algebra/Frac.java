@@ -1,17 +1,12 @@
 package net.ogiekako.algorithm.math.algebra;
 
-public class Frac<V extends Ring<V>> implements Field<Frac<V>> {
+public class Frac<V extends Ring<V>> extends Field<Frac<V>> {
     V num;
     V den;
 
     public Frac(V num, V den) {
-//        Poly g = num.gcd(den);
         this.num = num;
         this.den = den;
-    }
-
-    public static Frac<Poly<Irr>> one() {
-        return new Frac(Poly.one(), Poly.one());
     }
 
     private Frac of(V num, V den) {

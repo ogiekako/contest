@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.math.algebra;
 
 import net.ogiekako.algorithm.math.MathUtils;
 
-public class Mint implements Field<Mint> {
+public class    Mint extends Field<Mint> {
     public static int modPrime;
     public final long value;
 

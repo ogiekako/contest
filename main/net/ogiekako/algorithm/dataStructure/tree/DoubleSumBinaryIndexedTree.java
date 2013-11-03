@@ -26,5 +26,4 @@ public class DoubleSumBinaryIndexedTree {
         val -= sum(id, id + 1);
         add(id, val);
     }
-
 }

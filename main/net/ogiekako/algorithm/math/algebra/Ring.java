@@ -1,5 +1,5 @@
 package net.ogiekako.algorithm.math.algebra;
 
-public interface Ring<V> extends Group<V> {
-    V mul(V other);
+public abstract class Ring<V extends Ring<V>> extends Group<V> {
+    public abstract V mul(V other);
 }

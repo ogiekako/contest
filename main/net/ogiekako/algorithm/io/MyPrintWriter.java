@@ -18,6 +18,10 @@ public class MyPrintWriter {
         println("dbg : " + Arrays.deepToString(os));
     }
 
+    public void println(int a){
+        out.println(a);
+    }
+
     public void println(Object... os) {
         if (os.length == 0) {
             out.println();

@@ -1,7 +1,8 @@
-package net.ogiekako.algorithm.math.rationalNumber;
+package net.ogiekako.algorithm.math.number;
 
 import net.ogiekako.algorithm.EPS;
-public class RationalNumber implements Comparable<RationalNumber> {
+import net.ogiekako.algorithm.math.algebra.Field;
+public class RationalNumber extends Field<RationalNumber> implements Comparable<RationalNumber> {
     public final long num, den;
 
     /*
@@ -26,6 +27,18 @@ public class RationalNumber implements Comparable<RationalNumber> {
 
     public RationalNumber add(RationalNumber o) {
         return new RationalNumber(num * o.den + den * o.num, den * o.den);
+    }
+    @Override
+    public RationalNumber addInv() {
+        return ZERO.sub(this);
+    }
+    @Override
+    public boolean isZero() {
+        return equals(ZERO);
+    }
+    @Override
+    public RationalNumber zero() {
+        return ZERO;
     }
 
     public RationalNumber sub(RationalNumber o) {
@@ -59,10 +72,6 @@ public class RationalNumber implements Comparable<RationalNumber> {
         return new RationalNumber(num, 1);
     }
 
-    public double doubleValue() {
-        return (double) num / den;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,5 +98,9 @@ public class RationalNumber implements Comparable<RationalNumber> {
     }
     private static RationalNumber of(long num, long den) {
         return new RationalNumber(num, den);
+    }
+    @Override
+    public RationalNumber mulInv() {
+        return ONE.div(this);
     }
 }

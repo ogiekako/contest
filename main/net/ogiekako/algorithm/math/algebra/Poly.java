@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
+public class Poly<V extends Ring<V>> extends Ring<Poly<V>> {
     Object[] a;
     int degree;
 
@@ -36,12 +36,12 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
         for (int i = 0; i < this.a.length; i++) this.a[i] = a[i];
     }
 
-    public Poly<V> mul(V d) {
+    public Poly<V> mulD(V d) {
         Object[] nA = new Object[a.length];
         for (int i = 0; i < a.length; i++) {
             nA[i] = ((V) a[i]).mul(d);
         }
-        return new Poly(nA);
+        return new Poly<V>(nA);
     }
 
     public void shift() {
@@ -90,11 +90,6 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
         return res.toString();
     }
 
-    public static Poly<Irr> one() {
-        Irr[] a = new Irr[]{Irr.of(1)};
-        return new Poly(a);
-    }
-
     public Poly<V> minus(Poly<V> other) {
         Object[] res = new Object[Math.max(degree, other.degree) + 1];
         if (res.length == 0) return new Poly<V>(res);
@@ -102,7 +97,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
         for (int i = 0; i < res.length; i++) {
             res[i] = (i <= degree ? get(i) : instance.zero()).add((i <= other.degree ? other.get(i) : instance.zero()).addInv());
         }
-        return new Poly(res);
+        return new Poly<V>(res);
     }
 
     public Poly<V> mul(Poly<V> other) {
@@ -132,7 +127,7 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
         for (int i = 0; i < res.length; i++) {
             res[i] = (i <= degree ? get(i) : instance.zero()).add((i <= other.degree ? other.get(i) : instance.zero()));
         }
-        return new Poly(res);
+        return new Poly<V>(res);
     }
 
     public Poly<V> addInv() {
@@ -142,31 +137,16 @@ public class Poly<V extends Ring<V>> implements Ring<Poly<V>> {
     }
 
     public Poly<V> shifted() {
-        Poly<V> res = new Poly(a.clone());
+        Poly<V> res = new Poly<V>(a.clone());
         res.shift();
         return res;
     }
 
     public static Poly<Irr> x() {
-        Poly res = new Poly(new Irr[]{Irr.of(0), Irr.of(1)});
-        return res;
+        return new Poly<Irr>(new Irr[]{Irr.of(0), Irr.of(1)});
     }
-
-//    public Poly mul(Poly other) {
-//        return times(other);
-//    }
-
-//    public Poly add(Poly other) {
-//        return plus(other);
-//    }
-
 
     public static Poly<Irr> constant(double value) {
-        return new Poly(new Irr[]{Irr.of(value)});
+        return new Poly<Irr>(new Irr[]{Irr.of(value)});
     }
-
-
-//    public Poly gcd(Poly other) {
-//
-//    }
 }

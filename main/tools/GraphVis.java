@@ -10,21 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/22
- * Time: 4:40
- * To change this template use File | Settings | File Templates.
- */
 public class GraphVis {
-//    public static void main(String[] args) {
-////        String[]data=
-////                "NNYNYNNY,NNNNNNNN,NNNNNYYY,NYNNNNNN,NNNNNNNN,NYNYNNNN,NYNNYNNN,NNNYYNYN".split(",");
-////        new GraphVis().doitWithYN(data);
-//
-//        new GraphVis().doitWithNM(new Scanner(System.in));
-//    }
 
     private void doitWithNM(Scanner in) {
         int n = in.nextInt();
