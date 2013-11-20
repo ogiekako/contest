@@ -1,19 +1,34 @@
 package net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree;
 
+import junit.framework.Assert;
 import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 //http://hos.ac/slides/20120323_joi_copypaste.pdf
+
+/**
+ * This tree holds the following red-black properties:
+ * 1. Every node is Red of Black.
+ * 2. The root node is Black.
+ * 3. All leaves are Black.
+ * 4. If a node is Red, then its both children are Black.
+ * 5. For every fixed node v, all paths from v to descendant leaves contain same number of black nodes.
+ *
+ * @param <E>
+ */
 public class PersistentRedBlackTree<E> {
     static enum Color {RED, BLACK}
 
-    static Color B = Color.BLACK, R = Color.RED;
+    static final Color B = Color.BLACK, R = Color.RED;
     final Color color;
     final PersistentRedBlackTree<E> l;
     final PersistentRedBlackTree<E> r;
     final int rank;
     final int size;
+    /**
+     * If this node is a leaf, entry is the given value, otherwise, entry = r.entry.
+     */
     final E entry;
 
     public int size() {
@@ -25,7 +40,7 @@ public class PersistentRedBlackTree<E> {
     }
 
     static <E> PersistentRedBlackTree<E> node(PersistentRedBlackTree<E> left, PersistentRedBlackTree<E> right, Color color) {
-        return new PersistentRedBlackTree<E>(left, right, color, null);
+        return new PersistentRedBlackTree<E>(left, right, color, right.entry);
     }
 
     private PersistentRedBlackTree(PersistentRedBlackTree<E> l, PersistentRedBlackTree<E> r, Color color, E entry) {
@@ -33,11 +48,14 @@ public class PersistentRedBlackTree<E> {
         this.r = r;
         this.color = color;
         if (l != null) {
+//            if (l.rank + (l.color == B ? 1 : 0) != r.rank + (r.color == B ? 1 : 0)) throw new AssertionError();
+//            rank = l.rank + (l.color == B ? 1 : 0);
+//            if(numBlackWithoutMe(l) != numBlackWithoutMe(r)) throw new AssertionError();
             if (l.rank != r.rank) throw new AssertionError();
             rank = l.rank + (color == B ? 1 : 0);
             size = l.size + r.size;
         } else {
-            rank = 0;
+            rank = color == B ? 1 : 0;
             size = 1;
         }
         this.entry = entry;
@@ -61,44 +79,64 @@ public class PersistentRedBlackTree<E> {
     private static <E> PersistentRedBlackTree<E> mergeSub(PersistentRedBlackTree<E> a, PersistentRedBlackTree<E> b) {
         if (a.rank < b.rank) {
             PersistentRedBlackTree<E> c = mergeSub(a, b.l);
-            if (c.color == R && c.l.color == R) {
-                if (b.color == R) throw new AssertionError();
-                if (b.r.color == B) {
+            if (b.color == R || c.color == B || (c.color == R && c.l.color == B && c.r.color == B))
+                return node(c, b.r, b.color);// 1
+            if (b.r.color == R) return node(node(c.l, c.r, B), node(b.r.l, b.r.r, B), R); // 2
+            if (c.l.color == R) {
+                if (c.r.color == B) { // 3
                     return node(c.l, node(c.r, b.r, R), B);
-                } else {
-                    return node(node(c.l, c.r, B), node(b.r.l, b.r.r, B), R);
+                } else { // 4
+                    return node(node(c.l.l, c.l.r, B), node(c.r, b.r, B), R);
                 }
+            } else { // 5
+                return node(node(c.l, c.r.l, R), node(c.r.r, b.r, R), B);
             }
-            return node(c, b.r, b.color);
         } else if (a.rank > b.rank) {
             PersistentRedBlackTree<E> c = mergeSub(a.r, b);
-            if (c.color == R && c.r.color == R) {
-                if (a.color == R) throw new AssertionError();
-                if (a.l.color == B) {
-                    return node(node(a.l, c.l, R), c.r, B);
+            if (a.color == R || c.color == B || (c.color == R && c.r.color == B && c.l.color == B))
+                return node(a.l, c, a.color);  // 1
+            if (a.l.color == R) return node(node(a.l.l, a.l.r, B), node(c.l, c.r, B), R); // 2
+            if (c.r.color == R) {
+                if (c.l.color == B) {
+                    return node(node(a.l, c.l, R), c.r, B);// 3
                 } else {
-                    return node(node(a.l.l, a.l.r, B), node(c.l, c.r, B), R);
+                    return node(node(a.l, c.l, B), node(c.r.l, c.r.r, B), R);    // 4
                 }
+            } else {
+                return node(node(a.l, c.l.l, R), node(c.l.r, c.r, R), B); // 5
             }
-            return node(a.l, c, a.color);
         } else {
             return node(a, b, R);
         }
     }
+    private static <E> PersistentRedBlackTree<E> rotL(PersistentRedBlackTree<E> c) {
+        return node(node(c.l, c.r.l, c.color), c.r.r, c.r.color);
+    }
+    private static <E> PersistentRedBlackTree<E> asRoot(PersistentRedBlackTree<E> c) {
+        if (c == null || c.color == B) return c;
+        return node(c.l, c.r, B);
+    }
 
     /*
-    左側が葉をleafCount個含むように2つに分ける．
+    左側が葉をleftLeafCount個含むように2つに分ける．
    O(log n)
     */
-    public static <E> Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> split(PersistentRedBlackTree<E> a, int leafCount) {
-        if (leafCount <= 0) return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(null, a);
-        if (leafCount >= a.size) return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(a, null);
-        if (a.l.size >= leafCount) {
-            Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = split(a.l, leafCount);
-            return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(p.first, mergeAsList(p.second, a.r));
+    public static <E> Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> split
+    (PersistentRedBlackTree<E> a, int leftLeafCount) {
+        if (size(a) < leftLeafCount) throw new IllegalArgumentException(size(a) + " " + leftLeafCount);
+        if (leftLeafCount < 0) throw new IllegalArgumentException(leftLeafCount + "");
+        Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> c = splitSub(a, leftLeafCount);
+        return Pair.of(asRoot(c.first), asRoot(c.second));
+    }
+    private static <E> Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> splitSub(PersistentRedBlackTree<E> a, int k) {
+        if (k <= 0) return new Pair<>(null, a);
+        if (k >= a.size) return new Pair<>(a, null);
+        if (a.l.size >= k) {
+            Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = splitSub(a.l, k);
+            return new Pair<>(p.first, mergeAsList(p.second, a.r));
         } else {
-            Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = split(a.r, leafCount - a.l.size);
-            return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(mergeAsList(a.l, p.first), p.second);
+            Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = split(a.r, k - a.l.size);
+            return new Pair<>(mergeAsList(a.l, p.first), p.second);
         }
     }
 
@@ -147,15 +185,55 @@ public class PersistentRedBlackTree<E> {
      */
     public static <E extends Comparable<E>> int binarySearch(PersistentRedBlackTree<E> root, E key) {
         if (root == null) return -1;
-        E t = root.entry;
+        if (root.l == null) {
+            E t = root.entry;
+            int c = key.compareTo(t);
+            return c < 0 ? -1 : c == 0 ? 0 : -2;
+        }
+        E t = root.l.entry;
+//        System.err.println("t = " + t);
         int c = key.compareTo(t);
         if (c < 0) {
             return binarySearch(root.l, key);
-        } else if (c == 0) return size(root.l);
-        else {
+        } else if (c == 0) {
+            return size(root.l) - 1;
+        } else {
             int k = binarySearch(root.r, key);
-            if (k >= 0) return k + size(root.l) + 1;
-            else return k - size(root.l) - 1;
+            if (k >= 0) return k + size(root.l);
+            else return k - size(root.l);
         }
+    }
+
+    public static <E> void assertValidCondition(PersistentRedBlackTree<E> root) {
+        if (root == null) return;
+        Assert.assertEquals(B, root.color);  // 2
+        assertValidConditionSub(root);
+    }
+    private static <E> void assertValidConditionSub(PersistentRedBlackTree<E> node) {
+        if (node.l == null) {
+            Assert.assertEquals(node.color == B ? 1 : 0, node.rank); // 5
+            Assert.assertEquals(B, node.color); // 3
+        } else if (node.color.equals(R)) {
+            Assert.assertEquals(node.toString(), B, node.l.color); // 4
+            Assert.assertEquals(B, node.r.color);
+            Assert.assertEquals(node.rank, node.l.rank); // 5
+            Assert.assertEquals(node.rank, node.r.rank);
+        } else {
+            Assert.assertEquals(node.rank, node.l.rank + 1); // 5
+            Assert.assertEquals(node.rank, node.r.rank + 1);
+        }
+        if (node.l != null) {
+            assertValidConditionSub(node.l);
+            assertValidConditionSub(node.r);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                color + " " + entry +
+                ", " + l +
+                ", " + r +
+                '}';
     }
 }
