@@ -1,0 +1,36 @@
+5 TaskJ
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+7 3
+1 2 3
+1 9
+1
+1
+67 6
+9876543210 9876543210 9876543210 9876543210 9876543210 9876543210
+12 158024691360
+1
+2
+42 10
+127 131 137 139 149 151 157 163 167 173
+4 5016
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+43 on2013_07.on2013_07_14_kupc2012.TaskJ.TaskJ
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.07.14
+8 kupc2012
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

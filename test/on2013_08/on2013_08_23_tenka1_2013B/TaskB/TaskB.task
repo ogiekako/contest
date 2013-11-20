@@ -1,0 +1,49 @@
+5 TaskB
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+46 7 20
+Push 2 3
+Push 4 5
+Top
+Size
+Pop 5
+Top
+Size
+12 5
+6
+3
+1
+SAFE
+1
+1
+15 1 10
+Push 40 40
+4 FULL
+1
+2
+26 4 10
+Top
+Size
+Push 1 1
+Top
+5 EMPTY
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+47 on2013_08.on2013_08_23_tenka1_2013B.TaskB.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.08.23
+12 tenka1_2013B
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

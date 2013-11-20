@@ -1,0 +1,39 @@
+10 __DYNACON1
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+96 5 11
+conn 1 5
+add 1 2
+add 1 3
+add 3 4
+add 5 4
+conn 1 5
+rem 4 5
+conn 1 5
+rem 3 4
+add 3 5
+conn 1 5
+13 NO
+YES
+NO
+YES
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+49 on2013_05.on2013_05_16_spoj.__DYNACON1.__DYNACON1
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.05.16
+4 spoj
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1
