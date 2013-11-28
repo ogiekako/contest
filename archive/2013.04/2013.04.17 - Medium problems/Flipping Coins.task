@@ -1,0 +1,21 @@
+14 Flipping Coins
+6 SINGLE
+8 STANDARD
+-1
+8 STANDARD
+-1
+0
+14 module/src/tmp
+7 -Xmx64M
+4 Main
+17 tmp.FlippingCoins
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.04.17
+15 Medium problems
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

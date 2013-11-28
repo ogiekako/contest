@@ -1,0 +1,44 @@
+17 Facebook13Round1B
+12 MULTI_NUMBER
+6 CUSTOM
+4 B.in
+6 CUSTOM
+5 B.out
+1
+0
+65 5
+2
+abcd
+c?ab
+3
+ab?c?c
+ac?c??
+3
+ab?c?c
+aabbdd
+2
+aa
+bb
+2
+abcd
+cdab
+83 Case #1: abcd
+Case #2: abacac
+Case #3: IMPOSSIBLE
+Case #4: IMPOSSIBLE
+Case #5: abcd
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+21 tmp.Facebook13Round1B
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.02.03
+19 Facebook Hacker Cup
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

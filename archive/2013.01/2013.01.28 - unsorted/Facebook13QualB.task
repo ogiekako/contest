@@ -1,0 +1,34 @@
+15 Facebook13QualB
+12 MULTI_NUMBER
+6 CUSTOM
+4 B.in
+6 CUSTOM
+5 B.out
+1
+0
+58 5
+:((
+i am sick today (:()
+(:)
+hacker cup: started :):)
+)(
+62 Case #1: NO
+Case #2: YES
+Case #3: YES
+Case #4: YES
+Case #5: NO
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+19 tmp.Facebook13QualB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.28
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

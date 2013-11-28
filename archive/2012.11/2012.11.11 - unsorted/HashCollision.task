@@ -1,0 +1,30 @@
+13 HashCollision
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+13 31
+1000000000
+-1
+1
+1
+18 12408102
+102249812
+0 
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+17 tmp.HashCollision
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.11.11
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

@@ -26,6 +26,8 @@ public class CombinationSystem {
         return res;
     }
     public long choose(int n, int k) {
+        if (n < 0 || k < 0) return 0;
+        if (n < k) return 0;
         return facts[n] * ifacts[k] % primeMod * ifacts[n - k] % primeMod;
     }
 }

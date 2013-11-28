@@ -1,0 +1,45 @@
+18 MostProbableString
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+6
+0
+4 3 1
+
+1 a
+1
+1
+3 3 2
+2 ab
+1
+2
+3 3 3
+1 b
+1
+3
+3 3 4
+1 b
+1
+4
+3 3 5
+1 c
+1
+5
+3 3 6
+1 c
+1
+15 module/src/utpc
+16 -Xmx256m -Xss64m
+4 Main
+23 utpc.MostProbableString
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.11.09
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

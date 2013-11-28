@@ -1,0 +1,45 @@
+20 C - Maxim and Matrix
+6 SINGLE
+8 STANDARD
+-1
+8 STANDARD
+-1
+4
+0
+4 1 1
+
+2 1
+
+1
+1
+4 3 2
+
+2 1
+
+1
+2
+4 3 3
+
+2 0
+
+1
+3
+22 1000000000000 1048576
+
+13 118606527258
+
+1
+14 module/src/tmp
+8 -Xmx256M
+4 Main
+9 tmp.TaskC
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.14
+30 Codeforces Round #160 (Div. 1)
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

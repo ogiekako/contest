@@ -1,0 +1,36 @@
+1 B
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+47 3
+9 7
+CTGACGTAC
+GTACGTA
+1 1
+A
+T
+4 6
+AAAA
+TTTTTT
+23 2 2 3 3
+0 0 0 0
+5 3 0 0
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+5 tmp.B
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.12.24
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0
+0

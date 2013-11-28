@@ -1,0 +1,41 @@
+5 TaskD
+12 MULTI_NUMBER
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+63 3
+1 4
+1
+1 0
+1 2 1 3
+2 0
+3 1 2
+3 3
+1 1 1
+1 0
+1 0
+1 0
+1 1
+2
+1 1 1
+51 Case #1: 2 1 4 3
+Case #2: 1 2 3
+Case #3: IMPOSSIBLE
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+9 tmp.TaskD
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.04.14
+9 GCJ13Qual
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

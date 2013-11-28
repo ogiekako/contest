@@ -1,0 +1,77 @@
+10 FoxAndGame
+10 countStars
+3 int
+1
+18 java.lang.String[]
+6 result
+7
+0
+1
+String[] 2
+3 ooo
+3 ooo
+int 6
+1
+1
+1
+String[] 3
+3 ooo
+3 oo-
+3 o--
+int 6
+1
+2
+1
+String[] 5
+3 ooo
+3 ---
+3 oo-
+3 ---
+3 o--
+int 6
+1
+3
+1
+String[] 5
+3 o--
+3 o--
+3 o--
+3 ooo
+3 ---
+int 6
+1
+4
+1
+String[] 8
+3 ---
+3 o--
+3 oo-
+3 ooo
+3 ooo
+3 oo-
+3 o--
+3 ---
+int 12
+1
+5
+1
+String[] 6
+3 ---
+3 ---
+3 ---
+3 ---
+3 ---
+3 ---
+int 0
+1
+6
+1
+String[] 1
+3 oo-
+int 2
+1
+10 2013.03.04
+17 TopCoder SRM #571
+0
+14 tmp.FoxAndGame
+1

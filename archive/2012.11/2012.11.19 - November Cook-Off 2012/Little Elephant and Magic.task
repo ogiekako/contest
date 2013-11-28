@@ -1,0 +1,34 @@
+25 Little Elephant and Magic
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+31 2
+2 2
+11
+10
+3 4
+3478
+4268
+7173
+
+4 3
+5
+
+1
+14 module/src/tmp
+7 -Xmx64M
+4 Main
+26 tmp.LittleElephantAndMagic
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.11.19
+22 November Cook-Off 2012
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

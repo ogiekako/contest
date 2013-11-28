@@ -1,0 +1,35 @@
+1 C
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+7 2
+10 21
+4 15.5
+1
+1
+7 3
+1 2 3
+1 4
+1
+2
+54 13
+748 401 960 630 659 363 612 514 258 361 914 107 149
+12 6162.4615384
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+5 tmp.C
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.10.21
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

@@ -1,0 +1,31 @@
+12 MatchingGame
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+38 2 3 2
+3 1 2 1 2
+4 1 1 2
+5 2 2 1 2
+1
+2
+
+2 8
+
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+16 tmp.MatchingGame
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.11.18
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

@@ -1,0 +1,39 @@
+17 Facebook13Round1A
+12 MULTI_NUMBER
+6 CUSTOM
+4 A.in
+6 CUSTOM
+5 A.out
+1
+0
+132 5
+4 3
+3 6 2 8 
+5 2
+10 20 30 40 50 
+6 4
+0 1 2 3 5 8 
+2 2
+1069 1122 
+10 5
+10386 10257 10432 10087 10381 10035 10167 10206 10347 10088 
+68 Case #1: 30
+Case #2: 400
+Case #3: 103
+Case #4: 1122
+Case #5: 2621483
+1
+14 module/src/tmp
+14 -Xmx1G -Xss64m
+4 Main
+21 tmp.Facebook13Round1A
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.02.03
+19 Facebook Hacker Cup
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

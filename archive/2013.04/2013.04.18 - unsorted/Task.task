@@ -1,0 +1,21 @@
+4 Task
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+0
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+8 src.Task
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.04.18
+0 
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

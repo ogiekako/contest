@@ -1,0 +1,119 @@
+19 BoundedOptimization
+8 maxValue
+6 double
+4
+18 java.lang.String[]
+4 expr
+5 int[]
+10 lowerBound
+5 int[]
+10 upperBound
+3 int
+6 maxSum
+4
+0
+4
+String[] 1
+5 ba+cb
+int[] 3
+0
+0
+1
+int[] 3
+1
+2
+1
+int 3
+double 2.25
+1
+1
+4
+String[] 1
+2 ab
+int[] 3
+0
+0
+10
+int[] 3
+20
+20
+20
+int 12
+double 1.0
+1
+2
+4
+String[] 5
+10 ca+fc+fa+d
+5 b+da+
+4 dc+c
+1 b
+9 +ed+eb+ea
+int[] 6
+10
+11
+12
+13
+14
+15
+int[] 6
+15
+16
+17
+18
+19
+20
+int 85
+double 2029.25
+1
+3
+4
+String[] 13
+15 db+ea+ik+kh+je+
+7 fj+lk+i
+6 d+jb+h
+23 a+gk+mb+ml+lc+mh+cf+fd+
+25 gc+ka+gf+bh+mj+eg+bf+hf+l
+12 b+al+ja+da+i
+3 f+g
+15 h+ia+le+ce+gi+d
+20 h+mc+fe+dm+im+kb+bc+
+24 ib+ma+eb+mf+jk+kc+mg+mk+
+17 gb+dl+ek+hj+dg+hi
+30 +ch+ga+ca+fl+ij+fa+jl+dc+dj+fk
+6 +li+jg
+int[] 13
+57
+29
+50
+21
+49
+29
+88
+33
+84
+76
+95
+55
+11
+int[] 13
+58
+80
+68
+73
+52
+84
+100
+79
+93
+98
+95
+69
+97
+int 845
+double 294978.3333333334
+1
+10 2012.11.11
+22 Single Round Match 560
+0
+23 tmp.BoundedOptimization

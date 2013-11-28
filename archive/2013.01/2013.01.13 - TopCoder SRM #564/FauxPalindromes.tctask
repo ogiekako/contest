@@ -1,0 +1,61 @@
+15 FauxPalindromes
+10 classifyIt
+16 java.lang.String
+1
+16 java.lang.String
+4 word
+7
+0
+1
+String
+3 ANA
+String
+10 PALINDROME
+1
+1
+1
+String
+9 AAAAANNAA
+String
+4 FAUX
+1
+2
+1
+String
+9 LEGENDARY
+String
+13 NOT EVEN FAUX
+1
+3
+1
+String
+11 XXXYTYYTTYX
+String
+4 FAUX
+1
+4
+1
+String
+17 TOPCOODEREDOOCPOT
+String
+10 PALINDROME
+1
+5
+1
+String
+16 TOPCODEREDOOCPOT
+String
+4 FAUX
+1
+6
+1
+String
+16 XXXXYYYYYZZXXYYY
+String
+13 NOT EVEN FAUX
+1
+10 2013.01.13
+17 TopCoder SRM #564
+0
+19 tmp.FauxPalindromes
+0

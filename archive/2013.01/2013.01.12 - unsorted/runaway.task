@@ -1,0 +1,32 @@
+7 runaway
+6 SINGLE
+6 CUSTOM
+8 first.in
+6 CUSTOM
+9 first.out
+1
+0
+21 
+4
+omm
+moo
+mom
+ommnom
+9 2
+omm
+mom
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+11 tmp.runaway
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.12
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

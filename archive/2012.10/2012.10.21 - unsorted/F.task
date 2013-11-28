@@ -1,0 +1,41 @@
+1 F
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+17 4
+1.0 2.0 3.0 4.0
+5 3
+1
+2
+1
+1
+17 4
+0.1 0.2 0.3 0.4
+5 1
+2
+3
+1
+2
+19 4
+9.9 0.1 -9.9 -0.1
+5 3
+2
+1
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+5 tmp.F
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2012.10.21
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+19 java.io.PrintWriter
+0

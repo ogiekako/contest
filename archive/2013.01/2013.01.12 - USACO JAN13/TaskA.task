@@ -1,0 +1,30 @@
+5 TaskA
+6 SINGLE
+6 CUSTOM
+10 mirrors.in
+6 CUSTOM
+11 mirrors.out
+1
+0
+35 5 6 2
+3 0 /
+0 2 /
+1 2 /
+3 2 \
+1 3 \
+1 4
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+9 tmp.TaskA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.12
+11 USACO JAN13
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

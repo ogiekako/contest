@@ -1,0 +1,70 @@
+16 SwitchesAndLamps
+6 theMin
+3 int
+2
+18 java.lang.String[]
+8 switches
+18 java.lang.String[]
+5 lamps
+5
+0
+2
+String[] 2
+4 NYNN
+4 NNYN
+String[] 2
+4 NNNY
+4 NNYN
+int 1
+1
+1
+2
+String[] 3
+3 YYN
+3 YNY
+3 YYN
+String[] 3
+3 YNY
+3 NYY
+3 YNY
+int 0
+1
+2
+2
+String[] 2
+18 NYYYNYNNYYYNYNNNNY
+18 NYYYNYNNYYYNYNNNNY
+String[] 2
+18 YYYNNNYNNYNYNYNYNY
+18 YYYNNNYNNYNYYNNYNY
+int -1
+1
+3
+2
+String[] 2
+5 YYNNN
+5 NNYYN
+String[] 2
+5 NYNNY
+5 NNNYY
+int -1
+1
+4
+2
+String[] 4
+10 YNNYNNYNYY
+10 NYNNYNYNYN
+10 YNYNYYYYYN
+10 NNYYNYNYNN
+String[] 4
+10 NYYNYNNYNY
+10 NYYYNNYNNN
+10 YYYYNYNNYY
+10 YNNNNYNYYN
+int 2
+1
+10 2013.03.30
+23 TopCoder Open Round #2A
+0
+20 tmp.SwitchesAndLamps
+1

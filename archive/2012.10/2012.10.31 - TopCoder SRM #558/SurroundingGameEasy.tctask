@@ -1,0 +1,89 @@
+19 SurroundingGameEasy
+5 score
+3 int
+3
+18 java.lang.String[]
+4 cost
+18 java.lang.String[]
+7 benefit
+18 java.lang.String[]
+5 stone
+5
+0
+3
+String[] 2
+2 21
+2 12
+String[] 2
+2 21
+2 12
+String[] 2
+2 .o
+2 o.
+int 4
+1
+1
+3
+String[] 2
+2 99
+2 99
+String[] 2
+2 11
+2 11
+String[] 2
+2 .o
+2 o.
+int -14
+1
+2
+3
+String[] 3
+3 888
+3 888
+3 888
+String[] 3
+3 000
+3 090
+3 000
+String[] 3
+3 ...
+3 .o.
+3 ...
+int 1
+1
+3
+3
+String[] 2
+4 4362
+4 4321
+String[] 2
+4 5329
+4 5489
+String[] 2
+4 ...o
+4 ..o.
+int 22
+1
+4
+3
+String[] 4
+4 5413
+4 4323
+4 8321
+4 5490
+String[] 4
+4 0432
+4 7291
+4 3901
+4 2310
+String[] 4
+4 ooo.
+4 o..o
+4 ...o
+4 oooo
+int -12
+1
+10 2012.10.31
+17 TopCoder SRM #558
+0
+23 tmp.SurroundingGameEasy

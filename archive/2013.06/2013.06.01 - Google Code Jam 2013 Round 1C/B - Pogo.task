@@ -1,0 +1,30 @@
+8 B - Pogo
+12 MULTI_NUMBER
+12 LOCAL_REGEXP
+22 B-(small|large).*[.]in
+6 CUSTOM
+5 b.out
+1
+0
+11 2
+3 4
+-3 4
+
+30 Case #1: WNSEN
+Case #2: ENSWN
+
+1
+8 main/src
+8 -Xmx512M
+4 Main
+9 src.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.06.01
+29 Google Code Jam 2013 Round 1C
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+1
+1

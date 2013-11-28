@@ -1,0 +1,63 @@
+15 AlternateColors
+8 getColor
+16 java.lang.String
+4
+4 long
+1 r
+4 long
+1 g
+4 long
+1 b
+4 long
+1 k
+5
+0
+4
+long 1
+long 1
+long 1
+long 3
+String
+4 BLUE
+1
+1
+4
+long 3
+long 4
+long 5
+long 4
+String
+3 RED
+1
+2
+4
+long 7
+long 7
+long 1
+long 7
+String
+5 GREEN
+1
+3
+4
+long 1000000000000
+long 1
+long 1
+long 1000000000002
+String
+3 RED
+1
+4
+4
+long 653
+long 32
+long 1230
+long 556
+String
+4 BLUE
+1
+10 2013.01.12
+17 TopCoder SRM #564
+0
+19 tmp.AlternateColors
+0

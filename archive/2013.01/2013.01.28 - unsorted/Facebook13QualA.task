@@ -1,0 +1,34 @@
+15 Facebook13QualA
+12 MULTI_NUMBER
+6 CUSTOM
+4 A.in
+6 CUSTOM
+5 A.out
+1
+0
+166 5
+ABbCcc
+Good luck in the Facebook Hacker Cup this year!
+Ignore punctuation, please :)
+Sometimes test cases are hard to make up.
+So I just go consult Professor Dalves
+64 Case #1: 152
+Case #2: 754
+Case #3: 491
+Case #4: 729
+Case #5: 646
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+19 tmp.Facebook13QualA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.28
+0 
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

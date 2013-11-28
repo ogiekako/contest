@@ -1,0 +1,43 @@
+5 TaskF
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+29 2 1
+0 100
+150 250
+0 100
+100 0
+3 150
+1
+1
+84 5 1
+7 44
+10 49
+38 48
+11 23
+11 30
+0 1 7 2 7
+10 0 3 8 10
+4 8 0 2 5
+3 2 1 0 4
+8 4 3 3 0
+2 41
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+9 src.TaskF
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.07.06
+8 kupc2013
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

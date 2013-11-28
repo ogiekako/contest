@@ -1,0 +1,73 @@
+7 TheFrog
+10 getMinimum
+6 double
+3
+3 int
+1 D
+5 int[]
+1 L
+5 int[]
+1 R
+5
+0
+3
+int 16
+int[] 1
+2
+int[] 1
+7
+double 7.0
+1
+1
+3
+int 25
+int[] 2
+11
+3
+int[] 2
+21
+7
+double 10.5
+1
+2
+3
+int 100
+int[] 1
+0
+int[] 1
+100
+double 100.0
+1
+3
+3
+int 100
+int[] 2
+0
+50
+int[] 2
+50
+100
+double 50.0
+1
+4
+3
+int 30000
+int[] 5
+17
+25281
+5775
+2825
+14040
+int[] 5
+55
+26000
+5791
+3150
+14092
+double 787.8787878787881
+1
+10 2013.02.25
+24 TopCoder Open Round #DIV
+0
+11 tmp.TheFrog
+1

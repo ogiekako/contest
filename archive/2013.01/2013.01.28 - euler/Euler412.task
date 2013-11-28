@@ -1,0 +1,41 @@
+8 Euler412
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+5
+0
+7 3 0 100
+2 42
+1
+1
+11 5 3 1000000
+6 250250
+1
+2
+14 6 3 1000000000
+8 29023400
+1
+3
+13 10 5 76543217
+8 61251715
+1
+4
+19 10000 5000 76543217
+-1
+1
+14 module/src/tmp
+16 -Xmx256m -Xss64m
+4 Main
+12 tmp.Euler412
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.01.28
+5 euler
+1
+16 net.ogiekako.algorithm.io.MyScanner
+20 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1
