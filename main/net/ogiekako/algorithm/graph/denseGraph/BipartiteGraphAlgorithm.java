@@ -81,7 +81,7 @@ public class BipartiteGraphAlgorithm {
     }
 
     /**
-     * By Konig's theorem, The size of a minimum vertex cover is equal to the size of a maximum matching.
+     * By Konig's theorem, the size of a minimum vertex cover is equal to the size of a maximum matching.
      * <p/>
      * Once a maximum matching M is computed, a minimum vertex cover can be constructed as follows:
      * Let L be nodes that are not reachable from the source node on the residual network, and
