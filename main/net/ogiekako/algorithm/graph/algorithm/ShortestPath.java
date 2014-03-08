@@ -82,7 +82,7 @@ public class ShortestPath {
             int v = entry.second;
             if (visited[v]) continue;
             visited[v] = true;
-            for (Edge e : graph.edges(v))
+            for (Edge e : graph.edges(v)) if(e.residue() > 0)
                 if (distance[e.to()] > dist + e.cost()) {
                     relax(e);
                     que.offer(Pair.of(distance[e.to()], e.to()));

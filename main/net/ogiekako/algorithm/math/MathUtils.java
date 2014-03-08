@@ -3,9 +3,7 @@ package net.ogiekako.algorithm.math;
 import net.ogiekako.algorithm.utils.Cast;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
+import java.util.*;
 
 public class MathUtils {
     public static final double GOLDEN_RATIO = (Math.sqrt(5) + 1.0) / 2.0;
@@ -101,8 +99,7 @@ public class MathUtils {
     }
 
     public static int[] generatePrimes(int upTo) {
-        int N = upTo;
-        boolean[] isPrime = generatePrimaryTable(N);
+        boolean[] isPrime = generatePrimaryTable(upTo);
         int m = 0;
         for (boolean p : isPrime) if (p) m++;
         int[] res = new int[m];
@@ -239,7 +236,7 @@ public class MathUtils {
     }
 
     /**
-     * どの素因数もtype 以下である数で,upTo以下のもの.
+     * res = {n<=upTo | any prime factor of n is at most type.}
      * Euler204
      * 100, 1e9 -> about 3000000
      *
@@ -299,10 +296,9 @@ public class MathUtils {
     }
 
     /*
-     * (base^(k-1) + base^(k-2) + ... + base^0 ) % modulus
-     * を返す.
-     * modulus は素数でなくとも大丈夫.
+     * res = (base^(k-1) + base^(k-2) + ... + base^0 ) % modulus
      *
+     * modulus is not necessary a prime.
      */
     public static long sumOfGeometricSequence(long base, long k, int modulus) {
         if (k <= 0) return 0;
@@ -386,6 +382,36 @@ public class MathUtils {
         for (int i = 0; i < count; i++) {
             res[i] = (i == 0 ? 1 : res[i - 1] * base) % modulus;
         }
+        return res;
+    }
+    public static long[] divisors(long n) { // SRM603B
+        List<Long> res = new ArrayList<>();
+        for (long d = 1; d * d <= n; d++)
+            if (n % d == 0) {
+                res.add(d);
+                if (d * d < n) res.add(n / d);
+            }
+        Collections.sort(res);
+        return Cast.toLong(res);
+    }
+
+    public static int mobius(long n, boolean memoize) {  // SRM603B
+        if (memoize && memoMobius == null) memoMobius = new HashMap<>();
+        return mobius(n, 2, memoize);
+    }
+
+    private static Map<Long, Integer> memoMobius;
+    private static int mobius(final long n, long from, boolean memoize) { // SRM603B
+        if (n == 1) return 1;
+        if (memoize && memoMobius.containsKey(n)) return memoMobius.get(n);
+        while (from * from <= n && n % from != 0) from++;
+        int res;
+        if (from * from > n) {
+            res = -1;
+        } else {
+            res = n / from % from == 0 ? 0 : -mobius(n / from, from + 1, memoize);
+        }
+        if (memoize) memoMobius.put(n, res);
         return res;
     }
 }

@@ -90,7 +90,7 @@ public class ArrayUtils {
         return S;
     }
 
-    private static void shuffle(int[] S, Random rnd) {
+    public static void shuffle(int[] S, Random rnd) {
         for (int i = S.length; i > 1; i--)
             swap(S, i - 1, rnd.nextInt(i));
     }

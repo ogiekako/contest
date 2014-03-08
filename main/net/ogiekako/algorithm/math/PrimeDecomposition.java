@@ -93,8 +93,8 @@ public class PrimeDecomposition extends ArrayList<PrimePower> {
     private static int[] dpTotientChainLength;
     /*
         res[12] = 3; 12 -> 4 -> 2 -> 1.
-        結局,何個2が出てくるかで決まる.
-        初めに2がなければ +1.
+        The result is determined by how many twos are appeared.
+        +1 if 2 is not appeared in the beginning.
      */
     public long totientChainLength() {
         int MX = 1000010;

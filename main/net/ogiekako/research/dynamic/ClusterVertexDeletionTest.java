@@ -11,7 +11,7 @@ public class ClusterVertexDeletionTest {
         int m = 1000;
         ClusterVertexDeletion clusterVertexDeletion = new ClusterVertexDeletion();
         clusterVertexDeletion.init(n);
-        UndirectedGraph G = new UndirectedGraph();
+        _UndirectedGraph G = new _UndirectedGraph();
         G.init(n);
         for (int iteration = 0; iteration < m; iteration++) {
             int u = rnd.nextInt(n), v = rnd.nextInt(n);

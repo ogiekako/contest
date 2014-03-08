@@ -10,19 +10,20 @@ import java.util.ListIterator;
 import java.util.Stack;
 
 /**
- * abstract helper class to make recursive function non-recursive.
- * <p/>
- * run(vertex) does the same thing as the following code whereas it is non-recursive:
+ * <p>
+ * Make recursive function non recursive.
+ * run(vertex) works equivalently as:
  * <pre><code>
- *     void run(Edge e){
- *         if(!enter(e))return;
- *         for(Edge e2 : graph.edges(e.to()))if(e != e2.transposed()){
- *             run(e2);
- *             process(e2);
- *         }
- *         exit(e);
- *     }
+ * void run(Edge e){
+ * &#x0009 if(!enter(e))return;
+ * &#x0009 for(Edge e2 : graph.edges(e.to()))if(e != e2.transposed()){
+ * &#x0009&#x0009 run(e2);
+ * &#x0009&#x0009 process(e2);
+ * &#x0009 }
+ * &#x0009 exit(e);
+ * }
  * </code></pre>
+ * </p>
  *
  * @param <V> Result type of the dfs algorithm.
  */

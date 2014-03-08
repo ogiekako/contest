@@ -18,7 +18,7 @@ public class SCCTest {
     public void testScc() throws Exception {
         GraphTester.test(new GraphTester.Generator<int[]>() {
             public int[] result(Graph graph, Random rnd) {
-                return SCC.scc(graph);
+                return SCC.sccNonRecursive(graph);
             }
 
             public void assertCorrect(Graph graph, int[] comp) {

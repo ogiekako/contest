@@ -33,7 +33,7 @@ public class SimpleEdge implements Edge {
     }
 
     public long residue() {
-        return 0;
+        return 1;
     }
 
     public long flow() {
@@ -68,7 +68,7 @@ public class SimpleEdge implements Edge {
         }
 
         public long residue() {
-            return 0;
+            return 1;
         }
 
         public long flow() {

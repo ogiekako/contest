@@ -9,7 +9,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
     boolean LOG = true;
     int n;
     Random random = new Random(190357890123750961L);
-    UndirectedGraph G = new UndirectedGraph();
+    _UndirectedGraph G = new _UndirectedGraph();
     RBTreeSet<Integer> X = newSetInstance();// [0,n)
     RBTreeSet<Integer> R = newSetInstance();
     RBTreeSet<Integer> L = newSetInstance(); // [n, 3n) set of labels
@@ -17,7 +17,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
     Map<E, RBTreeSet<Integer>> PMinus = new HashMap<>();
     int[] l_; // l_v = the label of the cluster that v belongs to if v∈ V', -1 otherwise.
     Map<Integer, RBTreeSet<Integer>> C = new HashMap<>();
-    UndirectedGraph H = new UndirectedGraph();
+    _UndirectedGraph H = new _UndirectedGraph();
 
     RBTreeSet<Integer> newSetInstance() {
         return new RBTreeSet<>();
@@ -118,7 +118,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
     void computeAndUpdate() {   // O(k^6)
         if (LOG) System.err.println("computeAndUpdate");
         int k = X.size();
-        UndirectedGraph GPrime = new UndirectedGraph();  // Kernel
+        _UndirectedGraph GPrime = new _UndirectedGraph();  // Kernel
         Set<Integer> VPrimeSet = newSetInstance();
         for (int x : X) {// O(k)
             if (H.d(x) > k) continue; // if dH(x) > k, at least k vertices must be moved to X when x is removed from X.
@@ -330,13 +330,13 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
     public int compute() {
         return X.size();
     }
-    public Set<Integer> computeNaive(UndirectedGraph G) {
+    public Set<Integer> computeNaive(_UndirectedGraph G) {
         for (int K = 0; ; K++) {
             Set<Integer> res = newSetInstance();
             if (possible(G, K, res)) return res;
         }
     }
-    private boolean possible(UndirectedGraph G, int K, Set<Integer> removed) {
+    private boolean possible(_UndirectedGraph G, int K, Set<Integer> removed) {
         if (removed.size() > K) return false;
         boolean contains = false;
         int n = G.size();

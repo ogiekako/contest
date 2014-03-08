@@ -2,7 +2,7 @@ package net.ogiekako.research.dynamic;
 import java.util.HashSet;
 import java.util.Set;
 public class ChromaticNumberParameterizedByClusterVertexDeletionNumber implements DynamicGraphAlgorithm {
-    UndirectedGraph G = new UndirectedGraph();
+    _UndirectedGraph G = new _UndirectedGraph();
     Set<Integer> X = new HashSet<>();
 
     @Override
@@ -14,11 +14,13 @@ public class ChromaticNumberParameterizedByClusterVertexDeletionNumber implement
         G.add(u, v);
         if (!X.contains(u)) moveToSolution(u);
         if (!X.contains(v)) moveToSolution(v);
-
     }
     private void moveToSolution(int u) {
 
     }
+
+
+
 //    private List<int[]> generateAllColoring(){
 //
 //    }

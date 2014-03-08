@@ -24,6 +24,9 @@ public class AutomatonState {
         return v;
     }
 
+    /*
+
+     */
     public PersistentLinkedList<String> getMatchedFromLonger() {
         return matchListFromLonger;
     }

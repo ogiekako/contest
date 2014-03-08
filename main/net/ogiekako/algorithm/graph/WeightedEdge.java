@@ -44,7 +44,7 @@ public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge>
         }
 
         public long residue() {
-            return 0;
+            return 1;
         }
 
         public long flow() {

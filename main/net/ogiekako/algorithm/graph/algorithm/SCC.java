@@ -6,19 +6,21 @@ import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Pair;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class SCC {
     /**
      * <p>Compute Strongly Connected Component(SCC) for the given graph.
-     * At the same time, this method calculate sorted order of the connected components.<br>
+     * At the same time, this method calculate sorted order of the computed connected components.<br>
      * </p>
      * - the i-th vertex belongs to the component res[i]. <br>
      * - there is no edge from component j to component i if i < j.<br>
      * <h3>Example:</h3>
      * <ul>Calculate the acyclicity of a graph:
      * <pre>{@code
-     * int[] comp = SCC.scc(graph);
+     * int[] comp = SCC.sccNonRecursive(graph);
      * boolean acyclic = graph.length == 0;
      * for (int c : comp) if (c == graph.length - 1) acyclic = true;
      * for (int i = 0; i < graph.length; i++) for (int j : graph[i]) if (i == j) acyclic = false;
@@ -26,7 +28,7 @@ public class SCC {
      * }</pre></ul>
      * <ul>Calculate longest path of an acyclic graph using dynamic programming:
      * <pre>{@code
-     * int[] comp = scc(graph);
+     * int[] comp = sccNonRecursive(graph);
      * int[] vertex = new int[graph.length];
      * for(int i=0;i<graph.length;i++)vertex[comp[i]] = i; // vertex[0] < vertex[1] < ...
      * int[] dp = new int[graph.length];
@@ -44,14 +46,50 @@ public class SCC {
      *
      * @param graph the given graph
      * @return - res[v] = id of the connected component containing v.
-     *         <p/>
-     *         Verified: SRM499 1000, TCO13R2 500.
+     * <p/>
+     * Verified: SRM499 1000, TCO13R2 500.
      */
-    public static int[] scc(List<Integer>[] graph) {
-        return scc(Graph.of(graph));
+    public static int[] sccNonRecursive(List<Integer>[] graph) {
+        return sccNonRecursive(Graph.of(graph));
     }
 
+    private static boolean[] visited;
+    private static int[] comp;
+    private static int index;
     public static int[] scc(Graph graph) {
+        Graph rGraph = GraphUtils.transposed(graph);
+        Stack<Integer> order = new Stack<>();
+        int n = graph.size();
+        boolean[] visited = new boolean[n];
+        for (int i = 0; i < n; i++) if (!visited[i]) dfs(i, graph, visited, order);
+        Arrays.fill(visited, false);
+        int[] comp = new int[n];
+        int index = 0;
+        while (!order.isEmpty()) {
+            int v = order.pop();
+            if (!visited[v])
+                dfs2(v, rGraph, visited, comp, index++);
+        }
+        return comp;
+    }
+    private static void dfs2(int v, Graph rGraph, boolean[] visited, int[] comp, int index) {
+        visited[v] = true;
+        comp[v] = index;
+        for (Edge e : rGraph.edges(v)) {
+            if (!visited[e.to()])
+                dfs2(e.to(), rGraph, visited, comp, index);
+        }
+    }
+
+    private static void dfs(int v, Graph graph, boolean[] visited, Stack<Integer> order) {
+        visited[v] = true;
+        for (Edge e : graph.edges(v)) {
+            if (!visited[e.to()]) dfs(e.to(), graph, visited, order);
+        }
+        order.push(v);
+    }
+
+    public static int[] sccNonRecursive(Graph graph) {
         int[] postorder = createPostorder(graph);// KAERIGAKE
         // if there is a path from u to v:
         // 1. postorder[u] > postorder[v] or
@@ -118,8 +156,8 @@ public class SCC {
      * res.second[i] := vertices that belongs to component i.
      */
     public static Pair<int[], int[][]> sccWithComponents(Graph graph) {
-        int[] comp = scc(graph);
+        int[] comp = sccNonRecursive(graph);
         int[][] res = ArrayUtils.classify(comp);
-        return new Pair<int[], int[][]>(comp, res);
+        return new Pair<>(comp, res);
     }
 }

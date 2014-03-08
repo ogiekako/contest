@@ -36,7 +36,7 @@ public class ScotlandYard {
                 if (can[id[i][j]]) return -1;
                 for (int k = 0; k < m; k++) if (can[k]) graph[id[i][j]].add(k);
             }
-        int[] comp = SCC.scc(graph);
+        int[] comp = SCC.sccNonRecursive(graph);
         boolean acyclic = graph.length == 0;
         for (int c : comp) if (c == graph.length - 1) acyclic = true;
         for (int i = 0; i < graph.length; i++) for (int j : graph[i]) if (i == j) acyclic = false;

@@ -34,7 +34,7 @@ public class DirectedMinimumSpanningTree {
                         }
                     }
 
-            int[] comp = SCC.scc(graphScc);
+            int[] comp = SCC.sccNonRecursive(graphScc);
             int numComp = 0;
             for (int i : comp) numComp = Math.max(numComp, i + 1);
             if (numComp == graph.size()) return res;
