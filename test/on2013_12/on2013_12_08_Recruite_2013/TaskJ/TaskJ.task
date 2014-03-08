@@ -1,0 +1,36 @@
+5 TaskJ
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+71 6
+0
+0^1
+0&0^1
+0^0^0^0
+0&1^1|0
+1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1
+103 0 true, 1 false
+1 true, 0 false
+1 true, 1 false
+0 true, 5 false
+2 true, 3 false
+564120378 true, 0 false
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+48 on2013_12.on2013_12_08_Recruite_2013.TaskJ.TaskJ
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.08
+13 Recruite 2013
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

@@ -1,0 +1,63 @@
+1 C
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+47 4 5
+0 1
+0 2
+0 3
+1 2
+2 3
+4 5
+0 1
+0 2
+0 3
+1 2
+2 3
+3 3 5
+1
+1
+47 6 5
+0 1
+1 2
+2 3
+3 4
+4 5
+6 5
+0 1
+1 2
+2 3
+3 4
+4 5
+4 7 11
+1
+2
+35 7 6
+0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+2 1
+0 1
+3 6 8
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+27 on2014_03.on2014_03_03_.C.C
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2014.03.03
+0 
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

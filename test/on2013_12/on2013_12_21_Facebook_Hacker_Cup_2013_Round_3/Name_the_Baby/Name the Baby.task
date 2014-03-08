@@ -1,0 +1,56 @@
+13 Name the Baby
+12 MULTI_NUMBER
+12 LOCAL_REGEXP
+23 name.*the.*baby.*[.]txt
+6 CUSTOM
+15 namethebaby.out
+1
+-1
+126 5
+5 10
+2
+like
+poke
+5 100
+1
+hack
+3 5
+3
+ab
+bc
+ca
+7 100000
+4
+abcd
+bcde
+cdef
+defg
+10 1000000000
+5
+facebook
+hacker
+cup
+round
+three
+
+90 Case #1: epoke
+Case #2: unnamed baby :(
+Case #3: abd
+Case #4: dzdefgn
+Case #5: ajpxcccuph
+
+1
+8 main/src
+9 -Xmx1024M
+4 Main
+81 on2013_12.on2013_12_21_Facebook_Hacker_Cup_2013_Round_3.Name_the_Baby.NameTheBaby
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.21
+32 Facebook Hacker Cup 2013 Round 3
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+1
+0
