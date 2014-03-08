@@ -1,0 +1,38 @@
+29 C - Watching Fireworks is Fun
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+28 50 3 1
+49 1 1
+26 1 4
+6 1 10
+
+4 -31
+
+1
+1
+25 10 2 1
+1 1000 4
+9 1000 4
+
+5 1992
+
+1
+8 main/src
+8 -Xmx256M
+4 Main
+9 src.TaskC
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.13
+30 Codeforces Round #219 (Div. 1)
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

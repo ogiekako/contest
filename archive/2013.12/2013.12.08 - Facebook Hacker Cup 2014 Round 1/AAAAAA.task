@@ -1,0 +1,120 @@
+6 AAAAAA
+12 MULTI_NUMBER
+12 LOCAL_REGEXP
+14 aaaaaa.*[.]txt
+6 CUSTOM
+10 aaaaaa.out
+3
+0
+164 6
+5 5
+.....
+.....
+.....
+.....
+.....
+1 10
+..........
+5 5
+...#.
+...#.
+...#.
+...#.
+.....
+3 3
+..#
+#.#
+...
+3 8
+........
+#.#.#.#.
+#.#.#.#.
+3 8
+........
+#.#.#.#.
+........
+
+71 Case #1: 17
+Case #2: 10
+Case #3: 17
+Case #4: 5
+Case #5: 10
+Case #6: 17
+
+1
+1
+133 5
+5 5
+.....
+.....
+.....
+.....
+.....
+1 10
+..........
+5 5
+...#.
+.####
+.....
+.....
+.....
+3 3
+..#
+#..
+..#
+3 8
+........
+#.#.#.##
+........
+
+58 Case #1: 17
+Case #2: 10
+Case #3: 17
+Case #4: 5
+Case #5: 14
+1
+2
+99 5
+3 3
+..#
+#..
+..#
+3 3
+.#.
+...
+...
+3 3
+.#.
+...
+#.#
+3 3
+...
+#..
+...
+5 5
+.....
+...#.
+..#..
+.#...
+#....
+56 Case #1: 5
+Case #2: 7
+Case #3: 5
+Case #4: 7
+Case #5: 13
+
+1
+8 main/src
+9 -Xmx1024M
+4 Main
+10 src.AAAAAA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.08
+32 Facebook Hacker Cup 2014 Round 1
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+1
+0

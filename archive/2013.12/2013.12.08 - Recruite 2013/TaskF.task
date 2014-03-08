@@ -1,0 +1,33 @@
+5 TaskF
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+49 2 
+1 
+thisistotallyaword 
+4 
+this
+is
+possible
+and
+39 IMPOSSIBLE
+behilopstx andcfgjkm qruvwyz
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+9 src.TaskF
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.08
+13 Recruite 2013
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

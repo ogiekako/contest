@@ -1,0 +1,38 @@
+5 TaskE
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+34 3
+1 1
+1
+1 4
+0 
+2 
+0 
+2
+5 3
+0 
+0 
+1
+35 0.41666667
+3.01408179e-2
+3.69456099
+1
+8 main/src
+9 -Xmx1024M
+4 Main
+9 src.TaskE
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2013.12.08
+12 Recruit 2013
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+1
+0
