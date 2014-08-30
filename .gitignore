@@ -1,15 +1,1 @@
-.idea
-.tctask
-CHelperReport.txt
-CheckerClass.template
-TaskClass.template
-TestCaseClass.template
-TopCoderTaskClass.template
-TopCoderTestCaseClass.template
-*.iml
-chelper.properties
-out/*
-tips/*
-main/Main.java
-main/src/*
-./*.java
+.gitignore

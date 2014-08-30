@@ -1,14 +1,13 @@
 package on2013_11.on2013_11_29_Single_Round_Match_598.BinPacking;
 
 import net.egork.chelper.tester.NewTopCoderTester;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 public class Main {
-	@Test
-	public void test() throws Exception {
-		if (!NewTopCoderTester.test("test/on2013_11/on2013_11_29_Single_Round_Match_598/BinPacking/BinPacking.tctask"))
-			Assert.fail();
-	}
+    @Test
+    public void test() throws Exception {
+        if (!NewTopCoderTester.test("java/test/on2013_11/on2013_11_29_Single_Round_Match_598/BinPacking/BinPacking.tctask"))
+            Assert.fail();
+    }
 }

@@ -4,6 +4,7 @@ import net.ogiekako.algorithm.graph.*;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,19 +15,13 @@ import java.util.Set;
 public class BridgeTest {
 
     @Test
+    @Ignore()
     public void testBridge() {
         class Result {
-            int numComp;
-            int[] cut;
-            Set<Edge> bridges;
-            int[] comp;
+            GraphTester.Generator<Result>()
 
-            public Result(int numComp, int[] cut, Set<Edge> bridges, int[] comp) {
-                this.numComp = numComp; this.cut = cut; this.bridges = bridges; this.comp = comp;
-            }
-        }
-        GraphTester.test(new GraphTester.Generator<Result>() {
-            public Result result(Graph graph, Random rnd) {
+            {
+                public Result result (Graph graph, Random rnd){
                 Bridge bridge = new Bridge((BidirectionalGraph) graph);
                 int numComp = bridge.compute();
                 return new Result(numComp, bridge.cut, bridge.bridges, bridge.comp);
@@ -84,7 +79,8 @@ public class BridgeTest {
 
             private int components(boolean[][] graph) {
                 graph = ArrayUtils.clone(graph);
-                int n = graph.length; for (int k = 0; k < n; k++)
+                int n = graph.length;
+                for (int k = 0; k < n; k++)
                     for (int i = 0; i < n; i++)
                         for (int j = 0; j < n; j++)
                             graph[i][j] |= graph[i][k] && graph[k][j];
@@ -106,7 +102,19 @@ public class BridgeTest {
             public Edge edge(int from, int to, Random rnd) {
                 return new SimpleEdge(from, to);
             }
-        });
+        } int numComp;
+        int[] cut;
+        Set<Edge> bridges;
+        int[] comp;
+
+        public Result( int numComp, int[] cut, Set<Edge > bridges,int[] comp){
+            this.numComp = numComp;
+            this.cut = cut;
+            this.bridges = bridges;
+            this.comp = comp;
+        }
+        }
+        GraphTester.test(new);
     }
 
     @Test

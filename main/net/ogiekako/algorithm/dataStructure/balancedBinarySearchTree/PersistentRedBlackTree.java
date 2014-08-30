@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree;
 
-import junit.framework.Assert;
 import net.ogiekako.algorithm.utils.Pair;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,6 @@ import java.util.List;
  * @param <E>
  */
 public class PersistentRedBlackTree<E> {
-    static enum Color {RED, BLACK}
-
     static final Color B = Color.BLACK, R = Color.RED;
     final Color color;
     final PersistentRedBlackTree<E> l;
@@ -30,18 +28,6 @@ public class PersistentRedBlackTree<E> {
      * If this node is a leaf, entry is the given value, otherwise, entry = r.entry.
      */
     final E entry;
-
-    public int size() {
-        return size;
-    }
-
-    public static int size(PersistentRedBlackTree<?> root) {
-        return root == null ? 0 : root.size();
-    }
-
-    static <E> PersistentRedBlackTree<E> node(PersistentRedBlackTree<E> left, PersistentRedBlackTree<E> right, Color color) {
-        return new PersistentRedBlackTree<E>(left, right, color, right.entry);
-    }
 
     private PersistentRedBlackTree(PersistentRedBlackTree<E> l, PersistentRedBlackTree<E> r, Color color, E entry) {
         this.l = l;
@@ -59,6 +45,14 @@ public class PersistentRedBlackTree<E> {
             size = 1;
         }
         this.entry = entry;
+    }
+
+    public static int size(PersistentRedBlackTree<?> root) {
+        return root == null ? 0 : root.size();
+    }
+
+    static <E> PersistentRedBlackTree<E> node(PersistentRedBlackTree<E> left, PersistentRedBlackTree<E> right, Color color) {
+        return new PersistentRedBlackTree<E>(left, right, color, right.entry);
     }
 
     public static <E> PersistentRedBlackTree<E> singleton(E e) {
@@ -109,9 +103,11 @@ public class PersistentRedBlackTree<E> {
             return node(a, b, R);
         }
     }
+
     private static <E> PersistentRedBlackTree<E> rotL(PersistentRedBlackTree<E> c) {
         return node(node(c.l, c.r.l, c.color), c.r.r, c.r.color);
     }
+
     private static <E> PersistentRedBlackTree<E> asRoot(PersistentRedBlackTree<E> c) {
         if (c == null || c.color == B) return c;
         return node(c.l, c.r, B);
@@ -128,6 +124,7 @@ public class PersistentRedBlackTree<E> {
         Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> c = splitSub(a, leftLeafCount);
         return Pair.of(asRoot(c.first), asRoot(c.second));
     }
+
     private static <E> Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> splitSub(PersistentRedBlackTree<E> a, int k) {
         if (k <= 0) return new Pair<>(null, a);
         if (k >= a.size) return new Pair<>(a, null);
@@ -143,23 +140,11 @@ public class PersistentRedBlackTree<E> {
     public static <E> PersistentRedBlackTree<E> fromList(List<E> es) {
         return fromListSub(es, 0, es.size());
     }
+
     private static <E> PersistentRedBlackTree<E> fromListSub(List<E> es, int from, int to) {
         if (to - from == 1) return singleton(es.get(from));
         int mid = (from + to) / 2;
         return mergeAsList(fromListSub(es, from, mid), fromListSub(es, mid, to));
-    }
-
-    public List<E> toList() {
-        ArrayList<E> list = new ArrayList<E>();
-        toListSub(list);
-        return list;
-    }
-    private void toListSub(ArrayList<E> list) {
-        if (l == null) list.add(entry);
-        else {
-            l.toListSub(list);
-            r.toListSub(list);
-        }
     }
 
     /**
@@ -171,13 +156,13 @@ public class PersistentRedBlackTree<E> {
      * @param root the list to be searched.
      * @param key  the key to be searched for.
      * @return the index of the search key, if it is contained in the list;
-     *         otherwise, <tt>(-(<i>insertion point</i>) - 1)</tt>.  The
-     *         <i>insertion point</i> is defined as the point at which the
-     *         key would be inserted into the list: the index of the first
-     *         element greater than the key, or <tt>list.size()</tt> if all
-     *         elements in the list are less than the specified key.  Note
-     *         that this guarantees that the return value will be &gt;= 0 if
-     *         and only if the key is found.
+     * otherwise, <tt>(-(<i>insertion point</i>) - 1)</tt>.  The
+     * <i>insertion point</i> is defined as the point at which the
+     * key would be inserted into the list: the index of the first
+     * element greater than the key, or <tt>list.size()</tt> if all
+     * elements in the list are less than the specified key.  Note
+     * that this guarantees that the return value will be &gt;= 0 if
+     * and only if the key is found.
      * @throws ClassCastException if the list contains elements that are not
      *                            <i>mutually comparable</i> (for example, strings and
      *                            integers), or the search key is not mutually comparable
@@ -209,6 +194,7 @@ public class PersistentRedBlackTree<E> {
         Assert.assertEquals(B, root.color);  // 2
         assertValidConditionSub(root);
     }
+
     private static <E> void assertValidConditionSub(PersistentRedBlackTree<E> node) {
         if (node.l == null) {
             Assert.assertEquals(node.color == B ? 1 : 0, node.rank); // 5
@@ -228,6 +214,24 @@ public class PersistentRedBlackTree<E> {
         }
     }
 
+    public int size() {
+        return size;
+    }
+
+    public List<E> toList() {
+        ArrayList<E> list = new ArrayList<E>();
+        toListSub(list);
+        return list;
+    }
+
+    private void toListSub(ArrayList<E> list) {
+        if (l == null) list.add(entry);
+        else {
+            l.toListSub(list);
+            r.toListSub(list);
+        }
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -236,4 +240,6 @@ public class PersistentRedBlackTree<E> {
                 ", " + r +
                 '}';
     }
+
+    static enum Color {RED, BLACK}
 }
