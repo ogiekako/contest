@@ -7,6 +7,7 @@ import java.util.*;
 
 public class ArrayUtils {
     private static Random random;
+
     public static <T> T[] createArray(int length, T instanceOfType) {
 //        List<T> list = new ArrayList<T>();
 //        for (int i = 0; i < length; i++) list.add(instanceOfType);
@@ -62,13 +63,15 @@ public class ArrayUtils {
         for (int i = 0; i < n; i++) {
             int c = comp[i];
             res[c][counts[c]++] = i;
-        } return res;
+        }
+        return res;
     }
 
     public static void shuffle(int[] S) {
         Random rnd = random == null ? (random = new Random()) : random;
         shuffle(S, rnd);
     }
+
     public static void shuffle(long[] S) {
         Random rnd = random == null ? (random = new Random()) : random;
         shuffle(S, rnd);
@@ -78,6 +81,7 @@ public class ArrayUtils {
         Random rnd = random == null ? (random = new Random()) : random;
         shuffle(S, rnd);
     }
+
     public static int[] shuffled(int[] S) {
         S = S.clone();
         shuffle(S);
@@ -221,6 +225,7 @@ public class ArrayUtils {
         for (int i : is) res = Math.max(res, i);
         return res;
     }
+
     public static long max(long[] is) {
         long res = Long.MIN_VALUE;
         for (long i : is) res = Math.max(res, i);
@@ -230,9 +235,11 @@ public class ArrayUtils {
     public static int maxIndex(int[] a) {
         return indexOf(a, max(a), 0);
     }
+
     public static int maxIndex(long[] a) {
         return indexOf(a, max(a), 0);
     }
+
     public static int[][] part(int[][] array, int x1, int y1, int x2, int y2) {
         int[][] res = new int[x2 - x1][y2 - y1];
         for (int i = x1; i < x2; i++) {
@@ -578,6 +585,7 @@ public class ArrayUtils {
         shuffle(a);
         Arrays.sort(a);
     }
+
     public static <T extends Comparable<T>> void sort(T[] a) {
         shuffle(a);
         Arrays.sort(a);
@@ -594,12 +602,12 @@ public class ArrayUtils {
     }
 
     public static void sortBy(int[] a, int[] b) {
-        @SuppressWarnings("unchecked") Pair<Integer, Integer>[] ps = new Pair[a.length];
-        for (int i = 0; i < a.length; i++) ps[i] = Pair.of(a[i], b[i]);
-        sort(ps);
+        List<Pair<Integer, Integer>> ps = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) ps.add(Pair.of(a[i], b[i]));
+        Collections.sort(ps);
         for (int i = 0; i < a.length; i++) {
-            a[i] = ps[i].first;
-            b[i] = ps[i].second;
+            a[i] = ps.get(i).first;
+            b[i] = ps.get(i).second;
         }
     }
 
@@ -728,7 +736,9 @@ public class ArrayUtils {
     public static void reverse(int[] is) {
         int n = is.length;
         for (int i = 0; i * 2 < n; i++) {
-            int tmp = is[i]; is[i] = is[n - 1 - i]; is[n - 1 - i] = tmp;
+            int tmp = is[i];
+            is[i] = is[n - 1 - i];
+            is[n - 1 - i] = tmp;
         }
     }
 
@@ -741,7 +751,9 @@ public class ArrayUtils {
     public static <T> void reverse(T[] is) {
         int n = is.length;
         for (int i = 0; i * 2 < n; i++) {
-            T tmp = is[i]; is[i] = is[n - 1 - i]; is[n - 1 - i] = tmp;
+            T tmp = is[i];
+            is[i] = is[n - 1 - i];
+            is[n - 1 - i] = tmp;
         }
     }
 

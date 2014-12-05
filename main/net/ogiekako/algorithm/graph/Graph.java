@@ -8,6 +8,21 @@ public class Graph {
     private int vertexCount;
     private EdgeList[] edges;
 
+    public Graph(int vertexCount) {
+        this.vertexCount = vertexCount;
+        edges = new EdgeList[vertexCount];
+        for (int i = 0; i < vertexCount; i++) edges[i] = new EdgeList();
+    }
+
+    public static Graph of(List<Integer>[] graph) {
+        Graph res = new Graph(graph.length);
+        for (int i = 0; i < res.size(); i++)
+            for (int j : graph[i]) {
+                res.add(i, j);
+            }
+        return res;
+    }
+
     public boolean isDigraph() {
         return true;
     }
@@ -20,15 +35,6 @@ public class Graph {
         }
     }
 
-    public static Graph of(List<Integer>[] graph) {
-        Graph res = new Graph(graph.length);
-        for (int i = 0; i < res.size(); i++)
-            for (int j : graph[i]) {
-                res.add(i, j);
-            }
-        return res;
-    }
-
     public void addWeighted(int from, int to, long cost) {
         add(new WeightedEdge(from, to, cost));
     }
@@ -36,18 +42,11 @@ public class Graph {
     public void addFlow(int from, int to, long capacity) {
         add(new FlowEdge(from, to, capacity));
     }
-    public void addFlow(int from, int to, long capacity, long cost) {
-        add(new FlowEdge(from, to, capacity, cost));
-    }
 
-    private static class EdgeList extends ArrayList<Edge> {
-        EdgeList() {super(0);}
-    }
-
-    public Graph(int vertexCount) {
-        this.vertexCount = vertexCount;
-        edges = new EdgeList[vertexCount];
-        for (int i = 0; i < vertexCount; i++) edges[i] = new EdgeList();
+    public Edge addFlow(int from, int to, long capacity, long cost) {
+        FlowEdge edge = new FlowEdge(from, to, capacity, cost);
+        add(edge);
+        return edge;
     }
 
     public void add(Edge edge) {
@@ -75,5 +74,11 @@ public class Graph {
         return "Graph{" +
                 "edges=" + (edges == null ? null : Arrays.asList(edges)) +
                 '}';
+    }
+
+    private static class EdgeList extends ArrayList<Edge> {
+        EdgeList() {
+            super(0);
+        }
     }
 }
