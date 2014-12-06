@@ -49,10 +49,10 @@ public class MonotoneIp2Solver {
      * to the objective function.
      *
      * @param i,j indices. For d=1, The same (i,j) pair must not appear twice.
-     * @param a >= 0
-     * @param b >= 0
-     * @param d is 0 or 1
-     * @param e must be a convex function. Can be null if d = 0.
+     * @param a   >= 0
+     * @param b   >= 0
+     * @param d   is 0 or 1
+     * @param e   must be a convex function. Can be null if d = 0.
      */
     public void addConstraint(int i, int j, double a, double b, double c, int d, long g, LongToDouble e) {
         if (d == 0) {
@@ -179,7 +179,7 @@ public class MonotoneIp2Solver {
     public static interface LongToDouble extends Function<Long, Double> {
         Double f(Long x);
     }
-    
+
     private static class Constraint {
         int i, j;
         double a, b, c;
@@ -223,10 +223,3 @@ public class MonotoneIp2Solver {
         }
     }
 }
-
-/**
- * f(x) = ax^2 + bx + c
- * f^2(x) = f(f(x)).
- * f^4(x) = f^2(f^2(x)).
- *
- */
