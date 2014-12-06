@@ -9,6 +9,48 @@ import java.util.Arrays;
 public class FoxAndGo3 {
     int[] dx = {0, 1, 0, -1};
     int[] dy = {1, 0, -1, 0};
+    ArrayList<Integer>[] l;
+    int[] r;
+    boolean[] was;
+
+    public static void main(String[] args) {
+        for (int i = 0; ; i++) {
+            int n = (int) (Math.random() * 14);
+            char[][] map = new char[n][n];
+            for (int j = 0; j < n; j++) {
+//                ss[j] = "";
+                for (int k = 0; k < n; k++) {
+
+                    if (Math.random() < 0.4) map[j][k] = '.';
+                    else if (Math.random() < 0.6) map[j][k] = 'x';
+                    else map[j][k] = 'o';
+//                    char c = 'o';
+                    if (map[j][k] == 'o' && j > 0 && map[j - 1][k] == 'o' || k > 0 && map[j][k - 1] == 'o')
+                        map[j][k] = '.';
+//                        c='.';
+//                    }
+//                    if(Math.random() < 0.1)c = 'x';
+//                    ss[j] += c;
+
+                }
+            }
+//            map[3][3] = map[3][9] = 'x';
+            for (int j = 0; j < n; j++) {
+
+            }
+            String[] ss = new String[n];
+            for (int j = 0; j < n; j++) ss[j] = String.valueOf(map[j]);
+            int res = new FoxAndGo3().maxEmptyCells(ss);
+            for (int j = 0; j < n; j++) {
+//                System.err.print(ss[j]);
+//                System.err.print(j == n - 1 ? '\n' : ',');
+            }
+            int exp = new FoxAndGo3().maxEmptyCells2(ss);
+//            System.err.println(res + " " + exp);
+            if (res != exp) throw new AssertionError();
+        }
+    }
+
     public int maxEmptyCells2(String[] board) {
         int n = board.length;
         Graph graph = new Graph(2 + n * n);
@@ -55,9 +97,6 @@ public class FoxAndGo3 {
         return res;
     }
 
-    ArrayList<Integer>[] l;
-    int[] r;
-    boolean[] was;
     public int maxEmptyCells(String[] board) {
         int n = board.length;
         int[][] id = new int[n][n];
@@ -105,6 +144,7 @@ public class FoxAndGo3 {
         }
         return Math.max(ans, ans + len - d);
     }
+
     private boolean dfs(int v) {
         if (was[v]) return false;
         was[v] = true;
@@ -115,44 +155,5 @@ public class FoxAndGo3 {
             }
         }
         return false;
-    }
-
-
-    public static void main(String[] args) {
-        for (int i = 0; ; i++) {
-            int n = (int) (Math.random() * 14);
-            char[][] map = new char[n][n];
-            for (int j = 0; j < n; j++) {
-//                ss[j] = "";
-                for (int k = 0; k < n; k++) {
-
-                    if (Math.random() < 0.4) map[j][k] = '.';
-                    else if (Math.random() < 0.6) map[j][k] = 'x';
-                    else map[j][k] = 'o';
-//                    char c = 'o';
-                    if (map[j][k] == 'o' && j > 0 && map[j - 1][k] == 'o' || k > 0 && map[j][k - 1] == 'o')
-                        map[j][k] = '.';
-//                        c='.';
-//                    }
-//                    if(Math.random() < 0.1)c = 'x';
-//                    ss[j] += c;
-
-                }
-            }
-//            map[3][3] = map[3][9] = 'x';
-            for (int j = 0; j < n; j++) {
-
-            }
-            String[] ss = new String[n];
-            for (int j = 0; j < n; j++) ss[j] = String.valueOf(map[j]);
-            int res = new FoxAndGo3().maxEmptyCells(ss);
-            for (int j = 0; j < n; j++) {
-                System.err.print(ss[j]);
-                System.err.print(j == n - 1 ? '\n' : ',');
-            }
-            int exp = new FoxAndGo3().maxEmptyCells2(ss);
-            System.err.println(res + " " + exp);
-            if (res != exp) throw new AssertionError();
-        }
     }
 }
