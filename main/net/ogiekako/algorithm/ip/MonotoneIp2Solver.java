@@ -48,15 +48,17 @@ public class MonotoneIp2Solver {
      * e(z_{ij})
      * to the objective function.
      *
+     * @param i,j indices. For d=1, The same (i,j) pair must not appear twice.
      * @param a >= 0
      * @param b >= 0
      * @param d is 0 or 1
-     * @param e must be a convex function.
+     * @param e must be a convex function. Can be null if d = 0.
      */
     public void addConstraint(int i, int j, double a, double b, double c, int d, long g, LongToDouble e) {
         if (d == 0) {
             g = 0;
             d = 1;
+            e = new Linear(0);
         }
         constraints.add(new Constraint(i, j, a, b, c, d, g, e));
     }
@@ -66,13 +68,11 @@ public class MonotoneIp2Solver {
      * minimum value otherwise.
      */
     public double solve() {
-        long U = 0;
-        for (long v : u) U = Math.max(U, v);
-        if (U <= 1) {
-            return solveMinCostFlow();
-        } else {
-            return solveMaxFlow();
+        if (isBinary()) {
+            // TODO(oka): Add min cost flow logic.
+//            return solveMinCostFlow();
         }
+        return solveMaxFlow();
     }
 
     private double solveMaxFlow() {
@@ -169,6 +169,12 @@ public class MonotoneIp2Solver {
         return 0;
     }
 
+    public boolean isBinary() {
+        for (Constraint c : constraints) {
+            if (c.a != 1 || c.b != 1) return false;
+        }
+        return true;
+    }
 
     public static interface LongToDouble extends Function<Long, Double> {
         Double f(Long x);
@@ -217,3 +223,10 @@ public class MonotoneIp2Solver {
         }
     }
 }
+
+/**
+ * f(x) = ax^2 + bx + c
+ * f^2(x) = f(f(x)).
+ * f^4(x) = f^2(f^2(x)).
+ *
+ */
