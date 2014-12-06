@@ -1,6 +1,7 @@
 package net.ogiekako.algorithm.ip;
 
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.utils.interfaces.Function;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
 public class MonotoneIp2Solver {
 
     long[] u;
-    IntToDouble[] w;
+    LongToDouble[] w;
     List<Constraint> constraints = new ArrayList<>();
 
     /**
@@ -34,7 +35,7 @@ public class MonotoneIp2Solver {
      * <p/>
      * w_i can be any function.
      */
-    public MonotoneIp2Solver(long[] u, IntToDouble[] w) {
+    public MonotoneIp2Solver(long[] u, LongToDouble[] w) {
         this.w = w;
         this.u = u;
     }
@@ -52,7 +53,11 @@ public class MonotoneIp2Solver {
      * @param d is 0 or 1
      * @param e must be a convex function.
      */
-    public void addConstraint(int i, int j, double a, double b, double c, int d, long g, IntToDouble e) {
+    public void addConstraint(int i, int j, double a, double b, double c, int d, long g, LongToDouble e) {
+        if (d == 0) {
+            g = 0;
+            d = 1;
+        }
         constraints.add(new Constraint(i, j, a, b, c, d, g, e));
     }
 
@@ -77,6 +82,7 @@ public class MonotoneIp2Solver {
         int sink = numVertex++;
         int[][] x = new int[n][];
         for (int i = 0; i < n; i++) {
+            x[i] = new int[(int) u[i]];
             if (u[i] > Integer.MAX_VALUE) throw new AssertionError();
             for (int j = 0; j < u[i]; j++) {
                 x[i][j] = numVertex++;
@@ -85,49 +91,97 @@ public class MonotoneIp2Solver {
         double res = 0;
         Graph graph = new Graph(numVertex);
         for (int i = 0; i < n; i++) {
-            double[] vs = new double[(int) u[i]];
+            double[] vs = new double[(int) u[i] + 1];
             double min = 0;
             for (int j = 0; j <= u[i]; j++) {
-                vs[j] = w[i].f(j);
+                vs[j] = w[i].f((long) j);
                 min = Math.min(min, vs[j]);
             }
             res += min;
             for (int j = 0; j <= u[i]; j++) {
                 double whenXIsJ = vs[j] - min;
                 if (j == 0) {
-//                    graph.addFlow(source, x[i][j], whenXIsJ);
+                    graph.addFlow(source, x[i][j], whenXIsJ);
                 } else if (j == u[i]) {
-
+                    graph.addFlow(x[i][j - 1], sink, whenXIsJ);
                 } else {
-
+                    graph.addFlow(x[i][j - 1], x[i][j], whenXIsJ);
                 }
             }
         }
-        for (Constraint c : constraints) {
-            for (int i = 0; i <= u[c.i]; i++) {
-                for (int j = 0; j <= u[c.j]; j++) {
+        for (Constraint ct : constraints) {
+            double a = ct.a;
+            double b = ct.b;
+            double c = ct.c;
 
+            long argMinZ = 0;
+            double minE = Double.POSITIVE_INFINITY;
+            // O(g)
+            // This can be done in O(log g) time using ternary search.
+            for (long z = 0; z <= ct.g; z++) {
+                double v = ct.e.f(z);
+                if (minE > v) {
+                    minE = v;
+                    argMinZ = z;
+                }
+            }
+            res += minE;
+
+            int u1 = (int) u[ct.i];
+            int u2 = (int) u[ct.j];
+            double[][] penalty = new double[u1 + 1][u2 + 1];
+            // O(U^2)
+            for (int k = 0; k <= u1; k++) {// x = k
+                for (int l = 0; l <= u2; l++) {// y = l
+                    long minimumZ = (long) Math.ceil(Math.max(0, a * k - b * l - c) - 1e-9);
+                    if (minimumZ > ct.g) {
+                        penalty[k][l] = Double.POSITIVE_INFINITY;
+                    } else {
+                        if (minimumZ < argMinZ) {
+                            penalty[k][l] = 0;
+                        } else {
+                            penalty[k][l] = ct.e.f(minimumZ) - minE;
+                        }
+                    }
+                }
+            }
+            for (int k = 0; k <= u1; k++) {
+                for (int l = u2; l >= 0; l--) {
+                    double cut = penalty[k][l];
+                    if (k > 0) cut -= penalty[k - 1][l];
+                    if (l < u2) cut -= penalty[k][l + 1];
+                    if (k > 0 && l < u2) cut += penalty[k - 1][l + 1];
+                    if (cut > 1e-9) {
+                        int from, to;
+                        if (k == 0) from = source;
+                        else from = x[ct.i][k - 1];
+                        if (l == u2) to = sink;
+                        else to = x[ct.j][l];
+                        graph.addFlow(from, to, cut);
+                    }
                 }
             }
         }
-        return 0;
+        return MaxFlow.maxFlow(graph, source, sink) + res;
     }
 
     private double solveMinCostFlow() {
         return 0;
     }
 
-    public static interface IntToDouble extends Function<Integer, Double> {
-    }
 
+    public static interface LongToDouble extends Function<Long, Double> {
+        Double f(Long x);
+    }
+    
     private static class Constraint {
         int i, j;
         double a, b, c;
         int d;
         long g;
-        IntToDouble e;
+        LongToDouble e;
 
-        public Constraint(int i, int j, double a, double b, double c, int d, long g, IntToDouble e) {
+        public Constraint(int i, int j, double a, double b, double c, int d, long g, LongToDouble e) {
             this.i = i;
             this.j = j;
             this.a = a;
@@ -139,7 +193,7 @@ public class MonotoneIp2Solver {
         }
     }
 
-    public static class Linear implements IntToDouble {
+    public static class Linear implements LongToDouble {
         double a, b;
 
         /**
@@ -158,7 +212,7 @@ public class MonotoneIp2Solver {
         }
 
         @Override
-        public Double f(Integer x) {
+        public Double f(Long x) {
             return a * x + b;
         }
     }
