@@ -12,8 +12,8 @@ public class UVA10746 {
         if (N == 0) throw new UnknownError();
         int source = N + M, sink = source + 1;
         Graph graph = new Graph(sink + 1);
-        for (int i = 0; i < N; i++) graph.addFlow(source, i, 1, 0);
-        for (int i = 0; i < M; i++) graph.addFlow(N + i, sink, 1, 0);
+        for (int i = 0; i < N; i++) graph.addFlow(source, i, 1., 0.);
+        for (int i = 0; i < M; i++) graph.addFlow(N + i, sink, 1., 0.);
         for (int i = 0; i < N; i++)
             for (int j = 0; j < M; j++) {
                 long cost = Math.round(in.nextDouble() * 100);

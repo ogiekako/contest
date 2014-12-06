@@ -12,7 +12,7 @@ public class DirectedMinimumSpanningTree {
     long compute(Graph graph, int root) {
         for (long res = 0; ; ) {
             int n = graph.size();
-            long[] minInEdge = new long[n];
+            double[] minInEdge = new double[n];
             Arrays.fill(minInEdge, Long.MAX_VALUE);
             for (int v = 0; v < n; v++)
                 for (Edge e : graph.edges(v))

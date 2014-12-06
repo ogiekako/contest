@@ -13,25 +13,25 @@ public interface Edge {
 
     int to();
 
-    long cost();
+    double cost();
 
-    void setCost(long cost);
+    void setCost(double cost);
 
-    long residue();
+    double residue();
 
-    long flow();
+    double flow();
 
-    void pushFlow(long flow);
+    void pushFlow(double flow);
 
     /**
      * @return The edge simply its from and to are transposed.
-     *         It is not nullable.
+     * It is not nullable.
      */
     Edge transposed();
 
     /**
      * @return The reverse edge if this edge is a flow edge.
-     *         It returns null otherwise.
+     * It returns null otherwise.
      */
     Edge reversed();
 }

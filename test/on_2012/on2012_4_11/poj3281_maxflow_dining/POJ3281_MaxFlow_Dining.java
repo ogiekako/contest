@@ -29,7 +29,7 @@ public class POJ3281_MaxFlow_Dining {
                 graph.add(new FlowEdge(1 + F + N + i, 1 + F + N + N + d, 1));
             }
         }
-        long res = MaxFlow.maxFlow(graph, 0, 1 + F + N + N + D);
-        out.println(res);
+        double res = MaxFlow.maxFlow(graph, 0, 1 + F + N + N + D);
+        out.println(Math.round(res));
     }
 }

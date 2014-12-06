@@ -1,12 +1,18 @@
 package net.ogiekako.algorithm.graph.flow;
+
 import net.ogiekako.algorithm.graph.BidirectionalGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 public class GlobalMinimumCut {
     BidirectionalGraph graph;
+
     public GlobalMinimumCut(BidirectionalGraph graph) {
         this.graph = graph;
+    }
+
+    public static double globalMinCut(BidirectionalGraph graph) {
+        return new GlobalMinimumCut(graph).compute();
     }
 
     /**
@@ -18,22 +24,24 @@ public class GlobalMinimumCut {
      *
      * @return The size of the global minimum cut.
      */
-    public long compute() {
+    public double compute() {
         int n = graph.size();
-        long[][] h = new long[n][n];
+        double[][] h = new double[n][n];
         for (int u = 0; u < n; u++)
             for (Edge e : graph.edges(u)) {
                 h[u][e.to()] += e.flow();
             }
         int[] V = ArrayUtils.createOrder(n);
-        long cut = Long.MAX_VALUE;
+        double cut = Double.POSITIVE_INFINITY;
         for (int m = n; m > 1; m--) {
-            long[] ws = new long[m];
+            double[] ws = new double[m];
             int u = -1, v = -1;
-            long w = -1;
+            double w = -1;
             for (int k = 0; k < m; k++) {
-                u = v; v = ArrayUtils.maxIndex(ws);
-                w = ws[v]; ws[v] = -1;
+                u = v;
+                v = ArrayUtils.maxIndex(ws);
+                w = ws[v];
+                ws[v] = -1;
                 for (int i = 0; i < m; i++) if (ws[i] >= 0) ws[i] += h[V[v]][V[i]];
             }
             for (int i = 0; i < m; i++) {
@@ -44,8 +52,5 @@ public class GlobalMinimumCut {
             cut = Math.min(cut, w);
         }
         return cut;
-    }
-    public static long globalMinCut(BidirectionalGraph graph) {
-        return new GlobalMinimumCut(graph).compute();
     }
 }

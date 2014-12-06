@@ -18,7 +18,7 @@ public class AOJ2313 {
         }
         MaxFlow mf = new MaxFlow(graph);
         int source = 0, sink = N - 1;
-        long flow = mf.maxFlow(source, sink);
+        double flow = mf.maxFlow(source, sink);
         for (int i = 0; i < Q; i++) {
             if (in.nextInt() == 1) {
                 add(in, graph, edge);
@@ -32,12 +32,13 @@ public class AOJ2313 {
                 graph.remove(edge[y][x]);
                 flow += mf.maxFlow(source, sink);
             }
-            out.println(flow);
+            out.println(Math.round(flow));
         }
     }
+
     private void add(MyScanner in, Graph graph, Edge[][] edge) {
         int x = in.nextInt() - 1, y = in.nextInt() - 1;
-        edge[x][y] = new FlowEdge(x, y, 1);
+        edge[x][y] = new FlowEdge(x, y, 1.0);
         edge[y][x] = edge[x][y].transposed();
         graph.add(edge[x][y]);
         graph.add(edge[y][x]);

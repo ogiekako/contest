@@ -38,7 +38,7 @@ public class POJ1459_MaxFlow_PowerNetwork {
             int cap = Integer.valueOf(ss[2]);
             graph.add(new FlowEdge(1 + from, 1 + n, cap));
         }
-        long res = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, 0, 1 + n);
-        out.println(res);
+        double res = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, 0, 1 + n);
+        out.println(Math.round(res));
     }
 }

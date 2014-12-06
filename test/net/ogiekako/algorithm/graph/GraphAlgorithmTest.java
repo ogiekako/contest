@@ -46,7 +46,7 @@ public class GraphAlgorithmTest {
                     }
             int s = rnd.nextInt(n);
             int t = s; while (t == s) t = rnd.nextInt(n);
-            long res = MaxFlow.maxFlow(graph, s, t);
+            long res = Math.round(MaxFlow.maxFlow(graph, s, t));
             long exp = solve(cap, s, t);
             Assert.assertEquals(exp, res);
         }

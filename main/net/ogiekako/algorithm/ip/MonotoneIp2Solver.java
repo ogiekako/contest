@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.ip;
 
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
+import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.utils.interfaces.Function;
 
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class MonotoneIp2Solver {
             }
         }
         double res = 0;
-        GraphD graph = new GraphD(numVertex);
+        Graph graph = new Graph(numVertex);
         for (int i = 0; i < n; i++) {
             double[] vs = new double[(int) u[i]];
             double min = 0;

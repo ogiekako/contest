@@ -3,6 +3,7 @@ package on2013_02.on2013_02_25_TopCoder_Open_Round__DIV.DirectionBoard;
 
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
+
 //  TopCoder Open 2013 Round 1A Hard
 public class DirectionBoard {
     String DIR = "DRUL";
@@ -22,7 +23,7 @@ public class DirectionBoard {
                     int ny = (y + dy[d] + width) % width;
                     int cost = DIR.charAt(d) == board[x].charAt(y) ? 0 : 1;
                     int there = nx * width + ny;
-                    graph.addFlow(here * 2, there * 2 + 1, 1, cost);
+                    graph.addFlow(here * 2, there * 2 + 1, 1.0, (double) cost);
                 }
                 graph.addFlow(source, here * 2, 1, 0);
                 graph.addFlow(here * 2 + 1, sink, 1, 0);

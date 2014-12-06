@@ -232,11 +232,21 @@ public class ArrayUtils {
         return res;
     }
 
+    public static double max(double[] is) {
+        double res = Double.NEGATIVE_INFINITY;
+        for (double i : is) res = Math.max(res, i);
+        return res;
+    }
+
     public static int maxIndex(int[] a) {
         return indexOf(a, max(a), 0);
     }
 
     public static int maxIndex(long[] a) {
+        return indexOf(a, max(a), 0);
+    }
+
+    public static int maxIndex(double[] a) {
         return indexOf(a, max(a), 0);
     }
 
@@ -551,6 +561,11 @@ public class ArrayUtils {
     }
 
     public static int indexOf(long[] a, long target, int from) {
+        for (int i = from; i < a.length; i++) if (a[i] == target) return i;
+        return -1;
+    }
+
+    public static int indexOf(double[] a, double target, int from) {
         for (int i = from; i < a.length; i++) if (a[i] == target) return i;
         return -1;
     }

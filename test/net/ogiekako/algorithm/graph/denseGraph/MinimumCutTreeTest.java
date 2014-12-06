@@ -1,4 +1,5 @@
 package net.ogiekako.algorithm.graph.denseGraph;
+
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCutTree;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import java.util.Random;
 
 import static org.junit.Assert.assertArrayEquals;
+
 public class MinimumCutTreeTest {
 
     @Test
@@ -26,7 +28,7 @@ public class MinimumCutTreeTest {
                 cap[b[i]][a[i]] = cap[a[i]][b[i]] = random.nextInt(1000) + 1;
                 i++;
             }
-            long[][] flow = new long[n][n];
+            double[][] flow = new double[n][n];
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++) {
                     Graph graph = new Graph(n);
@@ -42,14 +44,14 @@ public class MinimumCutTreeTest {
             long time = System.currentTimeMillis() - start;
             System.out.println("time: " + time);
             maxTime = Math.max(maxTime, time);
-            long[][] result = new long[n][n];
+            double[][] result = new double[n][n];
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++) {
                     result[i][j] = MaxFlow.maxFlow(graph, i, j);
                     MaxFlow.maxFlow(graph, j, i, result[i][j]);
                 }
             for (int i = 0; i < n; i++) {
-                assertArrayEquals("" + i, flow[i], result[i]);
+                assertArrayEquals("" + i, flow[i], result[i], 1e-9);
             }
         }
         System.out.println("maxTime: " + maxTime);

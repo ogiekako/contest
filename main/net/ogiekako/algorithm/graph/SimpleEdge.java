@@ -3,17 +3,17 @@ package net.ogiekako.algorithm.graph;
 public class SimpleEdge implements Edge {
     final int from;
     final int to;
+    double cost = 1;
     private Edge transposed;
-    long cost = 1;
-
-    @Override
-    public String toString() {
-        return from() + " -> " + to();
-    }
 
     public SimpleEdge(int from, int to) {
         this.from = from;
         this.to = to;
+    }
+
+    @Override
+    public String toString() {
+        return from() + " -> " + to();
     }
 
     public int from() {
@@ -24,23 +24,23 @@ public class SimpleEdge implements Edge {
         return to;
     }
 
-    public long cost() {
+    public double cost() {
         return cost;
     }
 
-    public void setCost(long cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
-    public long residue() {
+    public double residue() {
         return 1;
     }
 
-    public long flow() {
+    public double flow() {
         return 0;
     }
 
-    public void pushFlow(long flow) {
+    public void pushFlow(double flow) {
         throw new UnsupportedOperationException();
     }
 
@@ -63,19 +63,19 @@ public class SimpleEdge implements Edge {
             return from;
         }
 
-        public long cost() {
+        public double cost() {
             return cost;
         }
 
-        public long residue() {
+        public double residue() {
             return 1;
         }
 
-        public long flow() {
+        public double flow() {
             return 0;
         }
 
-        public void pushFlow(long flow) {
+        public void pushFlow(double flow) {
             throw new UnsupportedOperationException();
         }
 
@@ -87,7 +87,7 @@ public class SimpleEdge implements Edge {
             return SimpleEdge.this;
         }
 
-        public void setCost(long cost) {
+        public void setCost(double cost) {
             SimpleEdge.this.cost = cost;
         }
 

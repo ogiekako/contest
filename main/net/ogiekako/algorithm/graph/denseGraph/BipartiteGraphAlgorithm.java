@@ -5,6 +5,7 @@ import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
 import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 
 import java.util.Arrays;
+
 public class BipartiteGraphAlgorithm {
     int leftNode, rightNode;
     boolean[][] graph;
@@ -27,6 +28,37 @@ public class BipartiteGraphAlgorithm {
 
     public static int maximumMatching(boolean[][] graph) {
         return new BipartiteGraphAlgorithm(graph.length, graph.length > 0 ? graph[0].length : 0, graph).maximumMatching();
+    }
+
+    /**
+     * Note: We need 'w' to deal with the case of graph.length == 0.
+     */
+    public static int maximumIndependentSet(int h, int w, boolean[][] bipartiteGraph) {
+        return new BipartiteGraphAlgorithm(h, w, bipartiteGraph).maximumIndependentSet();
+    }
+
+    public static long maximumCostMatching(long[][] costs) {
+        if (costs.length == 0) return 0;
+        int n = costs.length, m = costs[0].length;
+        Graph graph = new Graph(n + m + 2);
+        int source = n + m, sink = source + 1;
+        for (int i = 0; i < n; i++) graph.addFlow(source, i, 1., 0.);
+        for (int j = 0; j < m; j++) graph.addFlow(n + j, sink, 1., 0.);
+        graph.addFlow(sink, source, Math.max(n, m), 0);
+        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.addFlow(i, n + j, 1, -costs[i][j]);
+        return -MinimumCostFlow.minimumCostCirculation(graph);
+    }
+
+    // SRM 491(C)
+    public static double minimumCostMatching(double[][] graph, int k) {
+        if (graph.length == 0) return 0;
+        int n = graph.length, m = graph[0].length;
+        GraphD graphD = new GraphD(n + m + 2);
+        int source = n + m, sink = source + 1;
+        for (int i = 0; i < n; i++) {
+//            graphD.add(new FlowEdge());
+        }
+        return 0;
     }
 
     /**
@@ -67,13 +99,6 @@ public class BipartiteGraphAlgorithm {
     }
 
     /**
-     * Note: We need 'w' to deal with the case of graph.length == 0.
-     */
-    public static int maximumIndependentSet(int h, int w, boolean[][] bipartiteGraph) {
-        return new BipartiteGraphAlgorithm(h, w, bipartiteGraph).maximumIndependentSet();
-    }
-
-    /**
      * In general graphs, the complement of a vertex cover is an independent set.
      */
     public int maximumIndependentSet() {
@@ -106,28 +131,5 @@ public class BipartiteGraphAlgorithm {
      */
     public int minimumVertexCover() {
         return maximumMatching();
-    }
-    public static long maximumCostMatching(long[][] costs) {
-        if (costs.length == 0) return 0;
-        int n = costs.length, m = costs[0].length;
-        Graph graph = new Graph(n + m + 2);
-        int source = n + m, sink = source + 1;
-        for (int i = 0; i < n; i++) graph.addFlow(source, i, 1, 0);
-        for (int j = 0; j < m; j++) graph.addFlow(n + j, sink, 1, 0);
-        graph.addFlow(sink, source, Math.max(n, m), 0);
-        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.addFlow(i, n + j, 1, -costs[i][j]);
-        return -MinimumCostFlow.minimumCostCirculation(graph);
-    }
-
-    // SRM 491(C)
-    public static double minimumCostMatching(double[][] graph, int k) {
-        if (graph.length == 0) return 0;
-        int n = graph.length, m = graph[0].length;
-        GraphD graphD = new GraphD(n + m + 2);
-        int source = n + m, sink = source + 1;
-        for (int i = 0; i < n; i++) {
-//            graphD.add(new FlowEdge());
-        }
-        return 0;
     }
 }

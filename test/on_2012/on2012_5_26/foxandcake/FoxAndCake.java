@@ -13,7 +13,8 @@ public class FoxAndCake {
     public String ableToDivide(int n, int m, int[] xs, int[] ys) {
         int[] sortX = gen(xs, n);
         int[] sortY = gen(ys, m);
-        n = sortX.length; m = sortY.length;
+        n = sortX.length;
+        m = sortY.length;
         int V = n * m * 2 + 2;
         int S = n * m * 2;
         int T = n * m * 2 + 1;
@@ -24,7 +25,7 @@ public class FoxAndCake {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++) {
                 int a = i * m + j;
-                if (a != bad) g.add(new FlowEdge(a, a + n * m, 1));
+                if (a != bad) g.add(new FlowEdge(a, a + n * m, 1.0));
                 for (int d = 0; d < 4; d++) {
                     int ni = i + dx[d];
                     int nj = j + dy[d];

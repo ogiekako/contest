@@ -35,7 +35,7 @@ public class MinimumCutTree {
         MaxFlow maxFlow = new MaxFlow(graph);
         BidirectionalGraph tree = new BidirectionalGraph(n);
         for (int u = 1; u < n; u++) {
-            long capacity = maxFlow.maxFlow(u, parent[u]);
+            double capacity = maxFlow.maxFlow(u, parent[u]);
             tree.addFlow(u, parent[u], capacity);
             for (int v = u + 1; v < n; v++) if (maxFlow.sourceSide(v) && parent[v] == parent[u]) parent[v] = u;
             maxFlow.maxFlow(parent[u], u, capacity);

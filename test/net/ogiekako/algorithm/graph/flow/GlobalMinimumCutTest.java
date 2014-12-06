@@ -18,19 +18,20 @@ import java.util.Random;
 public class GlobalMinimumCutTest {
     @Test
     public void testSolve() throws Exception {
-        GraphTester.test(new GraphTester.Generator<Long>() {
-            public Long result(Graph graph, Random rnd) {
+        GraphTester.test(new GraphTester.Generator<Double>() {
+            public Double result(Graph graph, Random rnd) {
                 return new GlobalMinimumCut((BidirectionalGraph) graph).compute();
             }
-            public void assertCorrect(Graph graph, Long result) {
-                long exp = Long.MAX_VALUE;
+
+            public void assertCorrect(Graph graph, Double result) {
+                double exp = Double.POSITIVE_INFINITY;
                 for (int s = 0; s < graph.size(); s++)
                     for (int t = 0; t < s; t++) {
-                        long flow = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, s, t);
+                        double flow = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, s, t);
                         exp = Math.min(exp, flow);
                         net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, t, s, flow);// make a circular flow
                     }
-                Assert.assertEquals(exp, (long) result);
+                Assert.assertEquals(exp, result, 1e-9);
             }
             public boolean valid(Graph graph) {
                 if (graph.isDigraph()) return false;

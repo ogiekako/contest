@@ -2,34 +2,34 @@ package net.ogiekako.algorithm.graph;
 
 public class FlowEdge extends SimpleEdge {
     // capacity = residue + flow.
-    long residue;
-    long flow = 0;
+    double residue;
+    double flow = 0;
     Edge reversed;
     Edge transposed;
 
-    public FlowEdge(int from, int to, long capacity) {
+    public FlowEdge(int from, int to, double capacity) {
         super(from, to);
         if (capacity < 0) throw new IllegalArgumentException(from + " " + to + " " + capacity);
         this.residue = capacity;
     }
 
-    public FlowEdge(int from, int to, long capacity, long cost) {
+    public FlowEdge(int from, int to, double capacity, double cost) {
         this(from, to, capacity);
         this.cost = cost;
     }
 
     @Override
-    public long residue() {
+    public double residue() {
         return residue;
     }
 
     @Override
-    public long flow() {
+    public double flow() {
         return flow;
     }
 
     @Override
-    public void pushFlow(long flow) {
+    public void pushFlow(double flow) {
         if (flow > 0) {
             if (this.residue < flow)
                 throw new IllegalArgumentException();
@@ -59,9 +59,10 @@ public class FlowEdge extends SimpleEdge {
         if (reversed == null) reversed = new ReverseEdge();
         return reversed;
     }
+
     @Override
     public String toString() {
-        return String.format("%d->%d(%d/%d,%d)", from(), to(), flow(), flow() + residue(), cost());
+        return String.format("%d->%d(%f/%f,%f)", from(), to(), flow(), flow() + residue(), cost());
     }
 
     private class ReverseEdge implements Edge {
@@ -73,23 +74,23 @@ public class FlowEdge extends SimpleEdge {
             return from;
         }
 
-        public void setCost(long cost) {
+        public void setCost(double cost) {
             FlowEdge.this.cost = cost;
         }
 
-        public long cost() {
+        public double cost() {
             return -FlowEdge.this.cost();
         }
 
-        public long residue() {
+        public double residue() {
             return flow;
         }
 
-        public long flow() {
+        public double flow() {
             return residue;
         }
 
-        public void pushFlow(long flow) {
+        public void pushFlow(double flow) {
             FlowEdge.this.pushFlow(-flow);
         }
 
@@ -100,6 +101,7 @@ public class FlowEdge extends SimpleEdge {
         public Edge reversed() {
             return FlowEdge.this;
         }
+
         @Override
         public String toString() {
             return String.format("%d->%d(%d/%d,%d)", from(), to(), flow(), flow() + residue(), cost());

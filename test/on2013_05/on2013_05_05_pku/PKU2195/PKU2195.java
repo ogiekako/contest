@@ -18,15 +18,21 @@ public class PKU2195 {
         ArrayList<Integer> xm = new ArrayList<Integer>(), ym = new ArrayList<Integer>();
         for (int i = 0; i < h; i++)
             for (int j = 0; j < w; j++) {
-                if (cs[i][j] == 'H') {xh.add(i); yh.add(j);}
-                if (cs[i][j] == 'm') {xm.add(i); ym.add(j);}
+                if (cs[i][j] == 'H') {
+                    xh.add(i);
+                    yh.add(j);
+                }
+                if (cs[i][j] == 'm') {
+                    xm.add(i);
+                    ym.add(j);
+                }
             }
         int n = xh.size();
         Graph graph = new Graph(n * 2 + 2);
         int source = n * 2, sink = source + 1;
         for (int i = 0; i < n; i++) {
-            graph.addFlow(source, i, 1, 0);
-            graph.addFlow(n + i, sink, 1, 0);
+            graph.addFlow(source, i, 1., 0.);
+            graph.addFlow(n + i, sink, 1., 0.);
             for (int j = 0; j < n; j++) {
                 long distance = Math.abs(xh.get(i) - xm.get(j)) + Math.abs(yh.get(i) - ym.get(j));
                 graph.addFlow(i, n + j, 1, distance);

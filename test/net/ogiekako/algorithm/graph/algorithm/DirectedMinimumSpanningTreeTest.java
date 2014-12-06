@@ -87,7 +87,7 @@ public class DirectedMinimumSpanningTreeTest {
                     for (int k = 0; k < n; k++)
                         if ((j >> k & 1) == 1) for (E e : vs[k].es)
                             if ((j >> e.to.id & 1) == 0) {
-                                dp[j | 1 << e.to.id] = Math.min(dp[j | 1 << e.to.id], dp[j] + e.cost);
+                                dp[j | 1 << e.to.id] = Math.min(dp[j | 1 << e.to.id], dp[j] + Math.round(e.cost));
                             }
                 }
         return dp[(1 << n) - 1];
@@ -104,9 +104,9 @@ public class DirectedMinimumSpanningTreeTest {
 
     class E {
         V to;
-        long cost;
+        double cost;
 
-        public E(V to, long cost) {
+        public E(V to, double cost) {
             this.to = to; this.cost = cost;
         }
     }

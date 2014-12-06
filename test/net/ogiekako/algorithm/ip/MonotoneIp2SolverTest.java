@@ -26,5 +26,4 @@ public class MonotoneIp2SolverTest {
         Assert.assertEquals(3, res, 1e-9);
     }
     // TODO(oka): w can be negative
-    // TODO(oka):
 }

@@ -11,7 +11,7 @@ public class MatchingGame {
         int n = in.nextInt(), m = in.nextInt(), d = in.nextInt();
         int source = 0, store = 1, key = store + d, box = key + m, sink = box + n;
         Graph graph = new Graph(sink + 1);
-        for (int i = 0; i < n; i++) graph.addFlow(box + i, sink, 1, 0);
+        for (int i = 0; i < n; i++) graph.addFlow(box + i, sink, 1.0, 0.0);
         for (int i = 0; i < m; i++) {
             int c = in.nextInt();
             int s = in.nextInt() - 1;

@@ -35,15 +35,15 @@ public class Graph {
         }
     }
 
-    public void addWeighted(int from, int to, long cost) {
+    public void addWeighted(int from, int to, double cost) {
         add(new WeightedEdge(from, to, cost));
     }
 
-    public void addFlow(int from, int to, long capacity) {
+    public void addFlow(int from, int to, double capacity) {
         add(new FlowEdge(from, to, capacity));
     }
 
-    public Edge addFlow(int from, int to, long capacity, long cost) {
+    public Edge addFlow(int from, int to, double capacity, double cost) {
         FlowEdge edge = new FlowEdge(from, to, capacity, cost);
         add(edge);
         return edge;

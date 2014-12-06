@@ -1,4 +1,5 @@
 package net.ogiekako.algorithm.graph.algorithm;
+
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 
@@ -6,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+
 public class MaxFlow {
     /*
 Compute a max-flow from s to t using Dinic's algorithm.
@@ -38,29 +40,44 @@ DAGより 深さは高々n,
 また, 流せない場合は, 最後に使った枝は, 今後使われない(いきどまりの枝)ので, 枝の数は1減る.
 よって, O(n)の操作が高々 m 回しか行われないので, O(nm).
  */
-     Graph graph;
+    Graph graph;
     int n;
     int[] level, visited;
     int source, sink;
-    long limit;
+    double limit;
     EdgeIterator[] iterators;
     int flag;
+
     public MaxFlow(Graph graph) {
         this.graph = graph;
     }
 
-    public long maxFlow(int source, int sink) {
+    /**
+     * Solve max flow.
+     * Returns Double.POSITIVE_INFINITY if the answer is unbounded.
+     */
+    public static double maxFlow(Graph graph, int s, int t) {
+        return maxFlow(graph, s, t, Double.POSITIVE_INFINITY);
+    }
+
+    public static double maxFlow(Graph graph, int s, int t, double limit) {
+        return new MaxFlow(graph).maxFlow(s, t, limit);
+    }
+
+    public double maxFlow(int source, int sink) {
         return maxFlow(source, sink, Long.MAX_VALUE);
     }
 
-    public long maxFlow(final int _source, final int _sink, long _limit) {
-        source = _source; sink = _sink; limit = _limit;
+    public double maxFlow(int _source, int _sink, double _limit) {
+        source = _source;
+        sink = _sink;
+        limit = _limit;
         if (source == sink) return limit;
         n = graph.size();
         level = new int[n];
         visited = new int[n];
         iterators = new EdgeIterator[n];
-        long flow = 0;
+        double flow = 0;
         for (flag = 1; limit > 0; flag++) {// less than n iterations
             setLevel(flag);
             if (visited[source] < flag) break;
@@ -72,11 +89,11 @@ DAGより 深さは高々n,
     /*
     O(mn)
      */
-    private long blockingFlow() {
+    private double blockingFlow() {
         for (int i = 0; i < n; i++) iterators[i] = new EdgeIterator(graph.edges(i).listIterator());
-        for (long totalFlow = 0; ; ) {  // at most m iterations (since at lease one edge is saturated by a dfs and a level graph is acyclic.)
-            long flow = blockingFlowDFS();
-            if (flow > 0) {
+        for (double totalFlow = 0; ; ) {  // at most m iterations (since at lease one edge is saturated by a dfs and a level graph is acyclic.)
+            double flow = blockingFlowDFS();
+            if (flow > 1e-9) {
                 totalFlow += flow;
                 limit -= flow;
             } else
@@ -88,19 +105,19 @@ DAGより 深さは高々n,
      * O(n)
      * At least one edge will be saturated.
      */
-    private long blockingFlowDFS() {
+    private double blockingFlowDFS() {
         Stack<Edge> parents = new Stack<Edge>();
         int v = source;
         for (; ; ) {
             if (v == sink) {
-                long flow = limit;
+                double flow = limit;
                 for (Edge e : parents) flow = Math.min(flow, e.residue());
                 for (Edge e : parents) e.pushFlow(flow);
                 return flow;
             }
             if (iterators[v].hasNext()) {
                 Edge e = iterators[v].peek();
-                if (e.residue() > 0 && level[v] == level[e.to()] + 1) {
+                if (e.residue() > 1e-9 && level[v] == level[e.to()] + 1) {
                     parents.push(e);
                     v = e.to();
                 } else {
@@ -113,7 +130,6 @@ DAGより 深さは高々n,
             }
         }
     }
-
 
     /**
      * level[v] := minimum distance from v to the sink in the residual graph.
@@ -128,7 +144,7 @@ DAGより 深さは高々n,
             int u = que.poll();
             for (Edge e : graph.edges(u))
                 // e.flow() > 0 <=> Residue of the reversed edge of e is positive.
-                if (e.flow() > 0 && visited[e.to()] < flag) {
+                if (e.flow() > 1e-9 && visited[e.to()] < flag) {
                     int v = e.to();
                     que.offer(v);
                     level[v] = level[u] + 1;
@@ -137,39 +153,37 @@ DAGより 深さは高々n,
         }
     }
 
-    public static long maxFlow(Graph graph, int s, int t) {
-        return maxFlow(graph, s, t, Long.MAX_VALUE);
-    }
-
-    public static long maxFlow(Graph graph, int s, int t, long limit) {
-        return new MaxFlow(graph).maxFlow(s, t, limit);
+    ///// information of the last flow /////
+    public boolean sourceSide(int v) {
+        return visited[v] < flag;
     }
 
     class EdgeIterator implements Iterator<Edge> {
         Iterator<Edge> iterator;
         Edge last;
+
         EdgeIterator(Iterator<Edge> iterator) {
             this.iterator = iterator;
         }
+
         public boolean hasNext() {
             return last != null || iterator.hasNext();
         }
+
         public Edge next() {
             if (last == null) return iterator.next();
-            Edge res = last; last = null;
+            Edge res = last;
+            last = null;
             return res;
         }
+
         public void remove() {
             throw new UnsupportedOperationException();
         }
+
         public Edge peek() {
             if (last == null) last = iterator.next();
             return last;
         }
-    }
-
-    ///// information of the last flow /////
-    public boolean sourceSide(int v) {
-        return visited[v] < flag;
     }
 }

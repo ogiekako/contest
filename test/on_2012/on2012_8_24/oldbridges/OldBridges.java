@@ -18,8 +18,8 @@ public class OldBridges {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) {
                 char c = bridges[i].charAt(j);
-                if (c == 'O') graph.add(new FlowEdge(i, j, 2));
-                else if (c == 'N') graph.add(new FlowEdge(i, j, 300));
+                if (c == 'O') graph.add(new FlowEdge(i, j, 2.0));
+                else if (c == 'N') graph.add(new FlowEdge(i, j, 300.0));
             }
         int s = n, t = n + 1;
         graph.add(new FlowEdge(s, a1, 2 * an));

@@ -12,15 +12,21 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 public class MinimumCostFlowTest {
+    static void debug(Object... os) {
+        System.out.println(Arrays.deepToString(os));
+    }
+
     @Test
     public void testMinimumCostCirculation() throws Exception {
         GraphTester.test(new GraphTester.Generator<Long>() {
             int counter = -1;
+
             public Long result(Graph graph, Random rnd) {
                 counter++;
                 MinimumCostFlow flow = new MinimumCostFlow(graph);
                 return flow.minimumCostCirculation();
             }
+
             public void assertCorrect(Graph graph, Long result) {
                 long exp = 0;
                 for (int i = 0; i < graph.size(); i++)
@@ -32,12 +38,14 @@ public class MinimumCostFlowTest {
                 Assert.assertEquals(exp, (long) result);
                 assertNoNegativeCycle(graph);
             }
+
             public boolean valid(Graph graph) {
                 int n = graph.size(), m = GraphUtils.edgeCount(graph);
                 if (m > 1000) return false;
                 if (n * m >= 500000) return false;
                 return true;
             }
+
             public Edge edge(int from, int to, Random rnd) {
                 int T = (int) 1e7;
                 long cap = rnd.nextInt(T), cost = rnd.nextInt(T);
@@ -56,11 +64,13 @@ public class MinimumCostFlowTest {
             int source
                     ,
                     sink;
-            long maxFlow;
+            double maxFlow;
+
             public Long result(Graph graph, Random rnd) {
                 counter++;
                 flow = rnd.nextInt(T);
-                source = 0; sink = graph.size() - 1;
+                source = 0;
+                sink = graph.size() - 1;
                 maxFlow = MaxFlow.maxFlow(graph, source, sink);
                 MaxFlow.maxFlow(graph, sink, source, maxFlow);
                 long addCost = 0;
@@ -71,6 +81,7 @@ public class MinimumCostFlowTest {
                 if (res == Long.MAX_VALUE) return res;
                 return addCost + res;
             }
+
             public void assertCorrect(Graph graph, Long result) {
                 boolean testByPD = true;
                 PrimalDual_double pd = new PrimalDual_double(graph.size());
@@ -93,8 +104,8 @@ public class MinimumCostFlowTest {
                             if (e.to() == source) sending -= e.flow();
                         }
                 if (result == Long.MAX_VALUE) {
-                    long restFlow = MaxFlow.maxFlow(graph, source, sink);
-                    Assert.assertEquals(0, restFlow);
+                    double restFlow = MaxFlow.maxFlow(graph, source, sink);
+                    Assert.assertEquals(0.0, restFlow, 1e-9);
                     Assert.assertTrue(maxFlow < flow);
                     return;
                 }
@@ -110,21 +121,20 @@ public class MinimumCostFlowTest {
                 Assert.assertEquals((long) exp, (long) result);
                 assertNoNegativeCycle(graph);
             }
+
             public boolean valid(Graph graph) {
                 int n = graph.size(), m = GraphUtils.edgeCount(graph);
                 if (m > 1000) return false;
                 if (n * m >= 500000) return false;
                 return true;
             }
+
             public Edge edge(int from, int to, Random rnd) {
                 long cap = rnd.nextInt(T), cost = rnd.nextInt(T);
                 if ((counter % 3) > 0 && rnd.nextBoolean()) cost = -cost;
                 return new FlowEdge(from, to, cap, cost);
             }
         });
-    }
-    static void debug(Object... os) {
-        System.out.println(Arrays.deepToString(os));
     }
 
     private void assertNoNegativeCycle(Graph graph) {
@@ -134,7 +144,8 @@ public class MinimumCostFlowTest {
                 if (i.next().residue() == 0)
                     i.remove();
             }
-        long[] distance = shortestPath.bellmanFord();
+        // TODO(oka): This is wrong test.
+        double[] distance = shortestPath.bellmanFord();
         Assert.assertNotNull(distance);
     }
 }

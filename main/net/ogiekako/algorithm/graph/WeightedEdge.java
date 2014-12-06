@@ -1,11 +1,9 @@
 package net.ogiekako.algorithm.graph;
 
-import net.ogiekako.algorithm.utils.IntegerUtils;
-
 public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge> {
     Edge transposed;
 
-    public WeightedEdge(int from, int to, long cost) {
+    public WeightedEdge(int from, int to, double cost) {
         super(from, to);
         this.cost = cost;
     }
@@ -17,7 +15,7 @@ public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge>
     }
 
     public int compareTo(WeightedEdge o) {
-        return IntegerUtils.compare(cost, o.cost);
+        return Double.compare(cost, o.cost);
     }
 
     @Override
@@ -35,23 +33,23 @@ public class WeightedEdge extends SimpleEdge implements Comparable<WeightedEdge>
             return from;
         }
 
-        public long cost() {
+        public double cost() {
             return cost;
         }
 
-        public void setCost(long cost) {
+        public void setCost(double cost) {
             WeightedEdge.this.cost = cost;
         }
 
-        public long residue() {
+        public double residue() {
             return 1;
         }
 
-        public long flow() {
+        public double flow() {
             return 0;
         }
 
-        public void pushFlow(long flow) {
+        public void pushFlow(double flow) {
             throw new UnsupportedOperationException();
         }
 

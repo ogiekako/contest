@@ -22,7 +22,7 @@ public class Minimize {
         Graph graph = new Graph(n);
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (nei[i][j]) graph.add(new SimpleEdge(i, j));
         Graph rev = GraphUtils.transposed(graph);
-        long[][] dist = ShortestPath.allPairsShortestPath(graph);
+        double[][] dist = ShortestPath.allPairsShortestPath(graph);
         Graph graph2 = new Graph(n * n);
         for (int t = 0; t < n; t++)
             for (int r = 0; r < n; r++) {

@@ -5,6 +5,7 @@ import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
+
 // TCO'09 R2 900
 public class ConnectingAirports {
     public String[] getSchedule(int[] capacityA, int[] capacityU) {
@@ -21,8 +22,8 @@ public class ConnectingAirports {
         Edge[][] edge = new Edge[n][m];
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) edge[i][j] = new FlowEdge(i, n + j, 1);
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.add(edge[i][j]);
-        long maxFlow = MaxFlow.maxFlow(graph, source, sink);
-        if (maxFlow < S) return new String[0];
+        double maxFlow = MaxFlow.maxFlow(graph, source, sink);
+        if (maxFlow < S - 1e-9) return new String[0];
         String[] res = new String[n];
         for (int i = 0; i < n; i++) res[i] = "";
         for (int i = 0; i < n; i++)
@@ -31,8 +32,8 @@ public class ConnectingAirports {
                     graph.remove(edge[i][j]);
                     res[i] += '0';
                 } else {
-                    long flow = MaxFlow.maxFlow(graph, i, n + j, 1);
-                    if (flow == 0) {
+                    double flow = MaxFlow.maxFlow(graph, i, n + j, 1);
+                    if (flow < 1e-9) {
                         res[i] += '1';
                     } else {
                         graph.remove(edge[i][j]);

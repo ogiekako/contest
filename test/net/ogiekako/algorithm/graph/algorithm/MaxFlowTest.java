@@ -13,20 +13,22 @@ import java.util.Random;
 public class MaxFlowTest {
     @Test
     public void test() {
-        GraphTester.test(new GraphTester.Generator<Long>() {
+        GraphTester.test(new GraphTester.Generator<Double>() {
             int source;
             int sink;
-            public Long result(Graph graph, Random rnd) {
+
+            public Double result(Graph graph, Random rnd) {
                 source = 0;
                 sink = graph.size() - 1;
                 return MaxFlow.maxFlow(graph, source, sink);
             }
-            public void assertCorrect(Graph graph, Long result) {
+
+            public void assertCorrect(Graph graph, Double result) {
                 if (GraphUtils.edgeCount(graph) > 100000) return;
-                long reversed = MaxFlow.maxFlow(graph, sink, source, result);
-                Assert.assertEquals((long) result, reversed);
-                long exp = fordFulkerson(graph, source, sink);
-                Assert.assertEquals(exp, (long) result);
+                double reversed = MaxFlow.maxFlow(graph, sink, source, result);
+                Assert.assertEquals(result, reversed, 1e-9);
+                double exp = fordFulkerson(graph, source, sink);
+                Assert.assertEquals(exp, result, 1e-9);
             }
             public boolean valid(Graph graph) {
                 return true;
@@ -38,8 +40,8 @@ public class MaxFlowTest {
     }
 
     // http://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
-    long fordFulkerson(Graph graph, int source, int sink) {
-        if (source == sink) return Long.MAX_VALUE;
+    double fordFulkerson(Graph graph, int source, int sink) {
+        if (source == sink) return Double.POSITIVE_INFINITY;
         long flow = 0;
         int n = graph.size();
         Edge[] edgeTo = new Edge[n];
@@ -59,7 +61,7 @@ public class MaxFlowTest {
                 }
             }
             if (visited[sink] < flag) return flow;
-            long pushFlow = Long.MAX_VALUE;
+            double pushFlow = Double.POSITIVE_INFINITY;
             for (Edge e = edgeTo[sink]; e != null; e = edgeTo[e.from()]) {
                 pushFlow = Math.min(pushFlow, e.residue());
             }

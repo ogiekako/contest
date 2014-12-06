@@ -1,4 +1,5 @@
 package net.ogiekako.algorithm.graph.algorithm;
+
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.utils.Pair;
@@ -6,6 +7,7 @@ import net.ogiekako.algorithm.utils.Pair;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
+
 /**
  * Thm.                                                                              <br></br>
  * f : E -> N is a minimum cost flow iff its residual graph G has no negative cost cycle.   <br></br>
@@ -28,17 +30,29 @@ import java.util.Queue;
 public class MinimumCostFlow {
     final Graph graph;
     final int n;
-    final long[] supply;
+    final double[] supply;
     long[] potential;
     long cost;
     Edge[] path;
+
     MinimumCostFlow(Graph _graph) {
         this.graph = _graph;
         n = graph.size();
-        supply = new long[n];
+        supply = new double[n];
     }
+
+    // returns Long.MAX_VALUE if impossible
+    public static long minimumCostFlow(Graph graph, int source, int sink, long flow) {
+        return new MinimumCostFlow(graph).minimumCostFlow(source, sink, flow);
+    }
+
+    public static long minimumCostCirculation(Graph graph) {
+        return new MinimumCostFlow(graph).minimumCostCirculation();
+    }
+
     long minimumCostFlow(int source, int sink, long flow) {
-        supply[source] += flow; supply[sink] -= flow;
+        supply[source] += flow;
+        supply[sink] -= flow;
         return minimumCostCirculation();
     }
 
@@ -48,25 +62,25 @@ public class MinimumCostFlow {
         cost = 0;
         for (int v = 0; v < n; v++) for (Edge e : graph.edges(v)) if (e.residue() > 0 && e.cost() < 0) cancel(e);
         for (; ; ) {
-            Queue<Pair<Long, Integer>> que = new PriorityQueue<Pair<Long, Integer>>();
-            long[] distance = new long[n];
+            Queue<Pair<Double, Integer>> que = new PriorityQueue<Pair<Double, Integer>>();
+            double[] distance = new double[n];
             Arrays.fill(distance, Long.MAX_VALUE);
             for (int v = 0; v < n; v++)
                 if (supply[v] > 0) {
-                    que.offer(Pair.of(0L, v));
+                    que.offer(Pair.of(0D, v));
                     distance[v] = 0;
                 }
             if (que.isEmpty()) return cost;
             path = new Edge[n];
             while (!que.isEmpty()) {
-                Pair<Long, Integer> entry = que.poll();
-                long dist = entry.first;
+                Pair<Double, Integer> entry = que.poll();
+                double dist = entry.first;
                 int v = entry.second;
                 if (dist > distance[v]) continue;
                 for (Edge e : graph.edges(v))
                     if (e.residue() > 0) {
                         int u = e.to();
-                        long nDist = (dist + (potential[v] - potential[u])) + e.cost();
+                        double nDist = (dist + (potential[v] - potential[u])) + e.cost();
                         if (nDist < distance[u]) {
                             distance[u] = nDist;
                             path[u] = e;
@@ -77,12 +91,13 @@ public class MinimumCostFlow {
             for (int sink = 0; sink < n; sink++)
                 if (supply[sink] < 0) {
                     if (path[sink] == null) return Long.MAX_VALUE;
-                    long pushFlow = -supply[sink];
+                    double pushFlow = -supply[sink];
                     int v;
                     for (v = sink; path[v] != null; v = path[v].from())
                         pushFlow = Math.min(pushFlow, path[v].residue());
                     pushFlow = Math.min(pushFlow, supply[v]);
-                    supply[v] -= pushFlow; supply[sink] += pushFlow;
+                    supply[v] -= pushFlow;
+                    supply[sink] += pushFlow;
                     for (v = sink; path[v] != null; v = path[v].from()) {
                         path[v].pushFlow(pushFlow);
                         cost += path[v].cost() * pushFlow;
@@ -97,13 +112,5 @@ public class MinimumCostFlow {
         supply[e.from()] -= e.residue();
         cost += e.residue() * e.cost();
         e.pushFlow(e.residue());
-    }
-
-    // returns Long.MAX_VALUE if impossible
-    public static long minimumCostFlow(Graph graph, int source, int sink, long flow) {
-        return new MinimumCostFlow(graph).minimumCostFlow(source, sink, flow);
-    }
-    public static long minimumCostCirculation(Graph graph) {
-        return new MinimumCostFlow(graph).minimumCostCirculation();
     }
 }
