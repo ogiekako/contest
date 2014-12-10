@@ -9,17 +9,17 @@ import java.util.List;
 
 /**
  * Solve the following optimization problem.
- * <p/>
+ * <pre>
  * Min  sum w_i(x_i) + sum e_{ij}z_{ij}
  * s.t. a_{ij}x_i - b_{ij}x_j \leq c_{ij} + d_{ij}z_{ij}
- * 0 \leq x_i \leq u_i
- * 0 \leq z_{ij} \leq g_{ij}
- * <p/>
+ *      0 \leq x_i \leq u_i
+ *      0 \leq z_{ij} \leq g_{ij}
  * where,
  * w_i : arbitrary function
  * e_{ij} : convex function
  * a,b,c,d,u,g \geq 0
  * d_{ij} = 0 or 1.
+ * </pre>
  */
 public class MonotoneIp2Solver {
 
@@ -55,6 +55,8 @@ public class MonotoneIp2Solver {
      * @param e   must be a convex function. Can be null if d = 0.
      */
     public void addConstraint(int i, int j, double a, double b, double c, int d, long g, LongToDouble e) {
+        if (i >= u.length) throw new IllegalArgumentException(i + " " + u.length);
+        if (j >= u.length) throw new IllegalArgumentException(j + " " + u.length);
         if (d == 0) {
             g = 0;
             d = 1;
@@ -82,9 +84,11 @@ public class MonotoneIp2Solver {
         int sink = numVertex++;
         int[][] x = new int[n][];
         for (int i = 0; i < n; i++) {
-            x[i] = new int[(int) u[i]];
-            if (u[i] > Integer.MAX_VALUE) throw new AssertionError();
-            for (int j = 0; j < u[i]; j++) {
+            if (u[i] > Integer.MAX_VALUE - 2) throw new AssertionError();
+            x[i] = new int[(int) (u[i] + 2)];
+            x[i][0] = source;
+            x[i][(int) (u[i] + 1)] = sink;
+            for (int j = 1; j <= u[i]; j++) {
                 x[i][j] = numVertex++;
             }
         }
@@ -100,13 +104,7 @@ public class MonotoneIp2Solver {
             res += min;
             for (int j = 0; j <= u[i]; j++) {
                 double whenXIsJ = vs[j] - min;
-                if (j == 0) {
-                    graph.addFlow(source, x[i][j], whenXIsJ);
-                } else if (j == u[i]) {
-                    graph.addFlow(x[i][j - 1], sink, whenXIsJ);
-                } else {
-                    graph.addFlow(x[i][j - 1], x[i][j], whenXIsJ);
-                }
+                graph.addFlow(x[i][j], x[i][j + 1], whenXIsJ);
             }
         }
         for (Constraint ct : constraints) {
@@ -152,11 +150,8 @@ public class MonotoneIp2Solver {
                     if (l < u2) cut -= penalty[k][l + 1];
                     if (k > 0 && l < u2) cut += penalty[k - 1][l + 1];
                     if (cut > 1e-9) {
-                        int from, to;
-                        if (k == 0) from = source;
-                        else from = x[ct.i][k - 1];
-                        if (l == u2) to = sink;
-                        else to = x[ct.j][l];
+                        int from = x[ct.i][k];
+                        int to = x[ct.j][l + 1];
                         graph.addFlow(from, to, cut);
                     }
                 }

@@ -34,11 +34,16 @@ DFSで, 単純な貪欲で, ブロッキングフローを求めることがで�
 ちなみに, RはDAGなので, 行った頂点を覚えておく必要はない.
 
 解析:
-DAGより 深さは高々n,
+DAGなので 深さは高々n,
 もし, フローを流せる場合は, 容量いっぱいの枝ができて, 枝の数は1以上減る.
  (この場合は, 一旦フローを流して始点から再びDFS. ただし, すでに見込みのない枝はもう見なくていい. この処理をするため, 枝をどこまで見たかを持っておく必要がある)
 また, 流せない場合は, 最後に使った枝は, 今後使われない(いきどまりの枝)ので, 枝の数は1減る.
 よって, O(n)の操作が高々 m 回しか行われないので, O(nm).
+
+POJ3281 でテストしたところ、
+Long: 1469MS
+Double: 1313MS だったので、double で統一して良さそう。
+
  */
     Graph graph;
     int n;
@@ -60,12 +65,20 @@ DAGより 深さは高々n,
         return maxFlow(graph, s, t, Double.POSITIVE_INFINITY);
     }
 
+    /**
+     * Solve max flow with limitation.
+     * Returns {@code limit} if the answer is more than that.
+     */
     public static double maxFlow(Graph graph, int s, int t, double limit) {
         return new MaxFlow(graph).maxFlow(s, t, limit);
     }
 
+    /**
+     * Solve max flow.
+     * Returns Double.POSITIVE_INFINITY if the answer is unbounded.
+     */
     public double maxFlow(int source, int sink) {
-        return maxFlow(source, sink, Long.MAX_VALUE);
+        return maxFlow(source, sink, Double.POSITIVE_INFINITY);
     }
 
     public double maxFlow(int _source, int _sink, double _limit) {

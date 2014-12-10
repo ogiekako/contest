@@ -50,7 +50,7 @@ public class FoxAndGo3 {
                     }
                 }
             }
-        res -= (int) MaxFlow.maxFlow(graph, s, t);
+        res -= (int) Math.round(MaxFlow.maxFlow(graph, s, t));
         return res;
     }
 
@@ -116,41 +116,4 @@ public class FoxAndGo3 {
         return false;
     }
 
-
-    public static void main(String[] args) {
-        for(int i=0;;i++){
-            int n = (int) (Math.random() * 14);
-            char[][] map = new char[n][n];
-            for(int j=0;j<n;j++){
-//                ss[j] = "";
-                for(int k=0;k<n;k++){
-
-                    if(Math.random() < 0.4)map[j][k] = '.';
-                    else if(Math.random()<0.6)map[j][k] = 'x';
-                    else map[j][k]='o';
-//                    char c = 'o';
-                    if(map[j][k] =='o' && j>0 && map[j-1][k]=='o' || k>0 && map[j][k-1] == 'o')map[j][k] = '.';
-//                        c='.';
-//                    }
-//                    if(Math.random() < 0.1)c = 'x';
-//                    ss[j] += c;
-
-                }
-            }
-//            map[3][3] = map[3][9] = 'x';
-            for(int j=0;j<n;j++){
-
-            }
-            String[] ss = new String[n];
-            for(int j=0;j<n;j++)ss[j] = String.valueOf(map[j]);
-            int res = new FoxAndGo3().maxEmptyCells(ss);
-            for(int j=0;j<n;j++){
-                System.err.print(ss[j]);
-                System.err.print(j == n - 1 ? '\n' : ',');
-            }
-            int exp = new FoxAndGo3().maxEmptyCells2(ss);
-            System.err.println(res + " " + exp);
-            if(res != exp) throw new AssertionError();
-        }
-    }
 }
