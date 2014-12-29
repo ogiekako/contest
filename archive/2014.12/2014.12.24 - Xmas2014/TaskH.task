@@ -1,0 +1,25 @@
+5 TaskH
+6 SINGLE
+6 CUSTOM
+4 H.in
+8 STANDARD
+10 output.txt
+1
+0
+1 0
+0 
+1
+13 java/main/src
+16 -Xmx256m -Xss64m
+4 Main
+9 src.TaskH
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2014.12.24
+8 Xmas2014
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

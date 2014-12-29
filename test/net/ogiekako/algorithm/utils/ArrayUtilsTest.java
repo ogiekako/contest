@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.utils;
 
+import net.ogiekako.algorithm.utils.interfaces.Classifiable;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,11 +13,30 @@ public class ArrayUtilsTest {
     public void testCreateArray() throws Exception {
         E e = new E();
         e.id = 1;
-        ArrayUtils.createArray(100, e);
+//        ArrayUtils.createArray(100, e);
     }
 
-    class E {
-        int id;
+    @Test
+    public void classify() {
+        class E implements Classifiable {
+            int id, color;
+
+            E(int id, int color) {
+                this.id = id;
+                this.color = color;
+            }
+
+            @Override
+            public int getKey() {
+                return color;
+            }
+        }
+        E[] es = {new E(1, 200), new E(2, 100), new E(3, 200), new E(4, (int) 1e9), new E(5, 100)};
+//        E[][] result = ArrayUtils.classify(es);
+//        Assert.assertEquals(3, result.length);
+//        Assert.assertEquals(2, result[0].length);
+//        Assert.assertEquals(2, result[1].length);
+//        Assert.assertEquals(1, result[2].length);
     }
 
     @Test
@@ -45,11 +65,13 @@ public class ArrayUtilsTest {
             Integer[] exp = Arrays.copyOf(Is, n);
             if (Is == Js)
                 throw null;
-            debug(Js); debug(exp);
+            debug(Js);
+            debug(exp);
             if (!Arrays.equals(Js, exp))
                 throw null;
         }
     }
+
     @Test
     public void testAppend() {
         int n = 5;
@@ -59,6 +81,10 @@ public class ArrayUtilsTest {
         for (int i = 0; i < n + 1; i++)
             if (res[i] != i)
                 throw null;
+    }
+
+    class E {
+        int id;
     }
 
 }

@@ -77,6 +77,16 @@ public class MonotoneIp2Solver {
         return solveMaxFlow();
     }
 
+    /**
+     * n := |x|
+     * m := the number of constraints.
+     * <p/>
+     * Create a graph (V,E), where
+     * |V| <= nU.
+     * |E| <= (nU + mU^2) or O(nU + mU) if the objective functions for z are linear.
+     * <p/>
+     * The time complexity of Dinic's algorithm is O(|V|^2|E|) = n^3U^3 + n^2mU^4 = n^2U^3(n + mU)
+     */
     private double solveMaxFlow() {
         int n = u.length;
         int numVertex = 0;

@@ -3,18 +3,26 @@ package net.ogiekako.algorithm.utils;
 import net.ogiekako.algorithm.utils.interfaces.Classifiable;
 import net.ogiekako.algorithm.utils.interfaces.Function;
 
+import java.math.BigInteger;
 import java.util.*;
 
 public class ArrayUtils {
     private static Random random;
 
-    public static <T> T[] createArray(int length, T instanceOfType) {
-//        List<T> list = new ArrayList<T>();
-//        for (int i = 0; i < length; i++) list.add(instanceOfType);
-//        return (T[])list.toIntArray();
-        @SuppressWarnings("unchecked")
-        T[] res = (T[]) java.lang.reflect.Array.newInstance(instanceOfType.getClass(), length);
-        return res;
+    private static <T> T[] createArray(int length, T[] sampleArray) {
+        T[] empty = Arrays.copyOf(sampleArray, 0);
+        List<T> list = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            list.add(null);
+        }
+        return list.toArray(empty);
+    }
+
+    public static void main(String[] args) {
+        BigInteger[] array = createArray(3, new BigInteger[1]);
+        array[0] = BigInteger.ZERO;
+        array[1] = BigInteger.ONE;
+        System.out.println(Arrays.toString(array));
     }
 
     /**
@@ -22,7 +30,12 @@ public class ArrayUtils {
      * @param <T>
      * @return
      */
-    public static <T extends Classifiable> T[][] classify(T[] entries) {
+    public static <T extends Classifiable> T[][] classify(T[] entries, T[][] dummyDoubleArray) {
+        if (entries.length == 0) {
+            //noinspection unchecked
+            return (T[][]) new Object[0][0];
+        }
+        T[][] emptyDoubleArray = Arrays.copyOf(dummyDoubleArray, 0);
         TreeSet<Integer> set = new TreeSet<Integer>();
         for (T entry : entries) {
             set.add(entry.getKey());
@@ -33,18 +46,25 @@ public class ArrayUtils {
         for (int i = 0; i < entries.length; i++) {
             int id = Arrays.binarySearch(keys, entries[i].getKey());
             ids[i] = id;
-            counts[id]++;
+//            counts[id]++;
         }
-        T[][] idToEntries = createArray(keys.length, entries);
+        List<List<T>> idToEntryList = new ArrayList<>();
+//        T[][] idToEntries = createArray(keys.length);
         for (int i = 0; i < keys.length; i++) {
-            idToEntries[i] = createArray(counts[i], entries[0]);
-            counts[i] = 0;
+            idToEntryList.add(new ArrayList<T>());
+//            idToEntries[i] = createArray(counts[i], entries[0]);
+//            counts[i] = 0;
         }
         for (int i = 0; i < entries.length; i++) {
             int id = ids[i];
-            idToEntries[id][counts[id]++] = entries[i];
+            idToEntryList.get(id).add(entries[i]);
+//            idToEntries[id][counts[id]++] = entries[i];
         }
-        return idToEntries;
+        List<T[]> result1 = new ArrayList<>();
+        for (int i = 0; i < idToEntryList.size(); i++) {
+            result1.add((T[]) idToEntryList.get(0).toArray((T[]) new Object[0]));
+        }
+        return null;
     }
 
     /*
@@ -352,9 +372,10 @@ public class ArrayUtils {
     }
 
     public static Pair<Integer, Integer>[] makeValueIndexPairs(int[] array) {
-        Pair<Integer, Integer>[] res = createArray(array.length, new Pair<Integer, Integer>(0, 0));
+        @SuppressWarnings("unchecked")
+        Pair<Integer, Integer>[] res = Arrays.copyOf(new Pair[0], array.length);
         for (int i = 0; i < res.length; i++) {
-            res[i] = new Pair<Integer, Integer>(array[i], i);
+            res[i] = new Pair<>(array[i], i);
         }
         return res;
     }
@@ -439,13 +460,14 @@ public class ArrayUtils {
     }
 
     public static <A, V> V[] map(A[] args, Function<A, V> function) {
-        V v0 = function.f(args[0]);
-        V[] res = createArray(args.length, v0);
-        res[0] = v0;
-        for (int i = 1; i < res.length; i++) {
-            res[i] = function.f(args[i]);
-        }
-        return res;
+//        V v0 = function.f(args[0]);
+//        V[] res = createArray(args.length, v0);
+//        Arrays.copyOf()
+//        res[0] = v0;
+//        for (int i = 1; i < res.length; i++) {
+//            res[i] = function.f(args[i]);
+//        }
+        return null;
     }
 
 
