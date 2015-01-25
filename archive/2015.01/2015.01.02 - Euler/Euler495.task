@@ -1,0 +1,49 @@
+8 Euler495
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+7
+0
+6 100 10
+9 287549200
+1
+1
+8 10000 30
+0 
+1
+2
+3 4 4
+1 1
+0
+3
+3 4 3
+1 4
+0
+4
+3 4 2
+1 4
+0
+5
+3 4 1
+1 1
+0
+6
+3 5 4
+1 8
+0
+13 java/main/src
+16 -Xmx256m -Xss64m
+4 Main
+12 src.Euler495
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2015.01.02
+5 Euler
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0
