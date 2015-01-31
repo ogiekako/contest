@@ -1,5 +1,4 @@
 package net.ogiekako.algorithm.math.discreteFourierTransform;
-import static java.lang.Math.*;
 
 /*
  * 長さは 2 のべき乗であること
@@ -8,12 +7,12 @@ import static java.lang.Math.*;
  * thanks to wata.
  */
 public class FFT {
-    void fft(int sign, double[] real, double[] imag) {
+    public void fft(int sign, double[] real, double[] imag) {
         int n = real.length, d = Integer.numberOfLeadingZeros(n) + 1;
-        double theta = sign * 2 * PI / n;
+        double theta = sign * 2 * Math.PI / n;
         for (int m = n; m >= 2; m >>= 1, theta *= 2) {
             for (int i = 0, mh = m >> 1; i < mh; i++) {
-                double wr = cos(i * theta), wi = sin(i * theta);
+                double wr = Math.cos(i * theta), wi = Math.sin(i * theta);
                 for (int j = i; j < n; j += m) {
                     int k = j + mh;
                     double xr = real[j] - real[k], xi = imag[j] - imag[k];
@@ -70,8 +69,8 @@ public class FFT {
         }
         double res = 0;
         for (int i = 0; i < N; i++) {
-            res = max(res, Zr[i] + Zr[i + N]);
+            res = Math.max(res, Zr[i] + Zr[i + N]);
         }
-        return (int) round(res);
+        return (int) Math.round(res);
     }
 }
