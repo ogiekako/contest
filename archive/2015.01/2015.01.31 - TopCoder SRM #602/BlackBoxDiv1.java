@@ -175,23 +175,23 @@ public class BlackBoxDiv1 {
 
     private int solveSlow(int w, int h) {
         int res = 0;
-        for(int m=0;m<=1<<w+h;m++){
+        for(int m=0;m<=1<<w*h;m++){
             boolean[][] b = new boolean[w][h];
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {
-                    b[i][j] = ((m>>i*w+j)&1)==1;
+                    b[i][j] = ((m>>i*h+j)&1)==1;
                 }
             }
-            boolean ok = true;
+            boolean ok = false;
             for(int i=0;i<w-1;i++)for(int j=0;j<h-1;j++){
                 int c=0;
                 if(b[i][j])c++;
                 if(!b[i+1][j])c++;
                 if(b[i+1][j+1])c++;
                 if(!b[i][j+1])c++;
-                if (c>=3)ok=false;
+                if (c>=3)ok=true;
             }
-            if(!ok)res++;
+            if(ok)res++;
         }
         return res;
     }
