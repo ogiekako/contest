@@ -49,7 +49,7 @@ public class WinterAndShopping {
         if (memo[pos][key] >= 0) return memo[pos][key];
         // empty がない場合と本質的に違わないはずなので、パラメータをそのまま渡すべき。
         if (open[pos].isEmpty()) return f(pos + 1, r, g, b, opening);
-        //
+        // 直前で開いていた店に今も注目すべきかを判断する。
         if (!open[pos].contains(opening)) {
             opening = open[pos].get(0);
             r = R[opening];
