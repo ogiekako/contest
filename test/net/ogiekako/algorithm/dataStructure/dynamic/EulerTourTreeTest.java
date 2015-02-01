@@ -1,6 +1,8 @@
 package net.ogiekako.algorithm.dataStructure.dynamic;
+
 import net.ogiekako.algorithm.dataStructure.dynamic.test.DynamicTreeTester;
 import org.junit.Test;
+
 public class EulerTourTreeTest {
     @Test
     public void test() throws Exception {
@@ -12,6 +14,6 @@ public class EulerTourTreeTest {
             }
         });
         long time = System.currentTimeMillis() - start;
-        if (time > 2000) throw new AssertionError(time);
+        if (time > 3000) throw new AssertionError(time);
     }
 }

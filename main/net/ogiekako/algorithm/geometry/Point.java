@@ -1,8 +1,16 @@
 package net.ogiekako.algorithm.geometry;
 
-
 import net.ogiekako.algorithm.EPS;
+
 public class Point implements Comparable<Point> {
+
+    static int precision = 2;
+    public final double x, y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
 
     static int sgn(double d) {
         return d < -EPS.value() ? -1 : d > EPS.value() ? 1 : 0;
@@ -16,11 +24,12 @@ public class Point implements Comparable<Point> {
         return Math.abs(a - b) < EPS.value();
     }
 
-    public final double x, y;
+    public static Point make(double x, double y) {
+        return new Point(x, y);
+    }
 
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public static void setPrecisionOfString(int precision) {
+        Point.precision = precision;
     }
 
     public double dist(Point p) {
@@ -100,9 +109,6 @@ public class Point implements Comparable<Point> {
         return sgn(x - o.x) == 0 ? sgn(y - o.y) : sgn(x - o.x);
     }
 
-    public static Point make(double x, double y) {
-        return new Point(x, y);
-    }
     /*
     relative or absolute error is less than eps.
     */
@@ -112,13 +118,10 @@ public class Point implements Comparable<Point> {
         double pLen = p.norm();
         return absDiff < EPS.value() || absDiff < myLen * EPS.value() || absDiff < pLen * EPS.value();
     }
+
     @Override
     public String toString() {
         String format = String.format("%%.%df %%.%df", precision, precision);
         return String.format(format, x, y);
-    }
-    static int precision = 2;
-    public static void setPrecisionOfString(int precision) {
-        Point.precision = precision;
     }
 }

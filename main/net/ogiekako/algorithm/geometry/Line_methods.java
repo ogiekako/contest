@@ -1,4 +1,5 @@
 package net.ogiekako.algorithm.geometry;
+
 import net.ogiekako.algorithm.EPS;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Line_methods {
         return crsSP(p1, p2, q);
     }
 
+    // TODO: Add descr.
     public static boolean crsSS(Point p1, Point p2, Point q1, Point q2) {
         if (Math.max(p1.x, p2.x) + EPS.value() < Math.min(q1.x, q2.x)) return false;
         if (Math.max(q1.x, q2.x) + EPS.value() < Math.min(p1.x, p2.x)) return false;
@@ -42,6 +44,32 @@ public class Line_methods {
         return d < -EPS.value() ? -1 : d > EPS.value() ? 1 : 0;
     }
 
+    /**
+     * 点と線分の距離
+     *
+     * @param p1
+     * @param p2
+     * @param q
+     * @return
+     */
+    public static double disSP(Point p1, Point p2, Point q) {// AOJ1265
+        if (p2.sub(p1).dot(q.sub(p1)) < 0) return q.sub(p1).norm();
+        if (p1.sub(p2).dot(q.sub(p2)) < 0) return q.sub(p2).norm();
+        return disLP(p1, p2, q);
+    }
+
+    /**
+     * 直線と線分の距離
+     *
+     * @param p1
+     * @param p2
+     * @param q
+     * @return
+     */
+    public static double disLP(Point p1, Point p2, Point q) {// AOJ1265
+        return Math.abs(p2.sub(p1).det(q.sub(p1))) / p2.sub(p1).norm();
+    }
+
     int ccw(Point a, Point b, Point c) {
         b = b.sub(a);
         c = c.sub(a);
@@ -51,6 +79,7 @@ public class Line_methods {
         if (b.norm() < c.norm()) return -2;
         return 0;
     }
+
     /**
      * p1,p2が交差するかを返す.
      *
@@ -70,7 +99,7 @@ public class Line_methods {
         return r.add(p2.sub(p1).rot90().mul(r.sub(p1).det(p2.sub(p1)) / d / d));
     }
 
-    Point reflect(Point p1, Point p2, Point q) {// aoj1299
+    Point mirrored(Point p1, Point p2, Point q) {// aoj1299
         Point p = foot(p1, p2, q);
         return q.add(p.sub(q).mul(2));
     }
@@ -87,6 +116,7 @@ public class Line_methods {
         double y = p1.y + (x - p1.x) * (p2.y - p1.y) / (p2.x - p1.x);
         return y;
     }
+
     /**
      * 線分と線分の距離
      *
@@ -104,31 +134,6 @@ public class Line_methods {
         res = Math.min(res, disSP(q1, q2, p1));
         res = Math.min(res, disSP(q1, q2, p2));
         return res;
-    }
-
-    /**
-     * 点と線分の距離
-     *
-     * @param p1
-     * @param p2
-     * @param q
-     * @return
-     */
-    public static double disSP(Point p1, Point p2, Point q) {// AOJ1265
-        if (p2.sub(p1).dot(q.sub(p1)) < 0) return q.sub(p1).norm();
-        if (p1.sub(p2).dot(q.sub(p2)) < 0) return q.sub(p2).norm();
-        return disLP(p1, p2, q);
-    }
-    /**
-     * 直線と線分の距離
-     *
-     * @param p1
-     * @param p2
-     * @param q
-     * @return
-     */
-    public static double disLP(Point p1, Point p2, Point q) {// AOJ1265
-        return Math.abs(p2.sub(p1).det(q.sub(p1))) / p2.sub(p1).norm();
     }
 
     /**
@@ -192,5 +197,6 @@ public class Line_methods {
         }
         return res;
     }
+
 
 }
