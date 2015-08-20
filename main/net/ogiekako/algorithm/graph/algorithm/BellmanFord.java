@@ -34,9 +34,9 @@ public class BellmanFord {
 
     private double[] bellmanFord() {
         boolean[] updated = new boolean[n];
-
         int[] parent = new int[n];
         for (int i = 0; i < n; i++) {
+            updated[i] = distance[i] < Double.POSITIVE_INFINITY;
             parent[i] = i;
         }
 
