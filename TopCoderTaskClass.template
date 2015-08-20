@@ -1,0 +1,13 @@
+package %package%;
+
+import java.util.Arrays;
+
+public class %TaskClass% {
+    private static void debug(Object... os) {
+        System.out.println(Arrays.deepToString(os));
+    }
+
+    public %Signature% {
+        return %DefaultValue%;
+    }
+}
