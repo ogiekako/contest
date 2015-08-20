@@ -1,1 +1,3 @@
-.gitignore
+output/*
+out/*
+.idea/*
