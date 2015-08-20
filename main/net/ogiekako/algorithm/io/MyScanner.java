@@ -13,9 +13,10 @@ public class MyScanner {
         this.in = in;
     }
 
+    private static final int BUFSIZE = 65536;
     int bufLen;
     int bufPtr;
-    byte[] buf = new byte[1024];
+    byte[] buf = new byte[BUFSIZE];
 
     public int read() {
         if (bufLen == -1)
@@ -61,7 +62,7 @@ public class MyScanner {
         }
     }
 
-    private char[] strBuf = new char[65536];
+    private char[] strBuf = new char[BUFSIZE];
 
     public String next() {
         int strLen = 0;

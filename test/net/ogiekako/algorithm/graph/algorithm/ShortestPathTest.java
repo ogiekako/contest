@@ -39,11 +39,10 @@ public class ShortestPathTest {
                             if (dist[i][k] < Double.POSITIVE_INFINITY && dist[k][j] < Double.POSITIVE_INFINITY)
                                 dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
                 for (int i = 0; i < n; i++)
-                    if (Double.isFinite(dist[0][i]) && dist[i][i] < 0) {
+                    if (!Double.isInfinite(dist[0][i]) && dist[i][i] < 0) {
                         dist[0] = null;
                         break;
                     }
-//                System.err.println(deepToString(dist));
                 Assert.assertArrayEquals(deepToString(dist[0], result), dist[0], result, 1e-9);
             }
 

@@ -1,11 +1,11 @@
 package net.ogiekako.algorithm.graph.algorithm;
-import junit.framework.Assert;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.flow.PrimalDual_double;
 import net.ogiekako.algorithm.graph.test.GraphTester;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -138,14 +138,11 @@ public class MinimumCostFlowTest {
     }
 
     private void assertNoNegativeCycle(Graph graph) {
-        ShortestPath shortestPath = new ShortestPath(graph);
         for (int v = 0; v < graph.size(); v++)
             for (Iterator<Edge> i = graph.edges(v).iterator(); i.hasNext(); ) {
                 if (i.next().residue() == 0)
                     i.remove();
             }
-        // TODO(oka): This is wrong test.
-        double[] distance = shortestPath.bellmanFord();
-        Assert.assertNotNull(distance);
+        Assert.assertFalse(new BellmanFord(graph).hasNegativeCycle());
     }
 }

@@ -43,6 +43,6 @@ public class GraphUtils {
 
     public static boolean reachable(Graph graph, int from, int to) {
         double distance = ShortestPath.singleSourceShortestPath(graph, from)[to];
-        return Double.isFinite(distance);
+        return !Double.isInfinite(distance) && !Double.isNaN(distance);
     }
 }

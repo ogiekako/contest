@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
 public class ShortestPath {
-    public int[] parent;
+    int[] parent;
     Graph graph;
     double[] distance;
     boolean[] visited;
@@ -52,48 +52,18 @@ public class ShortestPath {
      * @return minimum distances of vertices from the source.
      *         If the graph contains a negative cycle, this method returns <code>null</code>.
      *         (Returns null even if there is no path to the negative cycle from the source vertex.)
-     *         TODO(oka): Currently this algorithm doesn't return null if there is an unreachable negative cycle
+     *         TODO(oka): Currently this algorithm doesn't return null if there is any unreachable negative cycle
      *         since the previous long weight was rewritten with double.
      */
     double[] computeDistancesFrom(int source) {
         this.source = source;
-        for (int i = 0; i < n; i++) for (Edge e : graph.edges(i)) if (e.cost() < 0) return bellmanFord();
+        // Use Bellman Ford algorithm if there is a negative cost edge.
+        for (int i = 0; i < n; i++) for (Edge e : graph.edges(i)) if (e.cost() < 0) {
+            return new BellmanFord(graph).sssp(source);
+        }
         return dijkstra();
     }
 
-    /**
-     * Compute minimum distance from the source.
-     * res[i] = minimum distance or Double.POSITIVE_INFINITY if unreachable.
-     * <p/>
-     * O(VE)
-     */
-    double[] bellmanFord() {
-        init();
-        visited[source] = true;
-        // If there is no negative cycle, every shortest path must be relaxed in order.
-        // Thus, iteration stops after at most n-1 iterations.
-        for (int iter = 0; iter < n; iter++) {
-            boolean updated = false;
-            for (int v = 0; v < n; v++)
-                for (Edge e : graph.edges(v)) {
-                    if (e.cost() < 0 || Double.isFinite(distance[v]))
-                        if (distance[e.to()] > distance[v] + e.cost() + 1e-9) {
-                            relax(e);
-                            if (visited[v]) visited[e.to()] = true;
-                            updated = true;
-                        }
-                }
-            if (!updated) {
-                for (int v = 0; v < n; v++)
-                    if (!visited[v]) {
-                        distance[v] = Double.POSITIVE_INFINITY;
-                        parent[v] = -1;
-                    }
-                return distance;
-            }
-        }
-        return null;
-    }
 
     /**
      * O( (E+V)logE )

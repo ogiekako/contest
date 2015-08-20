@@ -9,7 +9,7 @@ import java.util.*;
 public class ArrayUtils {
     private static Random random;
 
-    private static <T> T[] createArray(int length, T[] sampleArray) {
+    public static <T> T[] createArray(int length, T[] sampleArray) {
         T[] empty = Arrays.copyOf(sampleArray, 0);
         List<T> list = new ArrayList<>();
         for (int i = 0; i < length; i++) {
@@ -457,17 +457,6 @@ public class ArrayUtils {
 
     private static int compare(int a, int b) {
         return a < b ? -1 : a > b ? 1 : 0;
-    }
-
-    public static <A, V> V[] map(A[] args, Function<A, V> function) {
-//        V v0 = function.f(args[0]);
-//        V[] res = createArray(args.length, v0);
-//        Arrays.copyOf()
-//        res[0] = v0;
-//        for (int i = 1; i < res.length; i++) {
-//            res[i] = function.f(args[i]);
-//        }
-        return null;
     }
 
 

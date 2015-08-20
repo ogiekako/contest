@@ -3,16 +3,15 @@ package net.ogiekako.algorithm.graph;
 
 /**
  * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 2:56
- * To change this template use File | Settings | File Templates.
  */
 public interface Edge {
     int from();
 
     int to();
 
+    /**
+     * Cost (or weight)
+     */
     double cost();
 
     void setCost(double cost);
