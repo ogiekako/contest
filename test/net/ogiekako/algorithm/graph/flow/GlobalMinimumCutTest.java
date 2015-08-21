@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.graph.flow;
 import junit.framework.Assert;
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
@@ -20,7 +20,7 @@ public class GlobalMinimumCutTest {
     public void testSolve() throws Exception {
         GraphTester.test(new GraphTester.Generator<Double>() {
             public Double result(Graph graph, Random rnd) {
-                return new GlobalMinimumCut((BidirectionalGraph) graph).compute();
+                return new GlobalMinimumCut((UndirectedGraph) graph).compute();
             }
 
             public void assertCorrect(Graph graph, Double result) {

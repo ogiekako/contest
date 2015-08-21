@@ -1,7 +1,7 @@
 package on_2012.dynamicgcd;
 
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.SimpleEdge;
@@ -498,7 +498,7 @@ public class DynamicGCD {
     }
 
     private int[] solveStupid(int N, int[][] edges, int[] init, int Q, int[][] queries) {
-        Graph graph = new BidirectionalGraph(N);
+        Graph graph = new UndirectedGraph(N);
         int resLen = 0;
         for (int i = 0; i < Q; i++) resLen += queries[i][0];
         int[] res = new int[resLen];

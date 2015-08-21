@@ -61,7 +61,7 @@ public class EulerPathTest {
             }
 
             public boolean valid(Graph graph) {
-                return !(graph instanceof BidirectionalGraph);
+                return !(graph instanceof UndirectedGraph);
             }
 
             public Edge edge(int from, int to, Random rnd) {
@@ -74,7 +74,7 @@ public class EulerPathTest {
     public void testUndirected() {
         GraphTester.test(new GraphTester.Generator<List<Edge>>() {
             public List<Edge> result(Graph graph, Random rnd) {
-                return new EulerPath().undirectedEulerPath((BidirectionalGraph) graph);
+                return new EulerPath().undirectedEulerPath((UndirectedGraph) graph);
             }
 
             public void assertCorrect(Graph graph, List<Edge> result) {
@@ -117,7 +117,7 @@ public class EulerPathTest {
             }
 
             public boolean valid(Graph graph) {
-                return graph instanceof BidirectionalGraph;
+                return graph instanceof UndirectedGraph;
             }
 
             public Edge edge(int from, int to, Random rnd) {

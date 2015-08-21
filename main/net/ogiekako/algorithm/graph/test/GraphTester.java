@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.graph.test;
 
 import junit.framework.Assert;
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.utils.ArrayUtils;
@@ -81,7 +81,7 @@ public class GraphTester<V> {
         }
 
         public Graph generate() {
-            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            Graph graph = directed ? new Graph(n) : new UndirectedGraph(n);
             for (int i = 0; i < m; i++) {
                 int from = rnd.nextInt(n);
                 int to = rnd.nextInt(n);
@@ -100,7 +100,7 @@ public class GraphTester<V> {
         }
         public Graph generate() {
             int n = order.length;
-            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            Graph graph = directed ? new Graph(n) : new UndirectedGraph(n);
             for (int i = 0; i < order.length - 1; i++) {
                 graph.add(gen.edge(order[i], order[i + 1], rnd));
             }
@@ -117,7 +117,7 @@ public class GraphTester<V> {
         }
         public Graph generate() {
             int n = order.length;
-            Graph graph = directed ? new Graph(n) : new BidirectionalGraph(n);
+            Graph graph = directed ? new Graph(n) : new UndirectedGraph(n);
             for (int i = 1; i < order.length; i++) {
                 graph.add(gen.edge(order[0], order[i], rnd));
             }

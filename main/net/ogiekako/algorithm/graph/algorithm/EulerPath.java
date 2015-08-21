@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.graph.algorithm;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 
@@ -51,11 +51,11 @@ public class EulerPath {
         }.run(new int[]{source});
     }
 
-    public List<Edge> undirectedEulerPath(BidirectionalGraph graph) {
+    public List<Edge> undirectedEulerPath(UndirectedGraph graph) {
         return undirectedEulerPath(graph, -1);
     }
 
-    private List<Edge> undirectedEulerPath(BidirectionalGraph graph, int source) {
+    private List<Edge> undirectedEulerPath(UndirectedGraph graph, int source) {
         int oddCount = 0;
         for (int v = 0; v < graph.size(); v++) {
             int deg = graph.edges(v).size();

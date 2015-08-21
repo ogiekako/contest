@@ -17,7 +17,7 @@ public class DynamicTreeTester {
                 boolean check = n <= 50;
                 int[] parent = new int[n];
                 Arrays.fill(parent, -1);
-                Graph forest = new BidirectionalGraph(n);
+                Graph forest = new UndirectedGraph(n);
                 int[] query = new int[Q];// link, cut, root
                 int[] xs = new int[Q];
                 int[] ys = new int[Q];

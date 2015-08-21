@@ -2,7 +2,7 @@ package on2014_03.on2014_03_03_.C;
 
 
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
@@ -13,8 +13,8 @@ import java.util.Queue;
 
 public class C {
     public void solve(int testNumber, MyScanner in, MyPrintWriter out) {
-        BidirectionalGraph g1 = read(in);
-        BidirectionalGraph g2 = read(in);
+        UndirectedGraph g1 = read(in);
+        UndirectedGraph g2 = read(in);
         calc(g1);
         int D1 = D, R1 = R;
         calc(g2);
@@ -24,7 +24,7 @@ public class C {
         out.printFormat("%d %d\n", min, max);
     }
     int D, R;
-    private void calc(BidirectionalGraph g) {
+    private void calc(UndirectedGraph g) {
         int n = g.size();
         boolean[] visited = new boolean[n];
         R = Integer.MAX_VALUE;
@@ -54,10 +54,10 @@ public class C {
         }
     }
 
-    private BidirectionalGraph read(MyScanner in) {
+    private UndirectedGraph read(MyScanner in) {
         int n = in.nextInt();
         int m = in.nextInt();
-        BidirectionalGraph g = new BidirectionalGraph(n);
+        UndirectedGraph g = new UndirectedGraph(n);
         for (int i = 0; i < m; i++) {
             int a = in.nextInt();
             int b = in.nextInt();

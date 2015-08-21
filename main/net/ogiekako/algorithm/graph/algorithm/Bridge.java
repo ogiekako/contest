@@ -1,19 +1,19 @@
 package net.ogiekako.algorithm.graph.algorithm;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Bridge {
-    BidirectionalGraph graph;
+    UndirectedGraph graph;
     public int[] cut;
     public Set<Edge> bridges;
     public int[] comp;
     public int numComp;
 
-    public Bridge(BidirectionalGraph graph) {
+    public Bridge(UndirectedGraph graph) {
         this.graph = graph;
     }
 

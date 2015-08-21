@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.graph.problems;
 
 import net.ogiekako.algorithm.graph.*;
-import net.ogiekako.algorithm.graph.algorithm.ShortestPath;
+import net.ogiekako.algorithm.graph.algorithm.Dijkstra;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,7 +22,7 @@ public class Minimize {
         Graph graph = new Graph(n);
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (nei[i][j]) graph.add(new SimpleEdge(i, j));
         Graph rev = GraphUtils.transposed(graph);
-        double[][] dist = ShortestPath.allPairsShortestPath(graph);
+        double[][] dist = Dijkstra.allPairsShortestPath(graph);
         Graph graph2 = new Graph(n * n);
         for (int t = 0; t < n; t++)
             for (int r = 0; r < n; r++) {
@@ -38,6 +38,6 @@ public class Minimize {
                     graph2.add(new WeightedEdge(t * n + r, r * n + t, dist[t][r] - 1));
                 }
             }
-        return (int) ShortestPath.singleSourceShortestPath(graph2, 0)[n + 1] + 1;
+        return (int) new Dijkstra(graph2).sssp(0)[n + 1] + 1;
     }
 }

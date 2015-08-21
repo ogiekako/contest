@@ -9,7 +9,7 @@ public class DynamicTreeNodeTest {
     public static int test_Link_Cut_Root(long seed, int numNodes, int numQuery, DynamicTreeNode[] nodes) {
         int[] parent = new int[numNodes];
         Arrays.fill(parent, -1);
-        Graph forest = new BidirectionalGraph(numNodes);
+        Graph forest = new UndirectedGraph(numNodes);
         Random rnd = new Random(seed);
         int[] query = new int[numQuery];
         int[] x = new int[numQuery];

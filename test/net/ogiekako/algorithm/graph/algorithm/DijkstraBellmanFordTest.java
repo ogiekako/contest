@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Random;
 
-public class ShortestPathTest {
+public class DijkstraBellmanFordTest {
     int[] cnt = new int[3];
 
     @Test
@@ -22,7 +22,13 @@ public class ShortestPathTest {
             public double[] result(Graph graph, Random rnd) {
                 counter++;
                 System.out.println(counter + " " + graph.size() + "  " + GraphUtils.edgeCount(graph));
-                return new ShortestPath(graph).computeDistancesFrom(0);
+
+                boolean hasNegative = false;
+                for(int i=0;i<graph.size();i++){
+                    for(Edge e : graph.edges(i))if(e.cost() < 0)hasNegative=true;
+                }
+
+                return hasNegative ? new BellmanFord(graph).sssp(0) : new Dijkstra(graph).sssp(0);
             }
 
             public void assertCorrect(Graph graph, double[] result) {

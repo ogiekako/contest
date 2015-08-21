@@ -1,17 +1,17 @@
 package net.ogiekako.algorithm.graph.flow;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 public class GlobalMinimumCut {
-    BidirectionalGraph graph;
+    UndirectedGraph graph;
 
-    public GlobalMinimumCut(BidirectionalGraph graph) {
+    public GlobalMinimumCut(UndirectedGraph graph) {
         this.graph = graph;
     }
 
-    public static double globalMinCut(BidirectionalGraph graph) {
+    public static double globalMinCut(UndirectedGraph graph) {
         return new GlobalMinimumCut(graph).compute();
     }
 

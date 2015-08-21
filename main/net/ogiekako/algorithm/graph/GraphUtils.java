@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.graph;
 
 import net.ogiekako.algorithm.graph.algorithm.SCC;
-import net.ogiekako.algorithm.graph.algorithm.ShortestPath;
+import net.ogiekako.algorithm.graph.algorithm.Dijkstra;
 
 /**
  * Graph utility methods whose algorithms are straightforward..
@@ -25,7 +25,7 @@ public class GraphUtils {
     public static int edgeCount(Graph graph) {
         int res = 0;
         for (int i = 0; i < graph.size(); i++) res += graph.edges(i).size();
-        if (graph instanceof BidirectionalGraph) res /= 2;
+        if (graph instanceof UndirectedGraph) res /= 2;
         return res;
     }
 
@@ -42,7 +42,7 @@ public class GraphUtils {
     }
 
     public static boolean reachable(Graph graph, int from, int to) {
-        double distance = ShortestPath.singleSourceShortestPath(graph, from)[to];
+        double distance = new Dijkstra(graph).sssp(from)[to];
         return !Double.isInfinite(distance) && !Double.isNaN(distance);
     }
 }

@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.graph.algorithm;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 
 /**
  * Gomory hu Tree
@@ -11,15 +11,15 @@ import net.ogiekako.algorithm.graph.BidirectionalGraph;
  * Problems: <a href="http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2641">All Pairs Maximum Flow</a> - unsolved
  */
 public class MinimumCutTree {
-    BidirectionalGraph graph;
+    UndirectedGraph graph;
 
-    MinimumCutTree(BidirectionalGraph graph) {
+    MinimumCutTree(UndirectedGraph graph) {
         this.graph = graph;
     }
 
-    public static BidirectionalGraph minCutTree(long[][] capacity) {
+    public static UndirectedGraph minCutTree(long[][] capacity) {
         int n = capacity.length;
-        BidirectionalGraph graph = new BidirectionalGraph(n);
+        UndirectedGraph graph = new UndirectedGraph(n);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < i; j++) {
                 if (capacity[i][j] != capacity[j][i])
@@ -29,11 +29,11 @@ public class MinimumCutTree {
         return new MinimumCutTree(graph).minCutTree();
     }
 
-    BidirectionalGraph minCutTree() {
+    UndirectedGraph minCutTree() {
         int n = graph.size();
         int[] parent = new int[n];
         MaxFlow maxFlow = new MaxFlow(graph);
-        BidirectionalGraph tree = new BidirectionalGraph(n);
+        UndirectedGraph tree = new UndirectedGraph(n);
         for (int u = 1; u < n; u++) {
             double capacity = maxFlow.maxFlow(u, parent[u]);
             tree.addFlow(u, parent[u], capacity);

@@ -1,14 +1,10 @@
 package net.ogiekako.algorithm.graph;
 
 /**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/11
- * Time: 9:37
- * To change this template use File | Settings | File Templates.
+ * Undirected graph.
  */
-public class BidirectionalGraph extends Graph {
-    public BidirectionalGraph(int vertexCount) {
+public class UndirectedGraph extends Graph {
+    public UndirectedGraph(int vertexCount) {
         super(vertexCount);
     }
 
