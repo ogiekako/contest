@@ -1,9 +1,9 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
+import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
-import static java.lang.Math.abs;
-import static java.util.Arrays.fill;
+import java.util.Arrays;
 
 public class LinearSystem {
 
@@ -27,17 +27,17 @@ public class LinearSystem {
             a[i][m] = b[i];
         }
         int[] id = new int[n + 1];
-        fill(id, -1);
+        Arrays.fill(id, -1);
         int rank = 0;
         for (int j = 0; rank < n && j < m; j++) {
             for (int i = rank; i < n; i++) {
-                if (abs(a[i][j]) > abs(a[rank][j])) {
+                if (Math.abs(a[i][j]) > Math.abs(a[rank][j])) {
                     double[] tmp = a[i];
                     a[i] = a[rank];
                     a[rank] = tmp;
                 }
             }
-            if (abs(a[rank][j]) < EPS) continue;
+            if (Math.abs(a[rank][j]) < EPS) continue;
             double inv = 1.0 / a[rank][j];
             for (int k = j; k <= m; k++) a[rank][k] *= inv;
             for (int i = 0; i < n; i++)
@@ -47,7 +47,7 @@ public class LinearSystem {
                 }
             id[rank++] = j;
         }
-        for (int i = rank; i < n; i++) if (abs(a[i][m]) > EPS) return null;
+        for (int i = rank; i < n; i++) if (Math.abs(a[i][m]) > EPS) return null;
         double[][] X = new double[m - rank + 1][m];
         for (int j = 0, k = 0; j < m; j++) {
             if (id[k] == j) {
@@ -67,7 +67,7 @@ public class LinearSystem {
      * Ax = b[i] を満たすxの解空間 = { X[i] + \sum_{j=k} X[j]) } である.
      * O(n (m+k) rank).
      * Aが正則なとき,bを単位行列とすれば,逆行列の転置が返る.
-     * ※ AX=b なるXを求めるわけではないので注意.
+     * ※ AX=b と なるXを求めるわけではないので注意.
      *
      * @param A
      * @param b
@@ -84,17 +84,17 @@ public class LinearSystem {
             for (int j = 0; j < k; j++) a[i][m + j] = b[j][i];
         }
         int[] id = new int[n + 1];
-        fill(id, -1);
+        Arrays.fill(id, -1);
         int rank = 0;
         for (int j = 0; rank < n && j < m; j++) {
             for (int i = rank; i < n; i++) {
-                if (abs(a[i][j]) > abs(a[rank][j])) {
+                if (Math.abs(a[i][j]) > Math.abs(a[rank][j])) {
                     double[] tmp = a[i];
                     a[i] = a[rank];
                     a[rank] = tmp;
                 }
             }
-            if (abs(a[rank][j]) < EPS) continue;
+            if (Math.abs(a[rank][j]) < EPS) continue;
             double inv = 1.0 / a[rank][j];
             for (int j2 = j; j2 < m + k; j2++) a[rank][j2] *= inv;
             for (int i = 0; i < n; i++)
@@ -105,7 +105,7 @@ public class LinearSystem {
             id[rank++] = j;
         }
         double[][] X = new double[k + m - rank][m];
-        for (int i = rank; i < n; i++) for (int j = 0; j < k; j++) if (abs(a[i][m + j]) > EPS) X[j] = null;
+        for (int i = rank; i < n; i++) for (int j = 0; j < k; j++) if (Math.abs(a[i][m + j]) > EPS) X[j] = null;
         for (int j = 0, i = 0; j < m; j++) {
             if (id[i] == j) {
                 for (int l = 0; l < k; l++) if (X[l] != null) X[l][j] = a[i][m + l];
@@ -136,15 +136,12 @@ public class LinearSystem {
     }
 
     /**
-     * 1 + 1 = 0.
-     * A * X[0] = b.
-     * A * X[i] = 0 (i>0)
-     * 体上ならできる.
-     * O(n m rank).
-     *
-     * @param A
-     * @param b
-     * @return
+     * Solve Ax = b.
+     * <p/>
+     * Returns null if there is no solution.
+     * Otherwise returns X such that x = X[0] + sum_{i>0} ci X[i] is a solution for any ci.
+     * <p/>
+     * O(n m rank(A)), where n = |A| (the number of the constraints) and m = |A[0]| (the number of the variables).
      */
     public static boolean[][] solutionSpace(boolean[][] A, boolean[] b) {
         int n = A.length, m = A[0].length;
@@ -196,6 +193,67 @@ public class LinearSystem {
     }
 
     /**
+     * Solve Ax = b (mod `modPrime').
+     * <p/>
+     * Returns null if there is no solution.
+     * Otherwise returns X such that x = X[0] + sum_{i>0} ci X[i] is a solution for any ci.
+     * <p/>
+     * O(n m rank(A)), where n = |A| (the number of the constraints) and m = |A[0]| (the number of the variables).
+     * <p/>
+     * <p>
+     * Verified: TCO13 R2A 600
+     * </p>
+     */
+    public static int[][] solutionSpace(int[][] A, int[] b, int modPrime) {
+        int n = A.length, m = A[0].length;
+        if (b.length != n) throw new IllegalArgumentException();
+        long[][] a = new long[n][m + 1];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) a[i][j] = A[i][j];
+            a[i][m] = b[i];
+        }
+        int[] id = new int[n + 1];
+        Arrays.fill(id, -1);
+        int rank = 0;
+        for (int j = 0; rank < n && j < m; j++) {
+            // Avoid / by zero.
+            for (int i = rank; i < n; i++) {
+                if (a[i][j] > a[rank][j]) {
+                    long[] tmp = a[i];
+                    a[i] = a[rank];
+                    a[rank] = tmp;
+                }
+            }
+            if (a[rank][j] == 0) continue;
+            long inv = MathUtils.inverse(a[rank][j], modPrime);
+            for (int k = j; k <= m; k++) a[rank][k] = a[rank][k] * inv % modPrime;
+            for (int i = 0; i < n; i++) {
+                if (i == rank) continue;
+                long d = a[i][j];
+                for (int k = j; k <= m; k++) {
+                    a[i][k] -= d * a[rank][k] % modPrime;
+                    if (a[i][k] < 0) a[i][k] += modPrime;
+                }
+            }
+            id[rank++] = j;
+        }
+        for (int i = rank; i < n; i++) if (a[i][m] > 0) return null;
+        int[][] X = new int[m - rank + 1][m];
+        for (int j = 0, k = 0; j < m; j++) {
+            if (id[k] == j) {
+                X[0][j] = (int) a[k++][m];
+            } else {
+                X[j - k + 1][j] = 1;
+                for (int i = 0; i < k; i++) {
+                    long v = a[i][j] == 0 ? 0 : modPrime - a[i][j];
+                    X[j - k + 1][id[i]] = (int) v;
+                }
+            }
+        }
+        return X;
+    }
+
+    /**
      * @param bitVector - bit vector representing rows of boolean matrix
      * @param n         - #vector used for gauss elimination
      * @param order     - the order of bits used for gauss elimination
@@ -229,6 +287,7 @@ public class LinearSystem {
     public static long[] gaussFromHighest(long[] bitVector, int n) {
         return gauss(bitVector, n, ArrayUtils.createReversedOrder(n));
     }
+
     public static long[] gaussFromLowest(long[] bitVector, int n) {
         return gauss(bitVector, n, ArrayUtils.createOrder(n));
     }

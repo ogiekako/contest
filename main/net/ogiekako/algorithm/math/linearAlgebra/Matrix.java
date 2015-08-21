@@ -5,14 +5,12 @@ import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.PowerOperation;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
-import net.ogiekako.algorithm.utils.interfaces.NoCojacInstrumentation;
 
 import java.util.Arrays;
 
 /*
 - [[A 0][E E]]^n の左下に E+A+A^2+... + A^n-1 がでてくる
 */
-@NoCojacInstrumentation
 public class Matrix {
     // Av % MOD
     // MOD * MOD < Long.MAX_VALUE
@@ -134,10 +132,21 @@ public class Matrix {
     }
 
     public static long[] mul(long[][] A, long[] v) {
+        if (v.length == 0) return new long[A.length];
         int n = A.length, m = A[0].length;
         if (v.length != m) throw new IllegalArgumentException();
         long[] Av = new long[n];
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) Av[i] += A[i][j] * v[j];
+        return Av;
+    }
+
+    // TCO13 2A 600
+    public static int[] mul(int[][] A, int[] v, int mod) {
+        if (v.length == 0) return new int[A.length];
+        int n = A.length, m = A[0].length;
+        if (v.length != m) throw new IllegalArgumentException();
+        int[] Av = new int[n];
+        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) Av[i] = (int) ((Av[i] + (long) A[i][j] * v[j]) % mod);
         return Av;
     }
 
@@ -211,6 +220,17 @@ public class Matrix {
             for (int j = 0; j < m; j++)
                 for (int k = 0; k < r; k++) {
                     C[i][j] += A[i][k] * B[k][j];
+                }
+        return C;
+    }
+
+    public static int[][] mul(int[][] A, int[][] B, int mod) {
+        int n = A.length, r = A[0].length, m = B[0].length;
+        int[][] C = new int[n][m];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                for (int k = 0; k < r; k++) {
+                    C[i][j] = (int) ((C[i][j] + (long) A[i][k] * B[k][j]) % mod);
                 }
         return C;
     }
