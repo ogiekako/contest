@@ -1,0 +1,37 @@
+5 TSort
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+28 6 6
+0 1
+1 2
+3 1
+3 4
+4 5
+5 2
+
+11 3
+4
+5
+0
+1
+2
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+42 on2015_08.on2015_08_21_AOJ_GRL.TSort.TSort
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2015.08.21
+7 AOJ GRL
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

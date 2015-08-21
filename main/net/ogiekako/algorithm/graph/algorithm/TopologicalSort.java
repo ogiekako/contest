@@ -26,7 +26,9 @@ public class TopologicalSort {
      * Returns null if there is a cycle.
      * Otherwise returns an array u such that for any edge (u[i], u[j]), i < j holds.
      * <p>
-     * Verified: TCO13 2B 500
+     * Verified:
+     * - TCO13 2B 500
+     * - AOJ Topological Sort: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_4_B
      * </p>
      */
     public int[] sortedOrder() {
