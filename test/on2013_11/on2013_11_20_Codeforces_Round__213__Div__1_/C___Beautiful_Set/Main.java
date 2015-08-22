@@ -9,7 +9,7 @@ public class Main {
     @Test
     @Ignore("WA")
     public void test() throws Exception {
-        if (!NewTester.test("java/test/on2013_11/on2013_11_20_Codeforces_Round__213__Div__1_/C___Beautiful_Set/C - Beautiful Set.task"))
+        if (!NewTester.test("test/on2013_11/on2013_11_20_Codeforces_Round__213__Div__1_/C___Beautiful_Set/C - Beautiful Set.task"))
             Assert.fail();
     }
 }

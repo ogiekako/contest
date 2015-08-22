@@ -5,7 +5,7 @@ package on2013_06.on2013_06_04_TopCoder_SRM__581.SurveillanceSystem;
 public class Main {
 //    @Test
 //    public void test() throws Exception {
-//        if (!NewTopCoderTester.test("java/test/on2013_06/on2013_06_04_TopCoder_SRM__581/SurveillanceSystem/SurveillanceSystem.tctask"))
+//        if (!NewTopCoderTester.test("test/on2013_06/on2013_06_04_TopCoder_SRM__581/SurveillanceSystem/SurveillanceSystem.tctask"))
 //            Assert.fail();
 //    }
 }

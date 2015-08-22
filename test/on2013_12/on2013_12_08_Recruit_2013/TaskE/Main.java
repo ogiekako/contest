@@ -9,7 +9,7 @@ public class Main {
     @Test
     @Ignore("WA")
     public void test() throws Exception {
-        if (!NewTester.test("java/test/on2013_12/on2013_12_08_Recruit_2013/TaskE/TaskE.task"))
+        if (!NewTester.test("test/on2013_12/on2013_12_08_Recruit_2013/TaskE/TaskE.task"))
             Assert.fail();
     }
 }

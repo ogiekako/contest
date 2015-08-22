@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Main {
     @Test
     public void test() throws Exception {
-        if (!NewTopCoderTester.test("java/test/on2014_10/on2014_10_24_Single_Round_Match_637/GreaterGame/GreaterGame.tctask"))
+        if (!NewTopCoderTester.test("test/on2014_10/on2014_10_24_Single_Round_Match_637/GreaterGame/GreaterGame.tctask"))
             Assert.fail();
     }
 }

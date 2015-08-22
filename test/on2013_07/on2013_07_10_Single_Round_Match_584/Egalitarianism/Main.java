@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Main {
     @Test
     public void test() throws Exception {
-        if (!NewTopCoderTester.test("java/test/on2013_07/on2013_07_10_Single_Round_Match_584/Egalitarianism/Egalitarianism.tctask"))
+        if (!NewTopCoderTester.test("test/on2013_07/on2013_07_10_Single_Round_Match_584/Egalitarianism/Egalitarianism.tctask"))
             Assert.fail();
     }
 }

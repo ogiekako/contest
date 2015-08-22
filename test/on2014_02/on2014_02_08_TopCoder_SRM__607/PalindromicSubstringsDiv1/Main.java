@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Main {
     @Test
     public void test() throws Exception {
-        if (!NewTopCoderTester.test("java/test/on2014_02/on2014_02_08_TopCoder_SRM__607/PalindromicSubstringsDiv1/PalindromicSubstringsDiv1.tctask"))
+        if (!NewTopCoderTester.test("test/on2014_02/on2014_02_08_TopCoder_SRM__607/PalindromicSubstringsDiv1/PalindromicSubstringsDiv1.tctask"))
             Assert.fail();
     }
 }
