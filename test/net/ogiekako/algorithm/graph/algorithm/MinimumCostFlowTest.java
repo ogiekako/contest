@@ -24,7 +24,7 @@ public class MinimumCostFlowTest {
             public Long result(Graph graph, Random rnd) {
                 counter++;
                 MinimumCostFlow flow = new MinimumCostFlow(graph);
-                return flow.minimumCostCirculation();
+                return (long)flow.minimumCostCirculation();
             }
 
             public void assertCorrect(Graph graph, Long result) {
@@ -77,7 +77,7 @@ public class MinimumCostFlowTest {
                 for (int v = 0; v < graph.size(); v++)
                     for (Edge e : graph.edges(v)) if (e instanceof FlowEdge) addCost += e.flow() * e.cost();
                 MinimumCostFlow minimumCostFlow = new MinimumCostFlow(graph);
-                long res = minimumCostFlow.minimumCostFlow(source, sink, flow);
+                long res = (long)minimumCostFlow.minimumCostFlow(source, sink, flow);
                 if (res == Long.MAX_VALUE) return res;
                 return addCost + res;
             }
