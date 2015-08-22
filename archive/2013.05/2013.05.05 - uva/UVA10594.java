@@ -1,6 +1,6 @@
 package src;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
 import net.ogiekako.algorithm.io.MyPrintWriter;
@@ -24,7 +24,7 @@ public class UVA10594 {
             cost[i] = in.nextInt();
         }
         int D = in.nextInt(), K = in.nextInt();
-        Graph graph = new BidirectionalGraph(N);
+        Graph graph = new UndirectedGraph(N);
         for (int i = 0; i < M; i++) graph.addFlow(x[i], y[i], K, cost[i]);
         long result = MinimumCostFlow.minimumCostFlow(graph, 0, N - 1, D);
         if (result == Long.MAX_VALUE) out.printFormat("Impossible.\n");

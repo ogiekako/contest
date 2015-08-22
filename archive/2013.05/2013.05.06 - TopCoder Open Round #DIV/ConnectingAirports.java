@@ -29,7 +29,7 @@ public class ConnectingAirports {
                     graph.remove(edge[i][j]);
                     res[i] += '0';
                 } else {
-                    long flow = MaxFlow.maxFlow(graph, i, n + j, 1);
+                    long flow = new MaxFlow(graph).maxFlow(i, n + j, 1);
                     if (flow == 0) {
                         res[i] += '1';
                     } else {

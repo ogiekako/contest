@@ -15,8 +15,9 @@ public class UVA11594 {
         Graph graph = MinimumCutTree.minCutTree(cap);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) {
-                long flow = MaxFlow.maxFlow(graph, i, j);
-                MaxFlow.maxFlow(graph, j, i, flow);
+                MaxFlow maxFlow = new MaxFlow(graph);
+                long flow = maxFlow.maxFlow(i, j);
+                maxFlow.maxFlow(j, i, flow);
                 if (flow == Long.MAX_VALUE) flow = 0;
                 out.printFormat("%d%c", flow, j == n - 1 ? '\n' : ' ');
             }

@@ -1,6 +1,6 @@
 package src;
 
-import net.ogiekako.algorithm.graph.BidirectionalGraph;
+import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.denseGraph.BipartiteGraphAlgorithm;
@@ -26,7 +26,7 @@ public class DeerInZooDivOne {
             for (int i = 0; i < a.length; i++) if (delete != i) same[a[i]][b[i]] = same[b[i]][a[i]] = true;
             for (int k = 0; k < n; k++)
                 for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) same[i][j] |= same[i][k] && same[k][j];
-            tree = new BidirectionalGraph(n);
+            tree = new UndirectedGraph(n);
             for (int i = 0; i < a.length; i++) if (delete != i) tree.add(a[i], b[i]);
             int size = 0;
             for (int i = 0; i < n; i++) if (same[0][i]) size++;
