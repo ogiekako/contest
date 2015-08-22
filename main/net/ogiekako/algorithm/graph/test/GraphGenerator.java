@@ -16,6 +16,8 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class GraphGenerator {
+    private static Random RANDOM = new Random(1240810487107L);
+
     public static final GraphGenerator ACYCLIC = new GraphGenerator() {
         @Override
         public boolean isValid(Graph graph) {
@@ -45,7 +47,7 @@ public abstract class GraphGenerator {
     public abstract boolean isValid(Graph graph);
 
     public Graph generate(int vertexCount, int edgeCount) {
-        return generate(vertexCount, edgeCount, new Random());
+        return generate(vertexCount, edgeCount, RANDOM);
     }
 
     public Graph generate(int vertexCount, int edgeCount, Random rnd) {

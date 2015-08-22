@@ -3,13 +3,8 @@ package net.ogiekako.algorithm.graph.problems;
 import net.ogiekako.algorithm.graph.*;
 import net.ogiekako.algorithm.graph.algorithm.Dijkstra;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 3:03
- * To change this template use File | Settings | File Templates.
- */
+import java.util.Arrays;
+
 public class Minimize {
     /*
     0 -> 1 -> 0 と旅をする時に, 通らなければならない頂点数の最小を返す.
@@ -34,7 +29,7 @@ public class Minimize {
                     long weight = e.to() == t ? 0 : 1;
                     graph2.add(new WeightedEdge(t * n + r, t * n + e.to(), weight));
                 }
-                if (r != t && dist[t][r] < Long.MAX_VALUE) {
+                if (r != t && dist[t][r] < Double.POSITIVE_INFINITY) {
                     graph2.add(new WeightedEdge(t * n + r, r * n + t, dist[t][r] - 1));
                 }
             }

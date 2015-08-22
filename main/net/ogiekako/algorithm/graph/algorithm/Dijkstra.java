@@ -8,20 +8,21 @@ import java.util.PriorityQueue;
 
 public class Dijkstra {
     Graph graph;
-    double[] distance;
     boolean[] visited;
     int n;
 
     public Dijkstra(Graph graph) {
         this.graph = graph;
         n = graph.size();
-        distance = new double[n];
         visited = new boolean[n];
     }
 
     /**
      * res[i][i] = 0.
      * O(nm log m)
+     * <p>
+     *     Verified: Test for minVertexToTrip010
+     * </p>
      */
     public static double[][] allPairsShortestPath(Graph graph) {
         int n = graph.size();
@@ -35,22 +36,21 @@ public class Dijkstra {
 
     /**
      * Compute SSSP (single source shorted path) from the given source.
+     * res[v] is Double.POSITIVE_INFINITY if there is no path from source to v.
+     * Otherwise res[v] is the distance from the source to v.
      * The graph shouldn't contain any negative-weighted edge.
-     * <p/>
-     * Referred: http://www.columbia.edu/~cs2035/courses/ieor6614.S12/sp.pdf
-     *
-     * @param source source
-     * @return minimum distances from the source. If there is unreachable vertex, Double.POSITIVE_INFINITY is filled for
-     * the vertex.
-     * <p/>
+     * <p>
+     * Referred to: http://www.columbia.edu/~cs2035/courses/ieor6614.S12/sp.pdf
+     * </p>
      * <p>
      * Verified:
      * - TCO 14 R2C 500 (unweighted)
-     * - AOJ Single Source Shorted Path http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
+     * - AOJ Single Source Shortest Path http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
      * </p>
      */
     public double[] sssp(int source) {
         Arrays.fill(visited, false);
+        double[] distance = new double[n];
         Arrays.fill(distance, Double.POSITIVE_INFINITY);
         distance[source] = 0;
 
