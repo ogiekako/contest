@@ -11,7 +11,7 @@ public class ClosestRabbit {
     public double getExpected(String[] board, int r) {
         double res = 0;
         int h = board.length, w = board[0].length();
-        List<Integer> xs = new ArrayList<>(), ys = new ArrayList<>();
+        List<Integer> xs = new ArrayList<Integer>(), ys = new ArrayList<Integer>();
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 if (board[i].charAt(j) == '.') {

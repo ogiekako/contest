@@ -16,13 +16,13 @@ public class RBTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         if (from < 0 || from > size) throw new IllegalArgumentException(size + " " + from);
         if (to < 0 || to > size) throw new IllegalArgumentException(size + " " + to);
         PersistentRedBlackTree<E> left = PersistentRedBlackTree.split(root, to).first;
-        return new RBTreeSet<>(PersistentRedBlackTree.split(left, from).second);
+        return new RBTreeSet<E>(PersistentRedBlackTree.split(left, from).second);
     }
 
     @Override
     public Iterator<E> iterator() {
         if (root == null) return Collections.emptyIterator();
-        return new MyIterator<>(root);
+        return new MyIterator<E>(root);
     }
 
     @SuppressWarnings({"unchecked", "SuspiciousToArrayCall", "NullableProblems"})
@@ -90,7 +90,7 @@ public class RBTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object o) {
-        TreeSet<E> set = new TreeSet<>();
+        TreeSet<E> set = new TreeSet<E>();
         for (E e : this) set.add(e);
         return set.equals(o);
     }
@@ -102,7 +102,7 @@ public class RBTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         return PersistentRedBlackTree.split(root, size - 1).second.entry;
     }
     public RBTreeSet<E> copy() {
-        return new RBTreeSet<>(root);
+        return new RBTreeSet<E>(root);
     }
 
     private static class MyIterator<E> implements Iterator<E> {
@@ -111,7 +111,7 @@ public class RBTreeSet<E extends Comparable<E>> extends AbstractSet<E> implement
         E next;
         private MyIterator(PersistentRedBlackTree<E> root) {
             current = root;
-            ancestors = new Stack<>();
+            ancestors = new Stack<PersistentRedBlackTree<E>>();
             while (current.l != null) {
                 ancestors.push(current);
                 current = current.l;

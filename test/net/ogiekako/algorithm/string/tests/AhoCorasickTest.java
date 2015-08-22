@@ -40,7 +40,7 @@ public class AhoCorasickTest {
             ac.construct(patterns);
             final ArrayList<String>[] lists = new ArrayList[str.length()];
             for (int j = 0; j < lists.length; j++) {
-                lists[j] = new ArrayList<>();
+                lists[j] = new ArrayList<String>();
             }
             for (int k = 0; k < lists.length; k++) lists[k] = new ArrayList<String>();
             ac.match(str, new Function<Pair<Integer, PersistentLinkedList<String>>, Void>() {
@@ -66,7 +66,7 @@ public class AhoCorasickTest {
     private ArrayList<String>[] calcStupid(String[] patterns, String str) {
         ArrayList<String>[] lists = new ArrayList[str.length()];
         for (int i = 0; i < lists.length; i++) {
-            lists[i] = new ArrayList<>();
+            lists[i] = new ArrayList<String>();
         }
         for (int i = 0; i < lists.length; i++) {
             lists[i] = new ArrayList<String>();

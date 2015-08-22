@@ -19,7 +19,7 @@ public class Egalitarianism2 {
     public double minStdev(int[] x, int[] y) {
         int n = x.length;
         D = new double[n][n];
-        dists = new ArrayList<>();
+        dists = new ArrayList<E>();
         for (int i = 0; i < n; i++)
             for (int j = 0; j < i; j++) {
                 D[i][j] = D[j][i] = dist(x, y, i, j);
@@ -41,7 +41,7 @@ public class Egalitarianism2 {
     }
     private double calc(int[] x, int[] y, double ave) {
         int n = x.length;
-        List<E> dists = new ArrayList<>();
+        List<E> dists = new ArrayList<E>();
         for (int i = 0; i < n; i++)
             for (int j = 0; j < i; j++) dists.add(new E(i, j, Math.abs(D[i][j] - ave)));
         Collections.sort(dists);

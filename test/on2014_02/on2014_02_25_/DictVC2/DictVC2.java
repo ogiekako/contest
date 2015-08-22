@@ -48,7 +48,7 @@ public class DictVC2 {
                 dag[c].fix(i % 2 == 1 ? Place.LEFT : Place.RIGHT);
             }
         }
-        List<Integer> res = new ArrayList<>();
+        List<Integer> res = new ArrayList<Integer>();
         for (Vertex c : dag) {
             for (int v : c.indices) {
                 if (1 <= v && v <= n + n) {
@@ -68,9 +68,9 @@ public class DictVC2 {
     }
 
     class Vertex {
-        Set<Vertex> es = new HashSet<>();
-        Set<Vertex> rs = new HashSet<>();
-        List<Integer> indices = new ArrayList<>();
+        Set<Vertex> es = new HashSet<Vertex>();
+        Set<Vertex> rs = new HashSet<Vertex>();
+        List<Integer> indices = new ArrayList<Integer>();
         Place place = null;
         void fix(Place p) {
 //            debug("fix", p, indices, es ,rs);
@@ -94,7 +94,7 @@ public class DictVC2 {
     }
 
     private boolean[] computeVC(Graph g) {
-        Queue<Integer> que = new LinkedList<>();
+        Queue<Integer> que = new LinkedList<Integer>();
         que.offer(s);
         boolean[] reachable = new boolean[n + n + 2];
         while (!que.isEmpty()) {

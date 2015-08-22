@@ -13,14 +13,14 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
     RBTreeSet<Integer> X = newSetInstance();// [0,n)
     RBTreeSet<Integer> R = newSetInstance();
     RBTreeSet<Integer> L = newSetInstance(); // [n, 3n) set of labels
-    Map<E, RBTreeSet<Integer>> PPlus = new HashMap<>();//
-    Map<E, RBTreeSet<Integer>> PMinus = new HashMap<>();
+    Map<E, RBTreeSet<Integer>> PPlus = new HashMap<E, RBTreeSet<Integer>>();//
+    Map<E, RBTreeSet<Integer>> PMinus = new HashMap<E, RBTreeSet<Integer>>();
     int[] l_; // l_v = the label of the cluster that v belongs to if v∈ V', -1 otherwise.
-    Map<Integer, RBTreeSet<Integer>> C = new HashMap<>();
+    Map<Integer, RBTreeSet<Integer>> C = new HashMap<Integer, RBTreeSet<Integer>>();
     _UndirectedGraph H = new _UndirectedGraph();
 
     RBTreeSet<Integer> newSetInstance() {
-        return new RBTreeSet<>();
+        return new RBTreeSet<Integer>();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
         Assert.assertTrue(R.contains(u));
         int l = l_[u];
         Assert.assertTrue(L.contains(l));
-        List<Integer> N = new ArrayList<>(H.N(l));
+        List<Integer> N = new ArrayList<Integer>(H.N(l));
         for (int y : N) { // y is adjacent to the cluster Cl.
             Assert.assertTrue(X.contains(y));
             E e = E.of(y, l);
@@ -169,7 +169,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
                 assertValidCondition();
             }
         }
-        for (int x : new ArrayList<>(X))
+        for (int x : new ArrayList<Integer>(X))
             if (VPrimeSet.contains(x) && !XPrime.contains(x)) {
                 moveToR(x);
                 assertValidCondition();
@@ -240,7 +240,7 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
 
     private List<Integer> getAny(Collection<Integer> collection, int k) {
         int count = 0;
-        List<Integer> set = new ArrayList<>();
+        List<Integer> set = new ArrayList<Integer>();
         for (int value : collection) {
             if (count >= k) break;
             set.add(value);
@@ -299,8 +299,8 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
         }
 
         // PPlus and PMinus are valid
-        Map<E, Set<Integer>> expectedPPlus = new HashMap<>();
-        Map<E, Set<Integer>> expectedPMinus = new HashMap<>();
+        Map<E, Set<Integer>> expectedPPlus = new HashMap<E, Set<Integer>>();
+        Map<E, Set<Integer>> expectedPMinus = new HashMap<E, Set<Integer>>();
         for (int x : X)
             for (int l : H.N(x)) {
                 E e = E.of(x, l);

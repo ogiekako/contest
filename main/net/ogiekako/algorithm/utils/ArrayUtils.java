@@ -11,7 +11,7 @@ public class ArrayUtils {
 
     public static <T> T[] createArray(int length, T[] sampleArray) {
         T[] empty = Arrays.copyOf(sampleArray, 0);
-        List<T> list = new ArrayList<>();
+        List<T> list = new ArrayList<T>();
         for (int i = 0; i < length; i++) {
             list.add(null);
         }
@@ -48,7 +48,7 @@ public class ArrayUtils {
             ids[i] = id;
 //            counts[id]++;
         }
-        List<List<T>> idToEntryList = new ArrayList<>();
+        List<List<T>> idToEntryList = new ArrayList<List<T>>();
 //        T[][] idToEntries = createArray(keys.length);
         for (int i = 0; i < keys.length; i++) {
             idToEntryList.add(new ArrayList<T>());
@@ -60,7 +60,7 @@ public class ArrayUtils {
             idToEntryList.get(id).add(entries[i]);
 //            idToEntries[id][counts[id]++] = entries[i];
         }
-        List<T[]> result1 = new ArrayList<>();
+        List<T[]> result1 = new ArrayList<T[]>();
         for (int i = 0; i < idToEntryList.size(); i++) {
             result1.add((T[]) idToEntryList.get(0).toArray((T[]) new Object[0]));
         }
@@ -375,7 +375,7 @@ public class ArrayUtils {
         @SuppressWarnings("unchecked")
         Pair<Integer, Integer>[] res = Arrays.copyOf(new Pair[0], array.length);
         for (int i = 0; i < res.length; i++) {
-            res[i] = new Pair<>(array[i], i);
+            res[i] = new Pair<Integer, Integer>(array[i], i);
         }
         return res;
     }
@@ -628,7 +628,7 @@ public class ArrayUtils {
     }
 
     public static void sortBy(int[] a, int[] b) {
-        List<Pair<Integer, Integer>> ps = new ArrayList<>();
+        List<Pair<Integer, Integer>> ps = new ArrayList<Pair<Integer, Integer>>();
         for (int i = 0; i < a.length; i++) ps.add(Pair.of(a[i], b[i]));
         Collections.sort(ps);
         for (int i = 0; i < a.length; i++) {

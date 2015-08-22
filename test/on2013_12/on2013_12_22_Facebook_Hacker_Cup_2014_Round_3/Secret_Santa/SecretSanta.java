@@ -67,7 +67,7 @@ public class SecretSanta {
     }
     public static void main(String[] args) {
         int all = 0;
-        List<int[]> probs = new ArrayList<>();
+        List<int[]> probs = new ArrayList<int[]>();
         for (int a4 = 0; a4 <= 25; a4++)
             for (int a3 = 0; a3 <= 100; a3++)
                 for (int a2 = 0; a2 <= 50; a2++)

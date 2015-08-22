@@ -17,7 +17,7 @@ public class FindPolygons {
         }
         int res3 = Integer.MAX_VALUE;
         List<P>[] ps = new ArrayList[L / 2 + 1];
-        for (int i = 0; i < ps.length; i++) ps[i] = new ArrayList<>();
+        for (int i = 0; i < ps.length; i++) ps[i] = new ArrayList<P>();
         for (int x = 0; x <= L / 2; x++)
             for (int y = 0; y <= L / 2; y++) {
                 if (x == 0 && y == 0) continue;
@@ -115,7 +115,7 @@ public class FindPolygons {
         }
         int res3 = Integer.MAX_VALUE;
         List<P>[] ps = new ArrayList[L+1];
-        for (int i = 0; i < ps.length; i++) ps[i] = new ArrayList<>();
+        for (int i = 0; i < ps.length; i++) ps[i] = new ArrayList<P>();
         for (int x = 0; x <= L; x++)
             for (int y = 0; y <= L; y++) {
                 if (x == 0 && y == 0) continue;

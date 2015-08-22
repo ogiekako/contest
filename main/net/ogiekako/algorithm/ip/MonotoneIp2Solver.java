@@ -25,7 +25,7 @@ public class MonotoneIp2Solver {
 
     long[] u;
     LongToDouble[] w;
-    List<Constraint> constraints = new ArrayList<>();
+    List<Constraint> constraints = new ArrayList<Constraint>();
 
     /**
      * The initial objective function is:

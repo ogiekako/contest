@@ -145,7 +145,7 @@ public class Block3Checkers {
         return 0;
     }
     private void bfs(V s) {
-        Queue<V> que = new LinkedList<>();
+        Queue<V> que = new LinkedList<V>();
         que.offer(s);
         s.visited = ++counter;
         s.level = 0;
@@ -173,7 +173,7 @@ public class Block3Checkers {
     }
 
     class V {
-        List<E> es = new ArrayList<>();
+        List<E> es = new ArrayList<E>();
         int visited;
         int level;
         int pos;

@@ -52,7 +52,7 @@ public class BoardFolding {
 
     private int solve(char[][] map) {
         int n = map.length, m = map[0].length;
-        Map<String, Integer> toInt = new HashMap<>();
+        Map<String, Integer> toInt = new HashMap<String, Integer>();
         int p = 0;
         int[] row = new int[n];
         for (int i = 0; i < n; i++) {

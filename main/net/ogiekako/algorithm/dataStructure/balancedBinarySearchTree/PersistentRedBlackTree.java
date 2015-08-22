@@ -126,14 +126,14 @@ public class PersistentRedBlackTree<E> {
     }
 
     private static <E> Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> splitSub(PersistentRedBlackTree<E> a, int k) {
-        if (k <= 0) return new Pair<>(null, a);
-        if (k >= a.size) return new Pair<>(a, null);
+        if (k <= 0) return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(null, a);
+        if (k >= a.size) return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(a, null);
         if (a.l.size >= k) {
             Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = splitSub(a.l, k);
-            return new Pair<>(p.first, mergeAsList(p.second, a.r));
+            return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(p.first, mergeAsList(p.second, a.r));
         } else {
             Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>> p = split(a.r, k - a.l.size);
-            return new Pair<>(mergeAsList(a.l, p.first), p.second);
+            return new Pair<PersistentRedBlackTree<E>, PersistentRedBlackTree<E>>(mergeAsList(a.l, p.first), p.second);
         }
     }
 

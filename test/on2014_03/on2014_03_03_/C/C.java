@@ -30,7 +30,7 @@ public class C {
         R = Integer.MAX_VALUE;
         D = 0;
         for (int i = 0; i < n; i++) {
-            Queue<Integer> que = new LinkedList<>();
+            Queue<Integer> que = new LinkedList<Integer>();
             Arrays.fill(visited, false);
             visited[i] = true;
             que.offer(i);

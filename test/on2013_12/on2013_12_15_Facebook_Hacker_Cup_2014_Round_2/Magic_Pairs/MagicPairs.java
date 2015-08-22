@@ -19,7 +19,7 @@ public class MagicPairs {
     }
     private long solve(long[] A, long[] B) {
         int N = A.length, M = B.length;
-        TreeSet<Long> setA = new TreeSet<>(), setB = new TreeSet<>(), onlyA = new TreeSet<>(), onlyB = new TreeSet<>();
+        TreeSet<Long> setA = new TreeSet<Long>(), setB = new TreeSet<Long>(), onlyA = new TreeSet<Long>(), onlyB = new TreeSet<Long>();
         long res = 0;
         for (int i = 0, j = 0; i < N || j < M; ) {
             if (onlyA.isEmpty() && onlyB.isEmpty()) {
@@ -73,8 +73,8 @@ public class MagicPairs {
             long res = new MagicPairs().solve(A,B);
             long exp = 0;
             for(int i=0;i<N;i++)for(int j=0;j<M;j++){
-                Set<Long> set1 = new TreeSet<>();
-                Set<Long> set2 = new TreeSet<>();
+                Set<Long> set1 = new TreeSet<Long>();
+                Set<Long> set2 = new TreeSet<Long>();
                 for(int k=0;k<=i;k++)set1.add(A[k]);
                 for(int k=0;k<=j;k++)set2.add(B[k]);
                 if(set1.equals(set2))exp++;

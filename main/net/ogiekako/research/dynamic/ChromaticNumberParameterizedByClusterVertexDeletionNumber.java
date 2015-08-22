@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 public class ChromaticNumberParameterizedByClusterVertexDeletionNumber implements DynamicGraphAlgorithm {
     _UndirectedGraph G = new _UndirectedGraph();
-    Set<Integer> X = new HashSet<>();
+    Set<Integer> X = new HashSet<Integer>();
 
     @Override
     public void init(int n) {

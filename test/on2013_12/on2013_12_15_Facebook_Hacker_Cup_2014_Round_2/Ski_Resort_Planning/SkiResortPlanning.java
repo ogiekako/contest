@@ -35,7 +35,7 @@ public class SkiResortPlanning {
         //noinspection unchecked
         G = new List[N];
         for (int i = 0; i < N; i++) {
-            G[i] = new ArrayList<>();
+            G[i] = new ArrayList<Integer>();
         }
         pow2 = new long[N + 1];
         for (int i = 0; i < N + 1; i++) {

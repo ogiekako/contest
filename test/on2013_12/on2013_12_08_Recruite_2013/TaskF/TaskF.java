@@ -22,7 +22,7 @@ public class TaskF {
                         uf.union(c - 'a', d - 'a');
                     }
             }
-            List<String> is = new ArrayList<>();
+            List<String> is = new ArrayList<String>();
             for(int i=0;i<26;i++)if(uf.root(i) == i){
                 String s = "";
                 for (int j = 0; j < 26; j++) {

@@ -27,7 +27,7 @@ public class LongSeat {
         this.weight = width;
         canSit = new boolean[n];
         canStand = new boolean[n];
-        sitting = new LinkedList<>();
+        sitting = new LinkedList<Integer>();
         dfs();
         String[] res = new String[n];
         for (int i = 0; i < n; i++) {
@@ -79,7 +79,7 @@ public class LongSeat {
         for (int i = 0; i < n; i++) {
             if (sitting.contains(i)) continue;
             int w = weight[i];
-            List<Integer> sub = new LinkedList<>();
+            List<Integer> sub = new LinkedList<Integer>();
             for (int x : sitting) if (x < i) sub.add(x);
 
             if (sub.isEmpty() && w <= L) return false;

@@ -18,8 +18,8 @@ public class RBTreeSetTest {
         init();
     }
     void init() {
-        expected = new TreeSet<>();
-        actual = new RBTreeSet<>();
+        expected = new TreeSet<Integer>();
+        actual = new RBTreeSet<Integer>();
         rnd = new Random(1240192840L);
         assertSame = true;
     }

@@ -9,7 +9,7 @@ public class _UndirectedGraph {
         this.n = n;
         G = new HashSet[n];
         for (int i = 0; i < n; i++) {
-            G[i] = new HashSet<>();
+            G[i] = new HashSet<Integer>();
         }
     }
     public int d(int v) {
@@ -43,7 +43,7 @@ public class _UndirectedGraph {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (int u = 0; u < n; u++) {
-            List<Integer> Nu = new ArrayList<>();
+            List<Integer> Nu = new ArrayList<Integer>();
             for (int v : G[u])
                 if (u < v) {
                     Nu.add(v);

@@ -43,7 +43,7 @@ public class RhoSequence {
     public long calcSumOfMinOfAllSubrange(long length) {
         if (head + period > length || head == 0 && period + period > length) {
             long res = 0;
-            Pair<Integer, Integer>[] ps = ArrayUtils.createArray((int) length, new Pair[]{new Pair<>(0, 0)});
+            Pair<Integer, Integer>[] ps = ArrayUtils.createArray((int) length, new Pair[]{new Pair<Integer, Integer>(0, 0)});
             for (int i = 0; i < length; i++) {
                 int value = i < head ? S[i] : S[head + (i - head) % period];
                 ps[i] = new Pair<Integer, Integer>(value, i);

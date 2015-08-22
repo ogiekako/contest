@@ -13,10 +13,9 @@ public class LinearSystem {
      * <p/>
      * O(n m rank).
      *
-     * @param A
-     * @param b
-     * @param EPS
-     * @return
+     * <p>
+     *     Verified: AOJ1095 KND Factory
+     * </p>
      */
     public static double[][] solutionSpace(double[][] A, double[] b, double EPS) {
         int n = A.length, m = A[0].length;

@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class GreaterGame {
     public double calc(int[] hand, int[] sothe) {
-        Set<Integer> rest = new HashSet<>();
+        Set<Integer> rest = new HashSet<Integer>();
         int n = hand.length;
         for (int i = 1; i <= n * 2; i++) rest.add(i);
         for (int h : hand) rest.remove(h);

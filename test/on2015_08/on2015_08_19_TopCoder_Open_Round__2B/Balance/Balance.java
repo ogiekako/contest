@@ -20,7 +20,7 @@ public class Balance {
     }
 
     private String str(List<Integer>[] tree, int root) {
-        List<String> cs = new ArrayList<>();
+        List<String> cs = new ArrayList<String>();
         for (int c : tree[root]) {
             cs.add(str(tree, c));
         }
@@ -63,7 +63,7 @@ public class Balance {
         }
         List<Integer>[] cs = new List[m];
         for (int i = 0; i < m; i++) {
-            cs[i] = new ArrayList<>();
+            cs[i] = new ArrayList<Integer>();
         }
         for (int i = 1; i < m; i++) {
             cs[parents[i]].add(i);

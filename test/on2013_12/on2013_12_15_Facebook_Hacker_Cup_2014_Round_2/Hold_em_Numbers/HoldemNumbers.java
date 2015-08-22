@@ -107,7 +107,7 @@ public class HoldemNumbers {
 //                                for(int g=1;g<=N;g++)
 //                                    for(int h=1;h<=N;h++) {
                             {
-                                Set<Integer> set = new TreeSet<>();
+                                Set<Integer> set = new TreeSet<Integer>();
                                 set.add(a);
                                 set.add(b);
                                 set.add(c);

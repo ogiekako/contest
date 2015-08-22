@@ -38,12 +38,12 @@ public class NarrowPassage {
         // 1
         for (int l = 0; l < n; l++) {
             for (int r = l + 1; r <= n; r++) {
-                Set<Integer> L1 = new TreeSet<>();
-                Set<Integer> L2 = new TreeSet<>();
-                List<Integer> M1 = new ArrayList<>();
-                List<Integer> M2 = new ArrayList<>();
-                Set<Integer> R1 = new TreeSet<>();
-                Set<Integer> R2 = new TreeSet<>();
+                Set<Integer> L1 = new TreeSet<Integer>();
+                Set<Integer> L2 = new TreeSet<Integer>();
+                List<Integer> M1 = new ArrayList<Integer>();
+                List<Integer> M2 = new ArrayList<Integer>();
+                Set<Integer> R1 = new TreeSet<Integer>();
+                Set<Integer> R2 = new TreeSet<Integer>();
                 int val = 0;
                 for (int i = 0; i < l; i++) {
                     L1.add(E1[i].id);
@@ -68,10 +68,10 @@ public class NarrowPassage {
         // 2
         for (int s1 = 0; s1 <= n; s1++) {
             for (int s2 = 0; s2 <= n; s2++) {
-                Set<Integer> L1 = new TreeSet<>();
-                Set<Integer> L2 = new TreeSet<>();
-                Set<Integer> R1 = new TreeSet<>();
-                Set<Integer> R2 = new TreeSet<>();
+                Set<Integer> L1 = new TreeSet<Integer>();
+                Set<Integer> L2 = new TreeSet<Integer>();
+                Set<Integer> R1 = new TreeSet<Integer>();
+                Set<Integer> R2 = new TreeSet<Integer>();
                 int val = 0;
                 for (int i = 0; i < s1; i++) {
                     L1.add(E1[i].id);

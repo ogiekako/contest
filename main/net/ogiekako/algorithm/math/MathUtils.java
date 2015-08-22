@@ -385,7 +385,7 @@ public class MathUtils {
         return res;
     }
     public static long[] divisors(long n) { // SRM603B
-        List<Long> res = new ArrayList<>();
+        List<Long> res = new ArrayList<Long>();
         for (long d = 1; d * d <= n; d++)
             if (n % d == 0) {
                 res.add(d);
@@ -396,7 +396,7 @@ public class MathUtils {
     }
 
     public static int mobius(long n, boolean memoize) {  // SRM603B
-        if (memoize && memoMobius == null) memoMobius = new HashMap<>();
+        if (memoize && memoMobius == null) memoMobius = new HashMap<Long, Integer>();
         return mobius(n, 2, memoize);
     }
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class PathGame {
-    HashMap<K, Integer> memo = new HashMap<>();
+    HashMap<K, Integer> memo = new HashMap<K, Integer>();
     Random r = new Random(1212L);
 
     public static void main(String[] args) {

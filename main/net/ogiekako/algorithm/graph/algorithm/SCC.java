@@ -58,7 +58,7 @@ public class SCC {
     private static int index;
     public static int[] scc(Graph graph) {
         Graph rGraph = GraphUtils.transposed(graph);
-        Stack<Integer> order = new Stack<>();
+        Stack<Integer> order = new Stack<Integer>();
         int n = graph.size();
         boolean[] visited = new boolean[n];
         for (int i = 0; i < n; i++) if (!visited[i]) dfs(i, graph, visited, order);
@@ -158,6 +158,6 @@ public class SCC {
     public static Pair<int[], int[][]> sccWithComponents(Graph graph) {
         int[] comp = sccNonRecursive(graph);
         int[][] res = ArrayUtils.classify(comp);
-        return new Pair<>(comp, res);
+        return new Pair<int[], int[][]>(comp, res);
     }
 }

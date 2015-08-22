@@ -62,7 +62,7 @@ public class TaskG {
                 }
 
             }
-            PriorityQueue<E> que = new PriorityQueue<>();
+            PriorityQueue<E> que = new PriorityQueue<E>();
             UnionFind uf = new UnionFind(p);
             for (int i = 0; i < p; i++) {
                 for (int j = 0; j < p; j++) {

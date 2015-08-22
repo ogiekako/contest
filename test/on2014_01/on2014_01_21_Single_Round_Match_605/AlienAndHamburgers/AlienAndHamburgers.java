@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 public class AlienAndHamburgers {
     public int getNumber(int[] type, int[] taste) {
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
         for (int i = 0; i < type.length; i++) {
             if (!map.containsKey(type[i])) map.put(type[i], new ArrayList<Integer>());
             map.get(type[i]).add(taste[i]);
             Collections.sort(map.get(type[i]));
         }
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<Integer>();
         for (List<Integer> l : map.values()) {
             if (l.get(l.size() - 1) < 0) list.add(l.get(l.size() - 1));
             else {
