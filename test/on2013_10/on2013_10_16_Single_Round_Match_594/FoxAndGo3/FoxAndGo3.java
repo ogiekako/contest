@@ -93,7 +93,7 @@ public class FoxAndGo3 {
                     }
                 }
             }
-        res -= (int) MaxFlow.maxFlow(graph, s, t);
+        res -= (int) new MaxFlow(graph).maxFlow(s, t);
         return res;
     }
 

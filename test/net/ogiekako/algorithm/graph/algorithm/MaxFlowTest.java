@@ -20,12 +20,12 @@ public class MaxFlowTest {
             public Double result(Graph graph, Random rnd) {
                 source = 0;
                 sink = graph.size() - 1;
-                return MaxFlow.maxFlow(graph, source, sink);
+                return new MaxFlow(graph).maxFlow(source, sink);
             }
 
             public void assertCorrect(Graph graph, Double result) {
                 if (GraphUtils.edgeCount(graph) > 100000) return;
-                double reversed = MaxFlow.maxFlow(graph, sink, source, result);
+                double reversed = new MaxFlow(graph).maxFlow(sink, source, result);
                 Assert.assertEquals(result, reversed, 1e-9);
                 double exp = fordFulkerson(graph, source, sink);
                 Assert.assertEquals(exp, result, 1e-9);

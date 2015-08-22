@@ -3,6 +3,7 @@ package on_2012.on2012_4_11.poj1459_maxflow_powernetwork;
 
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.io.MyScanner;
 
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class POJ1459_MaxFlow_PowerNetwork {
             int cap = Integer.valueOf(ss[2]);
             graph.add(new FlowEdge(1 + from, 1 + n, cap));
         }
-        double res = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, 0, 1 + n);
+        double res = new MaxFlow(graph).maxFlow(0, 1 + n);
         out.println(Math.round(res));
     }
 }

@@ -3,10 +3,7 @@ package net.ogiekako.algorithm.graph.algorithm;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class MaxFlow {
     /*
@@ -45,8 +42,8 @@ Long: 1469MS
 Double: 1313MS だったので、double で統一して良さそう。
 
  */
-    Graph graph;
-    int n;
+    final Graph graph;
+    final int n;
     int[] level, visited;
     int source, sink;
     double limit;
@@ -55,38 +52,27 @@ Double: 1313MS だったので、double で統一して良さそう。
 
     public MaxFlow(Graph graph) {
         this.graph = graph;
+        n = graph.size();
     }
 
     /**
-     * Solve max flow.
+     * Solve maximum flow problem in O(n^2 m) time with Dinic's algorithm.
      * Returns Double.POSITIVE_INFINITY if the answer is unbounded.
-     */
-    public static double maxFlow(Graph graph, int s, int t) {
-        return maxFlow(graph, s, t, Double.POSITIVE_INFINITY);
-    }
-
-    /**
-     * Solve max flow with limitation.
-     * Returns {@code limit} if the answer is more than that.
-     */
-    public static double maxFlow(Graph graph, int s, int t, double limit) {
-        return new MaxFlow(graph).maxFlow(s, t, limit);
-    }
-
-    /**
-     * Solve max flow.
-     * Returns Double.POSITIVE_INFINITY if the answer is unbounded.
+     * <p>Verified: PKU 3155 (Maximum Density Subgraph) (double)</p>
      */
     public double maxFlow(int source, int sink) {
         return maxFlow(source, sink, Double.POSITIVE_INFINITY);
     }
 
+    /**
+     * Solve maximum flow with a limit in O(n^2 m) time with Dinic's algorithm.
+     * Returns `limit' if it is possible to supply more than `limit' of flow from the source to the sink.
+     */
     public double maxFlow(int _source, int _sink, double _limit) {
         source = _source;
         sink = _sink;
         limit = _limit;
         if (source == sink) return limit;
-        n = graph.size();
         level = new int[n];
         visited = new int[n];
         iterators = new EdgeIterator[n];
@@ -198,5 +184,31 @@ Double: 1313MS だったので、double で統一して良さそう。
             if (last == null) last = iterator.next();
             return last;
         }
+    }
+
+    /**
+     * Utility function to get all reachable vertices from the given source, where edges with no residue are impassable.
+     * A typical usage is to use this after a max flow computation.
+     * <p>O(m)</p>
+     * <p>Verified: PKU3155 (Maximum Density Subgraph)</p>
+     */
+    public List<Integer> getReachableVerticesFrom(int source) {
+        boolean[] visited = new boolean[n];
+        Queue<Integer> que = new LinkedList<Integer>();
+        visited[source] = true;
+        que.offer(source);
+        while (!que.isEmpty()) {
+            for (Edge e : graph.edges(que.poll())) {
+                if (e.residue() <= 0) continue;
+                if (visited[e.to()]) continue;
+                visited[e.to()] = true;
+                que.offer(e.to());
+            }
+        }
+        List<Integer> res = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            if (visited[i]) res.add(i);
+        }
+        return res;
     }
 }

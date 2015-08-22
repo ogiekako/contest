@@ -26,7 +26,7 @@ public class OldBridges {
         graph.add(new FlowEdge(s, b1, 2 * bn));
         graph.add(new FlowEdge(a2, t, 2 * an));
         graph.add(new FlowEdge(b2, t, 2 * bn));
-        return MaxFlow.maxFlow(graph, s, t) >= 2 * (an + bn);
+        return new MaxFlow(graph).maxFlow(s, t) >= 2 * (an + bn);
     }
 }
 

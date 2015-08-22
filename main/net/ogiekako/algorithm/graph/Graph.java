@@ -71,8 +71,13 @@ public class Graph {
 
     @Override
     public String toString() {
+        StringBuilder es = new StringBuilder();
+        for (int i = 0; i < vertexCount; i++) {
+            es.append(edges(i));
+            es.append('\n');
+        }
         return "Graph{" +
-                "edges=" + (edges == null ? null : Arrays.asList(edges)) +
+                "edges=" + es +
                 '}';
     }
 

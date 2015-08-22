@@ -37,7 +37,7 @@ public class MinimumCutTreeTest {
                         graph.addFlow(a[k], b[k], (int) cap[a[k]][b[k]]);
                         graph.addFlow(b[k], a[k], (int) cap[b[k]][a[k]]);
                     }
-                    flow[i][j] = MaxFlow.maxFlow(graph, i, j);
+                    flow[i][j] = new MaxFlow(graph).maxFlow(i, j);
                 }
             long start = System.currentTimeMillis();
             Graph graph = MinimumCutTree.minCutTree(cap);
@@ -47,8 +47,9 @@ public class MinimumCutTreeTest {
             double[][] result = new double[n][n];
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++) {
-                    result[i][j] = MaxFlow.maxFlow(graph, i, j);
-                    MaxFlow.maxFlow(graph, j, i, result[i][j]);
+                    MaxFlow maxFlow = new MaxFlow(graph);
+                    result[i][j] = maxFlow.maxFlow(i, j);
+                    maxFlow.maxFlow(j, i, result[i][j]);
                 }
             for (int i = 0; i < n; i++) {
                 assertArrayEquals("" + i, flow[i], result[i], 1e-9);

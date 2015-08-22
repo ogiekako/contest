@@ -5,6 +5,7 @@ package on_2012.on2012_5_26.foxandcake;
 
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 
 import java.util.Arrays;
 import java.util.TreeSet;
@@ -45,7 +46,7 @@ public class FoxAndCake {
             g.add(new FlowEdge(S, sx * m + sy, 1));
             g.add(new FlowEdge(n * m + tx * m + ty, T, 1));
         }
-        int res = (int) net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(g, S, T);
+        int res = (int) new MaxFlow(g).maxFlow(S, T);
         System.err.println(res);
         return res == 3 ? "Yes" : "No";
     }

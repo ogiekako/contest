@@ -4,6 +4,7 @@ import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import org.junit.Test;
 
@@ -27,9 +28,10 @@ public class GlobalMinimumCutTest {
                 double exp = Double.POSITIVE_INFINITY;
                 for (int s = 0; s < graph.size(); s++)
                     for (int t = 0; t < s; t++) {
-                        double flow = net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, s, t);
+                        MaxFlow maxFlow = new MaxFlow(graph);
+                        double flow = maxFlow.maxFlow(s, t);
                         exp = Math.min(exp, flow);
-                        net.ogiekako.algorithm.graph.algorithm.MaxFlow.maxFlow(graph, t, s, flow);// make a circular flow
+                        maxFlow.maxFlow(t, s, flow);// make a circular flow
                     }
                 Assert.assertEquals(exp, result, 1e-9);
             }

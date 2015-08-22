@@ -22,7 +22,7 @@ public class ConnectingAirports {
         Edge[][] edge = new Edge[n][m];
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) edge[i][j] = new FlowEdge(i, n + j, 1);
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.add(edge[i][j]);
-        double maxFlow = MaxFlow.maxFlow(graph, source, sink);
+        double maxFlow = new MaxFlow(graph).maxFlow(source, sink);
         if (maxFlow < S - 1e-9) return new String[0];
         String[] res = new String[n];
         for (int i = 0; i < n; i++) res[i] = "";
@@ -32,7 +32,7 @@ public class ConnectingAirports {
                     graph.remove(edge[i][j]);
                     res[i] += '0';
                 } else {
-                    double flow = MaxFlow.maxFlow(graph, i, n + j, 1);
+                    double flow = new MaxFlow(graph).maxFlow(i, n + j, 1);
                     if (flow < 1e-9) {
                         res[i] += '1';
                     } else {

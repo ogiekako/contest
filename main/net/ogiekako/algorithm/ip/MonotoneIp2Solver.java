@@ -167,7 +167,7 @@ public class MonotoneIp2Solver {
                 }
             }
         }
-        return MaxFlow.maxFlow(graph, source, sink) + res;
+        return new MaxFlow(graph).maxFlow(source, sink) + res;
     }
 
     private double solveMinCostFlow() {

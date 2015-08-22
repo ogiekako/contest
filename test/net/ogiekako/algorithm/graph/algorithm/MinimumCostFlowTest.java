@@ -71,8 +71,8 @@ public class MinimumCostFlowTest {
                 flow = rnd.nextInt(T);
                 source = 0;
                 sink = graph.size() - 1;
-                maxFlow = MaxFlow.maxFlow(graph, source, sink);
-                MaxFlow.maxFlow(graph, sink, source, maxFlow);
+                maxFlow = new MaxFlow(graph).maxFlow(source, sink);
+                new MaxFlow(graph).maxFlow(sink, source, maxFlow);
                 long addCost = 0;
                 for (int v = 0; v < graph.size(); v++)
                     for (Edge e : graph.edges(v)) if (e instanceof FlowEdge) addCost += e.flow() * e.cost();
@@ -104,7 +104,7 @@ public class MinimumCostFlowTest {
                             if (e.to() == source) sending -= e.flow();
                         }
                 if (result == Long.MAX_VALUE) {
-                    double restFlow = MaxFlow.maxFlow(graph, source, sink);
+                    double restFlow =new MaxFlow(graph).maxFlow(source, sink);
                     Assert.assertEquals(0.0, restFlow, 1e-9);
                     Assert.assertTrue(maxFlow < flow);
                     return;

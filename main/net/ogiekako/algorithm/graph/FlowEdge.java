@@ -62,7 +62,11 @@ public class FlowEdge extends SimpleEdge {
 
     @Override
     public String toString() {
-        return String.format("%d->%d(%f/%f,%f)", from(), to(), flow(), flow() + residue(), cost());
+        return str(this);
+    }
+
+    private static String str(Edge e) {
+        return String.format("%d->%d(%.2f/%.2f,%.2f)", e.from(), e.to(), e.flow(), e.flow() + e.residue(), e.cost());
     }
 
     private class ReverseEdge implements Edge {
@@ -104,7 +108,7 @@ public class FlowEdge extends SimpleEdge {
 
         @Override
         public String toString() {
-            return String.format("%d->%d(%d/%d,%d)", from(), to(), flow(), flow() + residue(), cost());
+            return str(this);
         }
     }
 }

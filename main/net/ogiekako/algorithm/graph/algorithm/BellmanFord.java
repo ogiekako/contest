@@ -76,8 +76,9 @@ public class BellmanFord {
      * <p>
      * O(VE)
      * </p>
-     * verified: http://utpc2013.contest.atcoder.jp/tasks/utpc2013_08 592ms
-     * <p/>
+     * <p>
+     * Verified: http://utpc2013.contest.atcoder.jp/tasks/utpc2013_08 592ms
+     * </p>
      */
     public boolean hasNegativeCycle() {
         Arrays.fill(distance, 0);
