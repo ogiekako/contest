@@ -44,16 +44,15 @@ public class BipartiteGraphAlgorithm {
         int source = n + m, sink = source + 1;
         for (int i = 0; i < n; i++) graph.addFlow(source, i, 1., 0.);
         for (int j = 0; j < m; j++) graph.addFlow(n + j, sink, 1., 0.);
-        graph.addFlow(sink, source, Math.max(n, m), 0);
         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) graph.addFlow(i, n + j, 1, -costs[i][j]);
-        return -MinimumCostFlow.minimumCostCirculation(graph);
+        return - (long) new MinimumCostFlow(graph).primalDual(source, sink, Math.min(n,m));
     }
 
     // SRM 491(C)
     public static double minimumCostMatching(double[][] graph, int k) {
         if (graph.length == 0) return 0;
         int n = graph.length, m = graph[0].length;
-        GraphD graphD = new GraphD(n + m + 2);
+        Graph G = new Graph(n + m + 2);
         int source = n + m, sink = source + 1;
         for (int i = 0; i < n; i++) {
 //            graphD.add(new FlowEdge());

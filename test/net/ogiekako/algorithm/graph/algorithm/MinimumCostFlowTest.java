@@ -1,4 +1,5 @@
 package net.ogiekako.algorithm.graph.algorithm;
+
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
+
 public class MinimumCostFlowTest {
     static void debug(Object... os) {
         System.out.println(Arrays.deepToString(os));
@@ -63,9 +65,7 @@ public class MinimumCostFlowTest {
             int counter = -1;
             long flow;
             int T = (int) 1e6;
-            int source
-                    ,
-                    sink;
+            int source, sink;
             double maxFlow;
 
             public Long result(Graph graph, Random rnd) {
@@ -79,9 +79,9 @@ public class MinimumCostFlowTest {
                 for (int v = 0; v < graph.size(); v++)
                     for (Edge e : graph.edges(v)) if (e instanceof FlowEdge) addCost += e.flow() * e.cost();
                 MinimumCostFlow minimumCostFlow = new MinimumCostFlow(graph);
-                double res = minimumCostFlow.minimumCostFlow(source, sink, flow);
+                double res = minimumCostFlow.negativeCancellation(source, sink, flow);
                 if (res == Double.POSITIVE_INFINITY) return Long.MAX_VALUE;
-                return (long)(addCost + res);
+                return (long) (addCost + res);
             }
 
             public void assertCorrect(Graph graph, Long result) {
@@ -106,7 +106,7 @@ public class MinimumCostFlowTest {
                             if (e.to() == source) sending -= e.flow();
                         }
                 if (result == Long.MAX_VALUE) {
-                    double restFlow =new MaxFlow(graph).maxFlow(source, sink);
+                    double restFlow = new MaxFlow(graph).maxFlow(source, sink);
                     Assert.assertEquals(0.0, restFlow, 1e-9);
                     Assert.assertTrue(maxFlow < flow);
                     return;

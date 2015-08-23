@@ -34,8 +34,8 @@ public class StoryFromTCO {
                 graph.addFlow(i, n + i, 1, 0);
             }
         }
-        long cost = MinimumCostFlow.minimumCostFlow(graph, s, t, n);
-        return cost == Long.MAX_VALUE ? -1 : (int) cost;
+        double cost = new MinimumCostFlow(graph).primalDual(s, t, (long) n);
+        return cost == Double.POSITIVE_INFINITY ? -1 : (int) cost;
     }
 
     private void run() {

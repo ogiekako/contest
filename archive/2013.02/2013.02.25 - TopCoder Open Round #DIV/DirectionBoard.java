@@ -26,7 +26,7 @@ public class DirectionBoard {
                 graph.addFlow(source, here * 2, 1, 0);
                 graph.addFlow(here * 2 + 1, sink, 1, 0);
             }
-        long res = MinimumCostFlow.minimumCostFlow(graph, source, sink, size);
+        long res = new MinimumCostFlow(graph).primalDual(source, sink, (long) size);
         return res == Long.MAX_VALUE ? -1 : (int) res;
     }
 }

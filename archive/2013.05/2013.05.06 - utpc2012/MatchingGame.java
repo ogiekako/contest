@@ -22,7 +22,7 @@ public class MatchingGame {
             }
         }
         for (int i = 0; i < d; i++) graph.addFlow(source, store + i, in.nextInt(), 0);
-        long cost = MinimumCostFlow.minimumCostFlow(graph, source, sink, n);
+        long cost = new MinimumCostFlow(graph).primalDual(source, sink, (long) n);
         int res = cost == Long.MAX_VALUE ? -1 : (int) cost;
         out.println(res);
     }

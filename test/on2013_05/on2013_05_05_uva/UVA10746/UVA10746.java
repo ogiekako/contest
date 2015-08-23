@@ -19,7 +19,7 @@ public class UVA10746 {
                 long cost = Math.round(in.nextDouble() * 100);
                 graph.addFlow(i, N + j, 1, cost);
             }
-        long cost = MinimumCostFlow.minimumCostFlow(graph, source, sink, N);
+        double cost = new MinimumCostFlow(graph).primalDual(source, sink, (long) N);
         double res = cost / 100.0 / N + 1e-6;
         out.printFormat("%.2f\n", res);
     }

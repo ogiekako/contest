@@ -31,6 +31,6 @@ public class PKU2195 {
                 graph.addFlow(i, n + j, 1, distance);
             }
         }
-        out.println(MinimumCostFlow.minimumCostFlow(graph, source, sink, n));
+        out.println(new MinimumCostFlow(graph).primalDual(source, sink, (long) n));
     }
 }

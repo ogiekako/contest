@@ -8,7 +8,6 @@ import net.ogiekako.algorithm.utils.Pair;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Random;
 
 /**
  * <pre>
@@ -38,6 +37,8 @@ public class MinimumCostFlow {
     double[] potential;
     double cost;
     Edge[] path;
+    double totalCost;
+    double totalFlow;
 
     public MinimumCostFlow(Graph _graph) {
         this.graph = _graph;
@@ -45,26 +46,9 @@ public class MinimumCostFlow {
         supply = new double[n];
     }
 
-    // returns Long.MAX_VALUE if impossible
-    // Deprecated. Use new MinimumCostFlow(graph).minimumCostFlow(...).
-    public static long minimumCostFlow(Graph graph, int source, int sink, long flow) {
-        // TOOD: Don't cast to long.
-        return (long) new MinimumCostFlow(graph).minimumCostFlow(source, sink, flow);
-    }
-
-    // Deprecated. Use new MinimumCostFlow(graph).minimumCostFlow(...).
-    public static long minimumCostCirculation(Graph graph) {
-        return (long) new MinimumCostFlow(graph).minimumCostCirculation();
-    }
-
-    public double minimumCostFlow(int source, int sink) {
-        return minimumCostFlow(source, sink, Long.MAX_VALUE);
-    }
-
-    // returns Double.POSITIVE_INFINITY if impossible
-    public double minimumCostFlow(int source, int sink, long flow) {
-        supply[source] += flow;
-        supply[sink] -= flow;
+    public double negativeCancellation(int s, int t, double flow) {
+        supply[s] += flow;
+        supply[t] -= flow;
         return minimumCostCirculation();
     }
 
@@ -126,10 +110,19 @@ public class MinimumCostFlow {
         e.pushFlow(e.residue());
     }
 
+    public double getFlow() {
+        return totalFlow;
+    }
+
+    public double getCost() {
+        return totalCost;
+    }
+
     /**
      * Graph shouldn't contain a negative cycle.
-     * Returns Double.POSITIVE_INFINITY if it's not possible to send `flow' amount of flow.
-     * Otherwise returns the minimum cost.
+     * Returns the minimum cost or Double.POSITIVE_INFINITY if it's not possible to send `flow' amount of flow.
+     * getMaxflow() and getCost() can be used after this method is called for getting the maximum flow sent
+     * and the minimum cost for the flow.
      * <p/>
      * This method computes the result as follows:
      * - Run Bellman Ford algorithm once to compute initial potentials, which takes O(nm) time.
@@ -142,7 +135,8 @@ public class MinimumCostFlow {
      */
     public double primalDual(final int s, final int t, double flow) {
         double[] potential = calcInitialPotential(s);
-        double res = 0;
+        totalCost = 0;
+        totalFlow = 0;
         while (flow > 0) {
             boolean[] visited = new boolean[n];
             double[] costs = new double[n];
@@ -179,12 +173,13 @@ public class MinimumCostFlow {
                 min = Math.min(min, e.residue());
             }
             for (Edge e = prev[t]; e != null; e = prev[e.from()]) {
-                res += e.cost() * min;
+                totalCost += e.cost() * min;
                 e.pushFlow(min);
             }
             flow -= min;
+            totalFlow += min;
         }
-        return res;
+        return totalCost;
     }
 
     class Entry implements Comparable<Entry> {

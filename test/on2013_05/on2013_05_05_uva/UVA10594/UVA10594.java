@@ -27,8 +27,8 @@ public class UVA10594 {
         int D = in.nextInt(), K = in.nextInt();
         Graph graph = new UndirectedGraph(N);
         for (int i = 0; i < M; i++) graph.addFlow(x[i], y[i], (double) K, (double) cost[i]);
-        long result = MinimumCostFlow.minimumCostFlow(graph, 0, N - 1, D);
-        if (result == Long.MAX_VALUE) out.printFormat("Impossible.\n");
-        else out.printFormat("%d\n", result);
+        double result = new MinimumCostFlow(graph).primalDual(0, N - 1, (long) D);
+        if (result == Double.POSITIVE_INFINITY) out.printFormat("Impossible.\n");
+        else out.printFormat("%d\n", (long)result);
     }
 }
