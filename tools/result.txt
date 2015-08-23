@@ -1,0 +1,388 @@
+Round	目標順位	目標得点	初期得点	実施日時	アーカイブ
+TCO10 Qual 1	20	247.76	250?	2010-05-02 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14294
+TCO10 Qual 1	20	463.58	500	2010-05-02 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14294
+TCO10 Qual 1	20	461.42	1000	2010-05-02 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14294
+TCO10 Qual 2	20	236.09	250	2010-05-12 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14277
+TCO10 Qual 2	20	395.58	500	2010-05-12 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14277
+TCO10 Qual 2	20	581.56	1000	2010-05-12 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14277
+TCO10 Qual 3	20	245.87	250	2010-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14278
+TCO10 Qual 3	20	437.17	500	2010-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14278
+TCO10 Qual 3	20	719.9	1000	2010-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14278
+TCO10 Round 1	20	247.81	250	2010-06-19 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14279
+TCO10 Round 1	20	431.46	500	2010-06-19 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14279
+TCO10 Round 1	20	691.24	1000	2010-06-19 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14279
+TCO10 Round 2	20	240.86	250	2010-06-26 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14280
+TCO10 Round 2	20	446.74	500	2010-06-26 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14280
+TCO10 Round 2	20	0.0	1000	2010-06-26 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14280
+TCO10 Round 3	75	177.1	250	2010-07-10 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14281
+TCO10 Round 3	75	0.0	500	2010-07-10 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14281
+TCO10 Round 3	75	0.0	1000	2010-07-10 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14281
+TCO10 Round 4	30	239.01	250	2010-07-24 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14282
+TCO10 Round 4	30	0.0	500	2010-07-24 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14282
+TCO10 Round 4	30	0.0	1000	2010-07-24 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14282
+TCO10 Round 5	12	173.02	250	2010-08-07 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14283
+TCO10 Round 5	12	0.0	500	2010-08-07 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14283
+TCO10 Round 5	12	0.0	1000?	2010-08-07 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14283
+TCO10 Semi 1	12	0.0	250	2010-10-13 12:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14284
+TCO10 Semi 1	10	0.0	500?	2010-10-13 12:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14284
+TCO10 Semi 1	7	0.0	1000?	2010-10-13 12:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14284
+TCO10 Semi 2	12	0.0	250?	2010-10-13 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14285
+TCO10 Semi 2	11	0.0	500?	2010-10-13 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14285
+TCO10 Semi 2	11	0.0	1000?	2010-10-13 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14285
+TCO10 Wildcard	8	122.99	250?	2010-10-13 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14286
+TCO10 Wildcard	8	0.0	535	2010-10-13 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14286
+TCO10 Wildcard	7	0.0	1000?	2010-10-13 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14286
+TCO10 Final	8	0.0	250?	2010-10-14 16:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14287
+TCO10 Final	8	0.0	500?	2010-10-14 16:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14287
+TCO10 Final	8	0.0	1000?	2010-10-14 16:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14287
+TCO11 Qual 1	20	246.86	250	2011-05-14 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14524
+TCO11 Qual 1	20	473.36	500	2011-05-14 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14524
+TCO11 Qual 1	20	300.0	1000	2011-05-14 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14524
+TCO11 Qual 2	20	247.22	250	2011-05-19 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14530
+TCO11 Qual 2	20	445.75	500	2011-05-19 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14530
+TCO11 Qual 2	20	524.21	1000	2011-05-19 07:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14530
+TCO11 Qual 3	20	246.56	250	2011-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14531
+TCO11 Qual 3	20	464.64	500	2011-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14531
+TCO11 Qual 3	20	753.04	1000	2011-05-24 21:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14531
+TCO11 Round 1	20	247.39	250	2011-06-18 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14560
+TCO11 Round 1	20	461.93	500	2011-06-18 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14560
+TCO11 Round 1	20	610.78	1000	2011-06-18 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14560
+TCO11 Round 2	20	244.21	250	2011-06-25 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14566
+TCO11 Round 2	20	252.47	500	2011-06-25 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14566
+TCO11 Round 2	20	0.0	1000	2011-06-25 12:02	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14566
+TCO11 Round 3	75	184.77	250	2011-07-09 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14567
+TCO11 Round 3	75	0.0	500	2011-07-09 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14567
+TCO11 Round 3	75	0.0	1000	2011-07-09 12:02	http://community.topcoder.com/stat?c=round_overview&er=75&rd=14567
+TCO11 Round 4	30	247.83	300	2011-07-23 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14568
+TCO11 Round 4	30	215.81	500	2011-07-23 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14568
+TCO11 Round 4	30	0.0	1000?	2011-07-23 12:02	http://community.topcoder.com/stat?c=round_overview&er=30&rd=14568
+TCO11 Round 5	12	215.25	250	2011-08-06 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14569
+TCO11 Round 5	12	190.77	500	2011-08-06 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14569
+TCO11 Round 5	12	0.0	1000?	2011-08-06 12:02	http://community.topcoder.com/stat?c=round_overview&er=12&rd=14569
+TCO11 Semifinal 1	12	0.0	250?	2011-09-27 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14649
+TCO11 Semifinal 1	12	0.0	500?	2011-09-27 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14649
+TCO11 Semifinal 1	12	0.0	1075	2011-09-27 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14649
+TCO11 Semifinal 2	12	0.0	250?	2011-09-27 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14650
+TCO11 Semifinal 2	12	0.0	645	2011-09-27 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14650
+TCO11 Semifinal 2	11	0.0	1000?	2011-09-27 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14650
+TCO11 Wildcard Round	8	134.5	250?	2011-09-27 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14651
+TCO11 Wildcard Round	8	0.0	500?	2011-09-27 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14651
+TCO11 Wildcard Round	7	0.0	1000?	2011-09-27 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14651
+TCO11 Championship Round	8	0.0	250?	2011-09-28 13:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14655
+TCO11 Championship Round	6	0.0	500?	2011-09-28 13:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14655
+TCO11 Championship Round	8	0.0	1000?	2011-09-28 13:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=14655
+TCO12 Round 1A	20	237.04	250	2012-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15090
+TCO12 Round 1A	20	479.3	500	2012-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15090
+TCO12 Round 1A	20	548.54	1000	2012-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15090
+TCO12 Round 1B	20	243.8	250	2012-04-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15091
+TCO12 Round 1B	20	449.43	500	2012-04-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15091
+TCO12 Round 1B	20	772.43	1000	2012-04-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15091
+TCO12 Round 1C	20	243.67	250	2012-04-14 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15092
+TCO12 Round 1C	20	439.55	500	2012-04-14 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15092
+TCO12 Round 1C	20	828.47	1000	2012-04-14 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15092
+TCO12 Round 2A	25	268.89	300	2012-04-21 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15093
+TCO12 Round 2A	25	237.29	450	2012-04-21 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15093
+TCO12 Round 2A	25	0.0	1000	2012-04-21 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15093
+TCO12 Round 2B	25	260.89	300	2012-05-12 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15094
+TCO12 Round 2B	25	358.43	550	2012-05-12 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15094
+TCO12 Round 2B	25	0.0	900	2012-05-12 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15094
+Round 2C	20	246.83	300	2012-06-02 12:20	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15095
+Round 2C	20	332.21	500	2012-06-02 12:20	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15095
+Round 2C	20	568.78	900	2012-06-02 12:20	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15095
+TCO12 Round 3A	6	228.09	250	2012-06-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15096
+TCO12 Round 3A	6	419.25	600	2012-06-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15096
+TCO12 Round 3A	6	0.0	1000	2012-06-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15096
+TCO12 Round 3B	6	199.97	300	2012-07-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15097
+TCO12 Round 3B	6	290.48	500	2012-07-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15097
+TCO12 Round 3B	6	0.0	1000?	2012-07-07 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15097
+TCO12 Semifinal 1	12	0.0	250?	2012-10-02 09:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15150
+TCO12 Semifinal 1	11	0.0	500?	2012-10-02 09:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15150
+TCO12 Semifinal 1	10	0.0	1000?	2012-10-02 09:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15150
+TCO12 Semifinal 2	11	0.0	250?	2012-10-02 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15151
+TCO12 Semifinal 2	11	0.0	535	2012-10-02 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15151
+TCO12 Semifinal 2	11	0.0	1020	2012-10-02 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15151
+TCO12 Wildcard Round	8	0.0	250?	2012-10-02 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15152
+TCO12 Wildcard Round	7	0.0	500?	2012-10-02 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15152
+TCO12 Wildcard Round	8	0.0	1000?	2012-10-02 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15152
+TCO12 Championship Round	7	0.0	250?	2012-10-03 13:40	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15378
+TCO12 Championship Round	7	0.0	500?	2012-10-03 13:40	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15378
+TCO12 Championship Round	6	0.0	1000?	2012-10-03 13:40	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15378
+TCO13 Round 1A	20	248.04	250	2013-02-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15571
+TCO13 Round 1A	20	412.86	500	2013-02-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15571
+TCO13 Round 1A	20	657.51	1000	2013-02-23 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15571
+TCO13 Round 1B	20	248.45	250	2013-03-02 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15580
+TCO13 Round 1B	20	461.86	500	2013-03-02 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15580
+TCO13 Round 1B	20	866.68	1000	2013-03-02 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15580
+TCO13 Round 1C	20	246.79	250	2013-03-09 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15585
+TCO13 Round 1C	20	485.45	500	2013-03-09 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15585
+TCO13 Round 1C	20	435.53	1000	2013-03-09 12:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15585
+TCO13 Round 2A	25	267.5	300	2013-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15594
+TCO13 Round 2A	25	236.44	600	2013-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15594
+TCO13 Round 2A	25	0.0	1000	2013-03-31 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15594
+TCO13 Round 2B	25	228.77	250	2013-04-20 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15633
+TCO13 Round 2B	25	246.59	500	2013-04-20 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15633
+TCO13 Round 2B	25	0.0	1000?	2013-04-20 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15633
+TCO13 Round 2C	25	229.03	250	2013-05-11 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15653
+TCO13 Round 2C	25	257.17	550	2013-05-11 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15653
+TCO13 Round 2C	25	0.0	1000	2013-05-11 12:10	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15653
+TCO13 Round 3A	6	232.66	250	2013-06-08 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15686
+TCO13 Round 3A	6	186.32	550	2013-06-08 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15686
+TCO13 Round 3A	6	0.0	1000?	2013-06-08 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15686
+TCO13 Round 3B	6	230.99	250	2013-06-22 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15693
+TCO13 Round 3B	6	397.94	450	2013-06-22 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15693
+TCO13 Round 3B	6	0.0	1000?	2013-06-22 12:10	http://community.topcoder.com/stat?c=round_overview&er=6&rd=15693
+TCO13 Semifinal 1	12	0.0	250?	2013-11-12 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15808
+TCO13 Semifinal 1	12	0.0	590	2013-11-12 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15808
+TCO13 Semifinal 1	8	0.0	1000?	2013-11-12 09:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15808
+TCO13 Semifinal 2	11	0.0	250?	2013-11-12 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15809
+TCO13 Semifinal 2	10	0.0	500?	2013-11-12 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15809
+TCO13 Semifinal 2	10	0.0	1000?	2013-11-12 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15809
+TCO13 Wildcard Round	8	0.0	265	2013-11-12 18:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15812
+TCO13 Wildcard Round	8	0.0	430	2013-11-12 18:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15812
+TCO13 Wildcard Round	4	0.0	1045	2013-11-12 18:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15812
+TCO13 Championship Round	8	0.0	250?	2013-11-13 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15814
+TCO13 Championship Round	8	0.0	500?	2013-11-13 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15814
+TCO13 Championship Round	8	0.0	1000?	2013-11-13 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15814
+SRM 603	20	244.29	250	2014-01-06 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15836
+SRM 603	20	471.0	500	2014-01-06 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15836
+SRM 603	20	0.0	1000	2014-01-06 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15836
+SRM 604	20	243.99	250	2014-01-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15837
+SRM 604	20	466.37	550	2014-01-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15837
+SRM 604	20	0.0	1000	2014-01-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15837
+SRM 605	20	249.19	250	2014-01-21 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15838
+SRM 605	20	403.84	500	2014-01-21 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15838
+SRM 605	20	0.0	1000	2014-01-21 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15838
+SRM 606	20	245.17	250	2014-01-29 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15839
+SRM 606	20	438.23	500	2014-01-29 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15839
+SRM 606	20	566.11	1000	2014-01-29 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15839
+SRM 607	20	248.14	250	2014-02-03 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15840
+SRM 607	20	459.9	500	2014-02-03 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15840
+SRM 607	20	0.0	1000	2014-02-03 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15840
+SRM 608	20	275.07	300	2014-02-07 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15841
+SRM 608	20	479.41	600	2014-02-07 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15841
+SRM 608	20	601.16	1000	2014-02-07 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15841
+SRM 609	20	248.66	250	2014-02-15 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15842
+SRM 609	20	465.19	500	2014-02-15 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15842
+SRM 609	20	771.92	1000	2014-02-15 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15842
+SRM 610	20	241.3	250	2014-02-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15843
+SRM 610	20	451.93	550	2014-02-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15843
+SRM 610	20	0.0	1000	2014-02-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15843
+SRM 611	20	242.56	250	2014-03-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15844
+SRM 611	20	428.65	550	2014-03-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15844
+SRM 611	20	0.0	1000	2014-03-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15844
+SRM 612	20	248.79	250	2014-03-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15845
+SRM 612	20	449.8	500	2014-03-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15845
+SRM 612	20	406.19	1000	2014-03-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15845
+SRM 613	20	247.15	250	2014-03-21 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15846
+SRM 613	20	414.07	500	2014-03-21 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15846
+SRM 613	20	457.25	1000	2014-03-21 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15846
+SRM 614	20	248.8	250	2014-03-29 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15847
+SRM 614	20	411.18	525	2014-03-29 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15847
+SRM 614	20	540.78	1000	2014-03-29 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15847
+SRM 615	20	249.38	250	2014-04-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15848
+SRM 615	20	480.12	550	2014-04-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15848
+SRM 615	20	716.12	1000	2014-04-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15848
+SRM 616	20	248.86	250	2014-04-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15849
+SRM 616	20	515.64	600	2014-04-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15849
+SRM 616	20	0.0	1000	2014-04-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15849
+TCO14 Round 1A	20	246.04	250	2014-04-12 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15942
+TCO14 Round 1A	20	473.92	500	2014-04-12 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15942
+TCO14 Round 1A	20	688.45	1000	2014-04-12 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15942
+TCO14 Round 1B	20	199.32	200	2014-04-19 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15950
+TCO14 Round 1B	20	449.86	600	2014-04-19 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15950
+TCO14 Round 1B	20	590.43	900	2014-04-19 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15950
+SRM 617	20	246.68	250	2014-04-21 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15850
+SRM 617	20	454.46	500	2014-04-21 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15850
+SRM 617	20	680.87	1000	2014-04-21 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15850
+SRM 618	20	249.58	250	2014-04-24 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15851
+SRM 618	20	480.83	500	2014-04-24 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15851
+SRM 618	20	646.19	950	2014-04-24 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15851
+TCO14 Round 1C	20	249.57	250	2014-04-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15958
+TCO14 Round 1C	20	446.49	450	2014-04-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15958
+TCO14 Round 1C	20	845.59	950	2014-04-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15958
+SRM 619	20	243.05	250	2014-05-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15852
+SRM 619	20	413.43	600	2014-05-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15852
+SRM 619	20	458.88	950	2014-05-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15852
+SRM 620	20	245.09	250	2014-05-10 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15853
+SRM 620	20	485.28	500	2014-05-10 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15853
+SRM 620	20	446.55	1000	2014-05-10 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15853
+TCO14 Round 2A	25	233.49	250	2014-05-17 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15978
+TCO14 Round 2A	25	291.63	500	2014-05-17 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15978
+TCO14 Round 2A	25	0.0	1000	2014-05-17 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15978
+SRM 621	20	255.17	275	2014-05-20 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15854
+SRM 621	20	484.5	500	2014-05-20 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15854
+SRM 621	20	521.86	1000	2014-05-20 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15854
+SRM 622	20	246.68	250	2014-05-28 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15855
+SRM 622	20	458.68	500	2014-05-28 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15855
+SRM 622	20	548.44	1000	2014-05-28 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15855
+SRM 623	20	277.29	300	2014-06-04 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15856
+SRM 623	20	422.2	450	2014-06-04 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15856
+SRM 623	20	0.0	1000	2014-06-04 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15856
+TCO14 Round 2B	25	325.57	350	2014-06-07 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15996
+TCO14 Round 2B	25	245.31	500	2014-06-07 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15996
+TCO14 Round 2B	25	0.0	900	2014-06-07 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=15996
+SRM 624	20	249.51	250	2014-06-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15857
+SRM 624	20	479.55	500	2014-06-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15857
+SRM 624	20	0.0	1000	2014-06-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15857
+SRM 625	20	246.09	250	2014-06-19 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15858
+SRM 625	20	468.35	500	2014-06-19 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15858
+SRM 625	20	562.78	950	2014-06-19 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15858
+SRM 626	20	248.56	250	2014-06-28 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15859
+SRM 626	20	493.21	600	2014-06-28 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15859
+SRM 626	20	576.94	1000	2014-06-28 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=15859
+TCO14 Round 2C	25	276.54	300	2014-07-05 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=16016
+TCO14 Round 2C	25	384.68	500	2014-07-05 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=16016
+TCO14 Round 2C	25	441.04	900	2014-07-05 12:00	http://community.topcoder.com/stat?c=round_overview&er=25&rd=16016
+SRM 627	20	248.69	250	2014-07-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16008
+SRM 627	20	485.81	500	2014-07-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16008
+SRM 627	20	435.97	1000	2014-07-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16008
+SRM 628	20	245.2	250	2014-07-22 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16009
+SRM 628	20	463.85	500	2014-07-22 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16009
+SRM 628	20	590.38	1000	2014-07-22 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16009
+TCO14 Round 3A	6	268.53	300	2014-07-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16050
+TCO14 Round 3A	6	284.91	500	2014-07-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16050
+TCO14 Round 3A	6	0.0	1000	2014-07-26 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16050
+TCO14 Round 3B	6	217.76	250	2014-08-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16058
+TCO14 Round 3B	6	0.0	500	2014-08-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16058
+TCO14 Round 3B	6	0.0	1000	2014-08-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=6&rd=16058
+SRM 629	20	245.63	250	2014-08-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16060
+SRM 629	20	473.38	550	2014-08-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16060
+SRM 629	20	0.0	950	2014-08-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16060
+SRM 630	20	245.15	250	2014-08-21 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16061
+SRM 630	20	450.48	500	2014-08-21 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16061
+SRM 630	20	456.01	1000	2014-08-21 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16061
+SRM 631	20	382.52	500	2014-08-30 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16062
+SRM 631	20	397.83	500?	2014-08-30 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16062
+SRM 631	20	530.02	1000	2014-08-30 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16062
+SRM 632 - TCO14 Wildcard Sweep	20	272.17	300	2014-09-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16075
+SRM 632 - TCO14 Wildcard Sweep	20	465.41	500	2014-09-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16075
+SRM 632 - TCO14 Wildcard Sweep	20	562.43	1000	2014-09-05 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16075
+SRM 633	20	232.97	250	2014-09-17 11:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16076
+SRM 633	20	390.85	600	2014-09-17 11:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16076
+SRM 633	20	0.0	1000	2014-09-17 11:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16076
+SRM 634	20	247.02	250	2014-09-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16077
+SRM 634	20	466.68	500	2014-09-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16077
+SRM 634	20	0.0	1000	2014-09-25 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16077
+SRM 635	20	248.09	250	2014-10-04 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16078
+SRM 635	20	483.79	500	2014-10-04 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16078
+SRM 635	20	456.41	1000	2014-10-04 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16078
+SRM 636	20	241.49	250	2014-10-14 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16079
+SRM 636	20	422.71	500	2014-10-14 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16079
+SRM 636	20	0.0	1000	2014-10-14 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16079
+SRM 637	20	249.27	250	2014-10-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16080
+SRM 637	20	421.96	500	2014-10-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16080
+SRM 637	20	0.0	1000	2014-10-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16080
+SRM 638	20	247.5	300	2014-11-02 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16081
+SRM 638	20	486.83	600	2014-11-02 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16081
+SRM 638	20	0.0	1000	2014-11-02 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16081
+TCO 2014 Celebrity Match	8	0.0	250	2014-11-16 22:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16191
+TCO 2014 Celebrity Match	8	0.0	450	2014-11-16 22:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16191
+TCO 2014 Celebrity Match	8	0.0	1000?	2014-11-16 22:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16191
+TCO 2014 Semifinal 1	12	0.0	250?	2014-11-18 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16187
+TCO 2014 Semifinal 1	12	0.0	500?	2014-11-18 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16187
+TCO 2014 Semifinal 1	11	0.0	1000?	2014-11-18 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16187
+TCO 2014 Semifinal 2	11	0.0	250?	2014-11-18 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16188
+TCO 2014 Semifinal 2	11	0.0	500?	2014-11-18 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16188
+TCO 2014 Semifinal 2	11	0.0	1000?	2014-11-18 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16188
+TCO 2014 Wildcard	8	0.0	295	2014-11-18 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16189
+TCO 2014 Wildcard	8	0.0	500?	2014-11-18 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16189
+TCO 2014 Wildcard	7	0.0	1000?	2014-11-18 21:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16189
+TCO 2014 Finals	8	0.0	250?	2014-11-19 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16190
+TCO 2014 Finals	8	0.0	500?	2014-11-19 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16190
+TCO 2014 Finals	8	0.0	1000?	2014-11-19 16:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16190
+SRM 639	20	246.05	250	2014-11-28 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16082
+SRM 639	20	453.25	500	2014-11-28 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16082
+SRM 639	20	0.0	1100	2014-11-28 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16082
+SRM 640	20	247.99	250	2014-12-09 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16083
+SRM 640	20	409.11	600	2014-12-09 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16083
+SRM 640	20	0.0	1000	2014-12-09 13:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16083
+SRM 641	20	247.0	250	2014-12-11 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16084
+SRM 641	20	469.15	550	2014-12-11 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16084
+SRM 641	20	707.75	900	2014-12-11 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16084
+SRM 642	20	246.76	250	2014-12-16 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16085
+SRM 642	20	468.45	500	2014-12-16 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16085
+SRM 642	20	0.0	1000	2014-12-16 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16085
+SRM 643	20	244.06	250	2014-12-27 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16086
+SRM 643	20	349.54	500	2014-12-27 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16086
+SRM 643	20	0.0	1000	2014-12-27 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16086
+SRM 645	20	242.01	250	2015-01-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16277
+SRM 645	20	380.56	500	2015-01-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16277
+SRM 645	20	505.74	1000	2015-01-12 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16277
+SRM 646	20	245.19	250	2015-01-15 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16278
+SRM 646	20	387.59	600	2015-01-15 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16278
+SRM 646	20	0.0	1000	2015-01-15 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16278
+SRM 647	20	246.24	250	2015-01-24 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16279
+SRM 647	20	469.95	500	2015-01-24 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16279
+SRM 647	20	0.0	1000?	2015-01-24 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16279
+SRM 648	20	247.33	250	2015-02-02 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16312
+SRM 648	20	407.91	550	2015-02-02 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16312
+SRM 648	20	559.3	1000	2015-02-02 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16312
+SRM 649	20	248.29	250	2015-02-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16313
+SRM 649	20	412.47	550	2015-02-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16313
+SRM 649	20	496.45	1000	2015-02-10 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16313
+SRM 650	20	245.18	250	2015-02-17 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16314
+SRM 650	20	454.19	500	2015-02-17 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16314
+SRM 650	20	0.0	1000	2015-02-17 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16314
+SRM 652	20	247.25	250	2015-03-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16316
+SRM 652	20	440.16	500	2015-03-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16316
+SRM 652	20	0.0	1000	2015-03-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16316
+SRM 653	20	243.45	250	2015-03-17 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16317
+SRM 653	20	452.26	500	2015-03-17 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16317
+SRM 653	20	551.47	1000	2015-03-17 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16317
+SRM 654	20	245.93	250	2015-03-25 21:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16318
+SRM 654	20	338.49	500	2015-03-25 21:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16318
+SRM 654	20	0.0	1000	2015-03-25 21:10	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16318
+SRM 655	20	236.45	250	2015-04-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16415
+SRM 655	20	409.1	500	2015-04-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16415
+SRM 655	20	0.0	1050	2015-04-09 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16415
+2015 TCO 1A	20	240.44	250	2015-04-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16432
+2015 TCO 1A	20	438.89	500	2015-04-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16432
+2015 TCO 1A	20	823.23	1000	2015-04-11 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16432
+SRM 656	20	246.03	250	2015-04-17 07:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16416
+SRM 656	20	401.08	500	2015-04-17 07:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16416
+SRM 656	20	0.0	1000	2015-04-17 07:15	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16416
+2015 TCO 1B	20	243.35	250	2015-04-25 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16433
+2015 TCO 1B	20	473.73	500	2015-04-25 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16433
+2015 TCO 1B	20	659.81	1000	2015-04-25 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16433
+SRM 657	20	246.65	250	2015-04-27 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16417
+SRM 657	20	422.68	500	2015-04-27 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16417
+SRM 657	20	0.0	1000	2015-04-27 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16417
+SRM 658	20	275.78	300	2015-05-05 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16461
+SRM 658	20	442.29	650	2015-05-05 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16461
+SRM 658	20	404.89	1000	2015-05-05 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16461
+2015 TCO 1C	20	242.27	250	2015-05-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16434
+2015 TCO 1C	20	436.29	450	2015-05-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16434
+2015 TCO 1C	20	935.33	1000	2015-05-09 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16434
+SRM 659	20	238.56	250	2015-05-12 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16462
+SRM 659	20	376.59	500	2015-05-12 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16462
+SRM 659	20	0.0	1000?	2015-05-12 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16462
+2015 TCO 2A	20	283.67	300	2015-05-31 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16475
+2015 TCO 2A	20	317.48	600	2015-05-31 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16475
+2015 TCO 2A	20	537.5	950	2015-05-31 08:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16475
+SRM 660	20	230.02	250	2015-06-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16463
+SRM 660	20	331.02	500	2015-06-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16463
+SRM 660	20	0.0	1000?	2015-06-04 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16463
+SRM 661	20	241.14	250	2015-06-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16464
+SRM 661	20	336.87	500	2015-06-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16464
+SRM 661	20	0.0	1000	2015-06-11 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16464
+2015 TCO 2B	20	239.19	250	2015-06-20 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16500
+2015 TCO 2B	20	283.31	500	2015-06-20 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16500
+2015 TCO 2B	20	0.0	1000?	2015-06-20 18:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16500
+SRM 662	20	241.7	250	2015-07-09 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16511
+SRM 662	20	455.94	500	2015-07-09 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16511
+SRM 662	20	0.0	1000	2015-07-09 21:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16511
+2015 TCO 2C	20	202.91	250	2015-07-18 02:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16520
+2015 TCO 2C	20	0.0	500	2015-07-18 02:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16520
+2015 TCO 2C	20	0.0	1000?	2015-07-18 02:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16520
+SRM 663	20	274.99	300	2015-07-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16512
+SRM 663	20	468.83	550	2015-07-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16512
+SRM 663	20	0.0	1000	2015-07-23 11:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16512
+SRM 664	20	247.69	250	2015-08-01 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16513
+SRM 664	20	435.46	550	2015-08-01 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16513
+SRM 664	20	520.82	1000	2015-08-01 12:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16513
+SRM 665	20	248.68	500	2015-08-11 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16514
+SRM 665	20	342.55	500	2015-08-11 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16514
+SRM 665	20	0.0	1000	2015-08-11 07:00	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16514
+2015 TCO 2D	20	228.97	250	2015-08-22 02:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16538
+2015 TCO 2D	20	325.46	500	2015-08-22 02:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16538
+2015 TCO 2D	20	0.0	1000	2015-08-22 02:30	http://community.topcoder.com/stat?c=round_overview&er=20&rd=16538
