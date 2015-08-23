@@ -1,7 +1,7 @@
 package net.ogiekako.research.dynamic;
 import junit.framework.Assert;
 import net.ogiekako.algorithm.dataStructure.balancedBinarySearchTree.RBTreeSet;
-import net.ogiekako.algorithm.utils.AssertionUtils;
+import net.ogiekako.algorithm.utils.Asserts;
 
 import java.util.*;
 public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
@@ -263,14 +263,14 @@ public class ClusterVertexDeletion implements DynamicGraphAlgorithm {
         // X∩V' = ∅, X∪V' = V = [n].
         Assert.assertTrue(Collections.disjoint(X, R));
         Assert.assertEquals(X.size() + R.size(), n);
-        AssertionUtils.assertAllBetween(X, 0, n);
-        AssertionUtils.assertAllBetween(R, 0, n);
+        Asserts.assertAllBetween(X, 0, n);
+        Asserts.assertAllBetween(R, 0, n);
 
         // L and l_ are valid
-        AssertionUtils.assertAllBetween(L, n, 3 * n);
+        Asserts.assertAllBetween(L, n, 3 * n);
         for (int u : R) Assert.assertTrue(L.contains(l_[u]));
         for (int x : X) Assert.assertEquals(l_[x], -1);
-        for (int l : L) AssertionUtils.assertContains(l_, l);
+        for (int l : L) Asserts.assertContains(l_, l);
         for (int u : R)
             for (int v : R)
                 if (u == v || G.contains(u, v)) Assert.assertEquals(l_[u], l_[v]);

@@ -19,7 +19,7 @@ public class BallsInBoxes {
         }
         while (N > 1) {
             res++;
-            N /= 2;
+            N -= N / 2;
         }
         return res;
     }
