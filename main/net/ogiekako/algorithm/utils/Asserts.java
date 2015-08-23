@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.utils;
 
 import java.util.Collection;
 
-public class AssertionUtils {
+public class Asserts {
     public static void assertAllBetween(Collection<Integer> xs, int from, int to) {
         for (int x : xs) assertTrue(from <= x && x < to);
     }
