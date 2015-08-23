@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.graph.algorithm;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.utils.AssertionUtils;
+import net.ogiekako.algorithm.utils.Asserts;
 import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.Arrays;
@@ -61,16 +61,14 @@ public class MinimumCostFlow {
         return minimumCostFlow(source, sink, Long.MAX_VALUE);
     }
 
-    // returns Long.MAX_VALUE if impossible
-    // TODO: Return Double.POSITIVE_INFINITY instead of Long.MAX_VALUE.
+    // returns Double.POSITIVE_INFINITY if impossible
     public double minimumCostFlow(int source, int sink, long flow) {
         supply[source] += flow;
         supply[sink] -= flow;
         return minimumCostCirculation();
     }
 
-    // returns Long.MAX_VALUE if impossible
-    // TODO: Return Double.POSITIVE_INFINITY instead of Long.MAX_VALUE.
+    // returns Double.POSITIVE_INFINITY if impossible
     double minimumCostCirculation() {
         potential = new double[n];
         cost = 0;
@@ -78,7 +76,7 @@ public class MinimumCostFlow {
         for (; ; ) {
             Queue<Pair<Double, Integer>> que = new PriorityQueue<Pair<Double, Integer>>();
             double[] distance = new double[n];
-            Arrays.fill(distance, Long.MAX_VALUE);
+            Arrays.fill(distance, Double.POSITIVE_INFINITY);
             for (int v = 0; v < n; v++)
                 if (supply[v] > 0) {
                     que.offer(Pair.of(0D, v));
@@ -104,7 +102,7 @@ public class MinimumCostFlow {
             }
             for (int sink = 0; sink < n; sink++)
                 if (supply[sink] < 0) {
-                    if (path[sink] == null) return Long.MAX_VALUE;
+                    if (path[sink] == null) return Double.POSITIVE_INFINITY;
                     double pushFlow = -supply[sink];
                     int v;
                     for (v = sink; path[v] != null; v = path[v].from())
@@ -117,7 +115,7 @@ public class MinimumCostFlow {
                         cost += path[v].cost() * pushFlow;
                     }
                 }
-            for (int v = 0; v < n; v++) if (distance[v] < Long.MAX_VALUE) potential[v] += distance[v];
+            for (int v = 0; v < n; v++) if (distance[v] < Double.POSITIVE_INFINITY) potential[v] += distance[v];
         }
     }
 
@@ -130,8 +128,7 @@ public class MinimumCostFlow {
 
     /**
      * Graph shouldn't contain a negative cycle.
-     * If the graph initially has negative cycle(s), those cycle should cancelled before this method is called.
-     * Returns Double.POSITIVE_INFINITY if it's not possible to send `flow' amount for flows.
+     * Returns Double.POSITIVE_INFINITY if it's not possible to send `flow' amount of flow.
      * Otherwise returns the minimum cost.
      * <p/>
      * This method computes the result as follows:
@@ -140,21 +137,20 @@ public class MinimumCostFlow {
      * <p>
      * Verified:
      * - AOJ 1095 KND Factory (double) (890ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489767
-     * - AOJ 2290 Attach The Moles (negative) (10510ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489770
+     * - AOJ 2290 Attack the Moles (negative) (10510ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489770
      * </p>
      */
     public double primalDual(final int s, final int t, double flow) {
         double[] potential = calcInitialPotential(s);
         double res = 0;
-        Edge[] prev = new Edge[n];
-        Queue<Entry> que = new PriorityQueue<Entry>();
         while (flow > 0) {
-            double[] costs = new double[n];
             boolean[] visited = new boolean[n];
+            double[] costs = new double[n];
+            Edge[] prev = new Edge[n];
+            Queue<Entry> que = new PriorityQueue<Entry>();
+
             Arrays.fill(costs, Double.POSITIVE_INFINITY);
             costs[s] = 0;
-            prev[s] = prev[t] = null;
-            que.clear();
             que.offer(new Entry(0, s));
             while (!que.isEmpty()) {
                 Entry cur = que.poll();
@@ -164,7 +160,7 @@ public class MinimumCostFlow {
                     if (e.residue() <= 0) continue;
                     double modifiedCost = e.cost() - (potential[e.to()] - potential[cur.v]);
 
-                    AssertionUtils.assertNonNegative(modifiedCost + 1e-9);
+                    Asserts.assertNonNegative(modifiedCost + 1e-9);
                     // Avoid considering a zero-cycle a negative cycle.
                     modifiedCost = Math.max(modifiedCost, 0);
                     if (costs[e.to()] > costs[cur.v] + modifiedCost) {
@@ -205,89 +201,8 @@ public class MinimumCostFlow {
             return Double.compare(dist, o.dist);
         }
     }
-    double EPS = 1e-9;
 
     private double[] calcInitialPotential(int from) {
-        double[] potential = new double[n];
-        Arrays.fill(potential, Double.POSITIVE_INFINITY);
-        potential[from] = 0;
-        for (int iter = 0; iter < n; iter++) {
-            boolean updated = false;
-            for (int i = 0; i < n; i++) {
-                for (Edge e : graph.edges(i)) {
-                    if (e.residue() <= 0) continue;
-                    if (potential[e.to()] > e.cost() + potential[i]) {
-                        updated = true;
-                        potential[e.to()] = e.cost() + potential[i];
-                    }
-                }
-            }
-            if (!updated) {
-                return potential;
-            }
-        }
-        throw new IllegalArgumentException("Negative Cycle");
+        return new BellmanFord(graph).sssp(from);
     }
-
-    public static void main(String[] args) {
-        Random rnd = new Random(1212L);
-
-        long withEps = 0;
-        long withoutEps = 0;
-
-        int n = 4;
-        int mx = 4;
-        for (int iter = 0; iter < 100000; iter++) {
-            Graph G = new Graph(n);
-            Graph H = new Graph(n);
-            double[][] cap = new double[n][n], cost = new double[n][n];
-            int m = 0;
-            for (int i = 0; i < n; i++) {
-                for (int j = i + 1; j < n; j++) {
-                    if (j == 3 && i == 0) continue;
-                    m++;
-                    cap[i][j] = 1;
-                    cost[i][j] = (double) rnd.nextInt(3) / 3;
-                    G.addFlow(i, j, cap[i][j], cost[i][j]);
-                    H.addFlow(i, j, cap[i][j], cost[i][j]);
-                }
-            }
-
-            if (m >= 6) continue;
-
-            MinimumCostFlow mcf = new MinimumCostFlow(G);
-            mcf.EPS = 1e-9;
-            int flow = 2;
-            withEps -= System.currentTimeMillis();
-            double exp = mcf.primalDual(0, n - 1, flow);
-            System.err.println(exp);
-            withEps += System.currentTimeMillis();
-
-            System.err.println(H);
-            mcf = new MinimumCostFlow(H);
-            mcf.EPS = 0;
-            withoutEps -= System.currentTimeMillis();
-            double res = mcf.primalDual(0, n - 1, flow);
-            withoutEps += System.currentTimeMillis();
-            if (exp != res) {
-                System.err.println("diff: " + (res - exp));
-//                throw new AssertionError("" + (res-exp));
-            }
-        }
-        System.err.println(withEps / 1000);
-        System.err.println(withoutEps / 1000);
-//        double a = 0.1;
-//        double b = 0.1;
-//        double c = 0.2;
-//        System.out.println(0.03087113836305141500 - (0.57276840064347760000 - 0.54189726228042610000));
-    }
-    /*
-
-    0 - 2/3 > 1
-    |       / |
-   1/3   0   1/3
-    v L       v
-    2 - 2/3 > 3
-
-     */
 }

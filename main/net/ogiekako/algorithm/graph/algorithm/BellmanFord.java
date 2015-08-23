@@ -52,6 +52,8 @@ public class BellmanFord {
 
                 for (Edge e : graph.edges(v)) {
                     int u = e.to();
+                    if (e.residue() <= 0) continue;
+
                     // Add EPS not to interpret a zero-cycle as a negative cycle.
                     if (distance[u] > distance[v] + e.cost() + 1e-9) {
                         distance[u] = distance[v] + e.cost();

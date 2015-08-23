@@ -1,21 +1,15 @@
 package net.ogiekako.algorithm.graph.flow;
-import junit.framework.Assert;
 import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.FlowEdge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.graph.test.GraphTester;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Random;
-/**
- * Created with IntelliJ IDEA.
- * User: ogiekako
- * Date: 13/04/28
- * Time: 9:36
- * To change this template use File | Settings | File Templates.
- */
+
 public class GlobalMinimumCutTest {
     @Test
     public void testSolve() throws Exception {
@@ -40,7 +34,7 @@ public class GlobalMinimumCutTest {
                 return graph.size() < 300;
             }
             public Edge edge(int from, int to, Random rnd) {
-                return new FlowEdge(from, to, rnd.nextInt((int) 10));
+                return new FlowEdge(from, to, rnd.nextInt(10));
             }
         });
     }
