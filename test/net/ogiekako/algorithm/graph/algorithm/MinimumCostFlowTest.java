@@ -24,7 +24,7 @@ public class MinimumCostFlowTest {
             public Long result(Graph graph, Random rnd) {
                 counter++;
                 MinimumCostFlow flow = new MinimumCostFlow(graph);
-                return (long)flow.minimumCostCirculation();
+                return (long) flow.minimumCostCirculation();
             }
 
             public void assertCorrect(Graph graph, Long result) {
@@ -135,6 +135,18 @@ public class MinimumCostFlowTest {
                 return new FlowEdge(from, to, cap, cost);
             }
         });
+    }
+
+    @Test(timeout = 100)
+    public void primalDualShouldRobustForNumericalError() {
+        Graph G = new Graph(4);
+        G.addFlow(0, 1, 1, 2.0 / 3.0);
+        G.addFlow(0, 2, 1, 1.0 / 3.0);
+        G.addFlow(1, 2, 1, 0.0);
+        G.addFlow(1, 3, 1, 1.0 / 3.0);
+        G.addFlow(2, 3, 1, 2.0 / 3.0);
+        double res = new MinimumCostFlow(G).primalDual(0, 3, 2);
+        Assert.assertEquals(2.0, res, 1e-9);
     }
 
     private void assertNoNegativeCycle(Graph graph) {

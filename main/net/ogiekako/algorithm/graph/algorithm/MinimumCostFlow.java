@@ -2,22 +2,25 @@ package net.ogiekako.algorithm.graph.algorithm;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.utils.AssertionUtils;
 import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.TreeSet;
+import java.util.Random;
 
 /**
+ * <pre>
  * Thm.                                                                              <br></br>
- * f : E -> N is a minimum cost flow iff its residual graph G has no negative cost cycle.   <br></br>
+ * f : E -> N is a minimum cost flow <=> its residual graph G has no negative cost cycle.   <br></br>
  * Proof.                                                                            <br></br>
  * =>) If there is a negative cycle, we can improve f pushing a flow along the cycle.<br></br>
  * <=) Suppose there is a minimum cost flow f'. Then, f'-f is a circular flow in G
  * because if f(e) = c(e), (f'-f)(e) &le 0 and if f(e) = 0, (f'-f)(e) &ge 0.
  * The cycle can be represented by a linear combination of unit capacity circular flows (It can be easily proved by induction.)
  * Hence if G has no negative cost cycle, cost(f') - cost(f) = cost(f'-f) &ge 0, thus f is also a minimum cost flow.
+ * </pre>
  * <p/>
  * Primal Dual method.
  * Ref: <a href = "http://www.kitsunemimi.org/icpc/minimum_cost_flow.html">kitsune- ICPC Minimum Cost Flow Library</a>
@@ -135,7 +138,9 @@ public class MinimumCostFlow {
      * - Run Bellman Ford algorithm once to compute initial potentials, which takes O(nm) time.
      * - Run Dijkstra's algorithm O(flow) times, which takes O(flow (m + n log m)) time.
      * <p>
-     *     Verified: AOJ 1095 KND Factory (1030ms)
+     * Verified:
+     * - AOJ 1095 KND Factory (double) (890ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489767
+     * - AOJ 2290 Attach The Moles (negative) (10510ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489770
      * </p>
      */
     public double primalDual(final int s, final int t, double flow) {
@@ -155,18 +160,23 @@ public class MinimumCostFlow {
                 Entry cur = que.poll();
                 if (visited[cur.v]) continue;
                 visited[cur.v] = true;
-                for (Edge e : graph.edges(cur.v))
-                    if (e.residue() > 0 && !visited[e.to()]) {
-                        if (costs[e.to()] > costs[cur.v] + e.cost() + potential[cur.v] - potential[e.to()]) {
-                            costs[e.to()] = costs[cur.v] + e.cost() + potential[cur.v] - potential[e.to()];
-                            prev[e.to()] = e;
-                            que.offer(new Entry(costs[e.to()], e.to()));
-                        }
+                for (Edge e : graph.edges(cur.v)) {
+                    if (e.residue() <= 0) continue;
+                    double modifiedCost = e.cost() - (potential[e.to()] - potential[cur.v]);
+
+                    AssertionUtils.assertNonNegative(modifiedCost + 1e-9);
+                    // Avoid considering a zero-cycle a negative cycle.
+                    modifiedCost = Math.max(modifiedCost, 0);
+                    if (costs[e.to()] > costs[cur.v] + modifiedCost) {
+                        costs[e.to()] = costs[cur.v] + modifiedCost;
+                        prev[e.to()] = e;
+                        que.offer(new Entry(costs[e.to()], e.to()));
                     }
+                }
             }
             if (prev[t] == null) return Double.POSITIVE_INFINITY;
             for (int i = 0; i < n; i++) {
-                potential[i] = costs[i];
+                potential[i] += costs[i];
             }
             double min = flow;
             for (Edge e = prev[t]; e != null; e = prev[e.from()]) {
@@ -195,6 +205,7 @@ public class MinimumCostFlow {
             return Double.compare(dist, o.dist);
         }
     }
+    double EPS = 1e-9;
 
     private double[] calcInitialPotential(int from) {
         double[] potential = new double[n];
@@ -217,4 +228,66 @@ public class MinimumCostFlow {
         }
         throw new IllegalArgumentException("Negative Cycle");
     }
+
+    public static void main(String[] args) {
+        Random rnd = new Random(1212L);
+
+        long withEps = 0;
+        long withoutEps = 0;
+
+        int n = 4;
+        int mx = 4;
+        for (int iter = 0; iter < 100000; iter++) {
+            Graph G = new Graph(n);
+            Graph H = new Graph(n);
+            double[][] cap = new double[n][n], cost = new double[n][n];
+            int m = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    if (j == 3 && i == 0) continue;
+                    m++;
+                    cap[i][j] = 1;
+                    cost[i][j] = (double) rnd.nextInt(3) / 3;
+                    G.addFlow(i, j, cap[i][j], cost[i][j]);
+                    H.addFlow(i, j, cap[i][j], cost[i][j]);
+                }
+            }
+
+            if (m >= 6) continue;
+
+            MinimumCostFlow mcf = new MinimumCostFlow(G);
+            mcf.EPS = 1e-9;
+            int flow = 2;
+            withEps -= System.currentTimeMillis();
+            double exp = mcf.primalDual(0, n - 1, flow);
+            System.err.println(exp);
+            withEps += System.currentTimeMillis();
+
+            System.err.println(H);
+            mcf = new MinimumCostFlow(H);
+            mcf.EPS = 0;
+            withoutEps -= System.currentTimeMillis();
+            double res = mcf.primalDual(0, n - 1, flow);
+            withoutEps += System.currentTimeMillis();
+            if (exp != res) {
+                System.err.println("diff: " + (res - exp));
+//                throw new AssertionError("" + (res-exp));
+            }
+        }
+        System.err.println(withEps / 1000);
+        System.err.println(withoutEps / 1000);
+//        double a = 0.1;
+//        double b = 0.1;
+//        double c = 0.2;
+//        System.out.println(0.03087113836305141500 - (0.57276840064347760000 - 0.54189726228042610000));
+    }
+    /*
+
+    0 - 2/3 > 1
+    |       / |
+   1/3   0   1/3
+    v L       v
+    2 - 2/3 > 3
+
+     */
 }
