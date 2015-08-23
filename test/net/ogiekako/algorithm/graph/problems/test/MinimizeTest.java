@@ -5,20 +5,11 @@ import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.SimpleEdge;
 import net.ogiekako.algorithm.graph.algorithm.BellmanFord;
 import net.ogiekako.algorithm.graph.problems.Minimize;
-import net.ogiekako.algorithm.graph.test.GraphGenerator;
+import net.ogiekako.algorithm.graph.testing.GraphGenerator;
 import net.ogiekako.algorithm.utils.BitUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 4:56
- * To change this template use File | Settings | File Templates.
- */
 public class MinimizeTest {
     @Test
     public void testMinVertexToTrip010() throws Exception {

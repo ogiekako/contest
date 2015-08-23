@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.graph;
 
 import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
-import net.ogiekako.algorithm.graph.test.GraphGenerator;
+import net.ogiekako.algorithm.graph.testing.GraphGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 

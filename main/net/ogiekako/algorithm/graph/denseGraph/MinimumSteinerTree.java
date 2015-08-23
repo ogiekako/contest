@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
+// TODO: Extract Steiner Tree library.
 public class MinimumSteinerTree {
     public class AOJ1040 {
         private int[] dx = {1, 0, -1, 0};

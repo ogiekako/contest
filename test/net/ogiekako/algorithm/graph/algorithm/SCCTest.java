@@ -4,8 +4,8 @@ import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.SimpleEdge;
-import net.ogiekako.algorithm.graph.test.GraphGenerator;
-import net.ogiekako.algorithm.graph.test.GraphTester;
+import net.ogiekako.algorithm.graph.testing.GraphGenerator;
+import net.ogiekako.algorithm.graph.testing.GraphTester;
 import org.junit.Assert;
 import org.junit.Test;
 

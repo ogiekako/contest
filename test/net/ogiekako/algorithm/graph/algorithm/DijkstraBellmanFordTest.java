@@ -4,7 +4,7 @@ import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.WeightedEdge;
-import net.ogiekako.algorithm.graph.test.GraphTester;
+import net.ogiekako.algorithm.graph.testing.GraphTester;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class DijkstraBellmanFordTest {
-    int[] cnt = new int[3];
 
     @Test
     public void test() {

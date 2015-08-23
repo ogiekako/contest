@@ -1,17 +1,10 @@
-package net.ogiekako.algorithm.graph.test;
+package net.ogiekako.algorithm.graph.testing;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/05/01
- * Time: 4:37
- * To change this template use File | Settings | File Templates.
- */
 public class GraphGeneratorTest {
     @Test
     public void testGenerateAcyclic() throws Exception {

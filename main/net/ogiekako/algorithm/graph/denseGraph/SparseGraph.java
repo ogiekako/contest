@@ -85,23 +85,4 @@ public class SparseGraph {
         return treeRoot.size;
     }
 
-    private static int topologicalSortN;
-    public static Vertex[] topologicalSort(Vertex[] vs) {
-        topologicalSortN = vs.length;
-        int[] states = new int[topologicalSortN];
-        Vertex[] us = new Vertex[topologicalSortN];
-        for (Vertex v : vs) {
-            if (states[v.id] == 0 && !topologicalSortDfs(v, us, states)) return null;
-        }
-        return us;
-    }
-    private static boolean topologicalSortDfs(Vertex v, Vertex[] us, int[] states) {
-        states[v.id] = 1;
-        for (Edge_ u : v) {
-            if (states[u.to.id] == 1 || states[u.to.id] == 0 && !topologicalSortDfs(u.to, us, states)) return false;
-        }
-        us[--topologicalSortN] = v;
-        states[v.id] = 2;
-        return true;
-    }
 }

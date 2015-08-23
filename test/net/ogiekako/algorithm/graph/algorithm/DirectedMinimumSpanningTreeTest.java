@@ -5,7 +5,7 @@ import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.GraphUtils;
 import net.ogiekako.algorithm.graph.WeightedEdge;
-import net.ogiekako.algorithm.graph.test.GraphTester;
+import net.ogiekako.algorithm.graph.testing.GraphTester;
 import org.junit.Test;
 
 import java.util.ArrayList;

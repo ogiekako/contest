@@ -133,7 +133,4 @@ public class Hungarian {
         for (int i = 0; i < n; ++i) ret += a[i][x[i]];
         return ret;
     }
-    static void debug(Object... os) {
-        System.out.println(Arrays.deepToString(os));
-    }
 }

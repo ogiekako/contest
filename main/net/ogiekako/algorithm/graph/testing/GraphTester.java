@@ -1,4 +1,4 @@
-package net.ogiekako.algorithm.graph.test;
+package net.ogiekako.algorithm.graph.testing;
 
 import junit.framework.Assert;
 import net.ogiekako.algorithm.graph.UndirectedGraph;

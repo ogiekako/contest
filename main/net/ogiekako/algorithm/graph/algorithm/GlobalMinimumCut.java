@@ -1,9 +1,12 @@
-package net.ogiekako.algorithm.graph.flow;
+package net.ogiekako.algorithm.graph.algorithm;
 
 import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
+/**
+ * Computes the global minimum cut value of an undirected graph.
+ */
 public class GlobalMinimumCut {
     UndirectedGraph graph;
 
@@ -11,16 +14,12 @@ public class GlobalMinimumCut {
         this.graph = graph;
     }
 
-    public static double globalMinCut(UndirectedGraph graph) {
-        return new GlobalMinimumCut(graph).compute();
-    }
-
     /**
      * O(n^3).
      * <p/>
-     * Solved: <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1930">Bomb, Divide and Conquer</a>
+     * Verified: <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1930">Bomb, Divide and Conquer</a>
      * <p/>
-     * Ref: http://www.prefield.com/algorithm/graph/minimum_cut.html
+     * Referred to: http://www.prefield.com/algorithm/graph/minimum_cut.html
      *
      * @return The size of the global minimum cut.
      */

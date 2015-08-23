@@ -1,4 +1,4 @@
-package net.ogiekako.algorithm.graph.test;
+package net.ogiekako.algorithm.graph.testing;
 
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;

@@ -3,7 +3,7 @@ package on2013_04.on2013_04_28_uva.UVA10989;
 
 import net.ogiekako.algorithm.graph.UndirectedGraph;
 import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.flow.GlobalMinimumCut;
+import net.ogiekako.algorithm.graph.algorithm.GlobalMinimumCut;
 import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
 
@@ -18,7 +18,7 @@ public class UVA10989 {
                 int x = in.nextInt() - 1, y = in.nextInt() - 1, cost = in.nextInt();
                 graph.addFlow(x, y, (double) cost);
             }
-            double res = GlobalMinimumCut.globalMinCut((UndirectedGraph) graph);
+            double res = new GlobalMinimumCut((UndirectedGraph) graph).compute();
             out.printFormat("Case #%d: %d\n", testCase, Math.round(res));
         }
     }

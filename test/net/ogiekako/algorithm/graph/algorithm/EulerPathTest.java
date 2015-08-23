@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.graph.algorithm;
 
 import junit.framework.Assert;
 import net.ogiekako.algorithm.graph.*;
-import net.ogiekako.algorithm.graph.test.GraphTester;
+import net.ogiekako.algorithm.graph.testing.GraphTester;
 import org.junit.Test;
 
 import java.util.HashSet;
