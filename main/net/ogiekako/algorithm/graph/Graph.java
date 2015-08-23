@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-    private int vertexCount;
+    final int vertexCount;
     private EdgeList[] edges;
 
     public Graph(int vertexCount) {
@@ -72,7 +72,7 @@ public class Graph {
     public String toString() {
         StringBuilder es = new StringBuilder();
         for (int i = 0; i < vertexCount; i++) {
-            if (i>0)es.append('\n');
+            if (i > 0) es.append('\n');
             es.append(edges(i));
         }
         return "Graph{" +

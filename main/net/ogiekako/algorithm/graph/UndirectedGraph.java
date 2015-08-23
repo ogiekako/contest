@@ -23,4 +23,16 @@ public class UndirectedGraph extends Graph {
         super.add(edge);
         super.add(edge.transposed());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder es = new StringBuilder();
+        for (int i = 0; i < vertexCount; i++) {
+            if (i > 0) es.append('\n');
+            es.append(edges(i));
+        }
+        return "UndirectedGraph{" +
+                "edges=" + es +
+                '}';
+    }
 }

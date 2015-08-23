@@ -3,7 +3,6 @@ package net.ogiekako.algorithm.graph.algorithm;
 import net.ogiekako.algorithm.graph.Edge;
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.utils.Asserts;
-import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -31,83 +30,95 @@ import java.util.Queue;
  * <a href="http://poj.org/problem?id=2195">Going Home (Assignment problem)</a>
  */
 public class MinimumCostFlow {
-    final Graph graph;
+    Graph graph;
     final int n;
     final double[] supply;
-    double[] potential;
-    double cost;
-    Edge[] path;
     double totalCost;
     double totalFlow;
 
-    public MinimumCostFlow(Graph _graph) {
-        this.graph = _graph;
+    public MinimumCostFlow(Graph graph) {
+        this.graph = graph;
         n = graph.size();
         supply = new double[n];
     }
 
-    public double negativeCancellation(int s, int t, double flow) {
+    private static void debug(Object... os) {
+        System.out.println(Arrays.deepToString(os));
+    }
+
+    // returns Double.POSITIVE_INFINITY if impossible.
+    public double minCostFlowWithNegativeCostCancellation(int s, int t, double flow) {
         supply[s] += flow;
         supply[t] -= flow;
         return minimumCostCirculation();
     }
 
+    /**
+     * Solve minimum cost circulation problem.
+     * F = flow + (負の辺の容量の総和) としたとき、O(F (m + n) log m)).
+     */
     // returns Double.POSITIVE_INFINITY if impossible
-    double minimumCostCirculation() {
-        potential = new double[n];
-        cost = 0;
-        for (int v = 0; v < n; v++) for (Edge e : graph.edges(v)) if (e.residue() > 0 && e.cost() < 0) cancel(e);
+    public double minimumCostCirculation() {
+        double[] potential = new double[n];
+        totalCost = 0;
+
+        // Cancel negative edges.
+        for (int v = 0; v < n; v++)
+            for (Edge e : graph.edges(v))
+                if (e.residue() > 0 && e.cost() < 0) {
+                    supply[e.to()] += e.residue();
+                    supply[e.from()] -= e.residue();
+                    totalCost += e.residue() * e.cost();
+                    e.pushFlow(e.residue());
+                }
+        // TODO: the logic below is almost same as the logic used in primalDual. Extract a common method for DRY.
         for (; ; ) {
-            Queue<Pair<Double, Integer>> que = new PriorityQueue<Pair<Double, Integer>>();
+            Queue<Entry> que = new PriorityQueue<Entry>();
             double[] distance = new double[n];
             Arrays.fill(distance, Double.POSITIVE_INFINITY);
             for (int v = 0; v < n; v++)
                 if (supply[v] > 0) {
-                    que.offer(Pair.of(0D, v));
+                    que.offer(new Entry(0D, v));
                     distance[v] = 0;
                 }
-            if (que.isEmpty()) return cost;
-            path = new Edge[n];
+            if (que.isEmpty()) return totalCost;
+            Edge[] prev = new Edge[n];
             while (!que.isEmpty()) {
-                Pair<Double, Integer> entry = que.poll();
-                double dist = entry.first;
-                int v = entry.second;
+                Entry entry = que.poll();
+                double dist = entry.dist;
+                int v = entry.v;
                 if (dist > distance[v]) continue;
-                for (Edge e : graph.edges(v))
-                    if (e.residue() > 0) {
-                        int u = e.to();
-                        double nDist = (dist + (potential[v] - potential[u])) + e.cost();
-                        if (nDist < distance[u] - 1e-9) {
-                            distance[u] = nDist;
-                            path[u] = e;
-                            que.offer(Pair.of(nDist, u));
-                        }
-                    }
-            }
-            for (int sink = 0; sink < n; sink++)
-                if (supply[sink] < 0) {
-                    if (path[sink] == null) return Double.POSITIVE_INFINITY;
-                    double pushFlow = -supply[sink];
-                    int v;
-                    for (v = sink; path[v] != null; v = path[v].from())
-                        pushFlow = Math.min(pushFlow, path[v].residue());
-                    pushFlow = Math.min(pushFlow, supply[v]);
-                    supply[v] -= pushFlow;
-                    supply[sink] += pushFlow;
-                    for (v = sink; path[v] != null; v = path[v].from()) {
-                        path[v].pushFlow(pushFlow);
-                        cost += path[v].cost() * pushFlow;
+                for (Edge e : graph.edges(v)) {
+                    if (e.residue() <= 0) continue;
+                    int u = e.to();
+                    double reducedCost = e.cost() + potential[v] - potential[u];
+                    // Avoid considering a zero-cycle a negative cycle.
+                    reducedCost = Math.max(reducedCost, 0);
+                    if (distance[u] > dist + reducedCost) {
+                        distance[u] = dist + reducedCost;
+                        prev[u] = e;
+                        que.offer(new Entry(distance[u], u));
                     }
                 }
+            }
+            for (int sink = 0; sink < n; sink++) {
+                if (supply[sink] >= 0) continue;
+
+                if (prev[sink] == null) return Double.POSITIVE_INFINITY;
+                double pushFlow = -supply[sink];
+                int v;
+                for (v = sink; prev[v] != null; v = prev[v].from())
+                    pushFlow = Math.min(pushFlow, prev[v].residue());
+                pushFlow = Math.min(pushFlow, supply[v]);
+                supply[v] -= pushFlow;
+                supply[sink] += pushFlow;
+                for (v = sink; prev[v] != null; v = prev[v].from()) {
+                    prev[v].pushFlow(pushFlow);
+                    totalCost += prev[v].cost() * pushFlow;
+                }
+            }
             for (int v = 0; v < n; v++) if (distance[v] < Double.POSITIVE_INFINITY) potential[v] += distance[v];
         }
-    }
-
-    private void cancel(Edge e) {
-        supply[e.to()] += e.residue();
-        supply[e.from()] -= e.residue();
-        cost += e.residue() * e.cost();
-        e.pushFlow(e.residue());
     }
 
     public double getFlow() {
@@ -126,7 +137,7 @@ public class MinimumCostFlow {
      * <p/>
      * This method computes the result as follows:
      * - Run Bellman Ford algorithm once to compute initial potentials, which takes O(nm) time.
-     * - Run Dijkstra's algorithm O(flow) times, which takes O(flow (m + n log m)) time.
+     * - Run Dijkstra's algorithm O(flow) times, which takes O(flow (m + n) log m)) time.
      * <p>
      * Verified:
      * - AOJ 1095 KND Factory (double) (890ms): http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1489767
@@ -152,13 +163,13 @@ public class MinimumCostFlow {
                 visited[cur.v] = true;
                 for (Edge e : graph.edges(cur.v)) {
                     if (e.residue() <= 0) continue;
-                    double modifiedCost = e.cost() - (potential[e.to()] - potential[cur.v]);
+                    double reducedCost = e.cost() - (potential[e.to()] - potential[cur.v]);
 
-                    Asserts.assertNonNegative(modifiedCost + 1e-9);
+                    Asserts.assertNonNegative(reducedCost + 1e-9);
                     // Avoid considering a zero-cycle a negative cycle.
-                    modifiedCost = Math.max(modifiedCost, 0);
-                    if (costs[e.to()] > costs[cur.v] + modifiedCost) {
-                        costs[e.to()] = costs[cur.v] + modifiedCost;
+                    reducedCost = Math.max(reducedCost, 0);
+                    if (costs[e.to()] > costs[cur.v] + reducedCost) {
+                        costs[e.to()] = costs[cur.v] + reducedCost;
                         prev[e.to()] = e;
                         que.offer(new Entry(costs[e.to()], e.to()));
                     }

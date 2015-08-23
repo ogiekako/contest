@@ -1,9 +1,5 @@
 package net.ogiekako.algorithm.graph;
 
-
-/**
- * Created by IntelliJ IDEA.
- */
 public interface Edge {
     int from();
 

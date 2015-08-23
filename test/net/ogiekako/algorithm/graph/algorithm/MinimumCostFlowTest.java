@@ -1,9 +1,6 @@
 package net.ogiekako.algorithm.graph.algorithm;
 
-import net.ogiekako.algorithm.graph.Edge;
-import net.ogiekako.algorithm.graph.FlowEdge;
-import net.ogiekako.algorithm.graph.Graph;
-import net.ogiekako.algorithm.graph.GraphUtils;
+import net.ogiekako.algorithm.graph.*;
 import net.ogiekako.algorithm.graph.flow.PrimalDual_double;
 import net.ogiekako.algorithm.graph.test.GraphTester;
 import org.junit.Assert;
@@ -64,11 +61,12 @@ public class MinimumCostFlowTest {
         GraphTester.test(new GraphTester.Generator<Long>() {
             int counter = -1;
             long flow;
-            int T = (int) 1e6;
+            int T = (int) 1e4;
             int source, sink;
             double maxFlow;
 
             public Long result(Graph graph, Random rnd) {
+                if (graph instanceof UndirectedGraph) return 0L;
                 counter++;
                 flow = rnd.nextInt(T);
                 source = 0;
@@ -79,12 +77,17 @@ public class MinimumCostFlowTest {
                 for (int v = 0; v < graph.size(); v++)
                     for (Edge e : graph.edges(v)) if (e instanceof FlowEdge) addCost += e.flow() * e.cost();
                 MinimumCostFlow minimumCostFlow = new MinimumCostFlow(graph);
-                double res = minimumCostFlow.negativeCancellation(source, sink, flow);
-                if (res == Double.POSITIVE_INFINITY) return Long.MAX_VALUE;
+                double INF = 1e9;
+                Edge added = minimumCostFlow.graph.addFlow(sink, source, (double) flow, -INF);
+                double res = minimumCostFlow.minimumCostCirculation() + INF * (double) flow;
+                minimumCostFlow.graph.remove(added);
+
+                if (added.flow() < flow) return Long.MAX_VALUE;
                 return (long) (addCost + res);
             }
 
             public void assertCorrect(Graph graph, Long result) {
+                if (graph instanceof UndirectedGraph) return;
                 boolean testByPD = true;
                 PrimalDual_double pd = new PrimalDual_double(graph.size());
                 for (int i = 0; i < graph.size(); i++)
