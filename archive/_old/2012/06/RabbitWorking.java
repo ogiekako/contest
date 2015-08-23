@@ -3,10 +3,6 @@ package tmp;
 // Paste me into the FileEdit configuration dialog
 
 
-import net.ogiekako.algorithm.graph.graphDouble.FlowEdge;
-import net.ogiekako.algorithm.graph.graphDouble.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
-
 public class RabbitWorking {
     private static final double EPS = 1e-9;
 

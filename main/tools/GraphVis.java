@@ -1,8 +1,6 @@
 package tools;
 
 import net.ogiekako.algorithm.graph.*;
-import net.ogiekako.algorithm.graph.graphDouble.EdgeD;
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 import java.io.File;
@@ -95,15 +93,6 @@ public class GraphVis {
         return res;
     }
 
-    private static String generateLabel(EdgeD e) {
-        String res = "";
-        if (e.getWeight() != 0) res += e.getWeight();
-        if (e.getResidue() > 0) {
-            res += String.format("%s%.2f/%.2f", res.length() > 0 ? " " : "", e.getFlow(), e.getResidue() + e.getFlow());
-        }
-        return res;
-    }
-
     public static void main(String[] args) {
         Graph graph = new Graph(3);
         graph.add(new FlowEdge(0, 1, 10));
@@ -123,31 +112,4 @@ public class GraphVis {
         output(g);
     }
 
-
-    public static void output(GraphD graph) {
-        String fileName = "graph.dot";
-        String filePath = System.getProperty("user.home") + "/Desktop/" + fileName;
-        File file = new File(filePath);
-        try {
-            PrintWriter pw = new PrintWriter(file);
-            output(graph, pw);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
-    }
-
-    public static void output(GraphD graph, PrintWriter out) {
-        out.println("digraph foo{");
-        out.println("\t" + "graph [rankdir = LR];");
-        for (int i = 0; i < graph.size(); i++)
-            for (EdgeD e : graph.getEdges(i)) {
-                int j = e.to();
-                String label = generateLabel(e);
-                if (!label.isEmpty())
-                    out.printf(" %d -> %d [ label = \"%s\" ];\n", i, j, label);
-            }
-        out.println("}");
-        out.flush();
-    }
 }

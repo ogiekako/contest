@@ -4,9 +4,8 @@ package on_2012.on2012_5_19.rabbitworking;
 // Paste me into the FileEdit configuration dialog
 
 
-import net.ogiekako.algorithm.graph.graphDouble.FlowEdge;
-import net.ogiekako.algorithm.graph.graphDouble.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
+import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 
 public class RabbitWorking {
     private static final double EPS = 1e-9;
@@ -49,19 +48,19 @@ public class RabbitWorking {
     private boolean calc(double[][] ps, double r) {
         int n = ps.length;
         int e = n * (n - 1) / 2;
-        GraphD graph = new GraphD(1 + e + n + 1);
+        Graph graph = new Graph(1 + e + n + 1);
         double sum = 0;
         for (int i = 0, k = 0; i < n; i++) {
-            graph.add(new FlowEdge(0, 1 + e + i, 199 * r));
+            graph.add(new net.ogiekako.algorithm.graph.FlowEdge(0, 1 + e + i, 199 * r));
             for (int j = 0; j < i; j++) {
                 sum += ps[i][j] + 2 * r;
-                graph.add(new FlowEdge(1 + k, 1 + e + n, ps[i][j] + 2 * r));
-                graph.add(new FlowEdge(1 + e + i, 1 + k, Double.POSITIVE_INFINITY));
-                graph.add(new FlowEdge(1 + e + j, 1 + k, Double.POSITIVE_INFINITY));
+                graph.add(new net.ogiekako.algorithm.graph.FlowEdge(1 + k, 1 + e + n, ps[i][j] + 2 * r));
+                graph.add(new net.ogiekako.algorithm.graph.FlowEdge(1 + e + i, 1 + k, Double.POSITIVE_INFINITY));
+                graph.add(new net.ogiekako.algorithm.graph.FlowEdge(1 + e + j, 1 + k, Double.POSITIVE_INFINITY));
                 k++;
             }
         }
-        double flow = GraphAlgorithm.maxFlow(graph, 0, 1 + e + n);
+        double flow = new MaxFlow(graph).maxFlow(0, 1 + e + n);
         return flow < sum - EPS;
     }
 }

@@ -37,7 +37,6 @@ public class Bridge {
      *
      * @return the number of biconnected components
      */
-
     public int compute() {
         int n = graph.size();
         cut = new int[n];

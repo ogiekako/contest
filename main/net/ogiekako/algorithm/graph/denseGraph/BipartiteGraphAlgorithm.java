@@ -2,7 +2,6 @@ package net.ogiekako.algorithm.graph.denseGraph;
 
 import net.ogiekako.algorithm.graph.Graph;
 import net.ogiekako.algorithm.graph.algorithm.MinimumCostFlow;
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
 
 import java.util.Arrays;
 

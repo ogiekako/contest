@@ -6,9 +6,8 @@ package on_2012.on2012_4_26.ellysdeathstars;
 import net.ogiekako.algorithm.geometry.Circle_methods;
 import net.ogiekako.algorithm.geometry.Point;
 import net.ogiekako.algorithm.geometry.Track;
-import net.ogiekako.algorithm.graph.graphDouble.FlowEdge;
-import net.ogiekako.algorithm.graph.graphDouble.GraphAlgorithm;
-import net.ogiekako.algorithm.graph.graphDouble.GraphD;
+import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.graph.algorithm.MaxFlow;
 import net.ogiekako.algorithm.utils.Cast;
 
 import java.util.Set;
@@ -48,31 +47,31 @@ public class EllysDeathStars {
         }
         double[] times = Cast.toDoubleArray(timeSet);
         int ITV = times.length - 1;
-        GraphD graph = new GraphD(1 + SHIP + (SHIP + STAR) * ITV + 1);
-        for (int i = 0; i < SHIP; i++) graph.add(new FlowEdge(0, 1 + i, ships[i].energy));
+        Graph graph = new Graph(1 + SHIP + (SHIP + STAR) * ITV + 1);
+        for (int i = 0; i < SHIP; i++) graph.add(new net.ogiekako.algorithm.graph.FlowEdge(0, 1 + i, ships[i].energy));
         for (int i = 0; i < times.length - 1; i++) {
             double length = times[i + 1] - times[i];
             double when = (times[i + 1] + times[i]) / 2;
             for (int j = 0; j < SHIP; j++) {
                 int sp = 1 + j;
                 int sp2 = 1 + SHIP + (SHIP + STAR) * i + j;
-                graph.add(new FlowEdge(sp, sp2, Integer.MAX_VALUE));
+                graph.add(new net.ogiekako.algorithm.graph.FlowEdge(sp, sp2, Integer.MAX_VALUE));
                 Point place = ships[j].where(when);
                 for (int k = 0; k < STAR; k++) {
                     int str = 1 + SHIP + (SHIP + STAR) * i + SHIP + k;
                     if (when < ships[j].arrivalTime() && place.dist(stars[k]) < ships[j].radius) {
-                        graph.add(new FlowEdge(sp2, str, length));
+                        graph.add(new net.ogiekako.algorithm.graph.FlowEdge(sp2, str, length));
                     }
                 }
             }
             for (int k = 0; k < STAR; k++) {
                 int str = 1 + SHIP + (SHIP + STAR) * i + SHIP + k;
                 int fin = 1 + SHIP + (SHIP + STAR) * ITV;
-                graph.add(new FlowEdge(str, fin, length));
+                graph.add(new net.ogiekako.algorithm.graph.FlowEdge(str, fin, length));
             }
         }
 
-        return GraphAlgorithm.maxFlow(graph, 0, 1 + SHIP + (SHIP + STAR) * ITV);
+        return new MaxFlow(graph).maxFlow(0, 1 + SHIP + (SHIP + STAR) * ITV);
     }
 
     class Ship extends Track {
