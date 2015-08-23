@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Random;
 
 public class MatroidIntersectionTest {
+    @Test
     public void testIntersection() throws Exception {
         Random rnd = new Random(2408912490L);
         for (int iteration = 0; iteration < 50; iteration++) {
@@ -33,7 +34,8 @@ public class MatroidIntersectionTest {
             int s = rnd.nextInt(n);
             int t = rnd.nextInt(n);
             if (bs[s][t] || s == t) {
-                i--; continue;
+                i--;
+                continue;
             }
             bs[s][t] = true;
             es[i] = new SimpleEdge(s, t);
