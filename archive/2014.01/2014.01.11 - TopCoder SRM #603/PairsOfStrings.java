@@ -9,7 +9,7 @@ public class PairsOfStrings {
         for (long d : ds)
             for (long e : ds)
                 if (d % e == 0) {
-                    res = (res + d * MathUtils.powMod(k, e, MOD) * MathUtils.mobius(d / e, true)) % MOD;
+                    res = (res + d * MathUtils.powMod(k, e, MOD) * MathUtils.mobius(d / e)) % MOD;
                 }
         return (int) (res + MOD) % MOD;
     }

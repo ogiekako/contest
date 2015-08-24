@@ -384,34 +384,69 @@ public class MathUtils {
         }
         return res;
     }
+
+    /**
+     * Returns the divisors of n in sorted order in O(sqrt(n)) time.
+     * <p>Verified: SRM 603 B</p>
+     */
     public static long[] divisors(long n) { // SRM603B
-        List<Long> res = new ArrayList<Long>();
+        List<Long> small = new ArrayList<Long>();
+        List<Long> large = new ArrayList<Long>();
         for (long d = 1; d * d <= n; d++)
             if (n % d == 0) {
-                res.add(d);
-                if (d * d < n) res.add(n / d);
+                small.add(d);
+                if (d * d < n) large.add(n / d);
             }
-        Collections.sort(res);
-        return Cast.toLong(res);
+        long[] res = new long[small.size() + large.size()];
+        for (int i = 0; i < small.size(); i++) {
+            res[i] = small.get(i);
+        }
+        for (int i = 0; i < large.size(); i++) {
+            res[res.length - 1 - i] = large.get(i);
+        }
+        return res;
     }
 
-    public static int mobius(long n, boolean memoize) {  // SRM603B
-        if (memoize && memoMobius == null) memoMobius = new HashMap<Long, Integer>();
-        return mobius(n, 2, memoize);
+    /**
+     * Returns u(n) where u is the mobius function.
+     * <ul>
+     * <li>μ(n) = 1 if n is a square-free positive integer with an even number of prime factors.</li>
+     * <li>μ(n) = −1 if n is a square-free positive integer with an odd number of prime factors.</li>
+     * <li>μ(n) = 0 if n has a squared prime factor.</li>
+     * </ul>
+     * An important formula for the mobius function is
+     * sum_{d\n} u(d) = [n = 1].
+     * Proof: If n > 1, there is a prime factor p of n. Sum for numbers containing p and for not are cancelled out.
+     * <p/>
+     * <pre>
+     * If f(n) = sum_{k\n} g(k), g(n) = sum_{k\n} f(k)u(n/k).
+     * Proof:
+     * sum_(k\n} f(k)u(n/k) = sum_{k\n} sum_{m\k} g(m)u(n/k)
+     *                      = sum_{m\n} g(m) sum_{m\k\n} u(n/k)
+     *                      = sum_{m\n} g(m) sum_{d\(n/m)} u(d)
+     *                      = sum_{m\n} g(m) [m == n]
+     *                      = g(n)
+     * </pre>
+     * <p>Verified: SRM603 500 PairsOfStrings</p>
+     */
+    public static int mobius(long n) {
+        if (memoMobius == null) memoMobius = new HashMap<Long, Integer>();
+        return mobius(n, 2);
     }
 
     private static Map<Long, Integer> memoMobius;
-    private static int mobius(final long n, long from, boolean memoize) { // SRM603B
+
+    private static int mobius(final long n, long from) {
         if (n == 1) return 1;
-        if (memoize && memoMobius.containsKey(n)) return memoMobius.get(n);
+        if (memoMobius.containsKey(n)) return memoMobius.get(n);
         while (from * from <= n && n % from != 0) from++;
         int res;
         if (from * from > n) {
             res = -1;
         } else {
-            res = n / from % from == 0 ? 0 : -mobius(n / from, from + 1, memoize);
+            res = n / from % from == 0 ? 0 : -mobius(n / from, from + 1);
         }
-        if (memoize) memoMobius.put(n, res);
+        memoMobius.put(n, res);
         return res;
     }
 }

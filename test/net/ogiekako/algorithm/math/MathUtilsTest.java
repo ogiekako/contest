@@ -102,4 +102,14 @@ public class MathUtilsTest {
         long[] res = MathUtils.generateCatalanNumber(exp.length);
         Assert.assertArrayEquals(exp, res);
     }
+
+    @Test
+    public void testDivisors() throws Exception {
+        long[] res = MathUtils.divisors(60);
+        long[] exp = {1,2,3,4,5,6,10,12,15,20,30,60};
+        Assert.assertArrayEquals(exp, res);
+
+        res = MathUtils.divisors(97821761637600L);
+        Assert.assertEquals(17280, res.length);
+    }
 }
