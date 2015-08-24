@@ -68,6 +68,9 @@ for row in dom.getElementsByTagName('row'):
         points.append([])
         times.append([])
     for userResult in dom.getElementsByTagName('row'):
+        div = getData(userResult, 'division')
+        if div == '2':
+            continue
         num = ['one', 'two', 'three']
         for i in range(0,3):
             p = getData(userResult, 'level_' + num[i] + "_final_points")
@@ -97,6 +100,8 @@ for row in dom.getElementsByTagName('row'):
             maxPointStr = ["250?", "500?", "1000?"][i]
         url = 'http://community.topcoder.com/stat?c=round_overview&er=%d&rd=%s' % (obj, roundId)
         o = obj if obj <= len(points[i]) else len(points[i])
+        if len(points[i]) == 0:
+            points[i].append(0)
         print "\t".join((roundName, str(o), str(points[i][o - 1]), maxPointStr, dateStr, url))
     
     sys.stdout.flush()
