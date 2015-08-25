@@ -6,13 +6,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ogiekako
- * Date: 12/04/15
- * Time: 16:45
- * To change this template use File | Settings | File Templates.
- */
 public class MathUtilsTest {
     @Test
     public void testSumOfGeometricSequence() throws Exception {
