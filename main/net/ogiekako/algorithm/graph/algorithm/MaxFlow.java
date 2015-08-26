@@ -190,7 +190,10 @@ Double: 1313MS だったので、double で統一して良さそう。
      * Utility function to get all reachable vertices from the given source, where edges with no residue are impassable.
      * A typical usage is to use this after a max flow computation.
      * <p>O(m)</p>
-     * <p>Verified: PKU3155 (Maximum Density Subgraph)</p>
+     * <pre>Verified:
+     *   PKU3155 (Maximum Density Subgraph)
+     *   SRM658 850 (DancingForever)
+     * </pre>
      */
     public List<Integer> getReachableVerticesFrom(int source) {
         boolean[] visited = new boolean[n];
