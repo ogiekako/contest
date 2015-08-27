@@ -9,7 +9,7 @@ public class EmbeddingUtils {
             embedIntArray(b, a);
             b.append(",\n");
         }
-        b.append('}');
+        b.append("};");
         System.out.println(b);
     }
 

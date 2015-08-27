@@ -1,0 +1,43 @@
+8 ArtShift
+9 maxShifts
+3 int
+1
+16 java.lang.String
+8 sequence
+5
+0
+1
+String
+2 BW
+int 2
+1
+1
+1
+String
+7 BBBWBBB
+int 7
+1
+2
+1
+String
+5 BWBWB
+int 6
+1
+3
+1
+String
+9 WWWWWWWWW
+int 1
+1
+4
+1
+String
+13 WWWWWWWWWBBWB
+int 60
+1
+10 2015.08.27
+22 TopCoder Open Round #3
+0
+63 on2015_08.on2015_08_27_TopCoder_Open_Round__3.ArtShift.ArtShift
+0
+3 64M

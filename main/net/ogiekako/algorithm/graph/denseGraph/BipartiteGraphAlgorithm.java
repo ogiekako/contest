@@ -68,7 +68,7 @@ public class BipartiteGraphAlgorithm {
      * @return the size of maximum matching of the give graph.
      */
     public int maximumMatching() {
-        int[] matched = new int[rightNode];
+        matched = new int[rightNode];
         Arrays.fill(matched, -1);
         int res = 0;
         for (int u = 0; u < leftNode; u++) {
@@ -76,6 +76,11 @@ public class BipartiteGraphAlgorithm {
             if (argument(u, graph, visited, matched)) res++;
         }
         return res;
+    }
+    int[] matched;
+
+    public int[] getMatching() {
+        return matched.clone();
     }
 
     private boolean argument(int u, boolean[][] graph, boolean[] visited, int[] matched) {

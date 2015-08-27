@@ -55,6 +55,7 @@ public class Interval implements Comparable<Interval> {
         long nLeft = Math.max(left, interval.left);
         long nRight = Math.min(right, interval.right);
         if (nLeft < nRight) return new Interval(nLeft, nRight);
+        // Returns an empty interval.
         return new Interval(nLeft, nLeft);
     }
 
@@ -87,5 +88,9 @@ public class Interval implements Comparable<Interval> {
     @Override
     public String toString() {
         return "[" + left + ", " + right + ")";
+    }
+
+    public boolean isEmpty() {
+        return length() == 0;
     }
 }
