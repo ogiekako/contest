@@ -61,6 +61,7 @@ public class Dijkstra {
             if (visited[v]) continue;
             visited[v] = true;
             for (Edge e : graph.edges(v)) {
+                if (e.residue() <= 0) continue;
                 int u = e.to();
                 if (distance[u] > dist + e.cost()) {
                     distance[u] = dist + e.cost();

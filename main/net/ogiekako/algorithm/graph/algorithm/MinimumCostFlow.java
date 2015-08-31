@@ -130,7 +130,7 @@ public class MinimumCostFlow {
     }
 
     /**
-     * Graph shouldn't contain a negative cycle.
+     * Graph shouldn't contain a negative cost cycle.
      * Returns the minimum cost or Double.POSITIVE_INFINITY if it's not possible to send `flow' amount of flow.
      * getMaxflow() and getCost() can be used after this method is called for getting the maximum flow sent
      * and the minimum cost for the flow.
@@ -209,6 +209,12 @@ public class MinimumCostFlow {
     }
 
     private double[] calcInitialPotential(int from) {
-        return new BellmanFord(graph).sssp(from);
+        boolean allPositive = true;
+        for (int i = 0; i < n; i++) {
+            for (Edge e : graph.edges(i)) {
+                if (e.residue() > 0 && e.cost() < 0) allPositive = false;
+            }
+        }
+        return allPositive ? new Dijkstra(graph).sssp(from) : new BellmanFord(graph).sssp(from);
     }
 }
