@@ -3,8 +3,6 @@ package net.ogiekako.algorithm.graph.problems;
 import net.ogiekako.algorithm.graph.*;
 import net.ogiekako.algorithm.graph.algorithm.Dijkstra;
 
-import java.util.Arrays;
-
 public class Minimize {
     /*
     0 -> 1 -> 0 と旅をする時に, 通らなければならない頂点数の最小を返す.
@@ -17,7 +15,7 @@ public class Minimize {
         Graph graph = new Graph(n);
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (nei[i][j]) graph.add(new SimpleEdge(i, j));
         Graph rev = GraphUtils.transposed(graph);
-        double[][] dist = Dijkstra.allPairsShortestPath(graph);
+        double[][] dist = new Dijkstra(graph).allPairsShortestPath();
         Graph graph2 = new Graph(n * n);
         for (int t = 0; t < n; t++)
             for (int r = 0; r < n; r++) {

@@ -1,0 +1,71 @@
+19 EllysSortingTrimmer
+6 getMin
+16 java.lang.String
+2
+16 java.lang.String
+1 S
+3 int
+1 L
+7
+0
+2
+String
+11 ABRACADABRA
+int 5
+String
+5 AAAAA
+1
+1
+2
+String
+6 ESPRIT
+int 3
+String
+3 EIP
+1
+2
+2
+String
+7 BAZINGA
+int 7
+String
+7 AABGINZ
+1
+3
+2
+String
+26 ABCDEFGHIJKLMNOPQRSTUVWXYZ
+int 13
+String
+13 ABCDEFGHIJKLM
+1
+4
+2
+String
+18 GOODLUCKANDHAVEFUN
+int 10
+String
+10 AACDDEFGHK
+1
+5
+2
+String
+43 AAAWDIUAOIWDESBEAIWODJAWDBPOAWDUISAWDOOPAWD
+int 21
+String
+21 AAAAAAAAABBDDDDDDDEEI
+1
+6
+2
+String
+8 TOPCODER
+int 3
+String
+3 CDT
+1
+10 2015.08.29
+23 TopCoder Open Round #1A
+0
+86 on2015_08.on2015_08_29_TopCoder_Open_Round__1A.EllysSortingTrimmer.EllysSortingTrimmer
+0
+4 256M

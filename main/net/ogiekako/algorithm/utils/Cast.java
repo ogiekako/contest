@@ -19,6 +19,20 @@ public class Cast {
         return is;
     }
 
+    public static int[] toInt(double[] Is) {
+        int[] is = new int[Is.length];
+        for (int i = 0; i < is.length; i++) is[i] = (int) Is[i];
+        return is;
+    }
+
+    public static int[][] toInt(double[][] Is) {
+        int[][] is = new int[Is.length][];
+        for (int i = 0; i < is.length; i++) {
+            is[i] = toInt(Is[i]);
+        }
+        return is;
+    }
+
     public static int[] toInt(long[] longArray) {
         int[] res = new int[longArray.length];
         for (int i = 0; i < res.length; i++) res[i] = (int) longArray[i];
@@ -68,4 +82,5 @@ public class Cast {
         for (int i = 0; i < res.length; i++) res[i] = String.valueOf(ls[i]);
         return res;
     }
+
 }

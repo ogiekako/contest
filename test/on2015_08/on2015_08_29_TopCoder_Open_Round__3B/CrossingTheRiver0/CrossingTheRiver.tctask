@@ -1,0 +1,123 @@
+16 CrossingTheRiver
+16 isItEvenPossible
+16 java.lang.String
+4
+3 int
+10 waterWidth
+3 int
+9 landWidth
+5 int[]
+11 blockHeight
+3 int
+5 depth
+6
+0
+4
+int 3
+int 3
+int[] 6
+3
+4
+4
+5
+5
+6
+int 2
+String
+8 POSSIBLE
+1
+1
+4
+int 3
+int 3
+int[] 6
+3
+4
+4
+5
+6
+6
+int 2
+String
+10 IMPOSSIBLE
+1
+2
+4
+int 5
+int 2
+int[] 5
+4
+4
+4
+4
+4
+int 4
+String
+8 POSSIBLE
+1
+3
+4
+int 5
+int 5
+int[] 14
+5
+5
+5
+5
+5
+5
+2
+3
+4
+4
+6
+7
+3
+2
+int 2
+String
+8 POSSIBLE
+1
+4
+4
+int 5
+int 7
+int[] 16
+6
+6
+6
+6
+6
+6
+6
+6
+6
+6
+6
+6
+7
+8
+9
+10
+int 5
+String
+8 POSSIBLE
+1
+5
+4
+int 1
+int 1
+int[] 3
+5
+3
+4
+int 2
+String
+10 IMPOSSIBLE
+1
+10 2015.08.29
+23 TopCoder Open Round #3B
+0
+81 on2015_08.on2015_08_29_TopCoder_Open_Round__3B.CrossingTheRiver0.CrossingTheRiver
+0
+3 64M

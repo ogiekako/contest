@@ -24,12 +24,10 @@ public class Dijkstra {
      *     Verified: Test for minVertexToTrip010
      * </p>
      */
-    public static double[][] allPairsShortestPath(Graph graph) {
-        int n = graph.size();
+    public double[][] allPairsShortestPath() {
         double[][] res = new double[n][];
-        Dijkstra dijkstra = new Dijkstra(graph);
         for (int i = 0; i < n; i++) {
-            res[i] = dijkstra.sssp(i);
+            res[i] = sssp(i);
         }
         return res;
     }
