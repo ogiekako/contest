@@ -1,0 +1,55 @@
+20 DevuAndPlantingTrees
+23 maximumTreesDevuCanGrow
+3 int
+1
+18 java.lang.String[]
+6 garden
+6
+0
+1
+String[] 2
+2 ..
+2 ..
+int 1
+1
+1
+1
+String[] 2
+2 ..
+2 .*
+int 1
+1
+2
+1
+String[] 2
+3 ...
+3 ..*
+int 2
+1
+3
+1
+String[] 2
+16 .....*..........
+16 .*.......*.*..*.
+int 7
+1
+4
+1
+String[] 2
+29 ....*.*.*...........*........
+29 *..........*..*.*.*....*...*.
+int 13
+1
+5
+1
+String[] 2
+49 .....*..*..........*............................*
+49 *..*.............*...*.*.*.*..*.....*.*...*...*..
+int 23
+1
+10 2015.09.01
+23 TopCoder Open Round #1C
+0
+88 on2015_09.on2015_09_01_TopCoder_Open_Round__1C.DevuAndPlantingTrees.DevuAndPlantingTrees
+0
+4 256M
