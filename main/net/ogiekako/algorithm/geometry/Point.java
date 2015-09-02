@@ -124,4 +124,12 @@ public class Point implements Comparable<Point> {
         String format = String.format("%%.%df %%.%df", precision, precision);
         return String.format(format, x, y);
     }
+
+    public Segment asSegment() {
+        return new Segment(this, this);
+    }
+
+    public boolean isEqualTo(Point other) {
+        return EPS.eq(x, other.x) && EPS.eq(y, other.y);
+    }
 }

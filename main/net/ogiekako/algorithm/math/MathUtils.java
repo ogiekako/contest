@@ -26,6 +26,10 @@ public class MathUtils {
         return x;
     }
 
+    public static BigInteger gcd(BigInteger x, BigInteger y) {
+        return x.gcd(y);
+    }
+
     /**
      * O(sqrt(N))
      *
@@ -313,6 +317,10 @@ public class MathUtils {
 
     public static long lcm(long a, long b) {
         return a / gcd(a, b) * b;
+    }
+
+    public static BigInteger lcm(BigInteger a, BigInteger b) {
+        return a.divide(gcd(a,b)).multiply(b);
     }
 
     /*

@@ -20,4 +20,8 @@ public class EPS {
     public static boolean lt(double a, double b) {
         return a < b - EPS;
     }
+
+    public static int signum(double d) {
+        return d < -EPS ? -1 : d > EPS ? 1 : 0;
+    }
 }

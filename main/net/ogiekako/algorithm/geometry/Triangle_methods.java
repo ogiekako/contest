@@ -3,7 +3,8 @@ package net.ogiekako.algorithm.geometry;
 import static net.ogiekako.algorithm.EPS.eq;
 
 public class Triangle_methods {
-    private Triangle_methods() {}
+    private Triangle_methods() {
+    }
 
     // 外心
     Point circumcenter(Point A, Point B, Point C) {// pku2957
@@ -17,12 +18,20 @@ public class Triangle_methods {
             return new Point[]{circumcenter(A, B, C)};
         }
         if (eq(a, b)) {
-            double d = a; a = c; c = d;
-            Point p = A; A = C; C = p;
+            double d = a;
+            a = c;
+            c = d;
+            Point p = A;
+            A = C;
+            C = p;
         }
         if (eq(a, c)) {
-            double d = a; a = b; b = d;
-            Point p = A; A = B; B = p;
+            double d = a;
+            a = b;
+            b = d;
+            Point p = A;
+            A = B;
+            B = p;
         }
         Point ab1 = A.mul(b).add(B.mul(a)).div(a + b);
         Point ab2 = A.mul(-b).add(B.mul(a)).div(a - b);
@@ -33,5 +42,14 @@ public class Triangle_methods {
         Point o2 = ac1.add(ac2).div(2);
         double r2 = o2.dist(ac1);
         return Circle_methods.intersection(o1, r1, o2, r2, 1e-6);
+    }
+
+    /**
+     * Returns singed area when move from a to b to c.
+     * The sign is positive if it is conter-clockwise and negative if clockwise.
+     * <p>Tested</p>
+     */
+    public static double signedArea(Point a, Point b, Point c) {
+        return Polygon_methods.area(new Point[]{a, b, c});
     }
 }
