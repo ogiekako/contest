@@ -1,7 +1,7 @@
 package tmp;
 
-import net.ogiekako.algorithm.geometry.Line_methods;
 import net.ogiekako.algorithm.geometry.Point;
+import net.ogiekako.algorithm.geometry.Segment;
 import net.ogiekako.algorithm.geometry.Track;
 import net.ogiekako.algorithm.io.MyScanner;
 
@@ -25,7 +25,7 @@ public class G {
         ArrayList<Point> list1 = new ArrayList<Point>();
         ArrayList<Point> list2 = new ArrayList<Point>();
         for (int i = 0; i < N - 1; i++) {
-            if (Line_methods.crsSP(track[i], track[i + 1], from)) {
+            if (new Segment(track[i], track[i + 1]).intersect(from)) {
                 list1.add(from);
                 for (int j = i + 1; j < N; j++) {
                     list1.add(track[j]);

@@ -1,8 +1,9 @@
 package tmp;
 
 import net.ogiekako.algorithm.EPS;
-import net.ogiekako.algorithm.geometry.Line_methods;
+import net.ogiekako.algorithm.geometry.Line;
 import net.ogiekako.algorithm.geometry.Point;
+import net.ogiekako.algorithm.geometry.Segment;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.Permutation;
 
@@ -86,16 +87,16 @@ public class FastDogFood {
         Point center = tangled.get(tangled.size() - 1);
         Point nCenter = center;
         for (int i = 0; i < kui.length; i++)
-            if (!kui[i].eq(center) && !kui[i].eq(Dog)) {
-                Point is = Line_methods.isLL(Dog, next, center, kui[i]);
-                if (is != null && Line_methods.crsSP_exEdge(center, is, kui[i]) &&
-                        (Line_methods.crsSP_exEdge(Dog, next, is) || is.eq(next) && Line_methods.crsSP_exEdge(nCenter, is, kui[i]))) {
+            if (!kui[i].isEqualTo(center) && !kui[i].isEqualTo(Dog)) {
+                Point is = new Line(Dog, next).intersection(new Line(center, kui[i]));
+                if (is != null && new Segment(center, is).intersectStrict(kui[i]) &&
+                        (new Segment(Dog, next).intersectStrict(is) || is.isEqualTo(next) && new Segment(nCenter, is).intersectStrict(kui[i]))) {
                     next = is;
                     nCenter = kui[i];
                 }
             }
-        if (!nCenter.eq(center)) tangled.add(nCenter);
-        if (next.eq(orbit[p])) p++;
+        if (!nCenter.isEqualTo(center)) tangled.add(nCenter);
+        if (next.isEqualTo(orbit[p])) p++;
         proceed(next, p, orbit, tangled, kui);
     }
 }

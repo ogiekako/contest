@@ -54,7 +54,7 @@ public class Track {
     public double when(Point where) {
         double length = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
-            if (Line_methods.crsSP(orbit[i], orbit[i + 1], where))
+            if (new Segment(orbit[i], orbit[i + 1]).intersect(where))
                 return (length + orbit[i].dist(where)) / speed;
             length += orbit[i].dist(orbit[i + 1]);
         }

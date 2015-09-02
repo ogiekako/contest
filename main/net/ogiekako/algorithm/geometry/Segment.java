@@ -32,7 +32,7 @@ public class Segment implements GeometricalObject {
         }
         if (l.intersect(a) && l.intersect(b)) return this;
         //noinspection ConstantConditions
-        return Line_methods.isLL(a, b, l.from, l.to).asSegment();
+        return new Line(a, b).intersection(new Line(l.from, l.to)).asSegment();
     }
 
     /**
@@ -41,10 +41,23 @@ public class Segment implements GeometricalObject {
     public boolean intersect(Line l) {
         return EPS.signum(l.direction().det(a.sub(l.from))) * EPS.signum(l.direction().det(b.sub(l.from))) <= 0;
     }
+
+    public boolean intersect(Point p) {// AOJ1299
+        return EPS.eq(a.dist(p) + b.dist(p), a.dist(b)); // triangle inequality
+    }
+
+    /**
+     * <p>Verified: AOJ2404 Dog Food</p>
+     */
+    public boolean intersectStrict(Point p) {
+        return !a.isEqualTo(p) && !b.isEqualTo(p) && intersect(p);
+    }
+
     public boolean intersectStrict(Line l) {
         return EPS.signum(l.direction().det(a.sub(l.from))) * EPS.signum(l.direction().det(b.sub(l.from))) < 0;
     }
 
+    @Override
     public boolean isEqualTo(GeometricalObject other) {
         if (!(other instanceof Segment)) {
             return false;

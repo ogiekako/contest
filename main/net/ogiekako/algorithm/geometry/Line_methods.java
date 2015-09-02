@@ -10,26 +10,6 @@ public class Line_methods {
     private Line_methods() {
     }
 
-    public static Point isLL(Point p1, Point p2, Point r1, Point r2) {
-        Point a = p2.sub(p1), b = r1.sub(p1), c = r2.sub(r1);
-        double d = c.det(a);
-        double e = c.det(b);
-        if (Math.abs(d) < EPS.value()) {
-            if (Math.abs(e) < EPS.value()) return null;// same line.
-            return null;// parallel
-        }
-        return p1.add(a.mul(e / d));
-    }
-
-    public static boolean crsSP(Point p1, Point p2, Point q) {// aoj1299
-        return p1.dist(q) + p2.dist(q) - p1.dist(p2) < EPS.value(); // triangle inequality
-    }
-
-    public static boolean crsSP_exEdge(Point p1, Point p2, Point q) {
-        if (p1.eq(q) || p2.eq(q)) return false;
-        return crsSP(p1, p2, q);
-    }
-
     // TODO: Add descr.
     public static boolean crsSS(Point p1, Point p2, Point q1, Point q2) {
         if (Math.max(p1.x, p2.x) + EPS.value() < Math.min(q1.x, q2.x)) return false;
@@ -55,19 +35,8 @@ public class Line_methods {
     public static double disSP(Point p1, Point p2, Point q) {// AOJ1265
         if (p2.sub(p1).dot(q.sub(p1)) < 0) return q.sub(p1).norm();
         if (p1.sub(p2).dot(q.sub(p2)) < 0) return q.sub(p2).norm();
-        return disLP(p1, p2, q);
-    }
-
-    /**
-     * 直線と線分の距離
-     *
-     * @param p1
-     * @param p2
-     * @param q
-     * @return
-     */
-    public static double disLP(Point p1, Point p2, Point q) {// AOJ1265
-        return Math.abs(p2.sub(p1).det(q.sub(p1))) / p2.sub(p1).norm();
+        // AOJ1265
+        return new Line(p1, p2).distance(q);
     }
 
     int ccw(Point a, Point b, Point c) {
@@ -176,12 +145,12 @@ public class Line_methods {
         for (int i = 1; i < n; i++) {
             int i2 = Id[(from + i) % n];
             int j = list.get(list.size() - 1);
-            Point is = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
+            Point is = new Line(ls[i2][0], ls[i2][1]).intersection(new Line(ls[j][0], ls[j][1]));
             Point dir = ls[i2][1].sub(ls[i2][0]);
             for (; ; ) {
                 if (list.size() == 1) break;
                 j = list.get(list.size() - 2);
-                Point is2 = isLL(ls[i2][0], ls[i2][1], ls[j][0], ls[j][1]);
+                Point is2 = new Line(ls[i2][0], ls[i2][1]).intersection(new Line(ls[j][0], ls[j][1]));
                 if (is2.sub(is).dot(dir) > 0) {
                     list.remove(list.size() - 1);
                     is = is2;

@@ -1,0 +1,59 @@
+15 AOJ2404_Dogfood
+9 MULTI_EOF
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+147 1
+-4 -8
+3 -8
+0 -6
+1
+0 6
+4 0
+1 4
+1
+4 0
+0 6
+1 4
+4
+95 0
+0 90
+55 64
+33 31
+5 4
+15 43
+8
+100 100
+99 -100
+60 50
+6 5
+12 10
+24 20
+30 0
+70 0
+-30 -10
+-90 -30
+0
+46 8.0776872
+7.2360679
+-1
+140.2870005
+273.9090890
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+62 on2015_09.on2015_09_03_AOJ2404.AOJ2404_Dogfood.AOJ2404_Dogfood
+39 net.egork.chelper.checkers.TokenChecker
+4 1e-6
+0
+10 2015.09.03
+7 AOJ2404
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0

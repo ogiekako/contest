@@ -1,18 +1,19 @@
-package on_2012.on2012_5_19.fastdogfood;
+package on2015_09.on2015_09_03_AOJ2404.AOJ2404_Dogfood;
+
 
 
 import net.ogiekako.algorithm.EPS;
 import net.ogiekako.algorithm.geometry.Line;
 import net.ogiekako.algorithm.geometry.Point;
 import net.ogiekako.algorithm.geometry.Segment;
+import net.ogiekako.algorithm.io.MyPrintWriter;
 import net.ogiekako.algorithm.io.MyScanner;
 import net.ogiekako.algorithm.utils.Permutation;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class FastDogFood {
-    public void solve(int testNumber, MyScanner in, PrintWriter out) {
+public class AOJ2404_Dogfood {
+    public void solve(int testNumber, MyScanner in, MyPrintWriter out) {
         int n = in.nextInt();
         if (n <= 0) throw new UnknownError();
         int Dx = in.nextInt(), Dy = in.nextInt();
@@ -22,7 +23,7 @@ public class FastDogFood {
             x[i] = in.nextInt(); y[i] = in.nextInt();
         }
         double res = solve(Dx, Dy, Fx, Fy, x, y);
-        out.printf("%.12f\n", res);
+        out.printFormat("%.12f\n", res);
     }
 
     private double solve(int Dx, int Dy, int Fx, int Fy, int[] x, int[] y) {

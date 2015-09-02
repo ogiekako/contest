@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.geometry;
 
 import net.ogiekako.algorithm.EPS;
 
-public class Point implements Comparable<Point> {
+public class Point implements Comparable<Point>, GeometricalObject {
 
     static int precision = 2;
     public final double x, y;
@@ -109,16 +109,6 @@ public class Point implements Comparable<Point> {
         return sgn(x - o.x) == 0 ? sgn(y - o.y) : sgn(x - o.x);
     }
 
-    /*
-    relative or absolute error is less than eps.
-    */
-    public boolean eq(Point p) {
-        double absDiff = dist(p);
-        double myLen = norm();
-        double pLen = p.norm();
-        return absDiff < EPS.value() || absDiff < myLen * EPS.value() || absDiff < pLen * EPS.value();
-    }
-
     @Override
     public String toString() {
         String format = String.format("%%.%df %%.%df", precision, precision);
@@ -129,7 +119,16 @@ public class Point implements Comparable<Point> {
         return new Segment(this, this);
     }
 
-    public boolean isEqualTo(Point other) {
-        return EPS.eq(x, other.x) && EPS.eq(y, other.y);
+    /**
+     * Return true if relative or absolute error is less than EPS value.
+     * <p>Verified: AOJ2404 Dog Food</p>
+     */
+    public boolean isEqualTo(GeometricalObject other) {
+        if (!(other instanceof Point)) return false;
+        Point o = (Point) other;
+        double absDiff = dist(o);
+        double myLen = norm();
+        double pLen = o.norm();
+        return absDiff < EPS.value() || absDiff < myLen * EPS.value() || absDiff < pLen * EPS.value();
     }
 }
