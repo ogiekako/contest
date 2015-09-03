@@ -59,7 +59,7 @@ public class EllysDeathStars {
                 Point place = ships[j].where(when);
                 for (int k = 0; k < STAR; k++) {
                     int str = 1 + SHIP + (SHIP + STAR) * i + SHIP + k;
-                    if (when < ships[j].arrivalTime() && place.dist(stars[k]) < ships[j].radius) {
+                    if (when < ships[j].arrivalTime() && place.distance(stars[k]) < ships[j].radius) {
                         graph.add(new net.ogiekako.algorithm.graph.FlowEdge(sp2, str, length));
                     }
                 }

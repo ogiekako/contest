@@ -56,12 +56,12 @@ public class TaskD {
     private boolean dfs(int p) {
         if (p >= N) {
             for (int i = 0; i < N; i++) {
-                if (os[i].dist(center) < R - ds[i] + EPS) ;
+                if (os[i].distance(center) < R - ds[i] + EPS) ;
                 else return false;
             }
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < i; j++) {
-                    if (os[i].dist(os[j]) < ds[i] + ds[j] - EPS) return false;
+                    if (os[i].distance(os[j]) < ds[i] + ds[j] - EPS) return false;
                 }
             return true;
         }

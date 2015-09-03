@@ -51,10 +51,10 @@ public class AOJ2404_Dogfood {
                 proceed(Dog, 1, orbit, tangled, kui);
                 tangled.add(Food);
                 double needLength = 0;
-                for (int i = 0; i < tangled.size() - 1; i++) needLength += tangled.get(i).dist(tangled.get(i + 1));
+                for (int i = 0; i < tangled.size() - 1; i++) needLength += tangled.get(i).distance(tangled.get(i + 1));
                 if (needLength < length) {
                     double walk = 0;
-                    for (int i = 0; i < orbit.length - 1; i++) walk += orbit[i].dist(orbit[i + 1]);
+                    for (int i = 0; i < orbit.length - 1; i++) walk += orbit[i].distance(orbit[i + 1]);
                     res = Math.min(res, walk);
                 }
             } while (Permutation.nextPermutation(is));

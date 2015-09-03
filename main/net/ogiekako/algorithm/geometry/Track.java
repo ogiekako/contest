@@ -22,7 +22,7 @@ public class Track {
     public double totalLength() {
         double res = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
-            res += orbit[i].dist(orbit[i + 1]);
+            res += orbit[i].distance(orbit[i + 1]);
         }
         return res;
     }
@@ -34,7 +34,7 @@ public class Track {
         if (when < 0) throw new IllegalArgumentException();
         double time = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
-            double took = orbit[i].dist(orbit[i + 1]) / speed;
+            double took = orbit[i].distance(orbit[i + 1]) / speed;
             double nextTime = time + took;
             if (when < nextTime) {
                 double p = (when - time) / took;
@@ -55,8 +55,8 @@ public class Track {
         double length = 0;
         for (int i = 0; i < orbit.length - 1; i++) {
             if (new Segment(orbit[i], orbit[i + 1]).intersect(where))
-                return (length + orbit[i].dist(where)) / speed;
-            length += orbit[i].dist(orbit[i + 1]);
+                return (length + orbit[i].distance(where)) / speed;
+            length += orbit[i].distance(orbit[i + 1]);
         }
         return -1;
     }
@@ -74,7 +74,7 @@ public class Track {
         double res = Algorithm.binarySearch(0, endTime, new Algorithm.BinSearchFilter() {
             public boolean isUpperBound(double value) {
                 Point p = where(value);
-                double reachTime = manStartTime + p.dist(manPosition) / manSpeed;
+                double reachTime = manStartTime + p.distance(manPosition) / manSpeed;
                 return reachTime < value;
             }
         });

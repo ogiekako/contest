@@ -32,7 +32,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
         Point.precision = precision;
     }
 
-    public double dist(Point p) {
+    public double distance(Point p) {
         return sub(p).norm();
     }
 
@@ -93,15 +93,28 @@ public class Point implements Comparable<Point>, GeometricalObject {
         return res;
     }
 
-    Point rot90() {
+    /**
+     * Rotate 90 degrees in counterclockwise direction.
+     */
+    public Point rot90() {
+        // .|..    p|..
+        // .|.p -> .|..
+        // -+--    -+--
         return new Point(-y, x);
     }
 
-    Point rot(double r) {
-        return new Point(x * Math.cos(r) - y * Math.sin(r), y * Math.cos(r) + x * Math.sin(r));
+    /**
+     * Rotate x degrees in counterclockwise direction.
+     */
+    Point rot(double x) {
+        return new Point(x * Math.cos(x) - y * Math.sin(x), y * Math.cos(x) + x * Math.sin(x));
     }
 
-    Point unit(double d) {
+    public Point unit() {
+        return div(norm());
+    }
+
+    public Point unit(double d) {
         return mul(d / norm());
     }
 
@@ -126,7 +139,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
     public boolean isEqualTo(GeometricalObject other) {
         if (!(other instanceof Point)) return false;
         Point o = (Point) other;
-        double absDiff = dist(o);
+        double absDiff = distance(o);
         double myLen = norm();
         double pLen = o.norm();
         return absDiff < EPS.value() || absDiff < myLen * EPS.value() || absDiff < pLen * EPS.value();

@@ -39,7 +39,7 @@ public class Circle_methods {
 
     // verified at GCJ10R2 D
     double areaCC(Point o1, double r1, Point o2, double r2) {// 円と円の共通部分の面積
-        double R = o1.dist(o2);
+        double R = o1.distance(o2);
         if (r1 + r2 - R < EPS.value()) return 0.0;
         double x = (R * R + r1 * r1 - r2 * r2) / (2 * R);
         double d = r1 * r1 - x * x;

@@ -36,11 +36,11 @@ public class Triangle_methods {
         Point ab1 = A.mul(b).add(B.mul(a)).div(a + b);
         Point ab2 = A.mul(-b).add(B.mul(a)).div(a - b);
         Point o1 = ab1.add(ab2).div(2);
-        double r1 = o1.dist(ab1);
+        double r1 = o1.distance(ab1);
         Point ac1 = A.mul(c).add(C.mul(a)).div(a + c);
         Point ac2 = A.mul(-c).add(C.mul(a)).div(a - c);
         Point o2 = ac1.add(ac2).div(2);
-        double r2 = o2.dist(ac1);
+        double r2 = o2.distance(ac1);
         return Circle_methods.intersection(o1, r1, o2, r2, 1e-6);
     }
 

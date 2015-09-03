@@ -22,7 +22,7 @@ public class CircusTents {
         double[] dist = new double[n - 1];
         for (int i = 0; i < n - 1; i++) {
             Point[] ts = Circle_methods.tanCP(center[0], r[0], center[i + 1]);
-            dist[i] = ts[0].dist(center[i + 1]) - r[i + 1];
+            dist[i] = ts[0].distance(center[i + 1]) - r[i + 1];
             theta[i] = center[i + 1].sub(center[0]).arg();
             phi[i] = ts[0].sub(center[0]).arg() - theta[i];
             if (phi[i] < -EPS) phi[i] += 2 * Math.PI;
@@ -67,7 +67,7 @@ public class CircusTents {
             }
             if (in) {
                 Point p = center[0].add(new Point(r[0] * Math.cos(a), r[0] * Math.sin(a)));
-                double val = p.dist(center[i + 1]) - r[i + 1];
+                double val = p.distance(center[i + 1]) - r[i + 1];
                 res = Math.min(res, val);
             } else {
                 double val = Double.POSITIVE_INFINITY;

@@ -56,4 +56,15 @@ public class Line {
         double e = l.direction().det(l.from.sub(from));
         return from.add(direction().mul(e / d));
     }
+
+    /**
+     * Returns POSITIVE_INFINITY if this line is parallel to the x-axis.
+     * Otherwise return the x value of the intersection of this line and the line (Y = y).
+     * In other words, (res, y) lies on this line.
+     * <p>Verified: AOJ1265 Shy Polygons</p>
+     */
+    public double findXWhereYIs(double y) {
+        if (from.y == to.y) return Double.POSITIVE_INFINITY;
+        return (y - from.y) / (to.y - from.y) * (to.x - from.x) + from.x;
+    }
 }
