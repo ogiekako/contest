@@ -65,7 +65,7 @@ public class TaskE {
             }
         }
 
-        res *= Matrix.determinantDestructive(A, MOD);
+        res *= Matrix.determinant(A, MOD);
         if (res < 0) res += MOD;
         out.println(res);
     }

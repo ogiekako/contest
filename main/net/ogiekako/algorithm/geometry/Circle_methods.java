@@ -40,10 +40,10 @@ public class Circle_methods {
     // verified at GCJ10R2 D
     double areaCC(Point o1, double r1, Point o2, double r2) {// 円と円の共通部分の面積
         double R = o1.distance(o2);
-        if (r1 + r2 - R < EPS.value()) return 0.0;
+        if (r1 + r2 - R < EPS.get()) return 0.0;
         double x = (R * R + r1 * r1 - r2 * r2) / (2 * R);
         double d = r1 * r1 - x * x;
-        if (d < -EPS.value()) return Math.PI * Math.min(r1, r2) * Math.min(r1, r2);
+        if (d < -EPS.get()) return Math.PI * Math.min(r1, r2) * Math.min(r1, r2);
         if (d < 0) d = 0;
         double y = Math.sqrt(d);
         double theta1 = Math.atan2(y, x), theta2 = Math.atan2(y, R - x);
@@ -67,7 +67,7 @@ public class Circle_methods {
         double x = p2.sub(p1).dot(o.sub(p1));
         double y = p1.dist2(p2);
         double d = y * (r * r - o.dist2(p1)) + x * x;
-        if (d < -EPS.value()) return new Point[0];
+        if (d < -EPS.get()) return new Point[0];
         if (d < 0) d = 0;
         Point s1 = p1.add(p2.sub(p1).mul(x / y));
         Point s2 = p2.sub(p1).mul(Math.sqrt(d) / y);
@@ -79,7 +79,7 @@ public class Circle_methods {
     public static Point[] tanCP(Point o, double r, Point p) {
         double x = p.dist2(o);
         double d = x - r * r;
-        if (d < -EPS.value()) return new Point[0];
+        if (d < -EPS.get()) return new Point[0];
         if (d < 0) d = 0;
         Point s1 = p.sub(o).mul(r * r / x);
         Point s2 = p.sub(o).rot90().mul(r * Math.sqrt(d) / x);

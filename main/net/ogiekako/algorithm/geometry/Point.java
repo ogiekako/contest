@@ -6,6 +6,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
 
     static int precision = 2;
     public final double x, y;
+    public static final Point O = new Point(0,0);
 
     public Point(double x, double y) {
         this.x = x;
@@ -13,15 +14,15 @@ public class Point implements Comparable<Point>, GeometricalObject {
     }
 
     static int sgn(double d) {
-        return d < -EPS.value() ? -1 : d > EPS.value() ? 1 : 0;
+        return d < -EPS.get() ? -1 : d > EPS.get() ? 1 : 0;
     }
 
     static boolean le(double a, double b) {
-        return a + EPS.value() < b;
+        return a + EPS.get() < b;
     }
 
     static boolean eq(double a, double b) {
-        return Math.abs(a - b) < EPS.value();
+        return Math.abs(a - b) < EPS.get();
     }
 
     public static Point make(double x, double y) {
@@ -60,7 +61,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
         return new Point(x * d, y * d);
     }
 
-    Point div(double d) {
+    public Point div(double d) {
         return new Point(x / d, y / d);
     }
 
@@ -78,7 +79,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
 
     public double arg() {
         double res = Math.atan2(y, x);
-        if (res < -EPS.value()) res += 2 * Math.PI;
+        if (res < -EPS.get()) res += 2 * Math.PI;
         if (res < 0) res = 0;
         return res;
     }
@@ -88,7 +89,7 @@ public class Point implements Comparable<Point>, GeometricalObject {
      */
     public double arg(Point p) {// [0,2*PI)
         double res = Math.atan2(det(p), dot(p));
-        if (res < -EPS.value()) res += 2 * Math.PI;
+        if (res < -EPS.get()) res += 2 * Math.PI;
         if (res < 0) res = 0;
         return res;
     }
@@ -142,6 +143,6 @@ public class Point implements Comparable<Point>, GeometricalObject {
         double absDiff = distance(o);
         double myLen = norm();
         double pLen = o.norm();
-        return absDiff < EPS.value() || absDiff < myLen * EPS.value() || absDiff < pLen * EPS.value();
+        return absDiff < EPS.get() || absDiff < myLen * EPS.get() || absDiff < pLen * EPS.get();
     }
 }

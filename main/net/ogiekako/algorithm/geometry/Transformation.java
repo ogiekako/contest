@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.geometry;
 
-import static net.ogiekako.algorithm.EPS.EPS;
+import net.ogiekako.algorithm.EPS;
 
 public class Transformation {
     /**
@@ -14,7 +14,7 @@ public class Transformation {
      */
     public Point inverse(Point p) {
         double d = p.norm();
-        if (d < EPS) throw new RuntimeException();
+        if (d < EPS.get()) throw new RuntimeException();
         return p.mul(1.0 / d / d);
     }
 }

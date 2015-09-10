@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Polygon_methods {
-    public static double eps = EPS.value();
+    public static double eps = EPS.get();
+
     // p->r の左側を返す.
     Point[] convexCut(Point[] ps, Point p, Point r) {// AOJ1299
         int n = ps.length;
@@ -21,6 +22,7 @@ public class Polygon_methods {
         }
         return list.toArray(new Point[list.size()]);
     }
+
     int ccw(Point a, Point b, Point c) {
         b = b.sub(a);
         c = c.sub(a);
@@ -30,6 +32,7 @@ public class Polygon_methods {
         if (b.norm() + eps < c.norm()) return -2;
         return 0;
     }
+
     public static double area(Point[] ps) {// 符号付き面積。反時計回りのとき正、時計回りのとき負。
         double S = 0;
         for (int i = 0; i < ps.length; i++)
@@ -44,6 +47,7 @@ public class Polygon_methods {
     static Point[] ds;
     static int un;
     static Point[] us;
+
     public static Point[] convexHull(Point[] ps, boolean includePointsOnEdge) { // O(n logn).
         if (includePointsOnEdge) return convexHullIncludingPointOnEdge(ps);
         else return convexHullExcludingPointOnEdge(ps);
@@ -113,6 +117,7 @@ public class Polygon_methods {
         if (contains(ps1, gcenter(ps2)) == 1) return true;
         return false;
     }
+
     // center of gravity
     private Point gcenter(Point[] ps) {
         Point res = new Point(0, 0);

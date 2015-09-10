@@ -37,7 +37,7 @@ public class Line {
         double d = l.direction().det(direction());
         if (EPS.signum(d) == 0) {
             double e = l.direction().det(l.to.sub(from));
-            if (Math.abs(e) < EPS.value()) return true;// same line.
+            if (Math.abs(e) < EPS.get()) return true;// same line.
             return false;// parallel
         }
         return true;

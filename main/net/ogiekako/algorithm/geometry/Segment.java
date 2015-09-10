@@ -1,7 +1,6 @@
 package net.ogiekako.algorithm.geometry;
 
 import net.ogiekako.algorithm.EPS;
-import net.ogiekako.algorithm.dataStructure.interval.Interval;
 
 public class Segment implements GeometricalObject {
     public final Point a, b;
@@ -47,6 +46,32 @@ public class Segment implements GeometricalObject {
 
     public Point asPoint() {
         return a;
+    }
+
+    /**
+     * Return the intersection (possibly end point) or null.
+     * <p>Tested</p>
+     */
+    public Segment intersection(Segment s) {
+        if (!intersect(s)) {
+            return null;
+        }
+        Segment t = intersection(s.asLine());
+        if (EPS.isZero(t.length())) {
+            return t;
+        }
+        Point[] ends = new Point[4];
+        int n = 0, j = 1;
+        if (intersect(s.a)) ends[n++] = s.a;
+        if (intersect(s.b)) ends[n++] = s.b;
+        if (s.intersect(a)) ends[n++] = a;
+        if (s.intersect(b)) ends[n++] = b;
+
+        while (j < n - 1 && ends[0].isEqualTo(ends[j])) {
+            j++;
+        }
+
+        return new Segment(ends[0], ends[j]);
     }
 
     /**
