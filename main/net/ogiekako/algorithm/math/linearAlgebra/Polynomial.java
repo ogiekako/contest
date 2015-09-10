@@ -191,15 +191,19 @@ public class Polynomial extends Ring<Polynomial> {
     }
 
     public Polynomial addInv() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Mint[] inv = new Mint[n+1];
+        for (int i = 0; i <= n; i++) {
+            inv[i] = a[i].addInv();
+        }
+        return of(inv);
     }
 
     public boolean isZero() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return n == 0 && getCoefficient(0).isZero();
     }
 
     public Polynomial zero() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return ZERO;
     }
 
     public Mint getCoefficient(int i) {

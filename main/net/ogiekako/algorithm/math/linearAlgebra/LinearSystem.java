@@ -67,22 +67,19 @@ public class LinearSystem {
         int n = y.length;
         // Newton interpolation.
         Mint[] f = new Mint[n];
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i + k < n; i++) {// f[x_i, ..., x_{i+k}]
-                int j = i + k;
-                // f[x_i] = y_i
-                // f[x_i, ..., x_j] = (f[x_i, ..., x_{j-1}] - f[x_{i+1}, ... ,x_j]) / (x_j - x_i)
-                f[i] = i == j ? y[i] : f[i].minus(f[i+1]).div(x[j].minus(x[i]));
-            }
-        }
-
-        // P(x) = \sum_{0 <= i < n}f[x_0, ..., x_i]\prod_{0 <= j < i}(x - x_j)
+        // P(x) = \sum_{0 <= k < n}[x_0, ..., x_k](x - x_0)...(x - x_{k-1})
         Polynomial P = Polynomial.ZERO;
         Polynomial g = Polynomial.of(1);
-        for (int i = 0; i < n; i++) {
-            Mint c = f[i];
-            P = P.add(g.mul(c));
-            g = g.mul(x[i].addInv(), Mint.ONE);// x - x_i
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i + k < n; i++) {// [x_i, ..., x_{i+k}]
+                int j = i + k;
+                // [x_i] = y_i
+                // [x_i, ..., x_j] = ([x_{i+1}, ..., x_j] - [x_i, ... ,x_{j-1}]) / (x_j - x_i)
+                f[i] = i == j ? y[i] : f[i+1].minus(f[i]).div(x[j].minus(x[i]));
+            }
+            // [x_0, ..., x_k](x - x_0)...(x - x_{k-1})
+            P = P.add(g.mul(f[0]));
+            g = g.mul(x[k].addInv(), Mint.ONE); // x - x_k
         }
         return P;
     }

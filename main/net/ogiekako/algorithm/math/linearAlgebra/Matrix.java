@@ -257,6 +257,11 @@ public class Matrix {
         return C;
     }
 
+    /**
+     * In O(n^3) time,
+     * compute the determinant of the given square matrix.
+     * <p>Tested</p>
+     */
     public static int determinant(long[][] _A, int modPrime) {
         int n = _A.length;
         Mint[][] A = new Mint[n][n];
@@ -270,7 +275,8 @@ public class Matrix {
     }
 
     /**
-     * Compute the determinant of the given square matrix.
+     * In O(n^3) time,
+     * compute the determinant of the given square matrix.
      * <p>Tested</p>
      */
     public static int determinant(Mint[][] _A) {

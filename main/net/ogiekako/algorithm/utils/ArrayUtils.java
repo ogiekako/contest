@@ -2,7 +2,6 @@ package net.ogiekako.algorithm.utils;
 
 import net.ogiekako.algorithm.utils.interfaces.Classifiable;
 
-import java.math.BigInteger;
 import java.util.*;
 
 public class ArrayUtils {
@@ -15,13 +14,6 @@ public class ArrayUtils {
             list.add(null);
         }
         return list.toArray(empty);
-    }
-
-    public static void main(String[] args) {
-        BigInteger[] array = createArray(3, new BigInteger[1]);
-        array[0] = BigInteger.ZERO;
-        array[1] = BigInteger.ONE;
-        System.out.println(Arrays.toString(array));
     }
 
     /**

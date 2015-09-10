@@ -1,12 +1,15 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.MOD;
-import net.ogiekako.algorithm.graph.Graph;
+import net.ogiekako.algorithm.math.algebra.Mint;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Random;
+
+import static org.hamcrest.Matchers.is;
 
 
 public class LinearSystemTest {
@@ -236,6 +239,23 @@ public class LinearSystemTest {
         }
         MOD.set(19);
         Assert.assertEquals(16, LinearSystem.numberOfSpanningTrees(G).get());
+    }
 
+    @Test
+    public void testInterpolate() {
+        MOD.set((int) (1e9+7));
+
+        // x = y
+        Polynomial P = LinearSystem.interpolate(new Mint[]{Mint.of(0), Mint.of(1)});
+        Assert.assertThat(P.toString(), is("x"));
+
+        P = Polynomial.fromString("2x^4 + x^3 - 2x^2 + 1");
+        Mint[] x = new Mint[]{Mint.of(0), Mint.of(1), Mint.of(-1), Mint.of(10), Mint.of(-5)};
+        Mint[] y = new Mint[x.length];
+        for (int i = 0; i < x.length; i++) {
+            y[i] = P.evaluate(x[i]);
+        }
+        Polynomial res = LinearSystem.interpolate(x, y);
+        Assert.assertEquals(P, res);
     }
 }
