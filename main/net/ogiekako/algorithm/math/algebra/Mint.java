@@ -1,52 +1,79 @@
 package net.ogiekako.algorithm.math.algebra;
 
+import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.MathUtils;
 
 public class Mint extends Field<Mint> {
-    public static int modPrime;
-    public final long value;
+    public static final Mint ZERO = of(0);
+    public static final Mint ONE = of(1);
+    final long x;
 
-    public Mint(long value) {
-        this.value = value;
+    public Mint(long x) {
+        this.x = MOD.normalize(x);
     }
 
-    public static void setMod(int modPrime) {
-        Mint.modPrime = modPrime;
+    public int get() {
+        return (int) x;
     }
 
     public static Mint of(long value) {
-        if (value >= modPrime) value = value % modPrime;
-        if (value < 0) {
-            value = value % modPrime;
-            if (value < 0) value += modPrime;
-        }
         return new Mint(value);
     }
 
     public Mint mulInv() {
-        return of(MathUtils.inverse(value, modPrime));
+        return of(MathUtils.inverse(x, MOD.get()));
     }
 
     public Mint mul(Mint other) {
-        return of(value * other.value % modPrime);
+        return mul(other.x);
+    }
+
+    public Mint mul(long y) {
+        return of(MOD.mul(x, y));
+    }
+
+    public Mint div(Mint other) {
+        return div(other.x);
+    }
+
+    public Mint div(long y) {
+        return of(MOD.div(x, y));
     }
 
     public Mint add(Mint other) {
-        long nValue = value + other.value;
-        if (nValue >= modPrime) nValue -= modPrime;
-        return of(nValue);
+        return of(x + other.x);
+    }
+
+    public Mint add(long y) {
+        return of(x + MOD.normalize(y));
+    }
+
+    public Mint minus(Mint other) {
+        return minus(other.x);
+    }
+
+    public Mint minus(long y) {
+        return of(x - MOD.normalize(y));
     }
 
     public Mint addInv() {
-        if (value == 0) return of(0);
-        return of(modPrime - value);
+        return of(-x);
     }
 
     public boolean isZero() {
-        return value % modPrime == 0;
+        return x == 0;
     }
 
     public Mint zero() {
-        return of(0);
+        return ZERO;
+    }
+
+    public boolean isOne() {
+        return x == MOD.normalize(1);
+    }
+
+    @Override
+    public String toString() {
+        return "" + x;
     }
 }

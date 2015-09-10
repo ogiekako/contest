@@ -1,6 +1,8 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
+import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.PowerOperation;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
 import net.ogiekako.algorithm.utils.Permutation;
@@ -150,8 +152,31 @@ public class MatrixTest {
             int n = 5;
             long[][] A = new long[n][n];
             for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A[i][j] = random.nextInt(PRIME);
-            long res = Matrix.determinantDestructive(ArrayUtils.deepClone(A), PRIME);
+            long res = Matrix.determinant(ArrayUtils.deepClone(A), PRIME);
             long exp = determinantStupid(A, PRIME);
+            if (res != exp) {
+                debug(A);
+                debug(res, exp);
+                throw new AssertionError();
+            }
+        }
+    }
+
+    @Test
+    public void testDeterminantMint() {
+        int PRIME = 97;
+        MOD.set(PRIME);
+        Random random = new Random(14901284L);
+        for (int iteration = 0; iteration < 50; iteration++) {
+            int n = 5;
+            Mint[][] A = new Mint[n][n];
+            long[][] ALong = new long[n][n];
+            for (int i = 0; i < n; i++) for (int j = 0; j < n; j++){
+                ALong[i][j] = random.nextInt(PRIME);
+                A[i][j] = Mint.of(ALong[i][j]);
+            }
+            long res = Matrix.determinant(A);
+            long exp = determinantStupid(ALong, PRIME);
             if (res != exp) {
                 debug(A);
                 debug(res, exp);

@@ -1,11 +1,91 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.math.MathUtils;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
 public class LinearSystem {
+
+    /**
+     * In O(n^3) time,
+     * compute the number of spanning trees in G.
+     * Given G should represent a undirected graph.
+     * G[i][j] is the number of edges between i and j.
+     *
+     * See Programming Contest Book for a proof.
+     * <p>Tested.
+     * Verified: SRM</p>
+     */
+    public static Mint numberOfSpanningTrees(long[][] G) {
+        int n = G.length;
+        if (n == 0) return Mint.ZERO;
+        if (n == 1) return Mint.ONE;
+        // D - G
+        Mint[][] L = new Mint[n][n];
+        ArrayUtils.fill(L, Mint.ZERO);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                L[i][i] = L[i][i].add(G[i][j]);
+                L[i][j] = L[i][j].minus(G[i][j]);
+            }
+        }
+
+        Mint[][] L0 = new Mint[n - 1][n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                L0[i][j] = L[i + 1][j + 1];
+            }
+        }
+        return Mint.of(Matrix.determinant(L0));
+    }
+
+    /**
+     * In O(n^2) time,
+     * compute the unique polynomial P such that the degree of P is n-1 and
+     * P(i) = y_i for i = 0, ..., n-1.
+     *
+     * <p>Verified: TCO R3B 1000</p>
+     */
+    public static Polynomial interpolate(Mint[] y) {
+        Mint[] x = new Mint[y.length];
+        for (int i = 0; i < x.length; i++) {
+            x[i] = Mint.of(i);
+        }
+        return interpolate(x, y);
+    }
+
+    /**
+     * In O(n^2) time,
+     * compute the unique polynomial P such that the degree of P is n-1 and
+     * P(x_i) = y_i for i = 0, ..., n-1.
+     *
+     * See Programming Contest Book for a proof.
+     */
+    public static Polynomial interpolate(Mint[] x, Mint[] y) {
+        int n = y.length;
+        // Newton interpolation.
+        Mint[] f = new Mint[n];
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i + k < n; i++) {// f[x_i, ..., x_{i+k}]
+                int j = i + k;
+                // f[x_i] = y_i
+                // f[x_i, ..., x_j] = (f[x_i, ..., x_{j-1}] - f[x_{i+1}, ... ,x_j]) / (x_j - x_i)
+                f[i] = i == j ? y[i] : f[i].minus(f[i+1]).div(x[j].minus(x[i]));
+            }
+        }
+
+        // P(x) = \sum_{0 <= i < n}f[x_0, ..., x_i]\prod_{0 <= j < i}(x - x_j)
+        Polynomial P = Polynomial.ZERO;
+        Polynomial g = Polynomial.of(1);
+        for (int i = 0; i < n; i++) {
+            Mint c = f[i];
+            P = P.add(g.mul(c));
+            g = g.mul(x[i].addInv(), Mint.ONE);// x - x_i
+        }
+        return P;
+    }
 
     /**
      * Ax = b を満たすxの解空間 = { X[0] + \sum{c_i X[i]} を求める.

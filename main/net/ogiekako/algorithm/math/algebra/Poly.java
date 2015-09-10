@@ -73,7 +73,7 @@ public class Poly<V extends Ring<V>> extends Ring<Poly<V>> {
             String s = "";
             if (((Irr) a[i]).value > 0) s += "+";
             else s += "-";
-            s += Math.abs(Math.abs(v(i)) - 1) < EPS.EPS && i > 0 ? "" : String.format("%.2f", Math.abs(v(i)));
+            s += Math.abs(Math.abs(v(i)) - 1) < EPS.get() && i > 0 ? "" : String.format("%.2f", Math.abs(v(i)));
             while (s.endsWith("0") || s.endsWith(".")) s = s.substring(0, s.length() - 1);
             if (i == 0) s += "";
             else if (i == 1) s += "x";

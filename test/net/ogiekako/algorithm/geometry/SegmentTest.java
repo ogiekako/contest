@@ -20,6 +20,17 @@ public class SegmentTest {
     }
 
     @Test
+    public void intersectionWithSegment() {
+        assertEq(null, new Segment(a, b).intersection(new Segment(c, d)));
+        assertEq(new Segment(a, a), new Segment(a, b).intersection(new Segment(c, a)));
+        assertEq(new Segment(c, c), new Segment(a, c).intersection(new Segment(c, e)));
+        assertEq(new Segment(c, c), new Segment(c, e).intersection(new Segment(a, c)));
+        assertEq(new Segment(e, c), new Segment(a, e).intersection(new Segment(e, c)));
+        assertEq(new Segment(a, c), new Segment(a, c).intersection(new Segment(a, e)));
+        assertEq(new Segment(0.5, 0.5, 0.5, 0.5), new Segment(a, d).intersection(new Segment(b, c)));
+    }
+
+    @Test
     public void intersectWithLine() {
         Assert.assertFalse(new Segment(a, b).intersect(new Line(c, d)));
         Assert.assertTrue(new Segment(a, b).intersect(new Line(c, a)));

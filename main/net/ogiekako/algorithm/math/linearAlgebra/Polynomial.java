@@ -1,22 +1,99 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.math.MathUtils;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.math.algebra.Ring;
+import net.ogiekako.algorithm.utils.Cast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Polynomial extends Ring<Polynomial> {
-    long[] a_;
-    Polynomial(long[] a) {
-        a_ = a.clone();
+    // degree
+    final int n;
+    final Mint[] a;
+
+    private static Mint[] asMints(long[] a) {
+        Mint[] res = new Mint[a.length];
+        for (int i = 0; i < a.length; i++) {
+            res[i] = Mint.of(a[i]);
+        }
+        return res;
     }
-    public static Polynomial of(int n) {
-        return new Polynomial(new long[n]);
+
+    public static final Polynomial ZERO = of(0);
+
+    Polynomial(Mint[] a) {
+        this.a = a.clone();
+
+        int n = a.length - 1;
+        while (n > 0 && (a[n] == null || a[n].isZero())) n--;
+        this.n = n;
     }
-    public static Polynomial of(long[] a) {
+
+    public static Polynomial of(long... a) {
+        return of(asMints(a));
+    }
+
+    public static Polynomial of(Mint... a) {
         return new Polynomial(a);
     }
 
+    public int degree() {
+        return n;
+    }
+
+    // "2x^2 + x - 5"
+    public static Polynomial fromString(String formula) {
+        formula = formula.replaceAll(" ", "").replaceAll("(\\+|-)", " $1");
+        String[] items = formula.split(" ");
+        ArrayList<Long> as = new ArrayList<Long>();
+        for (String item : items) {
+            if (!item.contains("x")) {
+                as.set(0, Long.valueOf(item));
+                continue;
+            }
+            item = item.replaceAll("x", "");
+            String a = item;
+            int deg = 1;
+            if (item.contains("^")) {
+                String[] ss = item.split("\\^");
+                a = ss[0];
+                deg = Integer.valueOf(ss[1]);
+            }
+            while (as.size() <= deg) {
+                as.add(0L);
+            }
+            if (a.isEmpty() || a.equals("+") || a.equals("-")) a += "1";
+            as.set(deg, Long.valueOf(a));
+        }
+        return Polynomial.of(Cast.toLong(as));
+    }
+
+    @Override
+    public String toString() {
+        if (degree() == 0) {
+            return "0";
+        }
+        StringBuilder b = new StringBuilder();
+        for (int i = n; i >= 0; i--) {
+            if (a[i].isZero()) continue;
+            if (i < n) {
+                b.append(" + ");
+            }
+            if (i == 0 || !a[i].isOne()) {
+                b.append(a[i].get());
+            }
+            if (i == 0) continue;
+            b.append("x");
+            if (i == 1) continue;
+            b.append("^").append(i);
+        }
+        return b.toString();
+    }
+
     /**
-     * P % Q.
+     * P * Q.
      *
      * @verified
      */
@@ -72,12 +149,45 @@ public class Polynomial extends Ring<Polynomial> {
         return res;
     }
 
+    /**
+     * <p>Tested</p>
+     */
     public Polynomial mul(Polynomial other) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Mint[] P = a;
+        Mint[] Q = other.a;
+        int m = other.degree();
+        Mint[] res = new Mint[n + m + 1];
+        Arrays.fill(res, Mint.ZERO);
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                res[i + j] = res[i + j].add(P[i].mul(Q[j]));
+            }
+        }
+        return new Polynomial(res);
     }
 
+    public Polynomial mul(long... Q) {
+        return mul(of(Q));
+    }
+
+    public Polynomial mul(Mint... Q) {
+        return mul(of(Q));
+    }
+
+    /**
+     * <p>Tested</p>
+     */
     public Polynomial add(Polynomial other) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        int degree = Math.max(degree(), other.degree());
+        Mint[] P = new Mint[degree + 1];
+        for (int i = 0; i <= degree; i++) {
+            P[i] = getCoefficient(i).add(other.getCoefficient(i));
+        }
+        return of(P);
+    }
+
+    public Polynomial add(Mint... Q) {
+        return add(of(Q));
     }
 
     public Polynomial addInv() {
@@ -90,5 +200,26 @@ public class Polynomial extends Ring<Polynomial> {
 
     public Polynomial zero() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public Mint getCoefficient(int i) {
+        return i >= a.length || a[i] == null ? Mint.ZERO : a[i];
+    }
+
+    /**
+     * <p>Tested</p>
+     */
+    public Mint evaluate(long x) {
+        return evaluate(Mint.of(x));
+    }
+
+    public Mint evaluate(Mint x) {
+        Mint res = Mint.ZERO;
+        Mint xx = Mint.ONE;
+        for (int i = 0; i <= n; i++) {
+            res = res.add(a[i].mul(xx));
+            xx = xx.mul(x);
+        }
+        return res;
     }
 }

@@ -80,6 +80,13 @@ public class Graph {
                 '}';
     }
 
+    /**
+     * Returns if this graph contains the given edge in O(degree) time.
+     */
+    public boolean contains(Edge e) {
+        return edges[e.from()].contains(e);
+    }
+
     private static class EdgeList extends ArrayList<Edge> {
         EdgeList() {
             super(0);

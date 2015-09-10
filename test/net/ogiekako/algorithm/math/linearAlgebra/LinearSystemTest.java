@@ -1,5 +1,7 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
+import net.ogiekako.algorithm.MOD;
+import net.ogiekako.algorithm.graph.Graph;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -201,5 +203,39 @@ public class LinearSystemTest {
         double[] x = new double[A.length];
         for (int i = 0; i < A.length; i++) for (int j = 0; j < v.length; j++) x[i] += A[i][j] * v[j];
         return x;
+    }
+
+    @Test
+    public void numberOfSpanningTrees() {
+        long[][] G = new long[3][3];
+        G[0][1] = G[0][2] = G[1][0] = G[1][2] = G[2][0] = G[2][1] = 1;
+        Assert.assertEquals(3, LinearSystem.numberOfSpanningTrees(G).get());
+
+        G = new long[3][3];
+        G[0][1] = G[1][0] = 2;
+        G[0][2] = G[2][0] = 3;
+        G[1][2] = G[2][1] = 2;
+        Assert.assertEquals(4 + 6 + 6, LinearSystem.numberOfSpanningTrees(G).get());
+
+        MOD.set(5);
+        G = new long[3][3];
+        G[0][1] = G[0][2] = G[1][0] = G[1][2] = G[2][0] = G[2][1] = 1;
+        Assert.assertEquals(3, LinearSystem.numberOfSpanningTrees(G).get());
+
+        G = new long[3][3];
+        G[0][1] = G[1][0] = 2;
+        G[0][2] = G[2][0] = 3;
+        G[1][2] = G[2][1] = 2;
+        Assert.assertEquals(1, LinearSystem.numberOfSpanningTrees(G).get());
+
+        G = new long[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                G[i][j] = i == j ? 0 : 1;
+            }
+        }
+        MOD.set(19);
+        Assert.assertEquals(16, LinearSystem.numberOfSpanningTrees(G).get());
+
     }
 }

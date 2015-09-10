@@ -27,7 +27,7 @@ public class Irr extends Field<Irr> implements Comparable<Irr> {
     }
 
     public boolean isZero() {
-        return Math.abs(value) < EPS.EPS;
+        return EPS.isZero(value);
     }
 
     public Irr zero() {

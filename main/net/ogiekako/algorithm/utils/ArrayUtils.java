@@ -1,7 +1,6 @@
 package net.ogiekako.algorithm.utils;
 
 import net.ogiekako.algorithm.utils.interfaces.Classifiable;
-import net.ogiekako.algorithm.utils.interfaces.Function;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -436,6 +435,10 @@ public class ArrayUtils {
 
     public static void fill(long[][][] array, long value) {
         for (long[][] l : array) fill(l, value);
+    }
+
+    public static <V> void fill(V[][] array, V value) {
+        for (V[] l : array) Arrays.fill(l, value);
     }
 
     /**

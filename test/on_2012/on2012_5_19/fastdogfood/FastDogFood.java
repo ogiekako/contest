@@ -72,8 +72,8 @@ public class FastDogFood {
             double dot2 = q.dot(r2);
             double det1 = r1.det(q);
             double det2 = q.det(r2);
-            if (dot1 < -EPS.value() && dot2 < -EPS.value()) return false;
-            if (Math.abs(det1) > EPS.value() && Math.abs(det2) > EPS.value() && Math.signum(det1) != Math.signum(det2))
+            if (dot1 < -EPS.get() && dot2 < -EPS.get()) return false;
+            if (Math.abs(det1) > EPS.get() && Math.abs(det2) > EPS.get() && Math.signum(det1) != Math.signum(det2))
                 return false;
             r1 = q;
             r2 = Food.sub(orbit[i]);

@@ -1,8 +1,10 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.EPS;
+import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.PowerOperation;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
 
@@ -102,9 +104,8 @@ public class Matrix {
      * Compute the determinant of the given matrix.
      * The given array will be modified.
      */
-
     public static double determinantDestructive(double[][] mat) {
-        double eps = EPS.value();
+        double eps = EPS.get();
         int n = mat.length;
         double res = 1;
         for (int i = 0; i < n; i++) {
@@ -256,34 +257,55 @@ public class Matrix {
         return C;
     }
 
-    public static int determinantDestructive(long[][] A, int modPrime) {
-        int n = A.length;
-        long res = 1;
+    public static int determinant(long[][] _A, int modPrime) {
+        int n = _A.length;
+        Mint[][] A = new Mint[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = Mint.of(_A[i][j]);
+            }
+        }
+        MOD.set(modPrime);
+        return determinant(A);
+    }
+
+    /**
+     * Compute the determinant of the given square matrix.
+     * <p>Tested</p>
+     */
+    public static int determinant(Mint[][] _A) {
+        int n = _A.length;
+        Mint[][] A = new Mint[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = _A[i][j];
+            }
+        }
+        Mint res = Mint.ONE;
         for (int i = 0; i < n; i++) {
             int pivot = i;
             for (int j = i; j < n; j++) {
-                if (Math.abs(A[j][i]) > Math.abs(A[pivot][i])) {
+                if (!A[j][i].isZero()) {
                     pivot = j;
+                    break;
                 }
             }
             // rank < n
-            if (A[pivot][i] == 0) return 0;
+            if (A[pivot][i].isZero()) return 0;
             if (i != pivot) {
                 ArrayUtils.swap(A, i, pivot);
-                res = -res;
-                if (res < 0) res += modPrime;
+                res = res.addInv();
             }
-            res = res * A[i][i] % modPrime;
-            long inv = MathUtils.inverse(A[i][i], modPrime);
+            res = res.mul(A[i][i]);
+            Mint inv = A[i][i].mulInv();
             for (int j = i + 1; j < n; j++) {
-                long mul = A[j][i] * inv % modPrime;
+                Mint mul = A[j][i].mul(inv);
                 for (int k = i; k < n; k++) {
-                    A[j][k] -= A[i][k] * mul % modPrime;
-                    if (A[j][k] < 0) A[j][k] += modPrime;
+                    A[j][k] = A[j][k].minus(A[i][k].mul(mul));
                 }
             }
         }
-        return (int) res;
+        return res.get();
     }
 
     /**

@@ -91,7 +91,7 @@ public class RationalNumber extends Field<RationalNumber> implements Comparable<
         for (long den = 1; ; den++) {
             double dNum = value * den;
             long num = Math.round(dNum);
-            if (Math.abs(num - dNum) < EPS.value()) {
+            if (Math.abs(num - dNum) < EPS.get()) {
                 return RationalNumber.of(num, den);
             }
         }
