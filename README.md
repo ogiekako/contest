@@ -1,5 +1,4 @@
-private
+contest
 =======
 
-My private library
-                    hoge
+Libraries and solutions for programming contests.
