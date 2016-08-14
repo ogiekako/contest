@@ -1,10 +1,9 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.EPS;
-import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.PowerOperation;
-import net.ogiekako.algorithm.math.algebra.Mint;
+import net.ogiekako.algorithm.math.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
 
@@ -270,7 +269,7 @@ public class Matrix {
                 A[i][j] = Mint.of(_A[i][j]);
             }
         }
-        MOD.set(modPrime);
+        Mint.setMod(modPrime);
         return determinant(A);
     }
 
@@ -412,8 +411,8 @@ public class Matrix {
             for (int j = 0; j < i; j++)
                 if (B[i][pivot[j]] > 0) {// eliminate
                     long mul = MOD - B[i][pivot[j]] % MOD;// B[i] is modified during this loop. so B[i][pivot[j]] may be no longer smaller than MOD.
-                    // Do B[i] += B[j] * mul.
-                    // B[j] is represented by C[j], hence C[i] += C[j] * mul.
+                    // Do B[i] += B[j] * mulLong.
+                    // B[j] is represented by C[j], hence C[i] += C[j] * mulLong.
                     for (int k = 0; k < n; k++) {
                         B[i][k] += B[j][k] * mul;
                         if (B[i][k] < 0) B[i][k] -= sub;

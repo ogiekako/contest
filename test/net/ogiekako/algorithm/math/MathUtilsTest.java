@@ -1,7 +1,5 @@
 package net.ogiekako.algorithm.math;
 
-import net.ogiekako.algorithm.MOD;
-import net.ogiekako.algorithm.math.algebra.Mint;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -93,7 +91,7 @@ public class MathUtilsTest {
 
     @Test
     public void testComb() {
-        MOD.set1e9_7();
+        Mint.set1e9_7();
         int[][] exp = new int[][]{
                 {1,0,0,0},
                 {1,1,0,0},
@@ -107,7 +105,7 @@ public class MathUtilsTest {
 
     @Test(timeout=2000)
     public void testCombLarge() {
-        MOD.set1e9_7();
+        Mint.set1e9_7();
         int n = 5000;
 
         // long[][] を更新していくのに比べて2倍程度。728ms.
@@ -116,7 +114,7 @@ public class MathUtilsTest {
 
     @Test
     public void testFact() {
-        MOD.set(13);
+        Mint.setMod(13);
         int exp = 1;
         for (int i = 0; i < 10; i++) {
             Assert.assertEquals(exp % 13, MathUtils.fact(i).get());
@@ -126,25 +124,25 @@ public class MathUtilsTest {
 
     @Test
     public void testIfact() {
-        MOD.set(13);
+        Mint.setMod(13);
         int fact = 1;
         for (int i = 0; i < 10; i++) {
             Mint res = MathUtils.ifact(i);
             Assert.assertEquals(1, res.mul(fact).get());
-            fact = fact * (i+1) % MOD.get();
+            fact = fact * (i+1) % Mint.getMod();
         }
     }
 
     @Test
     public void testCatalanNumber() {
-        MOD.set(40009);
+        Mint.setMod(40009);
         long[] exp = {1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786 % 40009};
         for (int i = 0; i < exp.length; i++) Assert.assertEquals(exp[i], MathUtils.catalan(i).get());
     }
 
     @Test(timeout=1000)
     public void testCatalanNumberLarge() {
-        MOD.set1e9_7();
+        Mint.set1e9_7();
         for (int i = 0; i < 50000; i++) MathUtils.catalan(i);
     }
 

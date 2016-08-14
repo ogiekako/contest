@@ -1,7 +1,5 @@
 package net.ogiekako.algorithm.math;
 
-import net.ogiekako.algorithm.MOD;
-import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.utils.Cast;
 
 import java.math.BigInteger;
@@ -231,12 +229,12 @@ public class MathUtils {
     private static int factPrevMod;
     private static Mint[] fact;
     public static Mint fact(int n) {
-        if(factPrevMod != MOD.get()) {
+        if(factPrevMod != Mint.getMod()) {
             fact = null;
-            factPrevMod = MOD.get();
+            factPrevMod = Mint.getMod();
         }
         if (fact == null || n >= fact.length){
-            fact = new Mint[Math.min(MOD.get(), Math.max(n+1,fact==null ? 100010 : fact.length * 2))];
+            fact = new Mint[Math.min(Mint.getMod(), Math.max(n+1,fact==null ? 100010 : fact.length * 2))];
             for (int i = 0; i < fact.length; i++){
                 fact[i] = i == 0 ? Mint.ONE : fact[i-1].mul(i);
             }
@@ -245,18 +243,18 @@ public class MathUtils {
     }
 
     public static Mint inverse(int n) {
-        return Mint.of(inverse(n, MOD.get()));
+        return Mint.of(inverse(n, Mint.getMod()));
     }
 
     private static int ifactPrevMod;
     private static Mint[] ifact;
     public static Mint ifact(int n) {
-        if(ifactPrevMod != MOD.get()) {
+        if(ifactPrevMod != Mint.getMod()) {
           ifact = null;
-          ifactPrevMod = MOD.get();
+          ifactPrevMod = Mint.getMod();
         }
         if(ifact==null || n >= ifact.length) {
-            ifact = new Mint[Math.min(MOD.get(), Math.max(n + 1, ifact == null ? 100010 : ifact.length * 2))];
+            ifact = new Mint[Math.min(Mint.getMod(), Math.max(n + 1, ifact == null ? 100010 : ifact.length * 2))];
             for(int i=ifact.length-1;i>=0;i--){
                 ifact[i] = i == ifact.length-1 ? fact(i).mulInv() : ifact[i+1].mul(i+1);
             }

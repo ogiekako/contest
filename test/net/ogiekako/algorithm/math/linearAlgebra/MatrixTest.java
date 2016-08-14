@@ -1,8 +1,7 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
-import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.PowerOperation;
-import net.ogiekako.algorithm.math.algebra.Mint;
+import net.ogiekako.algorithm.math.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
 import net.ogiekako.algorithm.utils.Permutation;
@@ -165,7 +164,7 @@ public class MatrixTest {
     @Test
     public void testDeterminantMint() {
         int PRIME = 97;
-        MOD.set(PRIME);
+        Mint.setMod(PRIME);
         Random random = new Random(14901284L);
         for (int iteration = 0; iteration < 50; iteration++) {
             int n = 5;

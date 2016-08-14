@@ -2,12 +2,9 @@ package on2015_09.on2015_09_06_TopCoder_Open_Round__DIV.TreeDistance;
 
 
 
-import net.ogiekako.algorithm.MOD;
-import net.ogiekako.algorithm.math.algebra.Mint;
+import net.ogiekako.algorithm.math.Mint;
 import net.ogiekako.algorithm.math.linearAlgebra.LinearSystem;
-import net.ogiekako.algorithm.math.linearAlgebra.Matrix;
 import net.ogiekako.algorithm.math.linearAlgebra.Polynomial;
-import net.ogiekako.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
@@ -17,7 +14,7 @@ public class TreeDistance {
     }
 
     static {
-        MOD.set((int) (1e9 + 7));
+        Mint.setMod((int) (1e9 + 7));
     }
 
     public int countTrees(int[] p, int K) {

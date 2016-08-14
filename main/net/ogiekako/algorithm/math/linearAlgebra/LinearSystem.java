@@ -1,7 +1,7 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.math.MathUtils;
-import net.ogiekako.algorithm.math.algebra.Mint;
+import net.ogiekako.algorithm.math.Mint;
 import net.ogiekako.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;

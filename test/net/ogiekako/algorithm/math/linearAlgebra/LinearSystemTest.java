@@ -1,7 +1,6 @@
 package net.ogiekako.algorithm.math.linearAlgebra;
 
-import net.ogiekako.algorithm.MOD;
-import net.ogiekako.algorithm.math.algebra.Mint;
+import net.ogiekako.algorithm.math.Mint;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -209,7 +208,7 @@ public class LinearSystemTest {
 
     @Test
     public void numberOfSpanningTrees() {
-        MOD.set(23);
+        Mint.setMod(23);
         long[][] G = new long[3][3];
         G[0][1] = G[0][2] = G[1][0] = G[1][2] = G[2][0] = G[2][1] = 1;
         Assert.assertEquals(3, LinearSystem.numberOfSpanningTrees(G).get());
@@ -220,7 +219,7 @@ public class LinearSystemTest {
         G[1][2] = G[2][1] = 2;
         Assert.assertEquals(4 + 6 + 6, LinearSystem.numberOfSpanningTrees(G).get());
 
-        MOD.set(5);
+        Mint.setMod(5);
         G = new long[3][3];
         G[0][1] = G[0][2] = G[1][0] = G[1][2] = G[2][0] = G[2][1] = 1;
         Assert.assertEquals(3, LinearSystem.numberOfSpanningTrees(G).get());
@@ -237,13 +236,13 @@ public class LinearSystemTest {
                 G[i][j] = i == j ? 0 : 1;
             }
         }
-        MOD.set(19);
+        Mint.setMod(19);
         Assert.assertEquals(16, LinearSystem.numberOfSpanningTrees(G).get());
     }
 
     @Test
     public void testInterpolate() {
-        MOD.set((int) (1e9+7));
+        Mint.setMod((int) (1e9 + 7));
 
         // x = y
         Polynomial P = LinearSystem.interpolate(new Mint[]{Mint.of(0), Mint.of(1)});
