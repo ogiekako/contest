@@ -62,7 +62,7 @@ public class SplayTreeListTest {
 
     private <E> void test(Generator<E> gen) {
         test(gen, true, 10, new int[]{1, 4, 5, 10, 50}, 1000);
-        test(gen, false, 3, new int[]{100000}, 100000);
+        test(gen, false, 3, new int[]{50000}, 50000);
     }
 
     private <E> void test(Generator<E> gen, boolean check, int iteration, int[] sizes, int numQuery) {

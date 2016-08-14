@@ -8,7 +8,7 @@ public class DynamicTreeTester {
     private static boolean log = false;
     public static void test(Generator gen) {
         Random rnd = new Random(14019284908L);
-        int[] ns = {2, 3, 4, 5, 10, 50, 1000, 10000, 100000, 1};
+        int[] ns = {2, 3, 4, 5, 10, 50, 1000, 10000, 50000, 1};
 
         for (int Q : new int[]{100, 100000})
             for (int n : ns) {

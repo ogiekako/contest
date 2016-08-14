@@ -2,7 +2,6 @@ package net.ogiekako.algorithm.math.linearAlgebra;
 
 import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.algebra.Mint;
-import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -210,6 +209,7 @@ public class LinearSystemTest {
 
     @Test
     public void numberOfSpanningTrees() {
+        MOD.set(23);
         long[][] G = new long[3][3];
         G[0][1] = G[0][2] = G[1][0] = G[1][2] = G[2][0] = G[2][1] = 1;
         Assert.assertEquals(3, LinearSystem.numberOfSpanningTrees(G).get());
