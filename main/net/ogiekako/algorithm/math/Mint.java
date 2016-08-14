@@ -2,9 +2,7 @@ package net.ogiekako.algorithm.math;
 
 import java.math.BigInteger;
 
-public class Mint
-//        extends Field<Mint>
-{
+public class Mint {
     public static Mint ZERO;
     public static Mint ONE;
 
@@ -113,5 +111,17 @@ public class Mint
     @Override
     public String toString() {
         return "" + x;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Mint)) return false;
+        Mint other = (Mint)o;
+        return x == other.x;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(x);
     }
 }

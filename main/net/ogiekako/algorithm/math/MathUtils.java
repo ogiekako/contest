@@ -417,6 +417,25 @@ public class MathUtils {
         return comb(2*n,n).minus(comb(2*n,n+1));
     }
 
+    /**
+     * Catalan triangle.
+     * 対角線をまたがずに、n 回上、k 回右に行く方法の数。
+     * catalan(n,n) = catalan(n).
+     */
+    public static Mint catalan(int n, int k) {
+        if (n<0 || k<0 || k>n) return Mint.ZERO;
+        return comb(n+k, n).minus(comb(n+k,n+1));
+    }
+
+    /**
+     * 最後を含めて k 回対角線にぶつかるような n―カタランパスの数。
+     * T[0][0] = 1 と定義する。
+     */
+    public static Mint catalanTransposed(int n, int k) {
+        if (n == 0) return k == 0 ? Mint.ONE : Mint.ZERO;
+        return catalan(n-1,n-k);
+    }
+
     public static long[] generatePowers(int base, int count, int modulus) {
         long[] res = new long[count];
         for (int i = 0; i < count; i++) {

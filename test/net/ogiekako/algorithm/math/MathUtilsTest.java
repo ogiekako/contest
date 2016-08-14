@@ -1,12 +1,18 @@
 package net.ogiekako.algorithm.math;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigInteger;
 import java.util.Random;
 
 public class MathUtilsTest {
+
+    @Before
+    public void beforeTest() {
+        Mint.set1e9_7();
+    }
 
     @Test
     public void testSumOfGeometricSequence() throws Exception {
@@ -142,8 +148,22 @@ public class MathUtilsTest {
 
     @Test(timeout=1000)
     public void testCatalanNumberLarge() {
-        Mint.set1e9_7();
         for (int i = 0; i < 50000; i++) MathUtils.catalan(i);
+    }
+
+    @Test
+    public void testCatalanTriangle() {
+        Assert.assertEquals(2, MathUtils.catalan(2, 1).get());
+        Assert.assertEquals(MathUtils.catalan(3), MathUtils.catalan(3, 3));
+    }
+
+    @Test
+    public void testCatalanTransposed() {
+        Assert.assertEquals(0, MathUtils.catalanTransposed(3,0).get());
+        Assert.assertEquals(2, MathUtils.catalanTransposed(3,1).get());
+        Assert.assertEquals(2, MathUtils.catalanTransposed(3,2).get());
+        Assert.assertEquals(1, MathUtils.catalanTransposed(3,3).get());
+        Assert.assertEquals(0, MathUtils.catalanTransposed(3,4).get());
     }
 
     @Test
