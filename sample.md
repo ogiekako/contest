@@ -12,7 +12,7 @@ $$ A \cup B = A + B - A \cap B $$
 http://google.com
 
 [index](#index.md)
-[md/hello](#md/hello.md)
+[md/comb](#md/comb.md)
 
 Here's our logo (hover to see the title text):
 
