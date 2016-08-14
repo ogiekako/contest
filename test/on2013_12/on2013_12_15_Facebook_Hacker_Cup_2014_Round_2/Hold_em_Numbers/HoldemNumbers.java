@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class HoldemNumbers {
-    long[][] C = MathUtils.combination(110);
+    long[][] C = MathUtils.genCombTable(110);
     public void solve(int testNumber, MyScanner in, MyPrintWriter out) {
         System.err.println("#test " + testNumber);
         int N = in.nextInt(), H = in.nextInt();

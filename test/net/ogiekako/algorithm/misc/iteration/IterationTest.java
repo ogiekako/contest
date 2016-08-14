@@ -14,7 +14,7 @@ public class IterationTest {
     }
     @Test
     public void testIterateBitCombination() throws Exception {
-        long[][] C = MathUtils.combination(50);
+        long[][] C = MathUtils.genCombTable(50);
         long start = System.currentTimeMillis();
         int n = get14() * 2, k = get14();
         for (int comb = k == 32 ? -1 : (1 << k) - 1, __comb = ~(1 << n); __comb != 0 && __comb << 31 - n >= 0; comb = (__comb = comb + (comb & -comb)) | (comb & ~__comb) / (comb == 0 ? 1 : comb & -comb) >> 1) {
@@ -54,7 +54,7 @@ public class IterationTest {
 
     @Test
     public void testIterateBitCombination2() throws Exception {
-        long[][] C = MathUtils.combination(50);
+        long[][] C = MathUtils.genCombTable(50);
         int[] ns = {0, 15, 30, 31, 32};
         for (int n : ns) {
             int[] ks;

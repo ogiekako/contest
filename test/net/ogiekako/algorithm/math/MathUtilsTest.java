@@ -1,12 +1,15 @@
 package net.ogiekako.algorithm.math;
 
+import net.ogiekako.algorithm.MOD;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.math.BigInteger;
 import java.util.Random;
 
 public class MathUtilsTest {
+
     @Test
     public void testSumOfGeometricSequence() throws Exception {
         Random rnd = new Random();
@@ -28,8 +31,8 @@ public class MathUtilsTest {
     @Test
     public void testCombination() throws Exception {
         int MOD = 10007;
-        long[][] C = MathUtils.combination(50);
-        long[][] CMod = MathUtils.generateCombinationMod(50, 20, MOD);
+        long[][] C = MathUtils.genCombTable(50);
+        long[][] CMod = MathUtils.genCombTableMod(50, 20, MOD);
         for (int i = 0; i < CMod.length; i++)
             for (int j = 0; j < CMod[0].length; j++) {
                 Assert.assertEquals(C[i][j] % MOD, CMod[i][j]);
@@ -69,31 +72,80 @@ public class MathUtilsTest {
     @Test(timeout = 2000)
     public void testFactorizeSpeed() {
         long from = (long) 1e12, to = (long) (1e12 + 1e5);
-        PrimeDecomposition[] pd = MathUtils.factorize(from, to);
+        MathUtils.factorize(from, to);
     }
+
+    @Test
     public void testFactorize2() {
-        long from = (long) 1e12, to = (long) (1e12 + 1e6);
+        long from = (long) 1e12, to = (long) (1e12 + 1e3);
         PrimeDecomposition[] pd = MathUtils.factorize(from, to);
         for (int i = 0; i < pd.length; i++) checkPrimeDecompositionValidity(from + i, pd[i]);
-    }
-    static void debug(Object... os) {
-        System.err.println(Arrays.deepToString(os));
     }
 
     private void checkPrimeDecompositionValidity(long number, PrimeDecomposition pd) {
         long v = 1;
         for (PrimePower f : pd) {
-            Assert.assertTrue(MathUtils.isPrime(f.prime));
+            Assert.assertTrue(BigInteger.valueOf(f.prime).isProbablePrime(10));
             v *= MathUtils.power(f.prime, f.power);
         }
         Assert.assertEquals(number, v);
     }
 
     @Test
+    public void testComb() {
+        MOD.set1e9_7();
+        int[][] exp = new int[][]{
+                {1,0,0,0},
+                {1,1,0,0},
+                {1,2,1,0},
+                {1,3,3,1},
+        };
+        for (int i = 0; i < exp.length; i++) for (int j = 0; j < exp[i].length; j++){
+            Assert.assertEquals(exp[i][j], MathUtils.comb(i,j).get());
+        }
+    }
+
+    @Test(timeout=2000)
+    public void testCombLarge() {
+        MOD.set1e9_7();
+        int n = 5000;
+
+        // long[][] を更新していくのに比べて2倍程度。728ms.
+        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) MathUtils.comb(i,j);
+    }
+
+    @Test
+    public void testFact() {
+        MOD.set(13);
+        int exp = 1;
+        for (int i = 0; i < 10; i++) {
+            Assert.assertEquals(exp % 13, MathUtils.fact(i).get());
+            exp *= i+1;
+        }
+    }
+
+    @Test
+    public void testIfact() {
+        MOD.set(13);
+        int fact = 1;
+        for (int i = 0; i < 10; i++) {
+            Mint res = MathUtils.ifact(i);
+            Assert.assertEquals(1, res.mul(fact).get());
+            fact = fact * (i+1) % MOD.get();
+        }
+    }
+
+    @Test
     public void testCatalanNumber() {
-        long[] exp = {1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786};
-        long[] res = MathUtils.generateCatalanNumber(exp.length);
-        Assert.assertArrayEquals(exp, res);
+        MOD.set(40009);
+        long[] exp = {1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786 % 40009};
+        for (int i = 0; i < exp.length; i++) Assert.assertEquals(exp[i], MathUtils.catalan(i).get());
+    }
+
+    @Test(timeout=1000)
+    public void testCatalanNumberLarge() {
+        MOD.set1e9_7();
+        for (int i = 0; i < 50000; i++) MathUtils.catalan(i);
     }
 
     @Test

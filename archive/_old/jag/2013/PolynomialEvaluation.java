@@ -31,7 +31,7 @@ public class PolynomialEvaluation {
         int n = a.length;
         int MOD = 1 << L;
         int[] res = new int[t.length];
-        long[][] C = MathUtils.generateCombinationMod(n, L, MOD);
+        long[][] C = MathUtils.genCombTableMod(n, L, MOD);
         long[] coefficient = new long[L];
         for (int j = 0; j < L; j++) {
             for (int k = 0; k < n; k++) {

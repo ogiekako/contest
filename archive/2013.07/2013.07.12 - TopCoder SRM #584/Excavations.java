@@ -8,7 +8,7 @@ public class Excavations {
         Arrays.sort(found);
         int n = kind.length;
         long res = 0;
-        long[][] C = MathUtils.combination(60);
+        long[][] C = MathUtils.genCombTable(60);
         for (int i = 0; i < n; i++) {
             if (Arrays.binarySearch(found, kind[i]) < 0) continue;
             int[] count = new int[found.length];

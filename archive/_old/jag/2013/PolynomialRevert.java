@@ -24,7 +24,7 @@ public class PolynomialRevert {
         for (int i = 0; i < _a.length; i++) a[i] = _a[i];
 
         int MOD = 1 << L;
-        long[][] C = MathUtils.generateCombinationMod(n, L, MOD);
+        long[][] C = MathUtils.genCombTableMod(n, L, MOD);
         long[] oddCoefficient = new long[L];// coefficients for x' where x = 2x' + 1
         for (int j = 0; j < L; j++) {
             for (int k = 0; k < n; k++) {

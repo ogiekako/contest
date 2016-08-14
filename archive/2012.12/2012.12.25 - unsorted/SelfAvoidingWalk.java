@@ -8,7 +8,6 @@ import net.ogiekako.algorithm.utils.BigIntegerUtils;
 
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.*;
 
 /*
 1 -> 2
@@ -235,8 +234,11 @@ public class SelfAvoidingWalk {
 
     public static void main(String[] args) {
         int N = 22;
-        long[][] C = MathUtils.combination(N + 2);
-        long[] catalan = MathUtils.generateCatalanNumber(N + 2);
+        long[][] C = MathUtils.genCombTable(N + 2);
+        long[] catalan = new logn[N + 2];
+        for (int i = 0; i < catalan.length; i++) {
+            catalan[i] = MathUtils.catalan(i);
+        }
         for (int n = 1; n <= N; n++) {
             long count = 0;
             for (int m = 0; m * 2 + 1 <= n + 1; m++) {

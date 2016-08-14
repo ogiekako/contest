@@ -3,8 +3,6 @@ package net.ogiekako.algorithm;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class MODTest {
 
     @Test
@@ -35,6 +33,7 @@ public class MODTest {
 
     @Test
     public void testDiv() {
+        MOD.set1e9_7();
         Assert.assertEquals(4, MOD.div(8, 2));
         Assert.assertEquals(9, MOD.div(9, 2) * 2 % MOD.get());
     }

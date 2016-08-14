@@ -4,8 +4,8 @@ import net.ogiekako.algorithm.MOD;
 import net.ogiekako.algorithm.math.MathUtils;
 
 public class Mint extends Field<Mint> {
-    public static final Mint ZERO = of(0);
-    public static final Mint ONE = of(1);
+    public static Mint ZERO;
+    public static Mint ONE;
     final long x;
 
     public Mint(long x) {

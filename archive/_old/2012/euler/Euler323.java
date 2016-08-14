@@ -13,7 +13,7 @@ public class Euler323 {
         dp[0][0] = 1;
         double res = 0;
         int cur = 0, nxt = 1;
-        long[][] C = MathUtils.combination(32);
+        long[][] C = MathUtils.genCombTable(32);
         for (int i = 0; i < ITER; i++) {
             res += i * dp[cur][32];
             Arrays.fill(dp[nxt], 0);

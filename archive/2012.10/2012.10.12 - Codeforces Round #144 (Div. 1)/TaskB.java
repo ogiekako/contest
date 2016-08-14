@@ -13,7 +13,7 @@ public class TaskB {
         int n = in.nextInt();
         long m = in.nextLong();
         int K = in.nextInt();
-        long[][] C = MathUtils.generateCombinationMod(n + 1, n + 1, MOD);
+        long[][] C = MathUtils.genCombTableMod(n + 1, n + 1, MOD);
         long[][] dp = new long[2][K + 1];
         dp[0][0] = 1;
         int cur = 0, nxt = 1;

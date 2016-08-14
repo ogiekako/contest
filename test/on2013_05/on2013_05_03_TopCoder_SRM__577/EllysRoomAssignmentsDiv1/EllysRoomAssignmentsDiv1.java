@@ -11,7 +11,7 @@ public class EllysRoomAssignmentsDiv1 extends Builtin {
         reverse(rate);
         int N = rate.length;
         int R = (N + 19) / 20;
-        long[][] C = MathUtils.combination(R + 1);
+        long[][] C = MathUtils.genCombTable(R + 1);
         int numPerson = 0;
         double res = 0;
         for (int i = 0; i < rate.length; i += R) {

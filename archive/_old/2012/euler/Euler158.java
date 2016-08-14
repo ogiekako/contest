@@ -10,7 +10,7 @@ public class Euler158 {
         long res = 0;
         int f = in.nextInt(), t = in.nextInt();
         int MX = 26;
-        long[][] C = MathUtils.combination(MX);
+        long[][] C = MathUtils.genCombTable(MX);
         for (int n = f; n <= t; n++) {
             long val = 0;
             for (int A = 0; A < MX; A++)

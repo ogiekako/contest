@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FoxAndGreed {
     int[][] dp;
     int MOD = (int) (1e4 + 7);
-    long[][] C = MathUtils.generateCombinationMod(2620, 110, MOD);
+    long[][] C = MathUtils.genCombTableMod(2620, 110, MOD);
 
     public int count(int H, int W, int S) {
         dp = new int[2510][S + 1];

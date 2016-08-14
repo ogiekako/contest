@@ -1,10 +1,13 @@
 package net.ogiekako.algorithm.math;
 
+import net.ogiekako.algorithm.MOD;
+import net.ogiekako.algorithm.math.algebra.Mint;
 import net.ogiekako.algorithm.utils.Cast;
 
 import java.math.BigInteger;
 import java.util.*;
 
+@SuppressWarnings("SuspiciousNameCombination")
 public class MathUtils {
     public static final double GOLDEN_RATIO = (Math.sqrt(5) + 1.0) / 2.0;
 
@@ -88,7 +91,7 @@ public class MathUtils {
     }
 
     /**
-     * @verified GCJ 2011 R3 D, Mystery Square
+     * Verified: GCJ 2011 R3 D, Mystery Square
      */
     public static BigInteger sqrt(BigInteger b) {
         int n = b.bitLength();
@@ -162,9 +165,6 @@ public class MathUtils {
      * upTo 以下で,square free な 数の 総数.
      * O(sqrt(N))
      * Euler193_2
-     *
-     * @param upTo
-     * @return
      */
     public static long squareFreeCount(long upTo) {
         long N = upTo;
@@ -218,7 +218,7 @@ public class MathUtils {
         return res;
     }
 
-    public static long[][] combination(int upTo) {
+    public static long[][] genCombTable(int upTo) {
         int N = upTo;
         long[][] C = new long[N][N];
         for (int i = 0; i < N; i++)
@@ -228,7 +228,54 @@ public class MathUtils {
         return C;
     }
 
-    public static long[][] generateCombinationMod(int h, int w, int MOD) {
+    private static int factPrevMod;
+    private static Mint[] fact;
+    public static Mint fact(int n) {
+        if(factPrevMod != MOD.get()) {
+            fact = null;
+            factPrevMod = MOD.get();
+        }
+        if (fact == null || n >= fact.length){
+            fact = new Mint[Math.min(MOD.get(), Math.max(n+1,fact==null ? 100010 : fact.length * 2))];
+            for (int i = 0; i < fact.length; i++){
+                fact[i] = i == 0 ? Mint.ONE : fact[i-1].mul(i);
+            }
+        }
+        return fact[n];
+    }
+
+    public static Mint inverse(int n) {
+        return Mint.of(inverse(n, MOD.get()));
+    }
+
+    private static int ifactPrevMod;
+    private static Mint[] ifact;
+    public static Mint ifact(int n) {
+        if(ifactPrevMod != MOD.get()) {
+          ifact = null;
+          ifactPrevMod = MOD.get();
+        }
+        if(ifact==null || n >= ifact.length) {
+            ifact = new Mint[Math.min(MOD.get(), Math.max(n + 1, ifact == null ? 100010 : ifact.length * 2))];
+            for(int i=ifact.length-1;i>=0;i--){
+                ifact[i] = i == ifact.length-1 ? fact(i).mulInv() : ifact[i+1].mul(i+1);
+            }
+        }
+        return ifact[n];
+    }
+
+    /**
+     * 各 n < 5000, k < 5000 に対して comb(n,k) を計算するのに 728ms.
+     * Mint[][] のテーブルを作って更新していくのはそれにくらべかなり遅い。
+     * genCombTableMod で long[][] のテーブルを計算するのは、400ms 程度。
+     */
+    public static Mint comb(int n, int k) {
+        if (n<0 || k<0 || n-k < 0) return Mint.ZERO;
+        // n! / k! / (n-k)!
+        return fact(n).mul(ifact(k)).mul(ifact(n - k));
+    }
+
+    public static long[][] genCombTableMod(int h, int w, int MOD) {
         long[][] C = new long[h][w];
         for (int i = 0; i < h; i++)
             for (int j = 0; j < w && j <= i; j++) {
@@ -243,10 +290,6 @@ public class MathUtils {
      * res = {n<=upTo | any prime factor of n is at most type.}
      * Euler204
      * 100, 1e9 -> about 3000000
-     *
-     * @param type
-     * @param upTo
-     * @return
      */
     public static int[] generateGeneralizedHammingNumbers(int type, int upTo) {
         int[] primes = generatePrimes(type);
@@ -372,17 +415,8 @@ public class MathUtils {
         return res;
     }
 
-    // verified
-    public static long[] generateCatalanNumber(int upTo) {
-        int N = upTo;
-        long[] C = new long[N];
-        for (int n = 0; n < N; n++) {
-            if (n == 0) C[n] = 1;
-            for (int i = 0; i < n; i++) {
-                C[n] += C[i] * C[n - 1 - i];
-            }
-        }
-        return C;
+    public static Mint catalan(int n) {
+        return comb(2*n,n).minus(comb(2*n,n+1));
     }
 
     public static long[] generatePowers(int base, int count, int modulus) {
