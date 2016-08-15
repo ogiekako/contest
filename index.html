@@ -46,11 +46,9 @@ marked.setOptions({
   renderer: renderer,
   gfm: true,
   tables: true,
+  // 改行を無視しない
   breaks: true,
-  pedantic: false,
-  sanitize: false,
-  smartLists: false,
-  smartypants: false,
+  // smartLists: false,
   langPrefix: '',
 });
 
@@ -67,26 +65,42 @@ function main(){
   get(name).catch(function(){
     return Promise.resolve("# 404 page not found");
   }).then(function(text){
-    // markedにlatexタグ食わせると&<>とかがエスケープされるので<pre />で包んで退避
-    // ちなみに```mathとかで<pre><code class="lang-math">になったのはエスケープされるので注意
-    var PREFIX = "<pre><code class=\"lang-math\">";
-    var SUFFIX = "</code></pre>";
-    var reg = new RegExp(
-      ("(?:" + PREFIX + "([\\s\\S]*?)" + SUFFIX + ")")
+    // markedにlatexタグ食わせると"&<>"とかがエスケープされるのでコメントアウトして退避。
+    // 先頭の a は、段落の最初に $ があっても段落全体が<p>で囲まれるようにするため。
+    var PREFIX_LARGE = "a<!--lang-math-large== ";
+    var PREFIX_SMALL = "a<!--lang-math-small== ";
+    var SUFFIX = "-->";
+    var regLarge = new RegExp(
+      ("(?:" + PREFIX_LARGE + "([\\s\\S]*?)" + SUFFIX + ")")
         .replace(/\//g, "\/"),
       "gm");
-    var wraped = text.split("$$")
+    var regSmall = new RegExp(
+      ("(?:" + PREFIX_SMALL + "([\\s\\S]*?)" + SUFFIX + ")")
+        .replace(/\//g, "\/"),
+      "gm");
+    var wrapped1 = text.split("$$")
       .reduce(function(sum, str, i){
         return i % 2 === 0 ?
                sum + str :
-               sum + PREFIX + str + SUFFIX;
+               sum + PREFIX_LARGE + str + SUFFIX; // TODO: escape |str| for the case where it contains -->.
       }, "");
-    var html = marked(wraped);
+    var wrapped = wrapped1.split("$")
+      .reduce(function(sum, str, i){
+        return i % 2 === 0 ?
+               sum + str :
+               sum + PREFIX_SMALL + str + SUFFIX;
+      }, "");
+      console.log("wrapped");
+      console.log(wrapped);
+    var html = marked(wrapped);
     // 退避したlatexタグを$$で包み直す
     var _html = html;
     var tuple = null;
-    while(tuple = reg.exec(html)){
+    while(tuple = regLarge.exec(html)){
       _html = _html.split(tuple[0]).join("$$" + tuple[1] + "$$");
+    }
+    while(tuple = regSmall.exec(html)){
+      _html = _html.split(tuple[0]).join("$" + tuple[1] + "$");
     }
     // mathjaxで処理
     var div = document.getElementById("content");
