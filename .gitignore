@@ -4,3 +4,4 @@ out/*
 archive/*
 CHelperReport.txt
 main/src/*
+.DS_Store
