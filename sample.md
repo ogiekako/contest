@@ -6,22 +6,32 @@ $\sum_{i=1}^n i = \frac{n(n+1)}{2}$  あいうえお。
 
 $\sum_{i=1}^2\sum_{j=1}^2 ij = 9$ ほげ。
 
+You can use $\color{red}{\backslash color\{red\}\{hoge\}}$ to colorize hoge.
+$$ \color{red}{A}\cup \color{blue}{B} = \color{red}{A} + \color{blue}{B} - \color{red}A\cap \color{blue}B$$
+
 ### 3
 
-$$\sum_{i=1}^n i = \frac{n(n+1)}{2}$$ あいうえお。
+$$
+\left|
+\begin{matrix}
+ta& tb  \\
+c & d
+\end{matrix}
+\right|
+$$
 
 #### 4
 
-$$\sum_{i=1}^2\sum_{j=1}^2 ij = 9$$ ほげ。
+$$\sum_{i=1}^2\sum_{j=1}^2 ij
+=
+9
+
+$$ ほげ。
 
 ##### 5
 
 `＄1+1=2＄`
 $1+1=2$
-
-包除原理:
-`＄＄A \cup B = A + B - A \cap B＄＄`
-$$ A \cup B = A + B - A \cap B $$
 
 http://google.com
 
