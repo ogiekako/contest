@@ -419,7 +419,7 @@ public class MathUtils {
 
     /**
      * Catalan triangle.
-     * 対角線をまたがずに、n 回上、k 回右に行く方法の数。
+     * 対角線をまたがずに、n 回右、k 回上に行く方法の数。
      * catalan(n,n) = catalan(n).
      */
     public static Mint catalan(int n, int k) {
