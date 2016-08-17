@@ -1,5 +1,3 @@
-# 線形代数の基礎
-
 ## 行列
 
 http://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/lecture-3-multiplication-and-inverse-matrices/

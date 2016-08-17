@@ -1,4 +1,12 @@
 # Sample
+```tex
+\newcommand{\BR}[2]{\color{red}{#1}\ \color{blue}{#2}}
+\BR{\mathrm{Hello}}{\mathrm{World!}}
+```
+$$
+\newcommand{\BR}[2]{\color{red}{#1}\ \color{blue}{#2}}
+\BR{\mathrm{Hello}}{\mathrm{World!}}
+$$
 
 $\sum_{i=1}^n i = \frac{n(n+1)}{2}$  あいうえお。
 

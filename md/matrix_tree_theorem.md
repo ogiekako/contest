@@ -16,7 +16,7 @@ $$
 http://www-math.mit.edu/~rstan/algcomb/algcomb.pdf の p177 を参考にした。
 
 $L=MM^t$，$L_0=M_0M_0^t$ とかける。ただし、$M$ はグラフを適当に向きづけた接続行列 (始点に $+1$、終点に $-1$) で、$M_0$ はその 0 行目を抜いたもの。
-[コーシー・ビネの公式](http://mail2.nara-edu.ac.jp/~asait/cauchy_binet.pdf) より、
+[コーシー・ビネの公式](#md/cauchy_binet.md) より、
 
 $$
 \mathrm{det}(L_0)=\sum_{|S|=n-1}(\mathrm{det}(M_0[S]))^2
