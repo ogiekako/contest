@@ -5,6 +5,8 @@ import net.ogiekako.algorithm.utils.TestUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Random;
+
 public class SubsetConvolutionTest {
     @Test
     public void testZetaConvolution() throws Exception {
@@ -128,5 +130,41 @@ public class SubsetConvolutionTest {
         f = SubsetConvolution.mobiusConvolutionInv(g, n);
         long[] resG = SubsetConvolution.zetaConvolutionInv(f, n);
         Assert.assertArrayEquals(g, resG);
+    }
+
+    private void checkSubsetConvolution(long[] f, long[] g, long[] h) {
+        long[] res = SubsetConvolution.fastSubsetConvolution(f, g);
+        Assert.assertArrayEquals(h, res);
+    }
+
+    @Test
+    public void testSubsetConvolution() {
+        checkSubsetConvolution(new long[]{1}, new long[]{1}, new long[]{1});
+        checkSubsetConvolution(new long[]{1,1,1,1}, new long[]{1,1,1,1}, new long[]{1,2,2,4});
+        checkSubsetConvolution(new long[]{1,1,1,1,1,1,1,1}, new long[]{1,1,1,1,1,1,1,1}, new long[]{1,2,2,4,2,4,4,8});
+        checkSubsetConvolution(new long[]{1,2,3,4}, new long[]{1,2,3,4}, new long[]{1,4,6,20});
+
+        int n = 1<<10;
+        Random rnd = new Random(109410284L);
+        long[] f = new long[n];
+        long[] g = new long[n];
+        long[] h = new long[n];
+        for (int i = 0; i < n; i++) f[i] = rnd.nextInt(100);
+        for (int i = 0; i < n; i++) g[i] = rnd.nextInt(100);
+        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if((i|j) == i) {
+            h[i] += f[j] * g[i^j];
+        }
+        checkSubsetConvolution(f,g,h);
+    }
+
+    @Test(timeout=1000)
+    public void testSubsetConvolutionLarge() {
+        int n = 1<<16;
+        Random rnd = new Random(112847L);
+        long[] f = new long[n];
+        long[] g = new long[n];
+        for (int i = 0; i < n; i++) f[i] = rnd.nextInt(100);
+        for (int i = 0; i < n; i++) g[i] = rnd.nextInt(100);
+        SubsetConvolution.fastSubsetConvolution(f, g);
     }
 }

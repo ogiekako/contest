@@ -55,4 +55,48 @@ public class SubsetConvolution {
     public static long[] mobiusConvolutionInv(long[] g, int N) {
         return convolution(g, N, -1, 1);
     }
+
+    private static int log(int n) {
+        return 63 - Long.numberOfLeadingZeros(n);
+    }
+    private static long[][] leveledConvolution(long[] f) {
+        int n = log(f.length);
+        long[][] f2 = new long[n+1][1<<n];
+        for (int i = 0; i < 1<<n; i++) {
+            f2[Integer.bitCount(i)][i] = f[i];
+        }
+        for (int i = 0; i < n+1; i++) {
+            f2[i] = convolution(f2[i], n, 1, 0);
+        }
+        return f2;
+    }
+
+    /**
+     * f*g(S) = \sum_{T\subseteq S} f(T)g(S\setminus T).
+     *
+     * 残念ながら、実用上は O(3^n) でやったほうが速い。
+     */
+    public static long[] fastSubsetConvolution(long[] f, long[] g) {
+        System.err.println("fastSubsetConvolution is SLOW! Use O(3^n) algorithm.");
+        if (Integer.bitCount(f.length) != 1) throw new IllegalArgumentException("Size must be a power of 2.");
+        if(f.length != g.length) throw new IllegalArgumentException("Sizes must be the same.");
+        int n = log(f.length);
+        long[][] f2 = leveledConvolution(f);
+        long[][] g2 = leveledConvolution(g);
+        long[] h2 = new long[1<<n];
+        long[] h = new long[1<<n];
+        for (int i = 0; i < n + 1; i++) {
+            for (int j = 0; j < 1 << n; j++) {
+                h2[j] = 0;
+                for (int k = 0; k <= i; k++) {
+                    h2[j] += f2[k][j] * g2[i-k][j];
+                }
+            }
+            h2 = convolution(h2, n, -1, 0);
+            for (int j = 0; j < 1 << n; j++) {
+                if (Integer.bitCount(j) == i) h[j] = h2[j];
+            }
+        }
+        return h;
+    }
 }

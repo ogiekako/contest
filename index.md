@@ -3,6 +3,7 @@
 This page is written in Markdown + Mathjax. See also: [sample.md](#sample.md)
 
 ## Library
+- [算数](#/md/arithmetic.md)
 - 線形代数
   - [行列と行列式](#md/matrix.md)
   - [コーシー・ビネの公式](#md/cauchy_binet.md)
@@ -14,3 +15,4 @@ This page is written in Markdown + Mathjax. See also: [sample.md](#sample.md)
   - [高速フーリエ変換](#md/fft.md)
 - 指数時間アルゴリズム
   - [最小シュタイナー木](#md/steiner_tree.md)
+  - [高速畳み込み (Fast Subset Convolution)](#md/fast_subset_convolution.md)
