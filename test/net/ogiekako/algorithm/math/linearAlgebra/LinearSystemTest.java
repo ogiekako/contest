@@ -261,7 +261,7 @@ public class LinearSystemTest {
         checkInterpolate(x,y,P.toString());
     }
 
-    @Test(timeout=2000)
+    @Test(timeout=1500)
     public void testInterpolateLarge() {
         Mint.setMod((int) (1e9 + 7));
         Random rnd = new Random(1281724L);
@@ -269,9 +269,47 @@ public class LinearSystemTest {
         Mint[] x = new Mint[n + 1];
         Mint[] y = new Mint[n + 1];
         for (int i = 0; i < n + 1; i++) {
-            x[i] = Mint.of(i);
+            x[i] = Mint.of(rnd.nextInt(10000000));
             y[i] = Mint.of(rnd.nextInt(10000000));
         }
         LinearSystem.interpolate(x, y);
+    }
+
+    public void checkInterpolateNewton(Mint[] y, String f) {
+        Polynomial res = LinearSystem.interpolate(y);
+        Assert.assertEquals(Polynomial.fromString(f), res);
+    }
+
+    @Test
+    public void testInterpolateNewton() {
+        Mint.set1e9_7();
+
+        checkInterpolateNewton(new Mint[]{Mint.ONE}, "1");
+        checkInterpolateNewton(new Mint[]{Mint.ONE, Mint.ZERO}, "-x+1");
+        checkInterpolateNewton(new Mint[]{Mint.ZERO, Mint.ONE,Mint.of(4)}, "x^2");
+        checkInterpolateNewton(new Mint[]{Mint.ZERO, Mint.ONE,Mint.of(2)}, "x");
+
+        Random rnd = new Random(1281724L);
+        int n = 200;
+        Mint[] y = new Mint[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            y[i] = Mint.of(rnd.nextInt(10000000));
+        }
+        Polynomial P = LinearSystem.interpolate(y);
+        for (int i = 0; i < n + 1; i++) {
+            Assert.assertEquals(y[i], P.evaluate(i));
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testInterpolateNewtonLarge() {
+        Mint.setMod((int) (1e9 + 7));
+        Random rnd = new Random(1281724L);
+        int n = 2000;
+        Mint[] y = new Mint[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            y[i] = Mint.of(rnd.nextInt(10000000));
+        }
+        LinearSystem.interpolate(y);
     }
 }

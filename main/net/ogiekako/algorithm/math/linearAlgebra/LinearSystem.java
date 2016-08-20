@@ -42,21 +42,6 @@ public class LinearSystem {
     }
 
     /**
-     * In O(n^2) time,
-     * compute the unique polynomial P such that the degree of P is n-1 and
-     * P(i) = y_i for i = 0, ..., n-1.
-     *
-     * <p>Verified: TCO R3B 1000</p>
-     */
-    public static Polynomial interpolate(Mint[] y) {
-        Mint[] x = new Mint[y.length];
-        for (int i = 0; i < x.length; i++) {
-            x[i] = Mint.of(i);
-        }
-        return interpolate(x, y);
-    }
-
-    /**
      * f(x_0) = y_0  ...  f(x_n) = y_n
      * となるような n 次多項式 を、ラグランジュ補間によって求める。
      */
@@ -84,27 +69,29 @@ public class LinearSystem {
     }
 
     /**
-     * f(x_0) = y_0  ...  f(x_n) = y_n
+     * f(0) = y_0  ...  f(n) = y_n
      * となるような n 次多項式 を、ニュートン補間によって求める。
-     * interpolate の方が高速。
      */
-    public static Polynomial interpolateNewton(Mint[] x, Mint[] y) {
+    public static Polynomial interpolate(Mint[] y) {
         int n = y.length;
-        // Newton interpolation.
-        Mint[] f = new Mint[n];
-        // P(x) = \sum_{0 <= k < n}[x_0, ..., x_k](x - x_0)...(x - x_{k-1})
+        Mint[] inv = new Mint[n];
+        for (int i = 1; i < n; i++)inv[i] = Mint.of(i).mulInv();
+
+        Mint[] a = new Mint[n];
         Polynomial P = Polynomial.ZERO;
         Polynomial g = Polynomial.of(1);
         for (int k = 0; k < n; k++) {
-            for (int i = 0; i + k < n; i++) {// [x_i, ..., x_{i+k}]
+            for (int i = 0; i + k < n; i++) {
                 int j = i + k;
-                // [x_i] = y_i
-                // [x_i, ..., x_j] = ([x_{i+1}, ..., x_j] - [x_i, ... ,x_{j-1}]) / (x_j - x_i)
-                f[i] = i == j ? y[i] : f[i+1].minus(f[i]).div(x[j].minus(x[i]));
+                //           a_{1,2} - a_{0,1}
+                // a_{0,2} = -----------------
+                //                 2 - 0
+                a[i] = i == j ? y[i] : a[i+1].minus(a[i]).mul(inv[j - i]);
             }
-            // [x_0, ..., x_k](x - x_0)...(x - x_{k-1})
-            P = P.add(g.mul(f[0]));
-            g = g.mul(x[k].addInv(), Mint.ONE); // x - x_k
+            // a_{0,2} (x-0)(x-1)
+            P = P.add(g.mul(a[0]));
+            // (x-0)(x-1)(x-2)
+            g = g.mul(Mint.of(-k), Mint.ONE);
         }
         return P;
     }

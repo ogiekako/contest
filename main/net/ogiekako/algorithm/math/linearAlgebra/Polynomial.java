@@ -52,7 +52,7 @@ public class Polynomial extends Ring<Polynomial> {
     // "2x^2 + x - 5"
     public static Polynomial fromString(String formula) {
         formula = formula.replaceAll(" ", "").replaceAll("(\\+|-)", " $1");
-        String[] items = formula.split(" ");
+        String[] items = formula.trim().split(" ");
         ArrayList<Long> as = new ArrayList<Long>();
         for (String item : items) {
             if (!item.contains("x")) {
