@@ -7,6 +7,11 @@ package net.ogiekako.algorithm.math.discreteFourierTransform;
  * thanks to wata.
  */
 public class FFT {
+    /**
+     * f(x) = \sum c_kx^k (where c_k = real[k] + i imag[k])
+     * を、w^k (sign==-1 の場合は (-w)^k)について評価した結果で引数を置き換える。
+     * ここで w は、1 の n 乗根。
+     */
     public void fft(int sign, double[] real, double[] imag) {
         int n = real.length, d = Integer.numberOfLeadingZeros(n) + 1;
         double theta = sign * 2 * Math.PI / n;
@@ -35,7 +40,6 @@ public class FFT {
             }
         }
     }
-
 
     /*
      * 実行例 : SRM436 1000

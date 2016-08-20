@@ -63,4 +63,4 @@ $$
 と計算し、$f$ を求める。
 
 ### ソースコード
-https://github.com/ogiekako/contest/search?utf8=%E2%9C%93&q=interpolation+language%3AJava+path%3Amain%2Fnet%2Fogiekako&type=Code
+https://github.com/ogiekako/contest/search?utf8=%E2%9C%93&q=interpolate+language%3AJava+path%3Amain%2Fnet%2Fogiekako&type=Code
