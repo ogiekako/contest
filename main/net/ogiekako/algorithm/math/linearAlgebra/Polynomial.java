@@ -4,6 +4,7 @@ import net.ogiekako.algorithm.math.MathUtils;
 import net.ogiekako.algorithm.math.Mint;
 import net.ogiekako.algorithm.math.algebra.Ring;
 import net.ogiekako.algorithm.utils.Cast;
+import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +24,16 @@ public class Polynomial extends Ring<Polynomial> {
 
     public static final Polynomial ZERO = of(0);
 
-    Polynomial(Mint[] a) {
+    Polynomial(Mint... a) {
+        for(Mint m : a) if (m == null) throw new NullPointerException();
+        if (a.length == 0) {
+            a = new Mint[1];
+            a[0] = Mint.ZERO;
+        }
         this.a = a.clone();
 
         int n = a.length - 1;
-        while (n > 0 && (a[n] == null || a[n].isZero())) n--;
+        while (n > 0 && a[n].isZero()) n--;
         this.n = n;
     }
 
@@ -50,7 +56,8 @@ public class Polynomial extends Ring<Polynomial> {
         ArrayList<Long> as = new ArrayList<Long>();
         for (String item : items) {
             if (!item.contains("x")) {
-                as.set(0, Long.valueOf(item));
+                if(as.size() == 0) as.add(Long.valueOf(item));
+                else as.set(0, Long.valueOf(item));
                 continue;
             }
             item = item.replaceAll("x", "");
@@ -181,7 +188,7 @@ public class Polynomial extends Ring<Polynomial> {
         int degree = Math.max(degree(), other.degree());
         Mint[] P = new Mint[degree + 1];
         for (int i = 0; i <= degree; i++) {
-            P[i] = getCoefficient(i).add(other.getCoefficient(i));
+            P[i] = coeff(i).add(other.coeff(i));
         }
         return of(P);
     }
@@ -199,14 +206,14 @@ public class Polynomial extends Ring<Polynomial> {
     }
 
     public boolean isZero() {
-        return n == 0 && getCoefficient(0).isZero();
+        return n == 0 && coeff(0).isZero();
     }
 
     public Polynomial zero() {
         return ZERO;
     }
 
-    public Mint getCoefficient(int i) {
+    public Mint coeff(int i) {
         return i >= a.length || a[i] == null ? Mint.ZERO : a[i];
     }
 
@@ -225,5 +232,31 @@ public class Polynomial extends Ring<Polynomial> {
             xx = xx.mul(x);
         }
         return res;
+    }
+
+    public Pair<Polynomial, Polynomial> divMod(Polynomial Q_) {
+        if (Q_.coeff(Q_.degree()).isZero()) throw new IllegalArgumentException("/ by zero.");
+
+        int n = degree();
+        Mint[] P = new Mint[n + 1];
+        for (int i = 0; i < n + 1; i++) P[i] = coeff(i);
+
+        int m = Q_.degree();
+        Mint norm = Q_.coeff(m).mulInv();
+        Mint[] Q = new Mint[m + 1];
+        for (int i = 0; i < m + 1; i++) Q[i] = Q_.coeff(i).mul(norm);
+
+        Mint[] R = new Mint[Math.max(0, n - m + 1)];
+        for (int i = n; i >= m; i--) {
+            if (P[i].isZero()) {
+                R[i - m] = Mint.ZERO;
+            } else {
+                R[i - m] = P[i].mul(norm);
+                for (int j = m; j >= 0; j--) {
+                    P[i - j] = P[i - j].minus(Q[m - j].mul(P[i]));
+                }
+            }
+        }
+        return Pair.of(Polynomial.of(R), Polynomial.of(P));
     }
 }

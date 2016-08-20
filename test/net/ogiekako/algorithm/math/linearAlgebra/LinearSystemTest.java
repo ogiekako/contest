@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.hamcrest.Matchers.is;
-
 
 public class LinearSystemTest {
     @Test
@@ -240,21 +238,40 @@ public class LinearSystemTest {
         Assert.assertEquals(16, LinearSystem.numberOfSpanningTrees(G).get());
     }
 
+    public void checkInterpolate(Mint[] x, Mint[] y, String f) {
+        Polynomial res = LinearSystem.interpolate(x, y);
+        Assert.assertEquals(Polynomial.fromString(f), res);
+    }
+
     @Test
     public void testInterpolate() {
-        Mint.setMod((int) (1e9 + 7));
+        Mint.set1e9_7();
 
-        // x = y
-        Polynomial P = LinearSystem.interpolate(new Mint[]{Mint.of(0), Mint.of(1)});
-        Assert.assertThat(P.toString(), is("x"));
+        checkInterpolate(new Mint[]{Mint.ONE}, new Mint[]{Mint.ONE}, "1");
+        checkInterpolate(new Mint[]{Mint.ZERO, Mint.ONE}, new Mint[]{Mint.ZERO, Mint.ONE}, "x");
+        checkInterpolate(new Mint[]{Mint.ZERO, Mint.ONE}, new Mint[]{Mint.ZERO, Mint.ONE}, "x");
+        checkInterpolate(new Mint[]{Mint.ZERO, Mint.ONE, Mint.of(-1)}, new Mint[]{Mint.ZERO, Mint.ONE, Mint.of(1)}, "x^2");
 
-        P = Polynomial.fromString("2x^4 + x^3 - 2x^2 + 1");
+        Polynomial P = Polynomial.fromString("2x^4 + x^3 - 2x^2 + 1");
         Mint[] x = new Mint[]{Mint.of(0), Mint.of(1), Mint.of(-1), Mint.of(10), Mint.of(-5)};
         Mint[] y = new Mint[x.length];
         for (int i = 0; i < x.length; i++) {
             y[i] = P.evaluate(x[i]);
         }
-        Polynomial res = LinearSystem.interpolate(x, y);
-        Assert.assertEquals(P, res);
+        checkInterpolate(x,y,P.toString());
+    }
+
+    @Test(timeout=2000)
+    public void testInterpolateLarge() {
+        Mint.setMod((int) (1e9 + 7));
+        Random rnd = new Random(1281724L);
+        int n = 2000;
+        Mint[] x = new Mint[n + 1];
+        Mint[] y = new Mint[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            x[i] = Mint.of(i);
+            y[i] = Mint.of(rnd.nextInt(10000000));
+        }
+        LinearSystem.interpolate(x, y);
     }
 }

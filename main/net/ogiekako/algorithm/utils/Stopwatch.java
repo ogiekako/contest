@@ -92,7 +92,7 @@ public class Stopwatch {
         }
         long sec = millis / 1000;
         if (sec < 60) {
-            return sec + "s";
+            return String.format("%.2fs", millis / 1000.0);
         }
         long min = sec / 60;
         return min + "m";

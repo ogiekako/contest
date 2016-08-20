@@ -41,7 +41,7 @@ public class TreeDistance {
         Polynomial P = LinearSystem.interpolate(y);
         Mint res = Mint.ZERO;
         for (int i = 0; i < n && i <= K; i++) {
-            res = res.add(P.getCoefficient(n - 1 - i));
+            res = res.add(P.coeff(n - 1 - i));
         }
         return res.get();
     }

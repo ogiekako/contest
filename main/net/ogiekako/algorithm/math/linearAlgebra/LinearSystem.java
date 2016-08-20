@@ -57,13 +57,38 @@ public class LinearSystem {
     }
 
     /**
-     * In O(n^2) time,
-     * compute the unique polynomial P such that the degree of P is n-1 and
-     * P(x_i) = y_i for i = 0, ..., n-1.
-     *
-     * See Programming Contest Book for a proof.
+     * f(x_0) = y_0  ...  f(x_n) = y_n
+     * となるような n 次多項式 を、ラグランジュ補間によって求める。
      */
     public static Polynomial interpolate(Mint[] x, Mint[] y) {
+        int n = y.length;
+        // (x-1)(x-2)(x-3)
+        Polynomial P = Polynomial.of(1);
+        for (int i = 0; i < n; i++) {
+            P = P.mul(x[i].addInv(), Mint.ONE);
+        }
+        Polynomial f = Polynomial.ZERO;
+        for (int i = 0; i < n; i++) {
+            Mint a = Mint.ONE;
+            for (int j = 0; j < n; j++) if(i!=j) {
+                a = a.mul(x[i].minus(x[j]));
+            }
+            // y / (1-2)(1-3)
+            a = a.mulInv().mul(y[i]);
+            // (x-2)(x-3)
+            Polynomial Q = P.divMod(Polynomial.of(x[i].addInv(), Mint.ONE)).first;
+
+            f = f.add(Q.mul(a));
+        }
+        return f;
+    }
+
+    /**
+     * f(x_0) = y_0  ...  f(x_n) = y_n
+     * となるような n 次多項式 を、ニュートン補間によって求める。
+     * interpolate の方が高速。
+     */
+    public static Polynomial interpolateNewton(Mint[] x, Mint[] y) {
         int n = y.length;
         // Newton interpolation.
         Mint[] f = new Mint[n];

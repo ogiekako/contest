@@ -1,7 +1,6 @@
 package net.ogiekako.algorithm.utils;
 
 import org.hamcrest.Matchers;
-import org.hamcrest.beans.HasProperty;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class StopwatchTest {
         stopwatch.tack("CC");
         String expect = "" +
                 " CC: 1m\n" +
-                "  B: 1s\n" +
+                "  B: 1.00s\n" +
                 "AAA: 50ms\n";
         String actual = stopwatch.summary();
         Assert.assertEquals(expect, actual);

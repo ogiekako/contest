@@ -11,7 +11,8 @@ public class Mint {
     private static int MOD = 0;
 
     private Mint(long x) {
-        this.x = normalize(x);
+        if (x < 0 || x >= getMod()) throw new IllegalArgumentException("x should be in the valid range, but was " + x);
+        this.x = x;
     }
 
     public static void set1e9_7() {
@@ -33,22 +34,19 @@ public class Mint {
     }
 
     public static long normalize(long x) {
+        int m = getMod();
         if (0 <= x) {
-            if (x < MOD) return x;
-            if (x < MOD * 2) return x - MOD;
-            return x % MOD;
+            if (x < m) return x;
+            if (x < m * 2) return x - m;
+            return x % m;
         }
-        if (-MOD <= x) return x + MOD;
-        x %= MOD;
-        return x == 0 ? 0 : x + MOD;
-    }
-
-    private static long mulLong(long x, long y) {
-        return normalize(normalize(x) * normalize(y));
+        if (-m <= x) return x + m;
+        x %= m;
+        return x == 0 ? 0 : x + m;
     }
 
     // O(log y)
-    public static long divLong(long x, long y) {
+    static long divLong(long x, long y) {
         return normalize(normalize(x) * MathUtils.inverse(normalize(y), MOD));
     }
 
@@ -57,19 +55,21 @@ public class Mint {
     }
 
     public static Mint of(long value) {
-        return new Mint(value);
+        return new Mint(normalize(value));
     }
 
     public Mint mulInv() {
+        if (x == 0) throw new IllegalArgumentException("Zero has no inverse.");
         return of(MathUtils.inverse(x, getMod()));
     }
 
     public Mint mul(Mint other) {
-        return mul(other.x);
+        return of(x * other.x);
     }
 
     public Mint mul(long y) {
-        return of(mulLong(x, y));
+        if(y>=MOD || y < 0) throw new IllegalArgumentException("y should be within the valid range, but was " + y);
+        return of(x*y);
     }
 
     public Mint div(Mint other) {
@@ -85,15 +85,17 @@ public class Mint {
     }
 
     public Mint add(long y) {
-        return of(x + normalize(y));
+        if(y>=MOD || y < 0) throw new IllegalArgumentException("y should be within the valid range, but was " + y);
+        return of(x + y);
     }
 
     public Mint minus(Mint other) {
-        return minus(other.x);
+        return of(x - other.x);
     }
 
     public Mint minus(long y) {
-        return of(x - normalize(y));
+        if(y>=MOD || y < 0) throw new IllegalArgumentException("y should be within the valid range, but was " + y);
+        return of(x - y);
     }
 
     public Mint addInv() {
