@@ -1,5 +1,8 @@
 package net.ogiekako.algorithm.convolution;
 
+import net.ogiekako.algorithm.math.MathUtils;
+import net.ogiekako.algorithm.math.Mint;
+
 /*
 公式
 [ T \subset S ] = [ \bar{S} \subset \bar{T} ]
@@ -96,6 +99,63 @@ public class SubsetConvolution {
             for (int j = 0; j < 1 << n; j++) {
                 if (Integer.bitCount(j) == i) h[j] = h2[j];
             }
+        }
+        return h;
+    }
+
+    /**
+     * h[S] = \sum_T f[T]g[S^T]
+     *
+     * Verified: SRM 518 Hard Nim.
+     */
+    public static Mint[] xorConvolution(Mint[] f, Mint[] g) {
+        if (Integer.bitCount(f.length) != 1) throw new IllegalArgumentException("Size must be a power of 2.");
+        if(f.length != g.length) throw new IllegalArgumentException("Sizes must be the same.");
+
+        int[] _f = new int[f.length];
+        int[] _g = new int[g.length];
+        for (int i = 0; i < f.length; i++) _f[i] = f[i].get();
+        for (int i = 0; i < g.length; i++) _g[i] = g[i].get();
+
+        int[] h = xorConvolutionSub(_f, _g, Mint.getMod());
+        long invN = MathUtils.inverse(f.length, Mint.getMod());
+        for (int i = 0; i < h.length; i++) h[i] = (int) ((long)h[i] * invN % Mint.getMod());
+
+        Mint[] _h = new Mint[h.length];
+        for (int i = 0; i < h.length; i++)
+            _h[i] = Mint.of(h[i]);
+        return _h;
+    }
+
+    private static int[] xorConvolutionSub(int[] f, int[] g, int mod) {
+        int N = f.length;
+        if (N == 1) {
+            int[] h = new int[1];
+            h[0] = (int) ((long)f[0] * g[0] % mod);
+            return h;
+        }
+        int[] f0 = new int[N/2];
+        int[] f1 = new int[N/2];
+        int[] g0 = new int[N/2];
+        int[] g1 = new int[N/2];
+        for (int i = 0; i < N/2; i++) {
+            f0[i] = f[i << 1] + f[i << 1 | 1];
+            f1[i] = f[i << 1] - f[i << 1 | 1];
+            g0[i] = g[i << 1] + g[i << 1 | 1];
+            g1[i] = g[i << 1] - g[i << 1 | 1];
+            if(f0[i]>=mod)f0[i] -= mod;
+            if(f1[i]<0)f1[i] += mod;
+            if(g0[i]>=mod)g0[i] -= mod;
+            if(g1[i]<0)g1[i] += mod;
+        }
+        int[] h0 = xorConvolutionSub(f0, g0, mod);
+        int[] h1 = xorConvolutionSub(f1, g1, mod);
+        int[] h = new int[N];
+        for (int i = 0; i < N / 2; i++) {
+            h[i << 1] = h0[i] + h1[i];
+            if (h[i << 1] >= mod) h[i << 1] -= mod;
+            h[i << 1 | 1] = h0[i] - h1[i];
+            if (h[i << 1 | 1] < 0) h[i << 1 | 1] += mod;
         }
         return h;
     }

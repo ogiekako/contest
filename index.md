@@ -16,3 +16,4 @@ This page is written in Markdown + Mathjax. See also: [sample.md](#sample.md)
 - 指数時間アルゴリズム
   - [最小シュタイナー木](#md/steiner_tree.md)
   - [高速畳み込み (Fast Subset Convolution)](#md/fast_subset_convolution.md)
+  - [畳み込み(Xor)](#md/xor_convolution.md)
