@@ -3,7 +3,7 @@
 This page is written in Markdown + Mathjax. See also: [sample.md](#sample.md)
 
 ## Library
-- [算数](#/md/arithmetic.md)
+- [算数](#md/arithmetic.md)
 - 線形代数
   - [行列と行列式](#md/matrix.md)
   - [コーシー・ビネの公式](#md/cauchy_binet.md)
