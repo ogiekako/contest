@@ -5,3 +5,4 @@ archive/*
 CHelperReport.txt
 main/src/*
 .DS_Store
+contest.iml
