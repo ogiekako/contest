@@ -60,6 +60,7 @@ function main(){
       ("(?:" + PREFIX_SMALL + "([\\s\\S]*?)" + SUFFIX + ")")
         .replace(/\//g, "\/"),
       "gm");
+    text = text.replace("\\$", '%DOLLAR%');
     var wrapped1 = text.split("$$")
       .reduce(function(sum, str, i){
         return i % 2 === 0 ?
@@ -83,6 +84,7 @@ function main(){
     while(tuple = regSmall.exec(html)){
       _html = _html.split(tuple[0]).join("$" + unescape(tuple[1]) + "$");
     }
+    _html = _html.replace('%DOLLAR%', '$');
     // mathjaxで処理
     var div = document.getElementById("content");
     div.innerHTML = _html;

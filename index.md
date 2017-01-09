@@ -17,9 +17,15 @@ This page is written in Markdown + Mathjax. See also: [sample.md](#sample.md)
   - [最小シュタイナー木](#md/steiner_tree.md)
   - [高速畳み込み (Fast Subset Convolution)](#md/fast_subset_convolution.md)
   - [畳み込み(Xor)](#md/xor_convolution.md)
+- 文字列
+  - [オートマトン](#md/automaton.md)
 
 ## Links
 
 - TopCoder
   - [Editorials](https://apps.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis)
   - [Archive](http://www.topcoder.com/tc?module=MatchList)
+
+## 解説
+
+- [TCO 15 Final](#md/tco15_final.md)
