@@ -41,11 +41,11 @@ public class Point implements Comparable<Point>, GeometricalObject {
         return sub(p).norm2();
     }
 
-    double norm() {
+    public double norm() {
         return Math.sqrt(x * x + y * y);
     }
 
-    double norm2() {
+    public double norm2() {
         return x * x + y * y;
     }
 
