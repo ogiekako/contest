@@ -1,0 +1,39 @@
+5 TaskC
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+102 5
+2 2
+2d4 1d8
+10 2
+10d6-10 1d6+1
+8 3
+1d4+4 2d4 3d4-4
+40 3
+10d4 5d8 2d20
+10 4
+1d10 1d10+1 1d10+2 1d10+3
+89 Case #1: 1.000000
+Case #2: 0.998520
+Case #3: 0.250000
+Case #4: 0.002500
+Case #5: 0.400000
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+44 on2017_01.on2017_01_09_FHC17Qual.TaskC.TaskC
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.09
+9 FHC17Qual
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0
