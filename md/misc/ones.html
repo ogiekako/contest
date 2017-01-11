@@ -2,7 +2,7 @@ Make N with minimum number of K's.<br>
 N: <input id="n" value="2017"></input><br>
 K: <input id="k" value="1"></input><br>
 Operations: + *<br>
-<input id="nest" type="checkbox" checked="true">Allow nested ()</input><br>
+<label><input id="nest" type="checkbox" value="Allow nested ()">Allow nested ()</input></label><br>
 <button onclick="doit()">Do it.</button><br>
 <div id="ansMsg"></div>
 <div id="ans"></div>
@@ -16,6 +16,7 @@ Operations: + *<br>
     }
 
     var limit = 30;
+    var failed = [Infinity, ''];
 
     // [num, str]
     var computeAllowNest = function(n, k) {
@@ -48,7 +49,84 @@ Operations: + *<br>
                 }
             }
         }
-        return [0, ''];
+        return failed;
+    };
+
+    /*
+       expr -> term + expr
+       expr -> term
+       term -> factor * term
+       term -> factor
+       factor -> `k`
+       factor -> (expr0)
+       expr0 -> term0 + expr0
+       expr0 -> term0
+       term0 -> `k` * term0
+       term0 -> `k`
+       */
+    var computeNoNest = function(n, k) {
+      // Stores [count, representation]
+      var expr = [], term = [], expr0 = [], term0 = [];
+      var asTerm0 = function(n) {
+        if (n <= 0) return failed;
+        if (term0[n] !== undefined) {
+          return term0[n];
+        }
+        if (n === k) {
+          return term0[n] = [1, '' + k];
+        }
+        if (k <= 1 || n % k !== 0) return term0[n] = failed;
+        var tmp = asTerm0(n/k);
+        return term0[n] = tmp[0] < Infinity ? [tmp[0] + 1, k + ' * ' + tmp[1]] : failed;
+      };
+      var asExpr0 = function(n) {
+        if (expr0[n] !== undefined) {
+          return expr0[n];
+        }
+        expr0[n] = asTerm0(n);
+        for (var i=1;i+i<=n;i++) {
+          var tmp = asTerm0(i);
+          var tmp2 = asExpr0(n-i);
+          if (tmp[0] + tmp2[0] < expr0[n][0]) {
+            expr0[n] = [tmp[0] + tmp2[0], tmp[1] + ' + ' + tmp2[1]];
+          }
+        }
+        return expr0[n];
+      };
+      var asFactor = function(n) {
+        if (n === k) return [1, '' + k];
+        var tmp = asExpr0(n);
+        return [tmp[0], '(' + tmp[1] + ')'];
+      };
+      var asTerm = function(n) {
+        if (term[n] !== undefined) {
+          return term[n];
+        }
+        term[n] = asFactor(n);
+        for (var i=2;i*i<=n;i++) if (n%i===0){
+          var tmp = asFactor(i);
+          var tmp2 = asFactor(n/i);
+          if (tmp[0] + tmp2[0] < term[n][0]) {
+            term[n] = [tmp[0] + tmp2[0], tmp[1] + ' * ' + tmp2[1]];
+          }
+        }
+        return term[n];
+      };
+      var asExpr = function(n) {
+        if (expr[n] !== undefined) {
+          return expr[n];
+        }
+        expr[n] = asTerm(n);
+        for (var i=1;i+i<=n;i++) {
+          var tmp = asTerm(i);
+          var tmp2 = asExpr(n-i);
+          if (tmp[0] + tmp2[0] < expr[n][0]) {
+            expr[n] = [tmp[0] + tmp2[0], tmp[1] + ' + ' + tmp2[1]];
+          }
+        }
+        return expr[n];
+      };
+      return asExpr(n);
     };
 
     var doit = function() {
@@ -58,17 +136,17 @@ Operations: + *<br>
 
         var num, str;
         if (nest) {
+          limit = 30;
           [num, str] = computeAllowNest(n,k);
         } else {
-          ansMsg.innerText = 'Not supported yet.';
-          ans.innerText = '';
-          return;
+          limit = 0;
+          [num, str] = computeNoNest(n,k);
         }
-        if (num) {
+        if (num < Infinity) {
           ansMsg.innerText = 'Created ' + n + ' with ' + num + ' ' + k + '\'s.';
           ans.innerHTML = '<a target="_blank" href="https://www.google.co.jp/search?q=' + escapeForSearch(str) + '">' + str + '</a>';
         } else {
-          ansMsg.innerText = 'Failed to create N with <= ' + limit + ' K\'s';
+          ansMsg.innerText = 'Failed to create N with' + (limit ? '<= ' + limit : '') + ' K\'s';
           ans.innerText = '';
         }
     };
