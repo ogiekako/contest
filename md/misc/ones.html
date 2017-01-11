@@ -2,55 +2,74 @@ Make N with minimum number of K's.<br>
 N: <input id="n" value="2017"></input><br>
 K: <input id="k" value="1"></input><br>
 Operations: + *<br>
-<button onclick="doit()">Do it.</button>
+<input id="nest" type="checkbox" checked="true">Allow nested ()</input><br>
+<button onclick="doit()">Do it.</button><br>
 <div id="ansMsg"></div>
 <div id="ans"></div>
 
 <script>
-var ans = document.getElementById('ans');
-var ansMsg = document.getElementById('ansMsg');
+    var ans = document.getElementById('ans');
+    var ansMsg = document.getElementById('ansMsg');
 
-var escapeForSearch = function(s) {
-  return s.replace(/\+/g, '%2B');
-}
-
-var doit = function() {
-  var n = parseInt(document.getElementById('n').value, 10);
-  var k = parseInt(document.getElementById('k').value, 10);
-
-  var seen = {};
-  var dp = [0, {}];
-  dp[1][k] = '' + k;
-  seen[k] = true;
-  var limit = 30;
-  for(var i=2;i<=limit+1;i++) {
-    dp[i] = {};
-    if (dp[i-1][n]) {
-      ansMsg.innerText = 'Created ' + n + ' with ' + (i-1) + ' ' + k + '\'s.';
-      ans.innerHTML = '<a target="_blank" href="https://www.google.co.jp/search?q=' + escapeForSearch(dp[i-1][n]) + '">' + dp[i-1][n] + '</a>';
-      return;
+    var escapeForSearch = function(s) {
+        return s.replace(/\+/g, '%2B');
     }
-    for(var j=1;j <= i-j;j++) {
-      var j2 = i-j;
-      for(m1 in dp[j]) {
-        for(m2 in dp[j2]) {
-          m1 = parseInt(m1, 10);
-          m2 = parseInt(m2, 10);
-          var m = m1 + m2;
-          if (m <= n && !seen[m]) {
-            seen[m] = true;
-            dp[i][m] = dp[j][m1] + ' + ' + dp[j2][m2];
-          }
-          m = m1 * m2;
-          if (m <= n && !seen[m]) {
-            seen[m] = true;
-            dp[i][m] = '(' + dp[j][m1] + ') * (' + dp[j2][m2] + ')';
-          }
+
+    var limit = 30;
+
+    // [num, str]
+    var computeAllowNest = function(n, k) {
+        var seen = {};
+        var dp = [0, {}];
+        dp[1][k] = '' + k;
+        seen[k] = true;
+        for (var i = 2; i <= limit + 1; i++) {
+            dp[i] = {};
+            if (dp[i - 1][n]) {
+                return [i-1, dp[i-1][n]];
+            }
+            for (var j = 1; j <= i - j; j++) {
+                var j2 = i - j;
+                for (m1 in dp[j]) {
+                    for (m2 in dp[j2]) {
+                        m1 = parseInt(m1, 10);
+                        m2 = parseInt(m2, 10);
+                        var m = m1 + m2;
+                        if (m <= n && !seen[m]) {
+                            seen[m] = true;
+                            dp[i][m] = dp[j][m1] + ' + ' + dp[j2][m2];
+                        }
+                        m = m1 * m2;
+                        if (m <= n && !seen[m]) {
+                            seen[m] = true;
+                            dp[i][m] = '(' + dp[j][m1] + ') * (' + dp[j2][m2] + ')';
+                        }
+                    }
+                }
+            }
         }
-      }
-    }
-  }
-  ansMsg.innerText = '';
-  ans.innerText = 'Failed to create N with <= ' + limit + ' K\'s';
-};
+        return [0, ''];
+    };
+
+    var doit = function() {
+        var nest = document.getElementById('nest').checked;
+        var n = parseInt(document.getElementById('n').value, 10);
+        var k = parseInt(document.getElementById('k').value, 10);
+
+        var num, str;
+        if (nest) {
+          [num, str] = computeAllowNest(n,k);
+        } else {
+          ansMsg.innerText = 'Not supported yet.';
+          ans.innerText = '';
+          return;
+        }
+        if (num) {
+          ansMsg.innerText = 'Created ' + n + ' with ' + num + ' ' + k + '\'s.';
+          ans.innerHTML = '<a target="_blank" href="https://www.google.co.jp/search?q=' + escapeForSearch(str) + '">' + str + '</a>';
+        } else {
+          ansMsg.innerText = 'Failed to create N with <= ' + limit + ' K\'s';
+          ans.innerText = '';
+        }
+    };
 </script>
