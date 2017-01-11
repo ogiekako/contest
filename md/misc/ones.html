@@ -1,9 +1,9 @@
 Make N with minimum number of K's.<br>
-N: <input id="n" value="2017"></input><br>
-K: <input id="k" value="1"></input><br>
+N: <input id="n" value="2017" onkeydown="if(event.key==='Enter')doit();"></input><br>
+K: <input id="k" value="1" onkeydown="if(event.key==='Enter')doit();"></input><br>
 Operations: + *<br>
 <label><input id="nest" type="checkbox" value="Allow nested ()">Allow nested ()</input></label><br>
-<button onclick="doit()">Do it.</button><br>
+<button onclick="doit();">Do it.</button><br>
 <div id="ansMsg"></div>
 <div id="ans"></div>
 
@@ -130,6 +130,14 @@ Operations: + *<br>
     };
 
     var doit = function() {
+        ansMsg.innerText = 'Computing...';
+        ans.innerText = '';
+        new Promise(function() {
+          doit2();
+        });
+    };
+
+    var doit2 = function() {
         var nest = document.getElementById('nest').checked;
         var n = parseInt(document.getElementById('n').value, 10);
         var k = parseInt(document.getElementById('k').value, 10);
