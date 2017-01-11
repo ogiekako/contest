@@ -105,7 +105,7 @@ Operations: + *<br>
         term[n] = asFactor(n);
         for (var i=2;i*i<=n;i++) if (n%i===0){
           var tmp = asFactor(i);
-          var tmp2 = asFactor(n/i);
+          var tmp2 = asTerm(n/i);
           if (tmp[0] + tmp2[0] < term[n][0]) {
             term[n] = [tmp[0] + tmp2[0], tmp[1] + ' * ' + tmp2[1]];
           }
