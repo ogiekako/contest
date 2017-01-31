@@ -1,0 +1,77 @@
+13 MazeConstruct
+9 construct
+18 java.lang.String[]
+1
+3 int
+1 k
+11
+0
+1
+int 3
+String[] 1
+4 ....
+1
+1
+1
+int 4
+String[] 3
+3 ...
+3 ...
+3 ...
+1
+2
+1
+int 10
+String[] 5
+5 ..#..
+5 #.#..
+5 ..#..
+5 .#...
+5 .....
+1
+3
+1
+int 1000
+-1
+1
+4
+1
+int 999
+-1
+1
+5
+1
+int 100
+String[] 0
+1
+6
+1
+int 99
+String[] 0
+1
+7
+1
+int 98
+String[] 0
+1
+8
+1
+int 49
+-1
+1
+9
+1
+int 98
+String[] 0
+1
+10
+1
+int 50
+String[] 0
+1
+10 2017.01.31
+44 Single Round Match 707 Sponsored By Blizzard
+0
+95 on2017_01.on2017_01_31_Single_Round_Match_707_Sponsored_By_Blizzard.MazeConstruct.MazeConstruct
+0
+4 256M
