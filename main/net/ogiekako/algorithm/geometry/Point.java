@@ -105,10 +105,10 @@ public class Point implements Comparable<Point>, GeometricalObject {
     }
 
     /**
-     * Rotate x degrees in counterclockwise direction.
+     * Rotate t radius in counterclockwise direction.
      */
-    Point rot(double x) {
-        return new Point(x * Math.cos(x) - y * Math.sin(x), y * Math.cos(x) + x * Math.sin(x));
+    Point rot(double t) {
+        return new Point(x * Math.cos(t) - y * Math.sin(t), y * Math.cos(t) + x * Math.sin(t));
     }
 
     public Point unit() {
