@@ -20,4 +20,10 @@ public class Asserts {
     public static void assertNonNegative(double value) {
         if (value < 0) throw new AssertionError("want: positive  actual: " + value);
     }
+
+    public static void assertEquals(Object a, Object b) {
+        if(!a.equals(b)) {
+            throw new AssertionError(String.format("want: %s, actual: %s", a, b));
+        }
+    }
 }

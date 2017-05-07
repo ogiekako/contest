@@ -1,0 +1,219 @@
+17 MultiplyAddPuzzle
+12 minimalSteps
+4 long
+4
+4 long
+1 s
+4 long
+1 t
+4 long
+1 a
+4 long
+1 b
+25
+0
+4
+long 10
+long 40
+long 4
+long 2
+long 2
+1
+1
+4
+long 10
+long 28
+long 4
+long 2
+long 2
+1
+2
+4
+long 10
+long 99
+long 4
+long 2
+long -1
+1
+3
+4
+long 345
+long 12345
+long 1
+long 10
+long 895
+1
+4
+4
+long 1000000000000000000
+long 1000000000000000000
+long 1000000000000000000
+long 1000000000000000000
+long 0
+1
+5
+4
+long 2
+long 1
+long 1
+long 0
+long 2
+1
+6
+4
+long 1
+long 3
+long 2
+long 1
+long 1
+1
+7
+4
+long 1
+long 4
+long 2
+long 1
+long -1
+1
+8
+4
+long 1
+long 4
+long 2
+long 0
+long 3
+1
+9
+4
+long 0
+long 1000000000000000000
+long 0
+long 2
+long -1
+1
+10
+4
+long 0
+long 1000000000000000000
+long 1
+long 2
+-1
+1
+11
+4
+long 0
+long 1000000000000000000
+long 1
+long 1
+long 1000000000000000000
+1
+12
+4
+long 1000000
+long 1000000000000000000
+long 2
+long 2
+-1
+1
+13
+4
+long 10000000
+long 1
+long 2
+long 2
+long -1
+1
+14
+4
+long 10000000000
+long 1000000000000
+long 4
+long 10000000000
+-1
+1
+15
+4
+long 10
+long 0
+long 0
+long 0
+long 1
+1
+16
+4
+long 10
+long 1
+long 0
+long 0
+long -1
+1
+17
+4
+long 0
+long 0
+long 0
+long 0
+long 0
+1
+18
+4
+long 0
+long 10
+long 1
+long 0
+long 10
+1
+19
+4
+long 10
+long 40
+long 0
+long 2
+long 2
+1
+20
+4
+long 10
+long 41
+long 0
+long 2
+long -1
+1
+21
+4
+long 0
+long 3
+long 2
+long 2
+-1
+1
+22
+4
+long 0
+long 4
+long 1
+long 2
+long 3
+1
+23
+4
+long 3
+long 12
+long 0
+long 2
+long 2
+1
+24
+4
+long 3
+long 4
+long 0
+long 1
+long -1
+1
+10 2017.01.31
+44 Single Round Match 707 Sponsored By Blizzard
+0
+103 on2017_01.on2017_01_31_Single_Round_Match_707_Sponsored_By_Blizzard.MultiplyAddPuzzle.MultiplyAddPuzzle
+0
+4 256M

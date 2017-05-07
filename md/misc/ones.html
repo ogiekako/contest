@@ -1,0 +1,171 @@
+Make N with minimum number of K's.<br>
+N: <input id="n" value="2017" onkeydown="if(event.key==='Enter')doit();"></input><br>
+K: <input id="k" value="1" oninput="onChange()" onkeydown="if(event.key==='Enter')doit();"></input><br>
+Operations: + *<br>
+<label><input id="nest" type="checkbox" onchange="onChange();">Allow nested ()</input></label><br>
+<div id="inParenDiv">Number of 1's inside () should &lt= <input id="inParen" value="Infinity" onkeydown="if(event.key==='Enter')doit();"></input><br></div>
+<button onclick="doit();">Do it.</button><br>
+<div id="ansMsg"></div>
+<div id="ans"></div>
+
+<script>
+    var ans = document.getElementById('ans');
+    var ansMsg = document.getElementById('ansMsg');
+    var kElem = document.getElementById('k');
+    var nest = document.getElementById('nest');
+    var inParenDiv = document.getElementById('inParenDiv');
+
+    var onChange = function() {
+      inParenDiv.style.display = !nest.checked && parseInt(kElem.value,10) === 1 ? 'unset' : 'none';
+    };
+    onChange();
+
+    var escapeForSearch = function(s) {
+        return s.replace(/\+/g, '%2B');
+    }
+
+    var limit = 30;
+    var failed = [Infinity, ''];
+
+    // [num, str]
+    var computeAllowNest = function(n, k) {
+        var seen = {};
+        var dp = [0, {}];
+        dp[1][k] = '' + k;
+        seen[k] = true;
+        for (var i = 2; i <= limit + 1; i++) {
+            dp[i] = {};
+            if (dp[i - 1][n]) {
+                return [i-1, dp[i-1][n]];
+            }
+            for (var j = 1; j <= i - j; j++) {
+                var j2 = i - j;
+                for (m1 in dp[j]) {
+                    for (m2 in dp[j2]) {
+                        m1 = parseInt(m1, 10);
+                        m2 = parseInt(m2, 10);
+                        var m = m1 + m2;
+                        if (m <= n && !seen[m]) {
+                            seen[m] = true;
+                            dp[i][m] = dp[j][m1] + ' + ' + dp[j2][m2];
+                        }
+                        m = m1 * m2;
+                        if (m <= n && !seen[m]) {
+                            seen[m] = true;
+                            dp[i][m] = '(' + dp[j][m1] + ') * (' + dp[j2][m2] + ')';
+                        }
+                    }
+                }
+            }
+        }
+        return failed;
+    };
+
+    /*
+       expr -> term + expr
+       expr -> term
+       term -> factor * term
+       term -> factor
+       factor -> `k`
+       factor -> (expr0)
+       expr0 -> term0 + expr0
+       expr0 -> term0
+       term0 -> `k` * term0
+       term0 -> `k`
+       */
+    var computeNoNest = function(n, k) {
+      // Stores [count, representation]
+      var expr = [], term = [], expr0 = [], term0 = [];
+      var asTerm0 = function(n) {
+        if (n <= 0) return failed;
+        if (term0[n] !== undefined) {
+          return term0[n];
+        }
+        if (n === k) {
+          return term0[n] = [1, '' + k];
+        }
+        if (k <= 1 || n % k !== 0) return term0[n] = failed;
+        var tmp = asTerm0(n/k);
+        return term0[n] = tmp[0] < Infinity ? [tmp[0] + 1, k + ' * ' + tmp[1]] : failed;
+      };
+      var asExpr0 = function(n) {
+        if (expr0[n] !== undefined) {
+          return expr0[n];
+        }
+        expr0[n] = asTerm0(n);
+        for (var i=1;i+i<=n;i++) {
+          var tmp = asTerm0(i);
+          var tmp2 = asExpr0(n-i);
+          if (tmp[0] + tmp2[0] < expr0[n][0]) {
+            expr0[n] = [tmp[0] + tmp2[0], tmp[1] + ' + ' + tmp2[1]];
+          }
+        }
+        return expr0[n];
+      };
+      var asFactor = function(n) {
+        if (n === k) return [1, '' + k];
+        var tmp = asExpr0(n);
+        var res = [tmp[0], '(' + tmp[1] + ')'];
+        if (inParenDiv.style.display === 'unset') {
+          return parseInt(document.getElementById('inParen').value, 10) < tmp[0] ? failed : res;
+        }
+        return res;
+      };
+      var asTerm = function(n) {
+        if (term[n] !== undefined) {
+          return term[n];
+        }
+        term[n] = asFactor(n);
+        for (var i=2;i*i<=n;i++) if (n%i===0){
+          var tmp = asFactor(i);
+          var tmp2 = asTerm(n/i);
+          if (tmp[0] + tmp2[0] < term[n][0]) {
+            term[n] = [tmp[0] + tmp2[0], tmp[1] + ' * ' + tmp2[1]];
+          }
+        }
+        return term[n];
+      };
+      var asExpr = function(n) {
+        if (expr[n] !== undefined) {
+          return expr[n];
+        }
+        expr[n] = asTerm(n);
+        for (var i=1;i+i<=n;i++) {
+          var tmp = asTerm(i);
+          var tmp2 = asExpr(n-i);
+          if (tmp[0] + tmp2[0] < expr[n][0]) {
+            expr[n] = [tmp[0] + tmp2[0], tmp[1] + ' + ' + tmp2[1]];
+          }
+        }
+        return expr[n];
+      };
+      return asExpr(n);
+    };
+
+    var doit = function() {
+        ansMsg.innerText = 'Computing...';
+        ans.innerText = '';
+        setTimeout(doit2, 0);
+    };
+
+    var doit2 = function() {
+        var n = parseInt(document.getElementById('n').value, 10);
+        var k = parseInt(document.getElementById('k').value, 10);
+
+        var num, str;
+        if (nest.checked) {
+          limit = 30;
+          [num, str] = computeAllowNest(n,k);
+        } else {
+          limit = 0;
+          [num, str] = computeNoNest(n,k);
+        }
+        if (num < Infinity) {
+          ansMsg.innerText = 'Created ' + n + ' with ' + num + ' ' + k + '\'s.';
+          ans.innerHTML = '<a target="_blank" href="https://www.google.co.jp/search?q=' + escapeForSearch(str) + '">' + str + '</a>';
+        } else {
+          ansMsg.innerText = 'Failed to create N with' + (limit ? '<= ' + limit : '') + ' K\'s';
+          ans.innerText = '';
+        }
+    };
+</script>
