@@ -1,0 +1,36 @@
+5 TaskB
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+47 2
+4 18 4
+4 5
+9 4
+1 6
+3 3
+4 27 4
+4 5
+9 4
+1 6
+3 3
+4 1
+-1
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+38 on2017_04.on2017_04_29_RCC.TaskB.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.04.29
+3 RCC
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0
