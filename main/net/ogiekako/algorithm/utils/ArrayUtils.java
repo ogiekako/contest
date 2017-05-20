@@ -845,4 +845,5 @@ public class ArrayUtils {
         for (int i = 0; i < n; i++) res[i] = (i == 0 ? a : res[i - 1] * b) % MOD;
         return res;
     }
+
 }

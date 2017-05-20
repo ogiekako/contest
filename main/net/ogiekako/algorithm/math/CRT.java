@@ -2,7 +2,7 @@ package net.ogiekako.algorithm.math;
 
 import java.math.BigInteger;
 
-public class ChineseRemainderTheorem {
+public class CRT {
     // 0 <= result < \prod moduli[i]
     // all moduli must be pairwise coprime.
     public static BigInteger crt(long[] remainders, long[] moduli) {// tested

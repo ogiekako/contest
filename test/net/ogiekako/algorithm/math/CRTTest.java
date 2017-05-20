@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Random;
 
-public class ChineseRemainderTheoremTest {
+public class CRTTest {
     @Test
     public void testCrt() throws Exception {
         int n = 5;
@@ -29,7 +29,7 @@ public class ChineseRemainderTheoremTest {
             }
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < i; j++) if (MathUtils.gcd(moduli[i], moduli[j]) != 1) throw new AssertionError();
-            BigInteger res = ChineseRemainderTheorem.crt(remainders, moduli);
+            BigInteger res = CRT.crt(remainders, moduli);
             for (int i = 0; i < n; i++) {
                 BigInteger tmp = res.remainder(BigInteger.valueOf(moduli[i]));
                 Assert.assertEquals(remainders[i], tmp.longValue());

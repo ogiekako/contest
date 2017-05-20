@@ -12,7 +12,7 @@ public class FFT {
      * を、w^k (sign==-1 の場合は (-w)^k)について評価した結果で引数を置き換える。
      * ここで w は、1 の n 乗根。
      */
-    public void fft(int sign, double[] real, double[] imag) {
+    public static void fft(int sign, double[] real, double[] imag) {
         int n = real.length, d = Integer.numberOfLeadingZeros(n) + 1;
         double theta = sign * 2 * Math.PI / n;
         for (int m = n; m >= 2; m >>= 1, theta *= 2) {

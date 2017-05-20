@@ -1,6 +1,6 @@
 package net.ogiekako.algorithm.utils;
 
-import net.ogiekako.algorithm.math.ChineseRemainderTheorem;
+import net.ogiekako.algorithm.math.CRT;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class BigIntegerUtils {
                 int value = f.calculate(mod);
                 values.add((long) value);
                 mods.add((long) mod);
-                BigInteger current = ChineseRemainderTheorem.crt(Cast.toLong(values), Cast.toLong(mods));
+                BigInteger current = CRT.crt(Cast.toLong(values), Cast.toLong(mods));
                 if (current.equals(result)) break;
                 result = current;
             }
