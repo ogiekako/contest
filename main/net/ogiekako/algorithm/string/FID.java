@@ -92,4 +92,13 @@ public class FID {
         }
         return res + Long.bitCount(bits[from >> 6] & ((1L << (to - from)) - 1));
     }
+
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            b.append(get(i) ? '1' : '0');
+        }
+        return b.toString();
+    }
 }
