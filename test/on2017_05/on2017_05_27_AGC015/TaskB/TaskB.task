@@ -1,0 +1,29 @@
+5 TaskB
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+3 UUD
+1 7
+1
+1
+8 UUDUUDUD
+2 77
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+41 on2017_05.on2017_05_27_AGC015.TaskB.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.05.27
+6 AGC015
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+0
