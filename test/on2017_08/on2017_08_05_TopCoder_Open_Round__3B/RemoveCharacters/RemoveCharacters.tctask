@@ -1,0 +1,55 @@
+16 RemoveCharacters
+15 minimalDistinct
+3 int
+2
+16 java.lang.String
+1 A
+16 java.lang.String
+1 B
+5
+0
+2
+String
+5 acabc
+String
+7 accabcc
+int 1
+1
+1
+2
+String
+6 aabbcc
+String
+6 ccbbaa
+int 2
+1
+2
+2
+String
+6 aaaabc
+String
+7 bcaaaaa
+int 1
+1
+3
+2
+String
+5 abcde
+String
+5 abcde
+int 0
+1
+4
+2
+String
+13 abcdefghijklm
+String
+13 nopqrstuvwxyz
+int 26
+1
+10 2017.08.05
+23 TopCoder Open Round #3B
+0
+80 on2017_08.on2017_08_05_TopCoder_Open_Round__3B.RemoveCharacters.RemoveCharacters
+0
+4 256M

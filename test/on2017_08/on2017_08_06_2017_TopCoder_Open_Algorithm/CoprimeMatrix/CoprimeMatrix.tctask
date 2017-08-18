@@ -1,0 +1,81 @@
+13 CoprimeMatrix
+10 isPossible
+16 java.lang.String
+1
+18 java.lang.String[]
+7 coprime
+7
+0
+1
+String[] 5
+5 NYNYN
+5 YNYYN
+5 NYNYN
+5 YYYNY
+5 NNNYN
+String
+8 Possible
+1
+1
+1
+String[] 2
+2 NY
+2 NN
+String
+10 Impossible
+1
+2
+1
+String[] 6
+6 NYYYYN
+6 YNYNNN
+6 YYNYYY
+6 YNYNYN
+6 YNYYNY
+6 NNYNYN
+String
+8 Possible
+1
+3
+1
+String[] 2
+2 NN
+2 NN
+String
+10 Impossible
+1
+4
+1
+String[] 1
+1 Y
+String
+8 Possible
+1
+5
+1
+String[] 5
+5 NYNYN
+5 YNNYN
+5 NNNYY
+5 YYYNN
+5 NNYNN
+String
+10 Impossible
+1
+6
+1
+String[] 5
+5 NNYYY
+5 NNYNY
+5 YYNNN
+5 YNNNY
+5 YYNYN
+String
+10 Impossible
+1
+10 2017.08.06
+28 2017 TopCoder Open Algorithm
+0
+79 on2017_08.on2017_08_06_2017_TopCoder_Open_Algorithm.CoprimeMatrix.CoprimeMatrix
+0
+4 256M
