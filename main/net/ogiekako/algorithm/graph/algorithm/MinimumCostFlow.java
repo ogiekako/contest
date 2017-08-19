@@ -71,7 +71,7 @@ public class MinimumCostFlow {
                     totalCost += e.residue() * e.cost();
                     e.pushFlow(e.residue());
                 }
-        // TODO: the logic below is almost same as the logic used in primalDual. Extract a common method for DRY.
+        // TODO: the code below has almost the same logic used in primalDual. Extract a common method.
         for (; ; ) {
             Queue<Entry> que = new PriorityQueue<Entry>();
             double[] distance = new double[n];
