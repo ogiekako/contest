@@ -1,5 +1,7 @@
 package net.ogiekako.algorithm.dataStructure.intCollection;
 
+import java.util.Arrays;
+
 public class IntArrayList {
     int[] data;
     int size;

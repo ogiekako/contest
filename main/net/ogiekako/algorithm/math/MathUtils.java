@@ -228,15 +228,16 @@ public class MathUtils {
 
     private static int factPrevMod;
     private static Mint[] fact;
+
     public static Mint fact(int n) {
-        if(factPrevMod != Mint.getMod()) {
+        if (factPrevMod != Mint.getMod()) {
             fact = null;
             factPrevMod = Mint.getMod();
         }
-        if (fact == null || n >= fact.length){
-            fact = new Mint[Math.min(Mint.getMod(), Math.max(n+1,fact==null ? 100010 : fact.length * 2))];
-            for (int i = 0; i < fact.length; i++){
-                fact[i] = i == 0 ? Mint.ONE : fact[i-1].mul(i);
+        if (fact == null || n >= fact.length) {
+            fact = new Mint[Math.min(Mint.getMod(), Math.max(n + 1, fact == null ? 100010 : fact.length * 2))];
+            for (int i = 0; i < fact.length; i++) {
+                fact[i] = i == 0 ? Mint.ONE : fact[i - 1].mul(i);
             }
         }
         return fact[n];
@@ -248,15 +249,16 @@ public class MathUtils {
 
     private static int ifactPrevMod;
     private static Mint[] ifact;
+
     public static Mint ifact(int n) {
-        if(ifactPrevMod != Mint.getMod()) {
-          ifact = null;
-          ifactPrevMod = Mint.getMod();
+        if (ifactPrevMod != Mint.getMod()) {
+            ifact = null;
+            ifactPrevMod = Mint.getMod();
         }
-        if(ifact==null || n >= ifact.length) {
+        if (ifact == null || n >= ifact.length) {
             ifact = new Mint[Math.min(Mint.getMod(), Math.max(n + 1, ifact == null ? 100010 : ifact.length * 2))];
-            for(int i=ifact.length-1;i>=0;i--){
-                ifact[i] = i == ifact.length-1 ? fact(i).mulInv() : ifact[i+1].mul(i+1);
+            for (int i = ifact.length - 1; i >= 0; i--) {
+                ifact[i] = i == ifact.length - 1 ? fact(i).mulInv() : ifact[i + 1].mul(i + 1);
             }
         }
         return ifact[n];
@@ -268,7 +270,7 @@ public class MathUtils {
      * genCombTableMod で long[][] のテーブルを計算するのは、400ms 程度。
      */
     public static Mint comb(int n, int k) {
-        if (n<0 || k<0 || n-k < 0) return Mint.ZERO;
+        if (n < 0 || k < 0 || n - k < 0) return Mint.ZERO;
         // n! / k! / (n-k)!
         return fact(n).mul(ifact(k)).mul(ifact(n - k));
     }
@@ -361,7 +363,7 @@ public class MathUtils {
     }
 
     public static BigInteger lcm(BigInteger a, BigInteger b) {
-        return a.divide(gcd(a,b)).multiply(b);
+        return a.divide(gcd(a, b)).multiply(b);
     }
 
     /*
@@ -414,7 +416,7 @@ public class MathUtils {
     }
 
     public static Mint catalan(int n) {
-        return comb(2*n,n).minus(comb(2*n,n+1));
+        return comb(2 * n, n).minus(comb(2 * n, n + 1));
     }
 
     /**
@@ -423,8 +425,8 @@ public class MathUtils {
      * catalan(n,n) = catalan(n).
      */
     public static Mint catalan(int n, int k) {
-        if (n<0 || k<0 || k>n) return Mint.ZERO;
-        return comb(n+k, n).minus(comb(n+k,n+1));
+        if (n < 0 || k < 0 || k > n) return Mint.ZERO;
+        return comb(n + k, n).minus(comb(n + k, n + 1));
     }
 
     /**
@@ -433,7 +435,7 @@ public class MathUtils {
      */
     public static Mint catalanTransposed(int n, int k) {
         if (n == 0) return k == 0 ? Mint.ONE : Mint.ZERO;
-        return catalan(n-1,n-k);
+        return catalan(n - 1, n - k);
     }
 
     public static long[] generatePowers(int base, int count, int modulus) {
@@ -449,20 +451,38 @@ public class MathUtils {
      * <p>Verified: SRM 603 B</p>
      */
     public static long[] divisors(long n) { // SRM603B
-        List<Long> small = new ArrayList<Long>();
-        List<Long> large = new ArrayList<Long>();
-        for (long d = 1; d * d <= n; d++)
-            if (n % d == 0) {
-                small.add(d);
-                if (d * d < n) large.add(n / d);
+        HashMap<Long, Integer> primes = MathUtils.primes(n);
+        ArrayList<Long> res = new ArrayList<>();
+        divisorsRecur(0, primes.entrySet().toArray(new Map.Entry[0]), 1, res);
+        long[] r = Cast.toLong(res);
+        Arrays.sort(r);
+        return r;
+    }
+
+    private static void divisorsRecur(int n, Map.Entry<Long, Integer>[] entries, long val, ArrayList<Long> res) {
+        if (n >= entries.length) {
+            res.add(val);
+            return;
+        }
+        for (int i = 0; i <= entries[n].getValue(); i++) {
+            divisorsRecur(n + 1, entries, val, res);
+            val *= entries[n].getKey();
+        }
+    }
+
+    private static HashMap<Long, Integer> primes(long n) {
+        HashMap<Long, Integer> res = new HashMap<>();
+        for (long p = 2; p * p <= n; p++) {
+            int d = 0;
+            while (n % p == 0) {
+                d++;
+                n /= p;
             }
-        long[] res = new long[small.size() + large.size()];
-        for (int i = 0; i < small.size(); i++) {
-            res[i] = small.get(i);
+            if (d > 0) {
+                res.put(p, d);
+            }
         }
-        for (int i = 0; i < large.size(); i++) {
-            res[res.length - 1 - i] = large.get(i);
-        }
+        if (n > 1) res.put(n, 1);
         return res;
     }
 

@@ -38,8 +38,10 @@ public class Graph {
         add(new WeightedEdge(from, to, cost));
     }
 
-    public void addFlow(int from, int to, double capacity) {
-        add(new FlowEdge(from, to, capacity));
+    public Edge addFlow(int from, int to, double capacity) {
+        FlowEdge edge = new FlowEdge(from, to, capacity);
+        add(edge);
+        return edge;
     }
 
     public Edge addFlow(int from, int to, double capacity, double cost) {
