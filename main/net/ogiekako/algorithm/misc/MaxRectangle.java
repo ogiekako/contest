@@ -3,6 +3,10 @@ package net.ogiekako.algorithm.misc;
 import java.util.*;
 
 public class MaxRectangle {
+    /**
+     * Computes the size of the maximum rectangle.
+     * Verified: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B
+     */
     public static int maxRectangle(boolean[][] grid) {
         int res = 0;
         int[] rect = maximalRectangles(grid);
