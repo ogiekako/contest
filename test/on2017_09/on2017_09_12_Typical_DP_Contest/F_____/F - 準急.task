@@ -1,0 +1,33 @@
+10 F - 準急
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+5 10 2
+
+3 21
+
+1
+1
+6 10 10
+
+4 255
+
+1
+8 main/src
+0 
+4 Main
+54 on2017_09.on2017_09_12_Typical_DP_Contest.F_____.TaskF
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.12
+18 Typical DP Contest
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

@@ -11,6 +11,7 @@ public class EquivalenceRelation {
         relation = _relation.clone();
         ArrayUtils.normalize(relation);
     }
+
     public static EquivalenceRelation[] createAllRelation(int n) {
         List<EquivalenceRelation> list = new ArrayList<EquivalenceRelation>();
         int[] is = new int[n];

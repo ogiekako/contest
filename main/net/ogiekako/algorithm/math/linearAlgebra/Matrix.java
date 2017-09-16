@@ -29,6 +29,17 @@ public class Matrix {
         return res;
     }
 
+    public static Mint[] mul(Mint[][] A, Mint[] v) {
+        int n = A.length, m = A[0].length;
+        Mint[] res = new Mint[n];
+        Arrays.fill(res, Mint.ZERO);
+        for (int j = 0; j < m; j++)
+            if (!v[j].isZero()) for (int i = 0; i < n; i++) {
+                res[i] = res[i].add(A[i][j].mul(v[j]));
+            }
+        return res;
+    }
+
     // AB % MOD
     // MOD * MOD < Long.MAX_VALUE
     // 0 <= A[i][j], B[i][j] < MOD
@@ -46,8 +57,26 @@ public class Matrix {
         return res;
     }
 
+    // AB % MOD
+    public static double[][] mul(double[][] A, double[][] B) {
+        int n = A.length, m = B[0].length, s = B.length;
+        double[][] res = new double[n][m];
+        for (int i = 0; i < n; i++)
+            for (int k = 0; k < s; k++)
+                if (A[i][k] > 0) for (int j = 0; j < m; j++) {
+                    res[i][j] += A[i][k] * B[k][j];
+                }
+        return res;
+    }
+
     public static long[][] identity(int n) {
         long[][] res = new long[n][n];
+        for (int i = 0; i < n; i++) res[i][i] = 1;
+        return res;
+    }
+
+    public static double[][] identityDouble(int n) {
+        double[][] res = new double[n][n];
         for (int i = 0; i < n; i++) res[i][i] = 1;
         return res;
     }
@@ -66,6 +95,16 @@ public class Matrix {
             @Override
             protected long[][] associativeOperation(long[][] a, long[][] b) {
                 return Matrix.mul(a, b, mod);
+            }
+        }.power(A, power);
+    }
+
+    public static double[][] powered(double[][] A, int power) {
+        if (power == 0) return Matrix.identityDouble(A.length);
+        return new PowerOperation<double[][]>() {
+            @Override
+            protected double[][] associativeOperation(double[][] a, double[][] b) {
+                return Matrix.mul(a, b);
             }
         }.power(A, power);
     }
@@ -368,6 +407,16 @@ public class Matrix {
 
     //  A^k x % MOD.
     // O(p^2 n + p n^2 + n^2 log k).
+    public static Mint[] powered(final Mint[][] A, long k, Mint[] x) {
+        return powered(new MintLinearTransform() {
+            public Mint[] map(Mint[] x) {
+                return mul(A, x);
+            }
+        }, k, x);
+    }
+
+    //  A^k x % MOD.
+    // O(p^2 n + p n^2 + n^2 log k).
     public static int[] powered(final int[][] A, long k, int[] x, final int MOD) {
         return Cast.toInt(powered(Cast.toLong(A), k, Cast.toLong(x), MOD));
     }
@@ -392,6 +441,67 @@ public class Matrix {
         }
         for (int i = 0; i < n; i++) res[i] %= modPrime;
         return res;
+    }
+
+    public static Mint[] powered(MintLinearTransform f, long k, Mint[] x) {
+        // O(p(pn + O(f.map))
+        Mint[] R = characteristicPolynomial(f, x);
+        // O(n^2 log k)
+        Mint[] P = Polynomial.mod(k, R);
+        // len P(f) x.
+        int n = x.length;
+        Mint[] res = new Mint[n];
+        Arrays.fill(res, Mint.ZERO);
+        for (int i = 0; i < P.length; i++) {
+            for (int j = 0; j < n; j++) {
+                res[j] = res[j].add(x[j].mul(P[i]));
+            }
+            x = f.map(x);
+        }
+        return res;
+    }
+
+    // (r[0]A^0 + r[1]A^1 + ... + r[p]A^p)x = 0
+    // O(p(log MOD + pn + O(f.map)) : p = deg(f) <= n.
+    static Mint[] characteristicPolynomial(MintLinearTransform f, Mint[] x) {
+        int n = x.length;
+        Mint[][] B = new Mint[n + 1][n];// gauss
+        Mint[][] C = new Mint[n + 1][n + 1];// B = C mat
+        ArrayUtils.fill(B, Mint.ZERO);
+        ArrayUtils.fill(C, Mint.ZERO);
+        int[] pivot = new int[n + 1];
+        Arrays.fill(pivot, -1);
+        for (int i = 0; ; i++) {
+            // B[i] is modified, hence x must be cloned.
+            B[i] = x.clone();
+            C[i][i] = Mint.ONE;
+            // pivot[j] is the pivot of the j-th row. B[j][pivot[j]] == 1.
+            for (int j = 0; j < i; j++)
+                if (!B[i][pivot[j]].isZero()) {// eliminate
+                    Mint mul = B[i][pivot[j]].addInv();// B[i] is modified during this loop. so B[i][pivot[j]] may be no longer smaller than MOD.
+                    // Do B[i] += B[j] * mulLong.
+                    // B[j] is represented by C[j], hence C[i] += C[j] * mulLong.
+                    for (int k = 0; k < n; k++) {
+                        B[i][k] = B[i][k].add(B[j][k].mul(mul));
+                        C[i][k] = C[i][k].add(C[j][k].mul(mul));
+                    }
+                }
+            for (int k = 0; k < n; k++)
+                if (!B[i][k].isZero()) {
+                    pivot[i] = k;
+                    // log MOD
+                    Mint mul = B[i][k].mulInv();
+                    for (int l = 0; l < n; l++) B[i][l] = B[i][l].mul(mul);
+                    for (int l = 0; l < n; l++) C[i][l] = C[i][l].mul(mul);
+                    break;
+                }
+            if (pivot[i] == -1) {
+                Mint[] r = new Mint[i + 1];
+                System.arraycopy(C[i], 0, r, 0, i + 1);
+                return r;
+            }
+            x = f.map(x);
+        }
     }
 
     // (r[0]A^0 + r[1]A^1 + ... + r[p]A^p)x = 0
@@ -485,5 +595,4 @@ public class Matrix {
     private static void xorEq(boolean[] modified, boolean[] a) {
         for (int i = 0; i < a.length; i++) modified[i] ^= a[i];
     }
-
 }

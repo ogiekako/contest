@@ -84,20 +84,9 @@ public class MyScanner {
     }
 
     public int nextInt() {
-        int c = read();
-        if (c == -1) throw new NoSuchElementException();
-        while (c != '-' && (c < '0' || '9' < c)) {
-            c = read();
-            if (c == -1) throw new NoSuchElementException();
-        }
-        if (c == '-') return -nextInt();
-        int res = 0;
-        do {
-            res *= 10;
-            res += c - '0';
-            c = read();
-        } while ('0' <= c && c <= '9');
-        return res;
+        long v = nextLong();
+        if (v < Integer.MIN_VALUE || v > Integer.MAX_VALUE) throw new IllegalArgumentException("out of range: " + v);
+        return (int) v;
     }
 
     public long nextLong() {

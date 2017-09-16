@@ -1,0 +1,141 @@
+19 EllysRollerCoasters
+7 getPlan
+18 java.lang.String[]
+1
+18 java.lang.String[]
+5 field
+4
+0
+1
+String[] 8
+6 RSSLRD
+6 SDDSSS
+6 SULUUS
+6 ULRLDL
+6 RLSSRL
+6 SDUSDL
+6 SRSLRD
+6 RSSSSL
+String[] 8
+8 /--\\/\\
+7 |/\\|||
+8 |\\/\\/|
+9 \\\\/\\//
+8 //||\\\\
+6 |//|//
+9 |\\-/\\\\
+7 \\----/
+1
+1
+1
+String[] 2
+3 RDL
+3 RLL
+String[] 0
+1
+2
+1
+String[] 8
+31 DSSSSLDSSSDRSSSDDSSDDSSDRDRSSSD
+31 USLRSUSDSSUSDSLSUSDSSDLSSSRSSDS
+31 ..SS..SS...SS.SSRSUSSSSSSS...SS
+31 ..SS..SS...SS.SSSDSUSSSSSS...SS
+31 ..SS..SS...SS.SSSRSDSULSSS...SS
+31 ..SS..SS...SS.SSUSSUUSSUUL...UL
+31 ..SS..SRSSDSRSLSDSSSSSSSSSSSSSL
+31 ..RU..RSSSURSSSURSSSSSSSSSSSSSU
+String[] 8
+38 /----\\/---\\/---\\/--\\/--\\/\\/---\\
+39 \\-\\/-/|/--/|/-\\|\\-\\||/\\|||\\--\\|
+31 ..||..||...||.||/-/|||||||...||
+31 ..||..||...||.|||/-/||||||...||
+34 ..||..||...||.|||\\-\\|\\/|||...||
+35 ..||..||...||.||\\--/\\--/\\/...\\/
+35 ..||..|\\--\\|\\-/|/-------------\\
+35 ..\\/..\\---/\\---/\\-------------/
+1
+3
+1
+String[] 37
+42 DD.RSSSL.....DSSLRL.DSSLRL..RLDSD.DSSSSSSD
+42 SUSU...UDDSSLRSSLSS.UL.RUUSSURU.UDS.DSD.DU
+42 SRSL.RSSLUL.RDRD.RU..USD.RSSSLRSLSUSLRU.S.
+42 SS.RSU.DDRL..SSSDLDSSSDRDRL.RUS.RU.RDULRL.
+42 SRSDRSSUSS.DSURURLRD..UDULRSU.S.RSSLSRLRD.
+42 SRLSUD..UL.RLDSDDL.RD..SRLRL..S.S.DSUS..RD
+42 SSSS.S.RSSLDURLSUUDLUL.UU.RUDSL.SDU..S.RLS
+42 RUSS.S.S.DLSDDRL..RU.UD..RSSU.DLULRD.ULULS
+42 DSLS.RDRSLRLUURLRL.RDRLRDSDD..RURSURL.S..S
+42 S.RLRLUD.RURL.RURU.SUUDLSSUU.DD.S.DSL.USSL
+42 RSU.SS.S.S.RU.DSD..RL.RDSUSSSLRSU.S.DLDL..
+42 DSSSLRSL.S..DSU.RDDLRDDLS....RD...USLUURSD
+42 RLDSSSLRSUDDS.DSDSSSRLRDUSSLDLUSSSSL.DL..S
+42 .SSDDDUS..SSS.RDSULSRSLS.DDSRSDDLRLRDSUSSL
+42 .RURLUDSRLRLRSDUURLRSLSS.RLRL.SRLRU.UL.DSL
+42 RSSL.RUSSSRD..RSDRU.DLSS..RDULS.DSSDDL.USU
+42 SDLRSL.UUSSSRD.DUDDDU.RU.RUUDULRUDDRLS.RSL
+42 ULSDSSLRSURLRU.SRUUURSSSSL..S..S.SSRSU.ULS
+42 .RURDRUUL..RSDDLS..RUDSSSSL.RD.S.RUUSDRDSS
+42 .RSSUS..UL.S.RU.RL.UDRSSSSLDLUSUDSSSSLRUUU
+42 RL..RLRSLS.RSD.RSURDRSSSDDSUUSSSLRSSDDL.RD
+42 SRSLSRLRLSDL.S.RL.RLRLDSUUD..RL..RSSLSS.UU
+42 RSLULUSLRLRL.SDLSRSSUSUSSSU.DUS.DSD.RURL..
+42 .RLDSDRLRSLRDSUUSUL..RSSSSSSL.UDUDRLRSDUSL
+42 .RSU.SULRSUSSS.DL.S.DSSSD.RL..RL.SDUDDULDL
+42 RSSLRURDRD.RUSRUDLRSL.RDULUURSU.DUS.UL.SS.
+42 USSUSDUS.S.RDSRDSUD.RDUL.SRLS...SRLDD..SUL
+42 .RSSURLS.RLSSRSUUSL.SS...SULRL..RUDLSDLS.S
+42 .SDDDSUS.DLUU..DD..RURSSSUDSSURSSLRSUSULRU
+42 .SSSRSDRDS.RSD.UURLSRD.DSLRLRLS.RU.DSU.RL.
+42 RUSRSSLDURLULUL..SSSSUSL.S.SUUUSLRDUSL.SDD
+42 RSL..RLRD.UDS.S.RLRLUD.DDS.S.RSSSLUD.USURL
+42 DSSSDUL.S..SRDSDU....SDLRL.SDL..DSDUSSSSSL
+42 UDDSU.RDRSDSRUSRSD.DLSS.DL.ULRSLS.RLRSD.DL
+42 .UU.RLULDLRURSUDLS.RLUL.SS...SDURL.RLDU.S.
+42 RDDDSSDDSUSLDSLSSS...RSSLUSDDUS..S.DDRD.RL
+42 RUUURLULUSSLRSLUUUSSSL.....UL.USSL.UL.USSU
+String[] 37
+51 /\\./---\\...../--\\/\\./--\\/\\../\\/-\\./------\\
+55 |\\-/...\\\\/--\\\\--/||.\\\\.\\/\\--/\\/.\\\\|./-\\.//
+54 |/-\\./--/\\\\.\\\\/\\.\\/..\\-\\./---\\/-\\|\\-///.|.
+54 ||.\\-/./\\//..|||/\\/---\\\\\\\\\\.//|.\\/./\\\\\\//.
+55 |\\-\\/--/||./-/\\/\\/\\\\..\\\\\\\\\\-/.|./--/|//\\\\.
+55 |/\\|\\\\..\\/.\\\\/-\\/\\.\\\\..|///\\..|.|./-/|..\\\\
+52 ||||.|./--\\//\\\\|\\//\\\\\\.\\/.\\//-/.|//..|./\\|
+54 \\/||.|.|.//|/\\\\/..\\/.\\\\../--/./\\\\//\\.\\\\\\/|
+54 /-/|.\\\\\\-///\\//\\/\\./\\///\\|/\\..\\//-/\\\\.|..|
+52 |.///\\\\\\.///\\.\\/\\/.|\\///||\\/./\\.|./-/.\\--/
+53 \\-/.||.|.|.\\/./-\\..\\\\.\\\\|\\---/\\-/.|./\\/\\..
+53 /---/\\-/.|../-/.\\\\/\\\\\\//|..../\\...\\-/\\/\\-\\
+54 \\\\/---\\/-//\\|./-\\|||//\\\\\\--\\//\\----\\./\\..|
+56 .||/\\//|..|||.\\\\|\\/|\\-\\|./\\|\\-\\/\\/\\\\\\|\\--/
+61 .\\/\\/\\\\|/\\\\/\\-\\\\//\\\\-\\||.\\/\\\\.|\\/\\/.\\/./-\\
+53 /--\\.//|||/\\..\\-\\\\/.//||../\\\\\\|./--\\/\\.\\-/
+54 |/\\\\-/.\\/|||/\\.///\\//.\\/.//\\\\\\////\\\\/|./-\\
+49 \\/|/--\\/-/\\/\\/.|//\\//----/..|..|.||/-/.\\\\|
+54 .//\\\\//\\\\../-\\//|..///----\\.\\\\.|.\\/\\-\\/\\||
+55 .\\--/|..\\\\.|.\\/.\\\\.\\\\\\----//\\\\-//----/\\/\\/
+53 /\\..///-\\|.\\-\\./-//\\\\---\\/-/\\---//--\\/\\./\\
+54 |\\-\\|////|/\\.|.\\\\.\\//\\/-/\\\\../\\..\\--/||.\\/
+52 \\-\\\\/\\-///\\/.|/\\|/--/|\\---/.//|./-\\.//\\\\..
+61 .///-\\/\\\\-\\/\\|\\/|\\\\..\\------/.\\\\\\\\\\\\\\-\\\\-\\
+49 .\\-/.|\\//-/|||.//.|./---\\./\\..//.|///\\\\\\//
+54 /--\\///\\\\\\.\\/|///\\\\-/./\\\\\\\\//-/.//|.\\/.||.
+54 \\--/|//|.|./\\|\\\\|\\\\./\\\\/.|/\\|...|///\\..|\\\\
+53 ./--/\\\\|.\\\\||\\-/\\-/.||...|\\/\\\\..\\///|/\\|.|
+49 .|/\\/-/|.//\\/../\\..//\\---//--//--\\\\-/|\\///
+54 .|||\\-\\\\\\|./-\\.\\//\\|/\\./-\\\\\\/\\|.//./-/.//.
+56 //|\\--///\\\\\\\\\\\\..||||\\-/.|.|\\/\\-//\\\\-\\.|/\\
+56 \\-/../\\\\\\.\\\\|.|.//\\/\\\\./\\|.|./---/\\\\.\\-/\\/
+50 /---\\\\/.|..|\\\\|//....|//\\/.|//../-\\\\-----\\
+56 \\\\/-/./\\\\-\\|//|\\-\\./\\||./\\.\\//-\\|.\\\\/-\\.//
+54 .\\/./\\\\//\\\\/\\-//\\|.\\/\\/.||...|//\\\\.\\///.|.
+55 /\\/\\||/\\|\\-\\/-\\|||.../--/\\-\\//|..|./\\\\\\.\\\\
+54 \\/\\/\\/\\/\\--/\\-/\\/\\---/.....\\/.\\--/.\\/.\\--/
+1
+10 2017.09.09
+22 TopCoder Open Round #1
+0
+85 on2017_09.on2017_09_09_TopCoder_Open_Round__1.EllysRollerCoasters.EllysRollerCoasters
+1
+4 256M

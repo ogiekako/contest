@@ -1,0 +1,34 @@
+5 TaskK
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+13 3
+1 1
+0 3
+3 2
+1 2
+1
+1
+9 2
+1 1
+2 2
+1 1
+1
+8 main/src
+8 -Xmx262M
+4 Main
+53 on2017_09.on2017_09_12_Typical_DP_Contest.TaskK.TaskK
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.12
+18 Typical DP Contest
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

@@ -8,8 +8,8 @@ import net.ogiekako.algorithm.utils.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 public class Polynomial extends Ring<Polynomial> {
+
     // degree
     final int n;
     final Mint[] a;
@@ -25,7 +25,7 @@ public class Polynomial extends Ring<Polynomial> {
     public static final Polynomial ZERO = of(0);
 
     Polynomial(Mint... a) {
-        for(Mint m : a) if (m == null) throw new NullPointerException();
+        for (Mint m : a) if (m == null) throw new NullPointerException();
         if (a.length == 0) {
             a = new Mint[1];
             a[0] = Mint.ZERO;
@@ -56,7 +56,7 @@ public class Polynomial extends Ring<Polynomial> {
         ArrayList<Long> as = new ArrayList<Long>();
         for (String item : items) {
             if (!item.contains("x")) {
-                if(as.size() == 0) as.add(Long.valueOf(item));
+                if (as.size() == 0) as.add(Long.valueOf(item));
                 else as.set(0, Long.valueOf(item));
                 continue;
             }
@@ -118,6 +118,21 @@ public class Polynomial extends Ring<Polynomial> {
         return res;
     }
 
+    /**
+     * P * Q.
+     */
+    public static Mint[] mul(Mint[] P, Mint[] Q) {
+        int n = P.length, m = Q.length;
+        Mint[] res = new Mint[n + m - 1];
+        Arrays.fill(res, Mint.ZERO);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                res[i + j] = res[i + j].add(P[i].mul(Q[j]));
+            }
+        }
+        return res;
+    }
+
     // x^k % P(x).
     // O(n^2 log k)
     public static long[] mod(long k, long[] P, int MOD) {
@@ -132,6 +147,44 @@ public class Polynomial extends Ring<Polynomial> {
             pow = mod(mul(pow, pow, MOD), P, MOD);
             k >>>= 1;
         }
+        return res;
+    }
+
+    // x^k % P(x).
+    // O(n^2 log k)
+    public static Mint[] mod(long k, Mint[] P) {
+        Mint[] res = new Mint[P.length - 1];
+        if (res.length <= 0) return res;// zero
+        Arrays.fill(res, Mint.ZERO);
+        res[0] = Mint.ONE;
+        Mint[] pow = mod(new Mint[]{Mint.ZERO, Mint.ONE}, P);// x
+        while (k > 0) {
+            if ((k & 1) == 1) {
+                res = mod(mul(pow, res), P);
+            }
+            pow = mod(mul(pow, pow), P);
+            k >>>= 1;
+        }
+        return res;
+    }
+
+    // P(x) % Q(x)
+    public static Mint[] mod(Mint[] P, Mint[] Q) {
+        int n = Q.length;
+        Q = Q.clone();
+        Mint inv = Q[n - 1].mulInv();
+        for (int i = 0; i < n; i++) Q[i] = Q[i].mul(inv);
+        P = P.clone();
+        for (int i = P.length - 1; i >= n - 1; i--)
+            if (!P[i].isZero()) {
+                Mint mul = P[i].addInv();
+                for (int j = 0; j < n; j++) {
+                    P[i - j] = P[i - j].add(Q[n - 1 - j].mul(mul));
+                }
+            }
+        Mint[] res = new Mint[n - 1];
+        Arrays.fill(res, Mint.ZERO);
+        for (int i = 0; i < n - 1 && i < P.length; i++) res[i] = P[i];
         return res;
     }
 
@@ -198,7 +251,7 @@ public class Polynomial extends Ring<Polynomial> {
     }
 
     public Polynomial addInv() {
-        Mint[] inv = new Mint[n+1];
+        Mint[] inv = new Mint[n + 1];
         for (int i = 0; i <= n; i++) {
             inv[i] = a[i].addInv();
         }

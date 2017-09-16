@@ -1,5 +1,6 @@
 package net.ogiekako.algorithm.math;
 
+import net.ogiekako.algorithm.utils.ArrayUtils;
 import net.ogiekako.algorithm.utils.Cast;
 
 import java.math.BigInteger;
@@ -329,6 +330,16 @@ public class MathUtils {
             for (int j = 0; j < i + 1; j++) {
                 C[i][j] = j == 0 ? 1 : C[i - 1][j - 1] + C[i - 1][j];
                 if (C[i][j] >= modulus) C[i][j] -= modulus;
+            }
+        return C;
+    }
+
+    public static Mint[][] combinationMint(int n) {
+        Mint[][] C = new Mint[n][n];
+        ArrayUtils.fill(C, Mint.ZERO);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < i + 1; j++) {
+                C[i][j] = j == 0 ? Mint.ONE : C[i - 1][j - 1].add(C[i - 1][j]);
             }
         return C;
     }

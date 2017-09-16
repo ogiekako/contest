@@ -1,0 +1,31 @@
+5 TaskA
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+7 3
+2 3 5
+1 7
+1
+1
+22 10
+1 1 1 1 1 1 1 1 1 1
+2 11
+1
+8 main/src
+16 -Xmx256m -Xss64m
+4 Main
+39 on2017_09.on2017_09_10_TDPC.TaskA.TaskA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.10
+4 TDPC
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

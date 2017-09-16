@@ -1,0 +1,47 @@
+22 H - ナップザック
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+36 4 5 2
+1 10 1
+1 20 2
+1 30 3
+10 100 4
+
+3 50
+
+1
+1
+68 10 20 2
+4 5 6
+3 3 9
+5 2 9
+4 1 6
+6 8 3
+3 7 6
+2 4 9
+4 7 3
+6 5 6
+3 2 9
+
+3 27
+
+1
+8 main/src
+8 -Xmx262M
+4 Main
+58 on2017_09.on2017_09_12_Typical_DP_Contest.H_________.TaskH
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.12
+18 Typical DP Contest
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

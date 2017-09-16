@@ -134,6 +134,10 @@ public class ArrayUtils {
         for (long[] a : array) Arrays.fill(a, value);
     }
 
+    public static void fill(double[][] array, double value) {
+        for (double[] a : array) Arrays.fill(a, value);
+    }
+
     public static long sum(int[] is) {
         long res = 0;
         for (int i : is) {
@@ -429,6 +433,25 @@ public class ArrayUtils {
         for (long[][] l : array) fill(l, value);
     }
 
+    public static void fill(double[][][][][][] array, double value) {
+        for (double[][][][][] l : array) fill(l, value);
+    }
+
+    private static void fill(double[][][][][] array, double value) {
+        for (double[][][][] l : array) fill(l, value);
+    }
+
+    public static void fill(double[][][][] array, double value) {
+        for (double[][][] l : array) fill(l, value);
+    }
+
+    public static void fill(double[][][] array, double value) {
+        for (double[][] l : array) fill(l, value);
+    }
+
+    public static <V> void fill(V[][][] array, V value) {
+        for (V[][] l : array) ArrayUtils.fill(l, value);
+    }
     public static <V> void fill(V[][] array, V value) {
         for (V[] l : array) Arrays.fill(l, value);
     }
@@ -582,10 +605,6 @@ public class ArrayUtils {
             if ((mask >> i & 1) == 1) res[j++] = ls[i];
         }
         return res;
-    }
-
-    public static void fill(double[][] array, double d) {
-        for (double[] ds : array) Arrays.fill(ds, d);
     }
 
     public static long sum(long[] ls) {

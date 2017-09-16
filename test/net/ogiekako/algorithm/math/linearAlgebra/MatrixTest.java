@@ -70,6 +70,8 @@ public class MatrixTest {
 
     @Test
     public void testPowered() {
+        Mint.set1e9_7();
+
         Random rnd = new Random(12490124L);
         int iteration = 50;
         for (int iterationCount = 0; iterationCount < iteration; iterationCount++) {
@@ -93,7 +95,38 @@ public class MatrixTest {
                 debug(exp);
                 throw new AssertionError();
             }
+
+            Mint[][] Am = new Mint[n][n];
+            ArrayUtils.fill(Am, Mint.ZERO);
+            Mint[] xm = new Mint[n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    Am[i][j] = Mint.of(A[i][j]);
+                }
+                xm[i] = Mint.of(x[i]);
+            }
+            Mint[] resm = Matrix.powered(Am, k, xm);
+            for (int i = 0; i < n; i++) {
+                if (resm[i].get() != exp[i]) {
+                    throw new AssertionError();
+                }
+            }
         }
+    }
+
+    @Test
+    public void testPoweredMint() {
+        Mint.set1e9_7();
+        Mint[][] A = new Mint[][] {
+                {Mint.ONE, Mint.ZERO},
+                {Mint.ZERO, Mint.of(2)}
+        };
+        Mint[] x = {Mint.ONE, Mint.ONE};
+        Assert.assertArrayEquals(new Mint[]{Mint.ONE, Mint.of(2)}, Matrix.powered(A, 1, x));
+        Assert.assertArrayEquals(new long[]{1, 4}, Matrix.powered(new long[][]{{1,0},{0,2}}, 2, new long[]{1,1}, 100));
+        Assert.assertArrayEquals(new Mint[]{Mint.ONE, Mint.of(4)}, Matrix.powered(A, 2, x));
+
+
     }
 
     @Test

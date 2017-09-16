@@ -1,0 +1,41 @@
+7 L - 猫
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+24 3
+0 2 3
+2 0 -10
+3 -10 0
+
+2 4
+
+1
+1
+58 5
+0 -3 5 2 -6
+-3 0 6 -3 1
+5 6 0 2 0
+2 -3 2 0 4
+-6 1 0 4 0
+
+3 28
+
+1
+8 main/src
+8 -Xmx262M
+4 Main
+53 on2017_09.on2017_09_16_Typical_DP_Contest.L____.TaskL
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.16
+18 Typical DP Contest
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1

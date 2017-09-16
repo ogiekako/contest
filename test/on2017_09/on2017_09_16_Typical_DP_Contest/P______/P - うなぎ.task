@@ -1,0 +1,43 @@
+13 P - うなぎ
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+16 4 1
+1 2
+2 3
+3 4
+
+2 6
+
+1
+1
+32 8 3
+1 2
+4 6
+6 7
+3 2
+2 4
+4 5
+8 6
+
+2 9
+
+1
+8 main/src
+8 -Xmx262M
+4 Main
+55 on2017_09.on2017_09_16_Typical_DP_Contest.P______.TaskP
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.09.16
+18 Typical DP Contest
+1
+35 net.ogiekako.algorithm.io.MyScanner
+39 net.ogiekako.algorithm.io.MyPrintWriter
+0
+1
