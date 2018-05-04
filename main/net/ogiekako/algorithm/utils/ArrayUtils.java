@@ -449,6 +449,12 @@ public class ArrayUtils {
         for (double[][] l : array) fill(l, value);
     }
 
+    public static <V> void fill(V[][][][][] array, V value) {
+        for (V[][][][] l : array) ArrayUtils.fill(l, value);
+    }
+    public static <V> void fill(V[][][][] array, V value) {
+        for (V[][][] l : array) ArrayUtils.fill(l, value);
+    }
     public static <V> void fill(V[][][] array, V value) {
         for (V[][] l : array) ArrayUtils.fill(l, value);
     }

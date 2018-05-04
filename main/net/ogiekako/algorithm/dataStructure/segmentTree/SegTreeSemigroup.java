@@ -24,9 +24,9 @@ public abstract class SegTreeSemigroup<V> {
     // parent : (i-1)/2
     // left,right : 2*i+1, 2*i+2
     // leaf : i >= n-1
-    final V[] answer;
-    final int[] left;
-    final int[] right;
+    final protected V[] answer;
+    final protected int[] left;
+    final protected int[] right;
 
     public SegTreeSemigroup(int N) {
         n = Integer.highestOneBit(N) << 1;
