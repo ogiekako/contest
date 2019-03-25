@@ -58,8 +58,10 @@ public class Graph {
         }
     }
 
-    public void add(int from, int to) {
-        add(new SimpleEdge(from, to));
+    public Edge add(int from, int to) {
+        Edge e = new SimpleEdge(from, to);
+        add(e);
+        return e;
     }
 
     public List<Edge> edges(int vertex) {

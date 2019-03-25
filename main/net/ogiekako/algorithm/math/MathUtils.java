@@ -6,7 +6,6 @@ import net.ogiekako.algorithm.utils.Cast;
 import java.math.BigInteger;
 import java.util.*;
 
-@SuppressWarnings("SuspiciousNameCombination")
 public class MathUtils {
     public static final double GOLDEN_RATIO = (Math.sqrt(5) + 1.0) / 2.0;
 
@@ -538,5 +537,27 @@ public class MathUtils {
         }
         memoMobius.put(n, res);
         return res;
+    }
+
+    // O(n^2). Verified with TCO 2017 3A CoprimeMatrix.
+    public static BigInteger crt(int[] ps, int[] ds) {
+        int n = ps.length;
+        int[] as = new int[n];
+        for (int i = 0; i < n; i++) {
+            long P = 1;
+            for (int j = 0; j < n; j++) {
+                if (i != j) P = P * ps[j] % ps[i];
+            }
+            as[i] = (int) (MathUtils.inverse(P, ps[i]) * ds[i] % ps[i]);
+        }
+        BigInteger P = BigInteger.ONE;
+        for (int i = 0; i < n; i++) {
+            P = P.multiply(BigInteger.valueOf(ps[i]));
+        }
+        BigInteger N = BigInteger.ZERO;
+        for (int i = 0; i < n; i++) {
+            N = N.add(P.divide(BigInteger.valueOf(ps[i])).multiply(BigInteger.valueOf(as[i])));
+        }
+        return N;
     }
 }

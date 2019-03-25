@@ -1,0 +1,15 @@
+#
+#Sat Mar 16 20:58:50 JST 2019
+smartTesting=false
+archiveDirectory=archive
+defaultDirectory=main/src
+extensionProposed=true
+outputClass=net.ogiekako.algorithm.io.MyPrintWriter
+excludePackages=java.,javax.,com.sun.
+outputDirectory=output
+author=ogiekako
+failOnIntegerOverflowForNewTasks=false
+inputClass=net.ogiekako.algorithm.io.MyScanner
+enableUnitTests=true
+testDirectory=test
+libraryVersion=2
